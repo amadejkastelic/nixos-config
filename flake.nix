@@ -77,7 +77,10 @@
 
     hypridle.url = "github:hyprwm/hypridle";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
@@ -102,11 +105,6 @@
 
     matugen = {
       url = "github:InioX/matugen/module";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nh = {
-      url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
