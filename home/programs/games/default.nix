@@ -7,7 +7,7 @@
 {
   home.packages = with pkgs; [
     # inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
-    gamescope
+    #gamescope
     winetricks
     adwsteamgtk
     steam-run
