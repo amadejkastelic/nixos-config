@@ -23,8 +23,8 @@
           src = prev.fetchFromGitHub {
             owner = "Vencord";
             repo = "Vesktop";
-            rev = "${old.version}";
-            hash = "sha256-s3ndHHN8mqbzL40hMDXXDl+VV9pOk4XfnaVCaQvFFsg=";
+            rev = "main";
+            hash = "sha256-EF36HbbhTuAdwBEKqYgBBu7JoP1LJneU78bROHoKqDw=";
           };
           pnpmDeps = old.pnpmDeps.overrideAttrs (x: {
             outputHash = "sha256-6ezEBeYmK5va3gCh00YnJzZ77V/Ql7A3l/+csohkz68=";
