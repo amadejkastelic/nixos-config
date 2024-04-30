@@ -28,11 +28,17 @@ in {
       buildFHSEnv = args:
         pkgs.buildFHSEnv (args
           // {
+            #extraPreBwrapCmds =
+            #  (args.extraPreBwrapCmds or "")
+            #  + ''
+            #    cp /etc/static/gamemode.ini /tmp/gamemode.ini
+            #    chmod 666 /tmp/gamemode.ini
+            #  '';
             extraBwrapArgs =
               (args.extraBwrapArgs or [])
               ++ [
-                "--bind /tmp/hypr /tmp/hypr"
-                "--ro-bind /etc/gamemode.ini /etc/gamemode.ini"
+                "--bind /run/user/1000/hypr /tmp/hypr"
+                #"--ro-bind /tmp/gamemode.ini /etc/gamemode.ini"
               ];
           });
 

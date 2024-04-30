@@ -14,7 +14,7 @@
   ];
   toggleGamemode = pkgs.writeShellScriptBin "toggle-gamemode" ''
     export PATH=$PATH:${programs}
-    export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl instances | grep instance | sed 's/://g' | cut -d' ' -f2 | tail -n 1)
+    export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl instances | grep instance | sed 's/://g' | cut -d' ' -f2 | tail -n 1 | cut -d'/' -f6)
     HYPRGAMEMODE=$(hyprctl getoption animations:enabled | sed -n '1p' | awk '{print $2}')
     if [ $HYPRGAMEMODE = 1 ] ; then
       hyprctl --batch "\
