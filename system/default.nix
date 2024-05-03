@@ -11,6 +11,7 @@ let
     ./programs
 
     ./hardware/bluetooth.nix
+    ./hardware/controller.nix
 
     ./services
     ./services/greetd.nix
