@@ -17,7 +17,8 @@
             colors = import "${self}/lib/colors" prev.lib;
           };
       })
-      (final: prev: {
+      /*
+        (final: prev: {
         vesktop = prev.vesktop.overrideAttrs (old: {
           version = "main";
           src = prev.fetchFromGitHub {
@@ -31,6 +32,7 @@
           });
         });
       })
+      */
     ];
   };
 }

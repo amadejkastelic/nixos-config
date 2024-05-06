@@ -1,5 +1,6 @@
 let
-  screenshotarea = ''shader=$(hyprshade current) && hyprshade off && grimblast --freeze --notify copy area; hyprshade on "$shader"'';
+  #screenshotarea = ''shader=$(hyprshade current) && hyprshade off && grimblast --freeze --notify copy area; hyprshade on "$shader"'';
+  screenshotarea = ''grimblast --freeze --notify copy area'';
 
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
   workspaces = builtins.concatLists (builtins.genList (

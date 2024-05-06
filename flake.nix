@@ -75,16 +75,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hypridle.url = "github:hyprwm/hypridle";
+    # hyprwm
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
     };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
     hyprland-plugins = {
@@ -92,9 +95,19 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprlock.url = "github:hyprwm/hyprlock";
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+    };
 
-    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
+    };
 
     kmonad = {
       url = "github:kmonad/kmonad?dir=nix";

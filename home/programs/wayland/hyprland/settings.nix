@@ -114,6 +114,8 @@ in {
   wayland.windowManager.hyprland.extraConfig = ''
     plugin {
       csgo-vulkan-fix {
+        #res_w = 1280
+        #res_h = 960
         res_w = 2560
         res_h = 1440
         class = cs2
