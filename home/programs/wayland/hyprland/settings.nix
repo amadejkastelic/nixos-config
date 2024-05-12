@@ -111,7 +111,8 @@ in {
     debug.disable_logs = true;
   };
 
-  wayland.windowManager.hyprland.extraConfig = ''
+  /*
+    wayland.windowManager.hyprland.extraConfig = ''
     plugin {
       csgo-vulkan-fix {
         #res_w = 1280
@@ -122,4 +123,5 @@ in {
       }
     }
   '';
+  */
 }
