@@ -12,6 +12,7 @@ let
 
     ./hardware/bluetooth.nix
     ./hardware/controller.nix
+    ./hardware/ledger.nix
 
     ./services
     ./services/greetd.nix
