@@ -48,5 +48,5 @@
   wayland.windowManager.hyprland.extraConfig = ''
   '';
 
-  catppuccin.flavour = "mocha";
+  #catppuccin.flavour = "mocha";
 }
