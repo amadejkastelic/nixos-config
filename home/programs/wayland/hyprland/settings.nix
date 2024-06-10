@@ -8,16 +8,13 @@ in {
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "WLR_DRM_NO_ATOMIC,1"
-      "XCURSOR_SIZE,32"
     ];
 
     exec-once = [
-      # set cursor for HL itself
       "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
       "hyprlock"
       "waybar"
       "wl-paste --watch cliphist store"
-      #"vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland"
     ];
 
     general = {
@@ -101,6 +98,7 @@ in {
 
       vrr = 0;
       no_direct_scanout = false;
+      render_ahead_of_time = false;
     };
 
     xwayland = {

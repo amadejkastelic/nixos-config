@@ -4,9 +4,9 @@
   ...
 }: {
   home.pointerCursor = {
-    package = pkgs.catppuccin-cursors.mochaPink;
-    name = "Catppuccin-Mocha-Pink-Cursors";
-    size = 32;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
     gtk.enable = true;
     x11.enable = true;
   };
