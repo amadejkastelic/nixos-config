@@ -15,6 +15,7 @@
       # Nix
       kamadorueda.alejandra
       jnoortheen.nix-ide
+      arrterian.nix-env-selector
 
       # Python
       ms-python.python
