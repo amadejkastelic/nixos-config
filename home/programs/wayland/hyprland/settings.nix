@@ -106,7 +106,9 @@ in {
       use_nearest_neighbor = false;
     };
 
-    debug.disable_logs = true;
+    debug = {
+      disable_logs = true;
+    };
   };
 
   wayland.windowManager.hyprland.extraConfig = ''

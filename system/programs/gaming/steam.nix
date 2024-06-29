@@ -11,13 +11,11 @@ in {
   programs.steam = {
     enable = true;
 
-    extest.enable = false;
+    extest.enable = true;
 
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
-
-    gamescopeSession.enable = true;
 
     # fix gamescope inside steam
     package = pkgs.steam.override {
@@ -64,8 +62,7 @@ in {
   };
 
   hardware = {
-    # https://github.com/NixOS/nixpkgs/issues/47932#issuecomment-447508411
-    opengl.driSupport32Bit = true;
+    graphics.enable32Bit = true;
     steam-hardware.enable = true;
   };
 }

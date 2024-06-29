@@ -43,9 +43,7 @@
       "immediate, class:.*"
 
       # Games
-      "workspace name:Gaming, float, center, stayfocused, class:gamescope"
-      "workspace name:Gaming, float, center, stayfocused, class:cs2"
-      "workspace name:Gaming, float, center, stayfocused, class:hearthstone"
+      "workspace name:Gaming, class:gamescope"
 
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"

@@ -11,6 +11,8 @@
     x11.enable = true;
   };
 
+  catppuccin.pointerCursor.enable = false;
+
   gtk = {
     enable = true;
 
@@ -22,24 +24,15 @@
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
+    catppuccin = {
+      enable = true;
+      accent = "pink";
+      flavor = "mocha";
+      size = "compact";
+      icon = {
+        enable = true;
         accent = "pink";
-      };
-    };
-
-    theme = {
-      name =
-        if config.theme.name == "light"
-        then "Catppuccin-Mocha-Compact-Pink"
-        else "Catppuccin-Mocha-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
-        size = "compact";
-        # tweaks = [ "rimless" "black" ];
-        variant = "mocha";
+        flavor = "mocha";
       };
     };
   };

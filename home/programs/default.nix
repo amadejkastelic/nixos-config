@@ -16,6 +16,5 @@
     wineWowPackages.wayland
     ledger-live-desktop
     pinentry-gnome3
-    zoom-us
   ];
 }

@@ -2,15 +2,14 @@
   imports = [
     ./steam.nix
     ./gamemode.nix
+    ./gamescope.nix
   ];
 
   environment.systemPackages = with pkgs; [
     mangohud
     bottles
-    gamescope
   ];
 
-  # Downgrade gamescope
   nixpkgs.overlays = [
     (final: prev: {
       gamescope = prev.gamescope.overrideAttrs (old: {

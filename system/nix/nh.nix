@@ -1,10 +1,10 @@
 {inputs, ...}: {
   programs.nh = {
     enable = true;
-    # weekly cleanup
+    # monthly cleanup
     clean = {
       enable = true;
-      extraArgs = "--keep-since 7d";
+      extraArgs = "--keep-since 30d";
     };
     flake = "/home/amadejk/Documents/dotfiles";
   };
