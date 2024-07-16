@@ -10,7 +10,8 @@
     bottles
   ];
 
-  nixpkgs.overlays = [
+  /*
+    nixpkgs.overlays = [
     (final: prev: {
       gamescope = prev.gamescope.overrideAttrs (old: {
         version = "3.14.2";
@@ -24,4 +25,5 @@
       });
     })
   ];
+  */
 }

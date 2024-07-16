@@ -44,6 +44,7 @@
 
       # Games
       "workspace name:Gaming, class:gamescope"
+      "workspace name:Gaming, class:cs2"
 
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"

@@ -4,13 +4,12 @@
   config,
   ...
 }: {
-  # themable spotify
   imports = [
-    inputs.spicetify-nix.homeManagerModule
+    inputs.spicetify-nix.homeManagerModules.default
   ];
 
   programs.spicetify = let
-    spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
     variant =
       if config.theme.name == "light"
       then "latte"
@@ -24,10 +23,7 @@
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
-      history
-      # genre
       hidePodcasts
-      shuffle
     ];
   };
 }

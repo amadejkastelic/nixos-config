@@ -5,6 +5,7 @@
 
   home.packages = with pkgs; [
     libreoffice
+    # kdePackages.kdenlive
     # obsidian
   ];
 }
