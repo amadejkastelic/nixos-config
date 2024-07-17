@@ -21,7 +21,6 @@
       ms-python.python
       ms-python.vscode-pylance
       ms-python.black-formatter
-      charliermarsh.ruff
     ];
 
     userSettings = {
