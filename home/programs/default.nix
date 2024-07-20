@@ -8,7 +8,6 @@
     ./media
     ./gtk.nix
     ./office
-    #./de/plasma.nix
     #./walker
   ];
 
@@ -17,5 +16,7 @@
     wineWowPackages.wayland
     ledger-live-desktop
     pinentry-gnome3
+    gnumake
+    postman
   ];
 }

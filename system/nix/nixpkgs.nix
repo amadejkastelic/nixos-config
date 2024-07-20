@@ -1,6 +1,7 @@
 {
   self,
   lib,
+  inputs,
   ...
 }: {
   nixpkgs = {
@@ -17,6 +18,8 @@
             colors = import "${self}/lib/colors" prev.lib;
           };
       })
+      inputs.nix-vscode-extensions.overlays.default
+      inputs.catppuccin-vsc.overlays.default
       /*
         (final: prev: {
         vesktop = prev.vesktop.overrideAttrs (old: {

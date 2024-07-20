@@ -35,8 +35,6 @@
 
     # catppuccin
     inputs.catppuccin.homeManagerModules.catppuccin
-    # Plasma
-    inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
   wayland.windowManager.hyprland.settings = let
