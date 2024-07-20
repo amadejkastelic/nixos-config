@@ -33,6 +33,11 @@
       "float, title:^(Spotify( Premium)?)$"
       "float, class:^(vesktop)$"
 
+      # Dialogs
+      "float, title:^(Open File)$"
+      "opacity 0.80 0.70, title:^(Open File)$"
+      "size 1280 720, title:^(Open File)$"
+
       # opacity
       "opacity 0.80 0.70, class:^(pavucontrol)$"
       "opacity 0.80 0.70, class:^(nm-connection-editor)$"
