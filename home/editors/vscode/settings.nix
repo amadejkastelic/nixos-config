@@ -38,7 +38,7 @@
   };
 
   terminal = {
-    "terminal.integrated.smoothScrolling" = true;
+    "terminal.integrated.smoothScrolling" = false;
     "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
     "terminal.integrated.fontSize" = 14;
     "terminal.integrated.minimumContrastRatio" = 1;

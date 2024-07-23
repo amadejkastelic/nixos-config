@@ -7,7 +7,6 @@
   flake.nixosConfigurations = let
     # shorten paths
     inherit (inputs.nixpkgs.lib) nixosSystem;
-    howdy = inputs.nixpkgs-howdy;
     mod = "${self}/system";
 
     # get the basic config to build on top of
@@ -36,7 +35,7 @@
             home-manager = {
               users.amadejk.imports = homeImports."amadejk@ryzen";
               extraSpecialArgs = specialArgs;
-              backupFileExtension = "backup";
+              backupFileExtension = "backup2";
             };
           }
 

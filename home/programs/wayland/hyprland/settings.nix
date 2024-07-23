@@ -2,16 +2,23 @@
   variant = config.theme.name;
   c = config.programs.matugen.theme.colors.colors_android.${variant};
   pointer = config.home.pointerCursor;
+
+  cursorName = "HyprBibataModernIceSVG";
+  cursorSize = pointer.size * 2;
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "WLR_DRM_NO_ATOMIC,1"
+      "HYPRCURSOR_THEME,${cursorName}"
+      "HYPRCURSOR_SIZE,${toString cursorSize}"
+      #"AQ_TRACE,1"
+      #"HYPRLAND_TRACE,1"
     ];
 
     exec-once = [
-      "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+      "hyprctl setcursor ${cursorName} ${toString cursorSize}"
       "hyprlock"
       "waybar"
       "wl-paste --watch cliphist store"
@@ -101,9 +108,19 @@ in {
       render_ahead_of_time = false;
     };
 
+    cursor = {
+      inactive_timeout = 0;
+      enable_hyprcursor = true;
+      no_hardware_cursors = false;
+    };
+
     xwayland = {
       force_zero_scaling = true;
       use_nearest_neighbor = false;
+    };
+
+    experimental = {
+      explicit_sync = true;
     };
 
     debug = {
@@ -116,8 +133,10 @@ in {
       csgo-vulkan-fix {
         #res_w = 1280
         #res_h = 960
-        res_w = 2560
-        res_h = 1440
+        #res_w = 2560
+        #res_h = 1440
+        res_w = 1920
+        res_h = 1080
         class = cs2
       }
     }

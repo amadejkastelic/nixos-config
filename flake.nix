@@ -37,8 +37,16 @@
     };
 
   inputs = {
+    systems.url = "github:nix-systems/default-linux";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-howdy.url = "github:fufexan/nixpkgs/howdy";
+
+    flake-compat.url = "github:edolstra/flake-compat";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -49,6 +57,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "hm";
+      inputs.systems.follows = "systems";
     };
 
     ags = {
@@ -58,9 +67,7 @@
 
     anyrun.url = "github:fufexan/anyrun";
 
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
-
-    fu.url = "github:numtide/flake-utils";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     gross = {
       url = "github:fufexan/gross";
@@ -80,7 +87,6 @@
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
-      # rev = "fe7b748eb668136dd0558b7c8279bfcd7ab4d759";
     };
 
     hypridle = {
@@ -126,13 +132,14 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
 
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "fu";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     spicetify-nix = {

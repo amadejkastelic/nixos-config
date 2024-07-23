@@ -12,13 +12,13 @@
     pkgs.coreutils
     pkgs.gawk
   ];
+  #keyword monitor "DP-2,2560x1440@120,0x0,1";\
   toggleGamemode = pkgs.writeShellScriptBin "toggle-gamemode" ''
     export PATH=$PATH:${programs}
     export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl instances | grep instance | sed 's/://g' | cut -d' ' -f2 | tail -n 1 | cut -d'/' -f6)
     HYPRGAMEMODE=$(hyprctl getoption animations:enabled | sed -n '1p' | awk '{print $2}')
     if [ $HYPRGAMEMODE = 1 ] ; then
       hyprctl --batch "\
-        keyword monitor "DP-2,2560x1440@120,0x0,1";\
         keyword animations:enabled 0;\
         keyword decoration:drop_shadow 0;\
         keyword decoration:blur:enabled 0;\

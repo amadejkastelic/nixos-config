@@ -14,4 +14,7 @@
       libvdpau-va-gl
     ];
   };
+
+  # Bleeding-edge mesa
+  chaotic.mesa-git.enable = true;
 }

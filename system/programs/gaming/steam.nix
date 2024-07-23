@@ -11,7 +11,7 @@ in {
   programs.steam = {
     enable = true;
 
-    extest.enable = true;
+    extest.enable = false;
 
     extraCompatPackages = with pkgs; [
       proton-ge-bin
@@ -42,7 +42,6 @@ in {
 
       extraPkgs = pkgs:
         with pkgs; [
-          gamescope
           mangohud
           gamemode
           hyprland
