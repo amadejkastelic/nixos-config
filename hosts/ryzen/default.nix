@@ -1,7 +1,5 @@
 {
   pkgs,
-  self,
-  # inputs,
   lib,
   ...
 }: {
@@ -9,7 +7,9 @@
     ./hardware-configuration.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+  chaotic.scx.enable = true;
+
   environment.systemPackages = with pkgs; [
     pcscliteWithPolkit
   ];
@@ -23,24 +23,6 @@
   security.tpm2.enable = true;
 
   services = {
-    # for SSD/NVME
     fstrim.enable = true;
-
-    # howdy = {
-    #   enable = true;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.howdy;
-    #   settings = {
-    #     core = {
-    #       no_confirmation = true;
-    #       abort_if_ssh = true;
-    #     };
-    #     video.dark_threshold = 90;
-    #   };
-    # };
-
-    # linux-enable-ir-emitter = {
-    #   enable = true;
-    #   package = inputs.nixpkgs-howdy.legacyPackages.${pkgs.system}.linux-enable-ir-emitter;
-    # };
   };
 }

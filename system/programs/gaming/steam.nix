@@ -6,6 +6,7 @@
 }: let
   programs = lib.makeBinPath [
     config.programs.hyprland.package
+    pkgs.hyprshade
   ];
 in {
   programs.steam = {
@@ -42,9 +43,8 @@ in {
 
       extraPkgs = pkgs:
         with pkgs; [
-          mangohud
           gamemode
-          hyprland
+          config.programs.hyprland.package
           hyprshade
         ];
 

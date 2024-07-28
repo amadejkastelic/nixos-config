@@ -10,11 +10,9 @@ in {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-      "WLR_DRM_NO_ATOMIC,1"
+      #"WLR_DRM_NO_ATOMIC,1"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString cursorSize}"
-      #"AQ_TRACE,1"
-      #"HYPRLAND_TRACE,1"
     ];
 
     exec-once = [
