@@ -10,6 +10,12 @@ in {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      "XDG_SESSION_TYPE,wayland"
+      "XDG_CURRENT_DESKTOP,Hyprland"
+      "XDG_SESSION_DESKTOP,Hyprland"
+      "GDK_BACKEND,wayland"
+      "SDL_VIDEODRIVER,wayland"
+      "QT_QPA_PLATFORM,wayland;xcb"
       #"WLR_DRM_NO_ATOMIC,1"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString cursorSize}"

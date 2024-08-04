@@ -43,10 +43,12 @@ in {
         renice = 15;
       };
 
-      custom = {
+      /*
+        custom = {
         start = "${toggleGamemode.outPath}/bin/toggle-gamemode";
         end = "${toggleGamemode.outPath}/bin/toggle-gamemode";
       };
+      */
     };
   };
 

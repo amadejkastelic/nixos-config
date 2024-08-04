@@ -35,7 +35,6 @@
             home-manager = {
               users.amadejk.imports = homeImports."amadejk@ryzen";
               extraSpecialArgs = specialArgs;
-              backupFileExtension = "backup2";
             };
           }
 

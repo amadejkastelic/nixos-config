@@ -10,5 +10,6 @@
     winetricks
     adwsteamgtk
     steam-run
+    vibrantlinux
   ];
 }

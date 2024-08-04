@@ -11,6 +11,6 @@
     # make HM-managed GTK stuff work
     dconf.enable = true;
 
-    seahorse.enable = true;
+    seahorse.enable = false;
   };
 }

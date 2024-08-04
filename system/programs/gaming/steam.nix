@@ -1,14 +1,8 @@
 {
   pkgs,
-  lib,
   config,
   ...
-}: let
-  programs = lib.makeBinPath [
-    config.programs.hyprland.package
-    pkgs.hyprshade
-  ];
-in {
+}: {
   programs.steam = {
     enable = true;
 
@@ -36,7 +30,7 @@ in {
             extraBwrapArgs =
               (args.extraBwrapArgs or [])
               ++ [
-                "--bind /run/user/1000/hypr /tmp/hypr"
+                #"--bind /run/user/1000/hypr /tmp/hypr"
                 #"--ro-bind /tmp/gamemode.ini /etc/gamemode.ini"
               ];
           });
@@ -44,8 +38,8 @@ in {
       extraPkgs = pkgs:
         with pkgs; [
           gamemode
-          config.programs.hyprland.package
-          hyprshade
+          #config.programs.hyprland.package
+          #hyprshade
         ];
 
       extraLibraries = pkgs: with pkgs; [gamemode pkgsi686Linux.gamemode];
