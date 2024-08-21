@@ -8,6 +8,8 @@
 
     extest.enable = false;
 
+    protontricks.enable = true;
+
     extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];

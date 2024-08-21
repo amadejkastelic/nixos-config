@@ -121,7 +121,7 @@
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     matugen = {
-      url = "github:InioX/matugen/module";
+      url = "github:amadejkastelic/matugen/module";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

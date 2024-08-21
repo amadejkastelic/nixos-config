@@ -41,7 +41,7 @@
       "text/html" = browser;
       "text/plain" = ["codium"];
       "x-scheme-handler/chrome" = ["chromium-browser"];
-      "inode/directory" = ["thunar"];
+      "inode/directory" = ["dolphin"];
     }
     // image
     // video

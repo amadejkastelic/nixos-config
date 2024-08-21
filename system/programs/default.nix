@@ -4,7 +4,7 @@
     ./home-manager.nix
     # ./qt.nix
     ./xdg.nix
-    ./thunar.nix
+    #./thunar.nix
   ];
 
   programs = {

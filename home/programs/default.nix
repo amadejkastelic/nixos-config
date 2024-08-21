@@ -19,5 +19,7 @@
     pinentry-gnome3
     gnumake
     postman
+    qbittorrent-enhanced
+    oversteer
   ];
 }
