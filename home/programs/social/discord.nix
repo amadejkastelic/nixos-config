@@ -1,20 +1,26 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    vesktop
-  ];
+{
+  programs.nixcord = {
+    enable = true;
 
-  # Theme
-  xdg.configFile."vesktop/themes/custom.css".text = ''
-    /**
-    * @name Catppuccin Mocha
-    * @author winston#0001
-    * @authorId 505490445468696576
-    * @version 0.2.0
-    * @description 🎮 Soothing pastel theme for Discord
-    * @website https://github.com/catppuccin/discord
-    * @invite r6Mdz5dpFc
-    * **/
+    discord.enable = false;
+    vesktop.enable = true;
 
-    @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
-  '';
+    config = {
+      themeLinks = [
+        "https://raw.githubusercontent.com/catppuccin/discord/main/themes/mocha.theme.css"
+      ];
+      enabledThemes = [
+        "Catppuccin Mocha"
+      ];
+
+      plugins = {
+        crashHandler = {
+          enable = true;
+          attemptToPreventCrashes = true;
+        };
+        webKeybinds.enable = true;
+        webScreenShareFixes.enable = true;
+      };
+    };
+  };
 }

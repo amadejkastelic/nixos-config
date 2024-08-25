@@ -157,5 +157,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "hm";
     };
+
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+    };
   };
 }

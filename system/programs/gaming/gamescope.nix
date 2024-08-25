@@ -5,10 +5,11 @@
     args = [
       "--backend sdl"
       "--force-grab-cursor"
-      "-w 2560"
-      "-h 1440"
+      "-W 2560"
+      "-H 1440"
       "-r 120"
       "-b"
+      "-e"
     ];
   };
 

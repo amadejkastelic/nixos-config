@@ -35,6 +35,9 @@
 
     # catppuccin
     inputs.catppuccin.homeManagerModules.catppuccin
+
+    # Vesktop
+    inputs.nixcord.homeManagerModules.nixcord
   ];
 
   wayland.windowManager.hyprland.settings = let
