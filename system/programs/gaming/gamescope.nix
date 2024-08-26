@@ -3,13 +3,12 @@
     enable = true;
     package = pkgs.gamescope;
     args = [
-      "--backend sdl"
+      "--backend wayland"
       "--force-grab-cursor"
       "-W 2560"
       "-H 1440"
       "-r 120"
-      "-b"
-      "-e"
+      "-ef"
     ];
   };
 

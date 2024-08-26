@@ -8,7 +8,7 @@
     ./media
     ./gtk.nix
     ./office
-    ./plasma.nix
+    #./plasma.nix
     #./walker
   ];
 

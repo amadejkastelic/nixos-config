@@ -15,8 +15,8 @@ let
     ./hardware/ledger.nix
 
     ./services
-    #./services/greetd.nix
-    ./services/sddm.nix
+    ./services/greetd.nix
+    #./services/sddm.nix
     ./services/pipewire.nix
     ./services/gpg.nix
     ./services/printing.nix

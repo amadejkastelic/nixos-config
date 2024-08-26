@@ -1,25 +1,20 @@
 {
   pkgs,
+  inputs,
   config,
   ...
 }: {
+  nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
+
+  imports = [
+    inputs.nix-gaming.nixosModules.platformOptimizations
+  ];
+
   programs.steam = {
     enable = true;
 
-    extest.enable = false;
-
-    protontricks.enable = true;
-
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-
     # fix gamescope inside steam
     package = pkgs.steam.override {
-      extraEnv = {
-        SDL_VIDEODRIVER = "x11";
-      };
-
       buildFHSEnv = args:
         pkgs.buildFHSEnv (args
           // {
@@ -32,7 +27,7 @@
             extraBwrapArgs =
               (args.extraBwrapArgs or [])
               ++ [
-                #"--bind /run/user/1000/hypr /tmp/hypr"
+                "--bind /run/user/1000/hypr /tmp/hypr"
                 #"--ro-bind /tmp/gamemode.ini /etc/gamemode.ini"
               ];
           });
@@ -40,12 +35,25 @@
       extraPkgs = pkgs:
         with pkgs; [
           gamemode
-          #config.programs.hyprland.package
-          #hyprshade
+          config.programs.hyprland.package
+          hyprshade
         ];
 
       extraLibraries = pkgs: with pkgs; [gamemode pkgsi686Linux.gamemode];
     };
+
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+
+    extest.enable = true;
+    extraPackages = with pkgs; [
+      openssl_1_1
+      hyprshade
+    ];
+
+    protontricks.enable = true;
+    platformOptimizations.enable = true;
   };
 
   hardware = {

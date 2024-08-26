@@ -4,7 +4,7 @@
   pointer = config.home.pointerCursor;
 
   cursorName = "HyprBibataModernIceSVG";
-  cursorSize = pointer.size * 2;
+  cursorSize = pointer.size;
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -16,7 +16,6 @@ in {
       "GDK_BACKEND,wayland"
       "SDL_VIDEODRIVER,wayland"
       "QT_QPA_PLATFORM,wayland;xcb"
-      #"WLR_DRM_NO_ATOMIC,1"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString cursorSize}"
     ];
@@ -108,8 +107,12 @@ in {
       animate_mouse_windowdragging = false;
 
       vrr = 0;
-      no_direct_scanout = false;
       render_ahead_of_time = false;
+    };
+
+    render = {
+      explicit_sync = true;
+      direct_scanout = true;
     };
 
     cursor = {
@@ -123,10 +126,6 @@ in {
       use_nearest_neighbor = false;
     };
 
-    experimental = {
-      explicit_sync = true;
-    };
-
     debug = {
       disable_logs = true;
     };
@@ -135,12 +134,8 @@ in {
   wayland.windowManager.hyprland.extraConfig = ''
     plugin {
       csgo-vulkan-fix {
-        #res_w = 1280
-        #res_h = 960
-        #res_w = 2560
-        #res_h = 1440
-        res_w = 1920
-        res_h = 1080
+        res_w = 2560
+        res_h = 1440
         class = cs2
       }
     }
