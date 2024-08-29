@@ -4,8 +4,6 @@
   config,
   ...
 }: {
-  nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
-
   imports = [
     inputs.nix-gaming.nixosModules.platformOptimizations
   ];
@@ -48,7 +46,6 @@
 
     extest.enable = true;
     extraPackages = with pkgs; [
-      openssl_1_1
       hyprshade
     ];
 

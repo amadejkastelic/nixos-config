@@ -112,6 +112,7 @@ in {
 
     render = {
       explicit_sync = true;
+      explicit_sync_kms = true;
       direct_scanout = true;
     };
 
