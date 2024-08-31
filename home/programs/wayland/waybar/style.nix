@@ -46,7 +46,7 @@ in {
         color: #b4befe;
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock, #custom-blue-light-filter {
+    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #custom-gpu-usage, #clock, #custom-blue-light-filter {
         font-size: ${custom.font_size};
         color: ${custom.text_color};
     }
@@ -62,8 +62,13 @@ in {
     }
     #disk {
         padding-left: 9px;
+        padding-right: 9px;
+    }
+    #custom-gpu-usage {
+        padding-left: 9px;
         padding-right: 15px;
     }
+
 
     #tray {
         padding: 0 20px;

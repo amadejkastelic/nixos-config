@@ -14,8 +14,16 @@
 
         # Python
         ms-python.python
+        ms-python.debugpy
+        ms-python.flake8
         ms-python.vscode-pylance
         ms-python.black-formatter
+
+        # TOML
+        tamasfe.even-better-toml
+
+        # AI
+        ex3ndr.llama-coder
 
         # Docker
         ms-azuretools.vscode-docker

@@ -16,7 +16,7 @@ let
 
     ./services
     ./services/greetd.nix
-    #./services/sddm.nix
+    ./services/ollama.nix
     ./services/pipewire.nix
     ./services/gpg.nix
     ./services/printing.nix

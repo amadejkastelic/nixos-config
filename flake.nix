@@ -65,15 +65,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anyrun.url = "github:fufexan/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-
-    gross = {
-      url = "github:fufexan/gross";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
 
     helix.url = "github:helix-editor/helix";
 

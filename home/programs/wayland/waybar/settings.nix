@@ -1,4 +1,12 @@
-{...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  # https://www.nerdfonts.com/cheat-sheet
+
+  home.packages = [pkgs.radeontop];
+
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -19,6 +27,7 @@
       "cpu"
       "memory"
       "disk"
+      "custom/gpu-usage"
       "pulseaudio"
       "custom/blue-light-filter"
       "network"
@@ -105,6 +114,12 @@
       ];
       on-click = "hyprshade toggle night-light";
       tooltip = false;
+    };
+    "custom/gpu-usage" = {
+      exec = "${lib.getExe pkgs.radeontop} -d - -l 1 | tr -d '\n' | cut -s -d ',' -f3 | cut -s -d ' ' -f3 | tr -d '%' | awk '{ print int($1) }' | tr -d '\n'";
+      format = "󰢮 {}%";
+      interval = 2;
+      format-tooltip = "GPU Usage";
     };
   };
 }
