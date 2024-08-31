@@ -9,7 +9,7 @@
     ];
   };
 
-  environment.systemPackages = [pkgs.libsForQt5.ark];
+  environment.systemPackages = [pkgs.peazip];
 
   programs.xfconf.enable = true;
   services.gvfs.enable = true;

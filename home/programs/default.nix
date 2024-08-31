@@ -17,6 +17,5 @@
     postman
     qbittorrent-enhanced
     oversteer
-    pcmanfm
   ];
 }

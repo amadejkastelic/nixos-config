@@ -1,4 +1,6 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  startPagePrefs = "cad014b9ee124fd704ea0f51be2f73bfc3349588a40d189dcba79c484d35183eb373638bc54f6b19a1455c4ca2df381259d97999446bc4bfef4720783438530f26eed9e2ca3f81bcfc149bae";
+in {
   imports = [
     inputs.schizofox.homeManagerModule
   ];
@@ -15,7 +17,7 @@
           Name = "Startpage";
           Description = "Uses Google's indexer without its logging";
           Method = "GET";
-          URLTemplate = "https://startpage.com/sp/search?query={searchTerms}";
+          URLTemplate = "https://startpage.com/sp/search?query={searchTerms}&prfe=${startPagePrefs}";
         }
       ];
     };

@@ -5,7 +5,7 @@
 }: let
   browser = ["Schizofox"];
   fileManager = ["thunar"];
-  archiver = ["org.kde.ark"];
+  archiver = ["peazip"];
   imageViewer = ["org.gnome.Loupe"];
   videoPlayer = ["mpv"];
   audioPlayer = ["mpv"];
@@ -20,6 +20,7 @@
   image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif"];
   video = xdgAssociations "video" videoPlayer ["mp4" "avi" "mkv"];
   audio = xdgAssociations "audio" audioPlayer ["mp3" "flac" "wav" "aac"];
+  archive = xdgAssociations "application" archiver ["zip" "x-rar" "gzip" "x-7z-compressed"];
   browserTypes =
     (xdgAssociations "application" browser [
       "json"
@@ -46,12 +47,12 @@
       "inode/directory" = fileManager;
       "x-scheme-handler/spotify" = ["spotify.desktop"];
       "x-scheme-handler/discord" = ["vesktop.desktop"];
-      "application/zip" = archiver;
     }
     // image
     // video
     // audio
-    // browserTypes);
+    // browserTypes
+    // archive);
 in {
   xdg = {
     enable = true;
