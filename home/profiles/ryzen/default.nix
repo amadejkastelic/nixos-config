@@ -11,7 +11,6 @@
     ../../programs/wayland
 
     # services
-    #../../services/ags
     ../../services/networkmanager
     ../../services/gpg
 
@@ -21,9 +20,7 @@
 
     # system services
     ../../services/system/polkit-agent.nix
-    #../../services/system/dunst.nix
     ../../services/system/cliphist.nix
-    #../../services/system/udiskie.nix
 
     # wayland-specific
     ../../services/wayland/hyprpaper.nix

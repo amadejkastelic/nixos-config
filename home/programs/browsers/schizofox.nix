@@ -52,6 +52,9 @@ in {
       "dom.event.clipboardevents.enabled" = true;
       # Remove window control buttons
       "browser.tabs.inTitlebar" = 0;
+      # Scroll
+      "general.autoScroll" = true;
+      "general.smoothScroll" = true;
     };
 
     extensions = {
