@@ -1,15 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./anyrun
-    ./browsers/chromium.nix
-    ./browsers/firefox.nix
-    #./fuzzel
+    ./browsers/schizofox.nix
     ./social/discord.nix
     ./media
     ./gtk.nix
     ./office
-    #./plasma.nix
-    #./walker
   ];
 
   home.packages = with pkgs; [
@@ -21,5 +17,6 @@
     postman
     qbittorrent-enhanced
     oversteer
+    pcmanfm
   ];
 }

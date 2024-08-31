@@ -8,4 +8,10 @@
       thunar-media-tags-plugin
     ];
   };
+
+  environment.systemPackages = [pkgs.libsForQt5.ark];
+
+  programs.xfconf.enable = true;
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
 }

@@ -38,6 +38,7 @@ in {
     style = ''
       * {
         background: none;
+        max-width: 500px;
       }
 
       window {

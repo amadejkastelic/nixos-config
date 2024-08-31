@@ -152,10 +152,23 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
 
-    plasma-manager = {
+    /*
+      plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "hm";
+    };
+    */
+
+    schizofox = {
+      url = "github:schizofox/schizofox";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        home-manager.follows = "hm";
+        flake-compat.follows = "flake-compat";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     nixcord = {

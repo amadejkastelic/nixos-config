@@ -24,13 +24,6 @@
       "ignorealpha 0.5, ${toRegex (ignorealpha ++ ["music"])}"
     ];
 
-    windowrule = [
-      # allow tearing in games
-      "immediate, ^(steam_app_)(.*)$"
-      "fullscreen, ^(steam_app_)(.*)$"
-      "workspace name:Gaming, ^(steam_app_)(.*)$"
-    ];
-
     # window rules
     windowrulev2 = [
       # float
@@ -53,6 +46,10 @@
 
       # Games
       "workspace name:Gaming, class:gamescope"
+      "workspace name:Gaming, class:^(steam_app_)(.*)$"
+      "immediate, initialclass:^(steam_app_)(.*)$"
+      "fullscreen, initialclass:^(steam_app_)(.*)$"
+      "renderunfocused, initialclass:^(steam_app_)(.*)$"
 
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"

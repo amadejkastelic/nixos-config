@@ -3,7 +3,9 @@
   pkgs,
   ...
 }: let
-  browser = ["firefox"];
+  browser = ["Schizofox"];
+  fileManager = ["thunar"];
+  archiver = ["org.kde.ark"];
   imageViewer = ["org.gnome.Loupe"];
   videoPlayer = ["mpv"];
   audioPlayer = ["mpv"];
@@ -41,7 +43,10 @@
       "text/html" = browser;
       "text/plain" = ["codium"];
       "x-scheme-handler/chrome" = ["chromium-browser"];
-      "inode/directory" = ["dolphin"];
+      "inode/directory" = fileManager;
+      "x-scheme-handler/spotify" = ["spotify.desktop"];
+      "x-scheme-handler/discord" = ["vesktop.desktop"];
+      "application/zip" = archiver;
     }
     // image
     // video
