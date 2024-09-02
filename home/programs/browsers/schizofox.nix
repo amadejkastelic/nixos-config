@@ -19,16 +19,40 @@ in {
           Method = "GET";
           URLTemplate = "https://startpage.com/sp/search?query={searchTerms}&prfe=${startPagePrefs}";
         }
+        {
+          Name = "Nix Packages";
+          Description = "Search NixPkgs";
+          Method = "GET";
+          URLTemplate = "https://search.nixos.org/packages?channel=unstable&type=packages&query={searchTerms}";
+          Alias = "!np";
+        }
+        {
+          Name = "Nix Options";
+          Description = "Search options";
+          Method = "GET";
+          URLTemplate = "https://search.nixos.org/options?channel=unstable&type=packages&query={searchTerms}";
+          Alias = "!no";
+        }
+        {
+          Name = "Home Manager Options";
+          Description = "Search hm options";
+          Method = "GET";
+          URLTemplate = "https://home-manager-options.extranix.com/?release=master&query={searchTerms}";
+          Alias = "!hm";
+        }
       ];
     };
 
     security = {
       noSessionRestore = false;
+      userAgent = "Mozilla/5.0 (X11; Linux i686; rv:128.1) Gecko/20100101 Firefox/128.1";
     };
 
     misc = {
       drm.enable = true;
+      drmFix = true;
       contextMenu.enable = true;
+      disableWebgl = false;
     };
 
     settings = {
