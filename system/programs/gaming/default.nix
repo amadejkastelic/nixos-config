@@ -5,9 +5,5 @@
     ./gamescope.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    mangohud
-  ];
-
   services.power-profiles-daemon.enable = true;
 }

@@ -20,6 +20,13 @@ in {
           URLTemplate = "https://startpage.com/sp/search?query={searchTerms}&prfe=${startPagePrefs}";
         }
         {
+          Name = "Youtube";
+          Description = "Search Youtube";
+          Method = "GET";
+          URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
+          Alias = "!yt";
+        }
+        {
           Name = "Nix Packages";
           Description = "Search NixPkgs";
           Method = "GET";
@@ -39,6 +46,20 @@ in {
           Method = "GET";
           URLTemplate = "https://home-manager-options.extranix.com/?release=master&query={searchTerms}";
           Alias = "!hm";
+        }
+        {
+          Name = "Github Code";
+          Description = "Search Github code";
+          Method = "GET";
+          URLTemplate = "https://github.com/search?type=code&q={searchTerms}";
+          Alias = "!gh";
+        }
+        {
+          Name = "Github Repositories";
+          Description = "Search Github repositories";
+          Method = "GET";
+          URLTemplate = "https://github.com/search?type=repositories&q={searchTerms}";
+          Alias = "!ghr";
         }
       ];
     };

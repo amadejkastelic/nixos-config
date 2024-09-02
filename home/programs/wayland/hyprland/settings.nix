@@ -108,6 +108,7 @@ in {
 
       vrr = 0;
       render_ahead_of_time = false;
+      render_unfocused_fps = 60;
     };
 
     render = {
