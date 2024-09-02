@@ -9,7 +9,7 @@
     ];
   };
 
-  environment.systemPackages = [pkgs.peazip];
+  environment.systemPackages = [pkgs.xarchiver];
 
   programs.xfconf.enable = true;
   services.gvfs.enable = true;

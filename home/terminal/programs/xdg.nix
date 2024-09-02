@@ -5,7 +5,7 @@
 }: let
   browser = ["Schizofox"];
   fileManager = ["thunar"];
-  archiver = ["peazip"];
+  archiver = ["xarchiver"];
   imageViewer = ["org.gnome.Loupe"];
   videoPlayer = ["mpv"];
   audioPlayer = ["mpv"];
