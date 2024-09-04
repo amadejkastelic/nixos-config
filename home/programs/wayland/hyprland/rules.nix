@@ -7,7 +7,6 @@
       in "^(${elements})$";
 
       ignorealpha = [
-        # ags
         "calendar"
         "notifications"
         "osd"
@@ -33,11 +32,6 @@
       "float, title:^(Spotify( Premium)?)$"
       "float, class:^(vesktop)$"
 
-      # Dialogs
-      "float, title:^(Open File)$"
-      "opacity 0.80 0.70, title:^(Open File)$"
-      "size 1280 720, title:^(Open File)$"
-
       # opacity
       "opacity 0.80 0.70, class:^(pavucontrol)$"
       "opacity 0.80 0.70, class:^(nm-connection-editor)$"
@@ -45,8 +39,8 @@
       "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
 
       # Games
-      "workspace name:Gaming, class:gamescope"
-      "workspace name:Gaming, class:^(steam_app_)(.*)$"
+      "workspace name:Gaming silent, class:gamescope"
+      "workspace name:Gaming silent, initialclass:^(steam_app_)(.*)$"
       "immediate, initialclass:^(steam_app_)(.*)$"
       "fullscreen, initialclass:^(steam_app_)(.*)$"
       "renderunfocused, initialclass:^(steam_app_)(.*)$"

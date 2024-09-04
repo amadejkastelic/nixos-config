@@ -71,7 +71,6 @@ in {
 
     misc = {
       drm.enable = true;
-      drmFix = true;
       contextMenu.enable = true;
       disableWebgl = false;
     };

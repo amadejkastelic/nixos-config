@@ -14,7 +14,7 @@
     ledger-live-desktop
     pinentry-gnome3
     gnumake
-    postman
+    hoppscotch
     qbittorrent-enhanced
     oversteer
   ];

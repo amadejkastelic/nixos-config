@@ -7,7 +7,6 @@
     ./nix.nix
     ./skim.nix
     ./transient-services.nix
-    #./yazi
     ./xdg.nix
   ];
 }

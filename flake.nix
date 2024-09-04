@@ -60,11 +60,6 @@
       inputs.systems.follows = "systems";
     };
 
-    ags = {
-      url = "github:Aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     anyrun.url = "github:anyrun-org/anyrun";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
