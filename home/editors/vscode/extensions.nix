@@ -19,6 +19,9 @@
         ms-python.vscode-pylance
         ms-python.black-formatter
 
+        # Rust
+        rust-lang.rust-analyzer
+
         # TOML
         tamasfe.even-better-toml
 
