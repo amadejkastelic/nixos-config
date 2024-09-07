@@ -19,9 +19,6 @@
         ms-python.vscode-pylance
         ms-python.black-formatter
 
-        # Rust
-        rust-lang.rust-analyzer
-
         # TOML
         tamasfe.even-better-toml
 
@@ -31,6 +28,10 @@
         # Docker
         ms-azuretools.vscode-docker
       ])
+      ++ [
+        # Rust
+        pkgs.vscode-extensions.rust-lang.rust-analyzer
+      ]
       ++ [
         # Theme
         (pkgs.catppuccin-vsc.override {
