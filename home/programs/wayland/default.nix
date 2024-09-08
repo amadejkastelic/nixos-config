@@ -8,6 +8,7 @@
   imports = [
     ./hyprland
     ./hyprlock.nix
+    ./hyprlux.nix
     ./hyprshade.nix
     ./wlogout.nix
     ./waybar

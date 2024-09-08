@@ -102,6 +102,12 @@
       inputs.systems.follows = "hyprland/systems";
     };
 
+    hyprlux = {
+      url = "github:amadejkastelic/Hyprlux";
+      #url = "git+file:///home/amadejk/Documents/hyprlux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     kmonad = {
       url = "github:kmonad/kmonad?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
