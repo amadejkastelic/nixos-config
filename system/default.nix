@@ -15,6 +15,7 @@ let
     ./hardware/ledger.nix
 
     ./services
+    ./services/clipboard-sync.nix
     ./services/greetd.nix
     ./services/ollama.nix
     ./services/pipewire.nix

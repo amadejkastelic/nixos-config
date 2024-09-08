@@ -38,13 +38,6 @@
       "opacity 0.80 0.70, class:^(vesktop)$"
       "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
 
-      # Games
-      "workspace name:Gaming silent, class:gamescope"
-      "workspace name:Gaming silent, initialclass:^(steam_app_)(.*)$"
-      "immediate, initialclass:^(steam_app_)(.*)$"
-      "fullscreen, initialclass:^(steam_app_)(.*)$"
-      "renderunfocused, initialclass:^(steam_app_)(.*)$"
-
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
@@ -65,6 +58,13 @@
 
       # Steam
       "workspace 10 silent, class:^(steam)"
+
+      # Games
+      "workspace name:Gaming, class:gamescope"
+      "workspace name:Gaming, initialclass:^(steam_app_)(.*)$"
+      "immediate, initialclass:^(steam_app_)(.*)$"
+      "fullscreen, initialclass:^(steam_app_)(.*)$"
+      "renderunfocused, initialclass:^(steam_app_)(.*)$"
 
       # idle inhibit while watching videos
       "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"

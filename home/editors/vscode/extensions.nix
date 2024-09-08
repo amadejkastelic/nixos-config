@@ -28,10 +28,11 @@
         # Docker
         ms-azuretools.vscode-docker
       ])
-      ++ [
+      ++ (with pkgs.vscode-extensions; [
         # Rust
-        pkgs.vscode-extensions.rust-lang.rust-analyzer
-      ]
+        rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
+      ])
       ++ [
         # Theme
         (pkgs.catppuccin-vsc.override {
