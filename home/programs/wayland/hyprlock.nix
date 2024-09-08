@@ -1,6 +1,6 @@
 {config, ...}: let
   variant = config.theme.name;
-  c = config.programs.matugen.theme.colors.colors.${variant};
+  c = config.programs.matugen.theme.colors.${variant};
 
   font_family = "Inter";
 in {
@@ -53,7 +53,7 @@ in {
           text = ''cmd[update:1000] echo "<b><big> $(date +"%H:%M:%S") </big></b>"'';
           font_size = 64;
           font_family = "JetBrains Mono Nerd Font 10";
-          position = "0, 16";
+          position = "0, 75";
           halign = "center";
           valign = "center";
         }
@@ -71,7 +71,7 @@ in {
           text = "Type to unlock!";
           font_size = 16;
           font_family = "JetBrains Mono Nerd Font 10";
-          position = "0, 30";
+          position = "0, 10";
           halign = "center";
           valign = "bottom";
         }

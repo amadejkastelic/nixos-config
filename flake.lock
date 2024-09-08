@@ -694,11 +694,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1725752806,
-        "narHash": "sha256-UwmsA7O9Wofu6YWldyR8NDv1bzxNICIg85/uOrVq69Y=",
+        "lastModified": 1725814101,
+        "narHash": "sha256-+wE97utoDfhQP6AMdZHUmBeL8grbce/Jv2i5M+6AbaE=",
         "ref": "refs/heads/main",
-        "rev": "312411fc7073143a8bf1fc3ba23ef403b7d15eee",
-        "revCount": 5195,
+        "rev": "0f594732b063a90d44df8c5d402d658f27471dfe",
+        "revCount": 5196,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -824,11 +824,11 @@
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1725801972,
+        "lastModified": 1725805083,
         "narHash": "sha256-cJIHKG7wpHcBsEOebtQZfIW0yuMTVTdhMWczQ8gzceA=",
         "owner": "amadejkastelic",
         "repo": "Hyprlux",
-        "rev": "2669edf3060bb0d133c8d44d5421e14c53eac9aa",
+        "rev": "af4a126322b9e4918c2ff6b7d34d1945b91bc6c1",
         "type": "github"
       },
       "original": {
@@ -1068,16 +1068,15 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1722879827,
-        "narHash": "sha256-KD1jHe4Wjg3o1yxwzxtzPZqPfnw6WuW4F1nMEZ300L4=",
-        "owner": "amadejkastelic",
+        "lastModified": 1725178198,
+        "narHash": "sha256-4GtenYiL5dDuEs01GNBt4H0j1l/9VWvkAog1EtUJdlA=",
+        "owner": "InioX",
         "repo": "matugen",
-        "rev": "013e63105e8ecda0204671798aef23c2dbdb3184",
+        "rev": "e18abfc4dcbe34d9fd923dc114a328b465bca492",
         "type": "github"
       },
       "original": {
-        "owner": "amadejkastelic",
-        "ref": "module",
+        "owner": "InioX",
         "repo": "matugen",
         "type": "github"
       }
