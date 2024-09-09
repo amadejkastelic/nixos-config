@@ -5,6 +5,7 @@
     ./social/discord.nix
     ./media
     ./gtk.nix
+    ./qt.nix
     ./office
   ];
 

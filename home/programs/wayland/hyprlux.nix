@@ -8,7 +8,7 @@
 
     night_light = {
       enabled = true;
-      start_time = "22:00";
+      start_time = "20:00";
       end_time = "06:00";
       temperature = 3500;
     };

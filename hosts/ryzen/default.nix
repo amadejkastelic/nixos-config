@@ -8,7 +8,10 @@
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
-  chaotic.scx.enable = true;
+  chaotic.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+  };
 
   environment.systemPackages = with pkgs; [
     pcscliteWithPolkit

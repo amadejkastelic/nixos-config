@@ -11,7 +11,6 @@
         "notifications"
         "osd"
         "system-menu"
-
         "anyrun"
       ];
 
