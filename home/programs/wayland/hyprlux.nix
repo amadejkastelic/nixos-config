@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.hyprlux.nixosModules.default
+    inputs.hyprlux.homeManagerModules.default
   ];
 
   programs.hyprlux = {
