@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{
   imports = [
     ./steam.nix
+    ./switch.nix
     ./gamemode.nix
     ./gamescope.nix
   ];

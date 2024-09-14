@@ -25,7 +25,7 @@ in {
       "hyprlock"
       "waybar"
       "wl-paste --watch cliphist store"
-      "hyprlux > /tmp/hyprlux.log 2>&1"
+      #"hyprlux > /tmp/hyprlux.log 2>&1"
     ];
 
     general = {
@@ -137,9 +137,10 @@ in {
   wayland.windowManager.hyprland.extraConfig = ''
     plugin {
       csgo-vulkan-fix {
-        res_w = 2560
-        res_h = 1440
-        class = cs2
+        res_w = 1280
+        res_h = 960
+        class = SDL Application
+        fix_mouse = true
       }
     }
   '';

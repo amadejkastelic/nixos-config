@@ -6,6 +6,11 @@
   programs.hyprlux = {
     enable = true;
 
+    systemd = {
+      enable = true;
+      target = "hyprland-session.target";
+    };
+
     night_light = {
       enabled = true;
       start_time = "20:00";
@@ -17,11 +22,11 @@
       {
         window_class = "steam_app_1172470";
         window_title = "Apex Legends";
-        strength = 100;
+        strength = 105;
       }
       {
-        window_class = "cs2";
-        window_title = "";
+        window_class = "SDL Application";
+        window_title = "Counter-Strike 2";
         strength = 100;
       }
     ];
