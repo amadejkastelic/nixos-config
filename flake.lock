@@ -807,17 +807,17 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1726314538,
-        "narHash": "sha256-73z/tZtGEoTbbEE6heZs1N2bQ1Suj5vBCytSlqxDQHA=",
-        "ref": "refs/heads/config-watch",
-        "rev": "6bd2afbe04964b08ebf27ff6ffe58eefbd3e3abc",
-        "revCount": 30,
-        "type": "git",
-        "url": "file:///home/amadejk/Documents/hyprlux"
+        "lastModified": 1726316492,
+        "narHash": "sha256-PNcPjeMh+jjKZ53ll7KSfHwSshZwWravs2URKNU0l2c=",
+        "owner": "amadejkastelic",
+        "repo": "Hyprlux",
+        "rev": "8ea87c4d1479121130440b8db275256e6f362c1d",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/amadejk/Documents/hyprlux"
+        "owner": "amadejkastelic",
+        "repo": "Hyprlux",
+        "type": "github"
       }
     },
     "hyprpaper": {
