@@ -104,7 +104,7 @@
 
     hyprlux = {
       url = "github:amadejkastelic/Hyprlux";
-      #url = "git+file:///home/amadejk/Documents/hyprlux";
+      # url = "git+file:///home/amadejk/Documents/hyprlux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

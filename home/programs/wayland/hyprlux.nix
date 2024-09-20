@@ -13,8 +13,8 @@
 
     night_light = {
       enabled = true;
-      start_time = "20:00";
-      end_time = "06:00";
+      latitude = 46.056946;
+      longitude = 14.505751;
       temperature = 3500;
     };
 
