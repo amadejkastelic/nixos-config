@@ -1,15 +1,19 @@
-name: lint
+name: nix
 
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  lint:
-    name: lint
+  nix:
+    name: checks
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
+      - name: Set up Alejandra
+        uses: luisnquin/setup-alejandra@v1.0.0
+      - name: Check formatting
+        run: alejandra --check .
       - name: Install nix action
         uses: cachix/install-nix-action@v20
         with:
@@ -20,7 +24,3 @@ jobs:
             experimental-features = nix-command flakes
       - name: Flake check
         run: nix flake check
-      - name: Set up Alejandra
-        uses: luisnquin/setup-alejandra@v1.0.0
-      - name: Check formatting
-        run: alejandra --check */**/*.nix
