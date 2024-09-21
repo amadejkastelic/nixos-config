@@ -1,0 +1,26 @@
+name: Check
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  checks:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Install nix action
+        uses: cachix/install-nix-action@v20
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+      - name: Flake check
+        run: nix flake check
+      - name: Set up Alejandra
+        uses: luisnquin/setup-alejandra@v1.0.0
+      - name: Check formatting
+        uses: alejandra --check */**/*.nix

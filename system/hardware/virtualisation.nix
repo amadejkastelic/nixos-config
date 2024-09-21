@@ -1,8 +1,4 @@
 {
-  pkgs,
-  config,
-  ...
-}: {
   imports = [
     ./../../lib/vfio.nix
     ./../../lib/virtualisation.nix
@@ -23,5 +19,9 @@
       enable = true;
       setSocketVariable = true;
     };
+
+    libvirtd.enable = true;
   };
+
+  programs.virt-manager.enable = true;
 }
