@@ -23,4 +23,4 @@ jobs:
       - name: Set up Alejandra
         uses: luisnquin/setup-alejandra@v1.0.0
       - name: Check formatting
-        uses: alejandra --check */**/*.nix
+        run: alejandra --check */**/*.nix
