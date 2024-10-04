@@ -139,7 +139,7 @@ in {
       csgo-vulkan-fix {
         res_w = 1280
         res_h = 960
-        class = SDL Application
+        class = cs2
         fix_mouse = true
       }
     }

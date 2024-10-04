@@ -60,11 +60,13 @@
 
       # Games
       "workspace name:Gaming, class:gamescope"
+      "workspace name:Gaming, initialclass:cs2"
       "workspace name:Gaming, initialclass:^(steam_app_)(.*)"
       #"immediate, initialclass:^(steam_app_\d+|SDL Application)$"
       "immediate, initialclass:^(steam_app_)(.*)$"
       "fullscreen, initialclass:^(steam_app_)(.*)$"
-      "renderunfocused, initialclass:^(steam_app_)(.*)^(steam_app_\d+|SDL Application)$"
+      "fullscreen, initialclass:cs2"
+      "renderunfocused, initialclass:^(steam_app_)(.*)^(steam_app_\d+|cs2)$"
 
       # idle inhibit while watching videos
       "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"

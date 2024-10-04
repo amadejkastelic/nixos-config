@@ -25,7 +25,7 @@
         strength = 105;
       }
       {
-        window_class = "SDL Application";
+        window_class = "cs2";
         window_title = "Counter-Strike 2";
         strength = 100;
       }
