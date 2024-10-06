@@ -5,7 +5,7 @@ in {
     enable = true;
     package = pkgs.ollama-rocm;
     port = port;
-    loadModels = ["llama3.1" "stable-code:3b-code-q4_0"];
+    loadModels = ["llama3.1" "llama3.2" "stable-code:3b-code-q4_0"];
     acceleration = "rocm";
     rocmOverrideGfx = "10.3.0";
   };

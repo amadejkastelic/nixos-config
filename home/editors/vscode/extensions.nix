@@ -13,8 +13,6 @@
         arrterian.nix-env-selector
 
         # Python
-        ms-python.python
-        ms-python.debugpy
         ms-python.flake8
         ms-python.vscode-pylance
         ms-python.black-formatter
@@ -29,6 +27,9 @@
         ms-azuretools.vscode-docker
       ])
       ++ (with pkgs.vscode-extensions; [
+        # Python
+        ms-python.python
+        ms-python.debugpy
         # Rust
         rust-lang.rust-analyzer
         vadimcn.vscode-lldb
