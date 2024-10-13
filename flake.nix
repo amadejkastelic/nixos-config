@@ -95,6 +95,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    hyprsysteminfo = {
+      url = "github:hyprwm/hyprsysteminfo";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs.hyprlang.follows = "hyprland/hyprlang";

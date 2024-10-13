@@ -1,6 +1,7 @@
 {
   pkgs,
   self,
+  inputs,
   ...
 }:
 # Wayland config
@@ -21,6 +22,7 @@
     slurp
     # grimblast --freeze needs this
     hyprpicker
+    inputs.hyprsysteminfo.packages.${pkgs.system}.default
 
     # utils
     self.packages.${pkgs.system}.wl-ocr
