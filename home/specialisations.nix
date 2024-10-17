@@ -27,7 +27,6 @@
   };
 
   theme = {
-    # specific to unsplash
     wallpaper = ./wallpaper.png;
   };
 
