@@ -3,7 +3,7 @@
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       wlrobs
-      # obs-vkcapture https://github.com/NixOS/nixpkgs/pull/349081
+      obs-vkcapture
       obs-vaapi
       obs-pipewire-audio-capture
       droidcam-obs
