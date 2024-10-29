@@ -97,7 +97,6 @@
 
     hyprsysteminfo = {
       url = "github:hyprwm/hyprsysteminfo";
-      inputs.hyprland.follows = "hyprland";
     };
 
     hyprpaper = {

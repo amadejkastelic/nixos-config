@@ -88,7 +88,7 @@
         md = "mkdir -p";
         ppc = "powerprofilesctl";
         pf = "powerprofilesctl launch -p performance";
-
+        ssh = "TERM=xterm-color ssh";
         us = "systemctl --user";
         rs = "sudo systemctl";
       }
