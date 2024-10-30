@@ -21,7 +21,7 @@
         tamasfe.even-better-toml
 
         # AI
-        ex3ndr.llama-coder
+        continue.continue
 
         # Docker
         ms-azuretools.vscode-docker
@@ -51,5 +51,20 @@
           };
         })
       ];
+  };
+
+  home.file.".continue/config.json".text = builtins.toJSON {
+    models = [
+      {
+        title = "llama 3.2";
+        provider = "ollama";
+        model = "llama3.2";
+      }
+    ];
+    tabAutocompleteModel = {
+      title = "StarCoder2";
+      provider = "ollama";
+      model = "starcoder2:15b";
+    };
   };
 }

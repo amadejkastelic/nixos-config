@@ -78,6 +78,10 @@
     "python.languageServer" = "Pylance";
     "python.analysis.typeCheckingMode" = "strict";
   };
+
+  continue = {
+    "continue.telemetryEnabled" = false;
+  };
 in {
   programs.vscode.userSettings =
     {}
@@ -91,5 +95,6 @@ in {
     // workbench
     // formatter
     // nix
-    // python;
+    // python
+    // continue;
 }
