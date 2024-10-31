@@ -1,10 +1,8 @@
 {
-  pkgs,
   lib,
   config,
   ...
 }: {
-  # screen idle
   services.hypridle = {
     enable = true;
 
