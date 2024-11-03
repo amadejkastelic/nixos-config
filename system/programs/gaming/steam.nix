@@ -35,9 +35,14 @@
           gamemode
           config.programs.hyprland.package
           hyprshade
+          attr
         ];
 
-      extraLibraries = pkgs: with pkgs; [gamemode pkgsi686Linux.gamemode];
+      extraLibraries = pkgs:
+        with pkgs; [
+          gamemode
+          pkgsi686Linux.gamemode
+        ];
     };
 
     extraCompatPackages = with pkgs; [
