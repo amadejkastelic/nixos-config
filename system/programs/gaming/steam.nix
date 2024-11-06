@@ -35,7 +35,6 @@
           gamemode
           config.programs.hyprland.package
           hyprshade
-          attr
         ];
 
       extraLibraries = pkgs:
