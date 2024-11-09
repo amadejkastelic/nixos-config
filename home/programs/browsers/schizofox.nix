@@ -89,6 +89,8 @@ in {
       "widget.use-xdg-desktop-portal.file-picker" = 1;
       # Leaving this on breaks a lot
       "privacy.resistFingerprinting" = false;
+      # Disable letterboxing
+      "privacy.resistFingerprinting.letterboxing" = false;
       "permissions.fullscreen.allowed" = true;
       "dom.webnotifications.enabled" = true;
       # Restore previous session
