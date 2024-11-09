@@ -18,6 +18,7 @@ in {
       "QT_QPA_PLATFORM,wayland;xcb"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString cursorSize}"
+      "STEAM_FORCE_DESKTOPUI_SCALING,1.25"
     ];
 
     exec-once = [
