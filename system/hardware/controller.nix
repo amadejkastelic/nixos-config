@@ -5,6 +5,7 @@
   '';
 
   # Logitech G923
-  hardware.new-lg4ff.enable = true;
-  services.udev.packages = with pkgs; [oversteer];
+  # https://github.com/berarma/new-lg4ff/pull/112
+  hardware.new-lg4ff.enable = false;
+  # services.udev.packages = with pkgs; [oversteer];
 }

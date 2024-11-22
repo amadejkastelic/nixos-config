@@ -79,7 +79,7 @@ in {
         gradients = false;
       };
 
-      "col.border_active" = "rgba(${c.primary_container}88);";
+      "col.border_active" = "rgba(${c.primary_container}88)";
       "col.border_inactive" = "rgba(${c.primary_container}88)";
     };
 

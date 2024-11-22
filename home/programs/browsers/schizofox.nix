@@ -122,7 +122,7 @@ in {
         "{84601290-bec9-494a-b11c-1baa897a9683}".install_url = mkUrl "ctrl-number-to-switch-tabs";
         "firefox@tampermonkey.net".install_url = mkUrl "tampermonkey";
         "firefox@betterttv.net".install_url = mkUrl "betterttv";
-        "{6d72262a-b243-4dc6-8f4f-be96c74e0a86}".install_url = mkUrl "solflare-wallet";
+        "{7c42eea1-b3e4-4be4-a56f-82a5852b12dc}".install_url = mkUrl "phantom-app";
 
         # Disable
         "{c607c8df-14a7-4f28-894f-29e8722976af}" = null; # Temporary containers
