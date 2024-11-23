@@ -64,8 +64,6 @@
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    helix.url = "github:helix-editor/helix";
-
     hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -165,10 +163,13 @@
       };
     };
 
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
+    nixcord.url = "github:Soikr/nixcord?ref=patch-1";
 
     clipboard-sync.url = "github:QuarterHeaven/clipboard-sync";
+
+    zen-browser = {
+      url = "github:fufexan/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

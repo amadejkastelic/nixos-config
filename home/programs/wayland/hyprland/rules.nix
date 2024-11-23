@@ -37,12 +37,13 @@
       "opacity 0.80 0.70, class:^(vesktop)$"
       "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
 
-      # make Firefox PiP window floating and sticky
+      # make Firefox / Zen PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
 
       # throw sharing indicators away
       "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+      "workspace special silent, title:^(Zen — Sharing Indicator)$"
       "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
       # Spotify

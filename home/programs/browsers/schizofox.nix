@@ -86,6 +86,8 @@ in {
       "browser.ctrlTab.sortByRecentlyUsed" = true;
       # This makes websites prefer dark theme (in theory)
       "layout.css.prefers-color-scheme.content-override" = 0;
+      # Scaling
+      "layout.css.devPixelsPerPx" = 1.75;
       "widget.use-xdg-desktop-portal.file-picker" = 1;
       # Leaving this on breaks a lot
       "privacy.resistFingerprinting" = false;
