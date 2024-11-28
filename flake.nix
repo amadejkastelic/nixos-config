@@ -163,7 +163,7 @@
       };
     };
 
-    nixcord.url = "github:Soikr/nixcord?ref=patch-1";
+    nixcord.url = "github:KaylorBen/nixcord";
 
     clipboard-sync.url = "github:QuarterHeaven/clipboard-sync";
 

@@ -11,7 +11,7 @@
   ];
 
   home.packages = with pkgs; [
-    # mission-center
+    mission-center
     wineWowPackages.wayland
     ledger-live-desktop
     pinentry-gnome3

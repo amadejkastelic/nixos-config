@@ -8,9 +8,9 @@
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
-  chaotic.scx = {
+  services.scx = {
     enable = true;
-    package = pkgs.scx_git.full;
+    package = pkgs.scx.full;
     scheduler = "scx_lavd";
   };
 
