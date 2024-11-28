@@ -1,18 +1,22 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }: {
   services.hypridle = {
     enable = true;
 
+    package = inputs.hypridle.packages.${pkgs.system}.hypridle;
+
     settings = {
-      lockCmd = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
+      general = {
+        lock_cmd = lib.getExe config.programs.hyprlock.package;
+        before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+      };
+
       listener = [
-        {
-          timeout = 300;
-          onTimeout = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
-        }
         {
           timeout = 500;
           onTimeout = "hyprctl dispatch dpms off";
