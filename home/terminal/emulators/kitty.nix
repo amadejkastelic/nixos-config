@@ -22,6 +22,9 @@
       background_opacity = "0.9";
     };
 
-    catppuccin.enable = true;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
   };
 }

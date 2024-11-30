@@ -40,6 +40,7 @@
     systems.url = "github:nix-systems/default-linux";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgsUnstableSmall.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     flake-compat.url = "github:edolstra/flake-compat";
 

@@ -48,6 +48,13 @@ in {
           Alias = "!hm";
         }
         {
+          Name = "Catppuccin Options";
+          Description = "Search Catppuccin options";
+          Method = "GET";
+          URLTemplate = "https://nix.catppuccin.com/search/rolling/?option_scope=1&query={searchTerms}";
+          Alias = "!co";
+        }
+        {
           Name = "Github Code";
           Description = "Search Github code";
           Method = "GET";
@@ -60,6 +67,13 @@ in {
           Method = "GET";
           URLTemplate = "https://github.com/search?type=repositories&q={searchTerms}";
           Alias = "!ghr";
+        }
+        {
+          Name = "Reddit";
+          Description = "Search Reddit";
+          Method = "GET";
+          URLTemplate = "https://old.reddit.com/search?q={searchTerms}";
+          Alias = "!r";
         }
       ];
     };

@@ -3,6 +3,11 @@
     enable = true;
     enableZshIntegration = true;
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     defaultCommand = "rg --files --hidden";
 
     changeDirWidgetOptions = [

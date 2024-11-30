@@ -38,6 +38,11 @@ in {
     package = rofiPkg;
     terminal = "${pkgs.kitty}/bin/kitty";
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     font = "JetBrains Mono Nerd Font 14";
     theme = let
       inherit (config.lib.formats.rasi) mkLiteral;

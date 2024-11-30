@@ -19,7 +19,7 @@
   ];
 
   hardware = {
-    opentabletdriver.enable = true;
+    # opentabletdriver.enable = true;
   };
 
   networking.hostName = "ryzen";

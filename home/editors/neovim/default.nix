@@ -2,6 +2,11 @@
   programs.neovim = {
     enable = true;
 
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     vimAlias = true;
     viAlias = true;
     vimdiffAlias = true;
@@ -37,26 +42,5 @@
     ];
 
     extraPackages = with pkgs; [gcc ripgrep fd];
-
-    extraConfig = let
-      luaRequire = module:
-        builtins.readFile (builtins.toString
-          ./config
-          + "/${module}.lua");
-      luaConfig = builtins.concatStringsSep "\n" (map luaRequire [
-        "init"
-        "lspconfig"
-        "nvim-cmp"
-        "theming"
-        "treesitter"
-        "treesitter-textobjects"
-        "utils"
-        "which-key"
-      ]);
-    in ''
-      lua << 
-      ${luaConfig}
-      
-    '';
   };
 }

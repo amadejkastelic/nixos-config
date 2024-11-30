@@ -13,11 +13,6 @@
        RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
     '';
     */
-
-    # pinentry fix
-    dbus.packages = with pkgs; [
-      gcr
-    ];
   };
 
   security.pam.services = {

@@ -33,6 +33,15 @@
       path = "${config.xdg.dataHome}/zsh_history";
     };
 
+    syntaxHighlighting = {
+      enable = true;
+
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
+    };
+
     /*
       initExtra = ''
       # search history based on what's typed in the prompt

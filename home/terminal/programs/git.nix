@@ -13,7 +13,11 @@
 
     delta = {
       enable = true;
-      options.${config.theme.name} = true;
+
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
     };
 
     extraConfig = {
