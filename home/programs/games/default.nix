@@ -11,5 +11,6 @@
     winetricks
     adwsteamgtk
     steam-run
+    shadps4
   ];
 }
