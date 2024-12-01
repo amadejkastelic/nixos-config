@@ -32,6 +32,7 @@
 
   programs.matugen = {
     enable = false;
+    package = pkgs.matugen;
     wallpaper = config.theme.wallpaper;
   };
 }

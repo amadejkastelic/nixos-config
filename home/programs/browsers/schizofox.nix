@@ -75,6 +75,13 @@ in {
           URLTemplate = "https://old.reddit.com/search?q={searchTerms}";
           Alias = "!r";
         }
+        {
+          name = "Youtube";
+          Description = "Search Youtube";
+          Method = "GET";
+          URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
+          Alias = "!yt";
+        }
       ];
     };
 
