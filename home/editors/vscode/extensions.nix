@@ -62,9 +62,9 @@
       }
     ];
     tabAutocompleteModel = {
-      title = "StarCoder2";
+      title = "Qwen Coder";
       provider = "ollama";
-      model = "starcoder2:15b";
+      model = "qwen2.5-coder:3b";
     };
   };
 }

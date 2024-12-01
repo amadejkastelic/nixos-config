@@ -4,11 +4,11 @@
   inputs,
   ...
 }: let
-  pkgsUnstableSmall = import inputs.nixpkgsUnstableSmall {system = "x86_64-linux";};
+  pkgs-unstable = import inputs.nixpkgs-unstable {system = "x86_64-linux";};
 in {
   home.pointerCursor = {
     # https://nixpk.gs/pr-tracker.html?pr=359604
-    package = pkgsUnstableSmall.bibata-cursors;
+    package = pkgs-unstable.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;
     gtk.enable = true;
