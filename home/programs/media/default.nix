@@ -16,5 +16,6 @@
 
     # images
     loupe
+    krita
   ];
 }
