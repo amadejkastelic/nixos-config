@@ -19,8 +19,7 @@
   ];
 
   hardware = {
-    # https://nixpk.gs/pr-tracker.html?pr=360389
-    # opentabletdriver.enable = true;
+    opentabletdriver.enable = true;
   };
 
   networking.hostName = "ryzen";
