@@ -25,6 +25,9 @@
 
         # Docker
         ms-azuretools.vscode-docker
+
+        # Svelte
+        svelte.svelte-vscode
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python

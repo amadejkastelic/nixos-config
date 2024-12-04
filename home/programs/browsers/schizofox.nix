@@ -82,6 +82,13 @@ in {
           URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
           Alias = "!yt";
         }
+        {
+          name = "Google";
+          Description = "Search Google";
+          Method = "GET";
+          URLTemplate = "https://www.google.com/search?q={searchTerms}";
+          Alias = "!g";
+        }
       ];
     };
 

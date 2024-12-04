@@ -82,6 +82,10 @@
   continue = {
     "continue.telemetryEnabled" = false;
   };
+
+  svelte = {
+    "svelte.enable-ts-plugin" = true;
+  };
 in {
   programs.vscode.userSettings =
     {}
@@ -96,5 +100,6 @@ in {
     // formatter
     // nix
     // python
-    // continue;
+    // continue
+    // svelte;
 }
