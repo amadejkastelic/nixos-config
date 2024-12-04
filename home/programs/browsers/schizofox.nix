@@ -94,7 +94,7 @@ in {
 
     security = {
       noSessionRestore = false;
-      userAgent = "Mozilla/5.0 (X11; Linux i686; rv:128.1) Gecko/20100101 Firefox/128.1";
+      userAgent = "Mozilla/5.0 (X11; Linux i686; rv:128.5) Gecko/20100101 Firefox/128.5";
     };
 
     misc = {

@@ -81,6 +81,7 @@
 
   continue = {
     "continue.telemetryEnabled" = false;
+    "continue.enableTabAutocomplete" = false;
   };
 
   svelte = {

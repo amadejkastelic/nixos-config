@@ -167,10 +167,5 @@
     nixcord.url = "github:KaylorBen/nixcord";
 
     clipboard-sync.url = "github:QuarterHeaven/clipboard-sync";
-
-    zen-browser = {
-      url = "github:fufexan/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }

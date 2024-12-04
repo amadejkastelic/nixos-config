@@ -1608,8 +1608,7 @@
         "pre-commit-hooks": "pre-commit-hooks_2",
         "schizofox": "schizofox",
         "spicetify-nix": "spicetify-nix",
-        "systems": "systems_8",
-        "zen-browser": "zen-browser"
+        "systems": "systems_8"
       }
     },
     "rust-overlay": {
@@ -1911,26 +1910,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732843311,
-        "narHash": "sha256-Oe3dPaZP8Bv9QdN+yfWrqJo+rq0irlOKx06dohfb4Ak=",
-        "owner": "fufexan",
-        "repo": "zen-browser-flake",
-        "rev": "da03eda0c98adcd8b999a21f8e281e82922b6e0c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

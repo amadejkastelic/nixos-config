@@ -2,7 +2,6 @@
   imports = [
     ./anyrun
     ./browsers/schizofox.nix
-    ./browsers/zen.nix
     ./social/discord.nix
     ./media
     ./gtk.nix
