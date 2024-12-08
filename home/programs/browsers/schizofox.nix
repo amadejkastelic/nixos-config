@@ -12,6 +12,10 @@ in {
 
     search = {
       defaultSearchEngine = "Startpage";
+      removeEngines = [
+        "DuckDuckGo"
+        "Wikipedia (en)"
+      ];
       addEngines = [
         {
           Name = "Startpage";
@@ -75,24 +79,11 @@ in {
           URLTemplate = "https://old.reddit.com/search?q={searchTerms}";
           Alias = "!r";
         }
-        {
-          name = "Youtube";
-          Description = "Search Youtube";
-          Method = "GET";
-          URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
-          Alias = "!yt";
-        }
-        {
-          name = "Google";
-          Description = "Search Google";
-          Method = "GET";
-          URLTemplate = "https://www.google.com/search?q={searchTerms}";
-          Alias = "!g";
-        }
       ];
     };
 
     security = {
+      sandbox = false;
       noSessionRestore = false;
       userAgent = "Mozilla/5.0 (X11; Linux i686; rv:128.5) Gecko/20100101 Firefox/128.5";
     };
