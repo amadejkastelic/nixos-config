@@ -4,11 +4,6 @@
   programs.starship = {
     enable = true;
 
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
-
     settings = {
       character = {
         success_symbol = "[›](bold green)";
@@ -28,4 +23,6 @@
       };
     };
   };
+
+  catppuccin.starship.enable = true;
 }

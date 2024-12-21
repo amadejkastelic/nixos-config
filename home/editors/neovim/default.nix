@@ -1,11 +1,8 @@
 {pkgs, ...}: {
+  catppuccin.nvim.enable = true;
+
   programs.neovim = {
     enable = true;
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
 
     vimAlias = true;
     viAlias = true;

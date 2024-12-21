@@ -8,17 +8,12 @@
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
 
+  catppuccin.delta.enable = true;
+
   programs.git = {
     enable = true;
 
-    delta = {
-      enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
-    };
+    delta.enable = true;
 
     extraConfig = {
       diff.colorMoved = "default";

@@ -33,14 +33,7 @@
       path = "${config.xdg.dataHome}/zsh_history";
     };
 
-    syntaxHighlighting = {
-      enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
-    };
+    syntaxHighlighting.enable = true;
 
     /*
       initExtra = ''
@@ -104,4 +97,6 @@
       // lib.optionalAttrs (config.programs.bat.enable == true) {cat = "bat";};
     shellGlobalAliases = {eza = "eza --icons --git";};
   };
+
+  catppuccin.zsh-syntax-highlighting.enable = true;
 }

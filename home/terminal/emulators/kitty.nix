@@ -21,10 +21,7 @@
       # colors
       background_opacity = "0.9";
     };
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
   };
+
+  catppuccin.kitty.enable = true;
 }

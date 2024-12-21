@@ -4,13 +4,9 @@
 
   font_family = "Inter";
 in {
+  catppuccin.hyprlock.enable = true;
   programs.hyprlock = {
     enable = true;
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
 
     settings = {
       general = {

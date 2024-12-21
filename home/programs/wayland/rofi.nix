@@ -32,16 +32,12 @@ in {
     (pkgs.rofimoji.override {rofi = rofiPkg;})
   ];
 
+  catppuccin.rofi.enable = true;
   programs.rofi = {
     enable = true;
 
     package = rofiPkg;
     terminal = "${pkgs.kitty}/bin/kitty";
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
 
     font = "JetBrains Mono Nerd Font 14";
     theme = let

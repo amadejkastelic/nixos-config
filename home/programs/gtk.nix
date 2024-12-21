@@ -12,7 +12,7 @@
     x11.enable = true;
   };
 
-  catppuccin.pointerCursor.enable = false;
+  catppuccin.cursors.enable = false;
 
   gtk = {
     enable = true;
@@ -24,17 +24,17 @@
     };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  };
 
-    catppuccin = {
+  catppuccin.gtk = {
+    enable = true;
+    accent = "pink";
+    flavor = "mocha";
+    size = "compact";
+    icon = {
       enable = true;
       accent = "pink";
       flavor = "mocha";
-      size = "compact";
-      icon = {
-        enable = true;
-        accent = "pink";
-        flavor = "mocha";
-      };
     };
   };
 
