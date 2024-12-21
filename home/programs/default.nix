@@ -18,5 +18,6 @@
     hoppscotch
     qbittorrent-enhanced
     oversteer
+    telegram-desktop
   ];
 }
