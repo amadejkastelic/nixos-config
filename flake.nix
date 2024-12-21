@@ -105,6 +105,11 @@
       inputs.systems.follows = "hyprland/systems";
     };
 
+    hypr-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprlux = {
       url = "github:amadejkastelic/Hyprlux";
       # url = "git+file:///home/amadejk/Documents/hyprlux";

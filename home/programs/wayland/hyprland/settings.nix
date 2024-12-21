@@ -145,6 +145,20 @@ in {
         class = cs2
         fix_mouse = true
       }
+      dynamic-cursors {
+        enabled = true
+        mode = none
+        shake {
+          enabled = true
+          nearest = true
+          threshold = 3.0
+          timeout = 500
+          base = 2.0
+        }
+        hyprcursor {
+          enabled = true
+        }
+      }
     }
   '';
 }

@@ -20,6 +20,7 @@
 
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
+      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];
 
     systemd = {
