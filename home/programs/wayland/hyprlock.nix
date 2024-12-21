@@ -1,9 +1,4 @@
-{config, ...}: let
-  variant = config.theme.name;
-  c = config.programs.matugen.theme.colors.${variant};
-
-  font_family = "Inter";
-in {
+{config, ...}: {
   catppuccin.hyprlock.enable = true;
   programs.hyprlock = {
     enable = true;
