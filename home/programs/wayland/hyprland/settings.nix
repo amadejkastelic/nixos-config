@@ -150,13 +150,14 @@ in {
         mode = none
         shake {
           enabled = true
-          nearest = true
+          nearest = false
           threshold = 3.0
           timeout = 500
           base = 2.0
         }
         hyprcursor {
           enabled = true
+          nearest = false
         }
       }
     }

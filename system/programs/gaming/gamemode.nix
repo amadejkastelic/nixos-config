@@ -20,6 +20,7 @@
       keyword general:gaps_in 0;\
       keyword general:gaps_out 0;\
       keyword general:border_size 1;\
+      keyword plugin:dynamic-cursors:enabled 0;\
       keyword decoration:rounding 0"
     ${powerprofilesctl} set performance
     ${notify-send} -u low -a 'Gamemode' 'Optimizations activated'
