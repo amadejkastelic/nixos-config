@@ -37,9 +37,7 @@
     inputs.nixcord.homeManagerModules.nixcord
   ];
 
-  wayland.windowManager.hyprland.settings = let
-    accelpoints = "0.21 0.000 0.040 0.080 0.140 0.200 0.261 0.326 0.418 0.509 0.601 0.692 0.784 0.875 0.966 1.058 1.149 1.241 1.332 1.424 1.613";
-  in {
+  wayland.windowManager.hyprland.settings = {
     monitor = [
       "DP-2,5120x1440@120,0x0,1.25"
     ];
@@ -47,6 +45,4 @@
 
   wayland.windowManager.hyprland.extraConfig = ''
   '';
-
-  #catppuccin.flavour = "mocha";
 }
