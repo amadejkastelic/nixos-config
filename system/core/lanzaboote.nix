@@ -3,9 +3,7 @@
   lib,
   inputs,
   ...
-}:
-# lanzaboote config
-{
+}: {
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
@@ -13,7 +11,7 @@
   boot = {
     lanzaboote = {
       enable = true;
-      pkiBundle = "/etc/secureboot";
+      pkiBundle = "/var/lib/sbctl";
     };
 
     # we let lanzaboote install systemd-boot

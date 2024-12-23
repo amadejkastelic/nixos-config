@@ -1,6 +1,7 @@
 let
   desktop = [
     ./core/boot.nix
+    ./core/lanzaboote.nix
     ./core/default.nix
 
     ./hardware/opengl.nix
