@@ -26,7 +26,6 @@ in {
       "hyprlock"
       "waybar"
       "wl-paste --watch cliphist store"
-      #"hyprlux > /tmp/hyprlux.log 2>&1"
     ];
 
     general = {
