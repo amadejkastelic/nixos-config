@@ -70,10 +70,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprwm
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
+      ref = "57921d7dbd1b87a9474f609cb9cd30e6174027cd";
       submodules = true;
     };
 
@@ -149,14 +149,6 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
-
-    /*
-      plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "hm";
-    };
-    */
 
     schizofox = {
       url = "github:schizofox/schizofox";
