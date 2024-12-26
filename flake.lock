@@ -724,11 +724,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1735084675,
-        "narHash": "sha256-4MEZQIRuxWEWJ2xjKdGAARpGMLEHFLNTPRxwqWyaakk=",
+        "lastModified": 1735168602,
+        "narHash": "sha256-mJq6WnxHcpe2ncefCYv6Ylh2kXl7u2PXGNlQ0tcwrZU=",
         "ref": "refs/heads/main",
-        "rev": "2a24a61126dcebd2e1f7862e5c21c105900110ac",
-        "revCount": 5585,
+        "rev": "2eaa4d80a0ecb56fc16c8ad4077b1b1a7d28281f",
+        "revCount": 5588,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -777,11 +777,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734887159,
-        "narHash": "sha256-boPq+l4/D/Q+MvDqAI79fCdp/3Dit57YBuPbXa1cjW0=",
+        "lastModified": 1735139532,
+        "narHash": "sha256-AHVMD57jYgs1FfLXOUBRQyP7K9QenD/gCYITUfiAvXw=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "859b9cd371b4e1bf1043cedc8ab6c514e13ab358",
+        "rev": "7dc20bdf16ce876966e7a904c416a8e520a14793",
         "type": "github"
       },
       "original": {
@@ -1216,11 +1216,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734838217,
-        "narHash": "sha256-zvMLS8BGn+kMG7tLLT3PJ67/S9yqZ9B7V8hKBa9cRRY=",
+        "lastModified": 1735160596,
+        "narHash": "sha256-zD8ciZm42wi1ijHyS7J0dmBE3QXMA/qBfwW/SEXhiwI=",
         "owner": "Mic92",
         "repo": "nix-index-database",
-        "rev": "d583b2d142f0428313df099f4a2dcf2a0496aa78",
+        "rev": "c8470746a9f4d1ab4c7563db7da995595ed64ca2",
         "type": "github"
       },
       "original": {
@@ -1236,11 +1236,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1735091154,
-        "narHash": "sha256-7fbVzSZwk0jQwsWsSR2oAoXF01AXvi7GVpnsmM4rR5Y=",
+        "lastModified": 1735177600,
+        "narHash": "sha256-I51oo2juXWvbBHBwuisXlDelwPzSBghDc3hI/feRDk0=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "8f6fbf22576b2d8bbc716d976bb5105f1803e653",
+        "rev": "abc6bc047bffc62632c043708ee23091bc500611",
         "type": "github"
       },
       "original": {
@@ -1257,11 +1257,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734397596,
-        "narHash": "sha256-ssEc0X90Ga8T8rXv6CxBJ79a4On4ZWKvzkw6fBgFrwM=",
+        "lastModified": 1735140060,
+        "narHash": "sha256-9CCs23qis03VO5+WJ6LGfi/rA5VVUGGh8vv8qBff2JA=",
         "owner": "KaylorBen",
         "repo": "nixcord",
-        "rev": "65b2cb06494528c06d75889d5da7f070953260be",
+        "rev": "165ce544dd9cad3ea4143d3bc0140e830d31ec2e",
         "type": "github"
       },
       "original": {
@@ -1782,11 +1782,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735100190,
-        "narHash": "sha256-H3cFMvOmryQz78UwrpelVg+3sBZjaVWgJXTvT2wWGGw=",
+        "lastModified": 1735186564,
+        "narHash": "sha256-PQIAL/dODi9HroSaW/4nqWQe2CSTgxRYS+XiYPo1FhA=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "628d1d47b4af5aa53fa6bcbb0c38b7a4d921f0de",
+        "rev": "112da8f6b8a3365cf89d5c5b6aaa02ba249373ff",
         "type": "github"
       },
       "original": {
