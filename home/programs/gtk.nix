@@ -1,9 +1,8 @@
 {
   pkgs,
   config,
-  inputs,
   ...
-}: {
+}: rec {
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
@@ -24,23 +23,30 @@
     };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-  };
 
-  catppuccin.gtk = {
-    enable = true;
-    accent = "pink";
-    flavor = "mocha";
-    size = "compact";
-    icon = {
-      enable = true;
-      accent = "pink";
-      flavor = "mocha";
+    theme = {
+      name = "Catppuccin-Mocha-Standard-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["pink"];
+        size = "standard";
+        variant = "mocha";
+      };
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "pink";
+      };
     };
   };
 
-  xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+  xdg.configFile = let
+    g = gtk.theme.package;
+  in {
+    "gtk-4.0/assets".source = "${g}/share/themes/${g}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${g}/share/themes/${g}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${g}/share/themes/${g}/gtk-4.0/gtk-dark.css";
   };
 }
