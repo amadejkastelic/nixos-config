@@ -72,7 +72,7 @@
 
     hyprland = {
       type = "git";
-      url = "https://github.com/amadejkastelic/Hyprland";
+      url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     };
 
