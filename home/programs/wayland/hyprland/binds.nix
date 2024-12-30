@@ -15,6 +15,11 @@ let
       ]
     )
     10);
+  toggle = program: let
+    prog = builtins.substring 0 14 program;
+  in "pkill ${prog} || uwsm app -- ${program}";
+
+  runOnce = program: "pgrep ${program} || uwsm app -- ${program}";
 in {
   wayland.windowManager.hyprland.settings = {
     # mouse movements
@@ -52,11 +57,11 @@ in {
         # terminal
         "$mod, T, exec, kitty"
         # logout menu
-        "$mod, Escape, exec, pidof wlogout || wlogout -p layer-shell -b 2"
+        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell -b 2"
         # lock screen
-        "$mod, L, exec, pidof hyprlock || hyprlock"
+        "$mod, L, exec, ${runOnce "hyprlock"}"
         # select area to perform OCR on
-        "$mod, O, exec, run-as-service wl-ocr"
+        "$mod, O, exec, uwsm app -- wl-ocr"
         # Emoji picker
         "$mod, E, exec, pkill rofi || rofimoji -a clipboard -s light -r 🔍"
         # Clipboard manager
@@ -69,7 +74,7 @@ in {
         "$mod, down, movefocus, d"
 
         # Launcher
-        "$mod, R, exec, pkill anyrun || anyrun"
+        "$mod, R, exec, ${toggle "anyrun"}"
 
         # screenshot
         # stop animations while screenshotting; makes black border go away

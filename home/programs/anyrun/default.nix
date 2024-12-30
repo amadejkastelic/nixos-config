@@ -13,7 +13,7 @@
 
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        applications
+        uwsm_app
         shell
       ];
 
@@ -25,12 +25,19 @@
 
     extraCss = builtins.readFile (./. + "/style-${config.theme.name}.css");
 
-    extraConfigFiles."applications.ron".text = ''
-      Config(
-        desktop_actions: false,
-        max_entries: 5,
-        terminal: Some("kitty"),
-      )
-    '';
+    extraConfigFiles = {
+      "uwsm_app.ron".text = ''
+        Config(
+          desktop_actions: false,
+          max_entries: 5,
+        )
+      '';
+
+      "shell.ron".text = ''
+        Config(
+          prefix: ">"
+        )
+      '';
+    };
   };
 }

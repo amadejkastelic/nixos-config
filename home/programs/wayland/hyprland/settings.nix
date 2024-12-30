@@ -22,6 +22,7 @@ in {
     ];
 
     exec-once = [
+      "uwsm finalize"
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
       "hyprlock"
       "waybar"

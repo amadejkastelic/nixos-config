@@ -20,8 +20,7 @@
     # screenshot
     grim
     slurp
-    # grimblast --freeze needs this
-    hyprpicker
+
     inputs.hyprsysteminfo.packages.${pkgs.system}.default
 
     # utils
@@ -33,7 +32,7 @@
   # make stuff work on wayland
   home.sessionVariables = {
     QT_QPA_PLATFORM = "wayland";
-    # SDL_VIDEODRIVER = "wayland";
+    SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
 }

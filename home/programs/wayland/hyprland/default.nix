@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   pkgs,
   ...
@@ -18,12 +19,15 @@
   wayland.windowManager.hyprland = {
     enable = true;
 
+    package = inputs.hyprland.packages.${pkgs.system}.default;
+
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
       inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
     ];
 
     systemd = {
+      enable = false;
       variables = ["--all"];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
@@ -31,4 +35,6 @@
       ];
     };
   };
+
+  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 }

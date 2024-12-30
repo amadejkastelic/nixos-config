@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./anyrun
+    ./browsers/chromium.nix
     ./browsers/schizofox.nix
     ./social/discord.nix
     ./media
