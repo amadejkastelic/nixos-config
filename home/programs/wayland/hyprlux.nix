@@ -8,7 +8,7 @@
 
     systemd = {
       enable = true;
-      target = "hyprland-session.target";
+      target = "graphical-session.target";
     };
 
     night_light = {
