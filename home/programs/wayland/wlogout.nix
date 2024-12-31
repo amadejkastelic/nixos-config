@@ -34,8 +34,15 @@ in {
         text = "Reboot";
       }
     ];
+  };
 
-    style = ''
+  catppuccin.wlogout = {
+    enable = true;
+
+    flavor = "mocha";
+    accent = "pink";
+
+    extraStyle = ''
       * {
         background: none;
       }
