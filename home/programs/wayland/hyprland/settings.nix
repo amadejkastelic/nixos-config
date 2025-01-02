@@ -26,6 +26,7 @@ in {
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
       "hyprlock"
       "waybar"
+      "hyprlux > /tmp/hyprlux.log 2>&1"
       "wl-paste --watch cliphist store"
     ];
 
