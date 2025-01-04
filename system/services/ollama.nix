@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   port = 11434;
 in {
-  # https://github.com/NixOS/nixpkgs/issues/368672
+  # https://nixpk.gs/pr-tracker.html?pr=370180
   services.ollama = {
     enable = false;
     package = pkgs.ollama-rocm;
