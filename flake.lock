@@ -669,11 +669,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1735237475,
-        "narHash": "sha256-jxUDerEjDFinwD0l+vuEHaQmz+xQSw6uFxBrMjKSIwA=",
+        "lastModified": 1736370270,
+        "narHash": "sha256-dYhmj9v/CUvovurTzPtzk4IMtQakcb8UGbAmJld0XQw=",
         "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
-        "rev": "38c1d00f3c1c65c6307dbc91be41fc2ce28ffeed",
+        "rev": "55fd61757b952c65d3226d3c834cdee5b394429f",
         "type": "github"
       },
       "original": {
@@ -815,11 +815,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1736181433,
-        "narHash": "sha256-6QKh595F9VMCsUBq8iG48tOXVcUyUYmeg8RqL1IPI8U=",
+        "lastModified": 1736421227,
+        "narHash": "sha256-7+KsJapwZ2pk9ETeoA3TkTh7nYu3BwiAo3NIIkaOFyE=",
         "ref": "refs/heads/main",
-        "rev": "602d6b73563e56fe003bbf3d25b45a53c51bad24",
-        "revCount": 5635,
+        "rev": "e66eab7b6a90514251439f661454c536afa3e5c8",
+        "revCount": 5652,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"

@@ -20,6 +20,6 @@
 
     # Apple Music
     # nix-store --add-fixed sha256 Cider-linux-appimage-x64.AppImage
-    cider-2
+    # cider-2
   ];
 }
