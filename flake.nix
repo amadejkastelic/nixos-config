@@ -160,7 +160,7 @@
       };
     };
 
-    nixcord.url = "github:DontEatOreo/nixcord?ref=fix-vencord-stable";
+    nixcord.url = "github:kaylorben/nixcord";
 
     clipboard-sync.url = "github:QuarterHeaven/clipboard-sync";
   };
