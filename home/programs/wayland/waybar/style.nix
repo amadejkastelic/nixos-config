@@ -24,7 +24,7 @@ in {
     }
 
     window#waybar {
-        background-color: shade(${custom.background}, 0.9);
+        background-color: alpha(${custom.background}, 0.999);
         border: 2px solid alpha(${custom.crust}, 0.3);
         margin: 10px 10px;
     }
