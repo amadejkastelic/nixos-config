@@ -147,7 +147,7 @@ in {
         fix_mouse = true
       }
       dynamic-cursors {
-        enabled = true
+        enabled = false
         mode = none
         shake {
           enabled = true
