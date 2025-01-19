@@ -20,6 +20,5 @@
     qbittorrent-enhanced
     oversteer
     telegram-desktop
-    altserver-linux
   ];
 }
