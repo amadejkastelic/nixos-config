@@ -2,7 +2,7 @@
   port = 11434;
 in {
   services.ollama = {
-    enable = true;
+    enable = false;
     package = pkgs.ollama-rocm;
     port = port;
     loadModels = ["llama3.2" "qwen2.5-coder:3b"];
@@ -10,10 +10,10 @@ in {
     rocmOverrideGfx = "10.3.0";
   };
 
-  nixpkgs.config.rocmSupport = true;
+  nixpkgs.config.rocmSupport = false;
 
   services.nextjs-ollama-llm-ui = {
-    enable = true;
+    enable = false;
     port = 3000;
     ollamaUrl = "http://127.0.0.1:${toString port}";
   };

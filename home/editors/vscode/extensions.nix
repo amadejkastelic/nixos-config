@@ -21,7 +21,7 @@
         tamasfe.even-better-toml
 
         # AI
-        continue.continue
+        # continue.continue
 
         # Docker
         ms-azuretools.vscode-docker
