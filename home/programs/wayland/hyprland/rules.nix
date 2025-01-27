@@ -68,6 +68,11 @@
       "fullscreen, initialclass:^(steam_app_)(.*)$"
       "fullscreen, initialclass:cs2"
       "renderunfocused, initialclass:^(steam_app_)(.*)^(steam_app_\d+|cs2)$"
+      "float, initialtitle:Hearthstone"
+      "size 1920 1080, initialtitle:Hearthstone"
+      "maxsize 1920 1080, initialtitle:Hearthstone"
+      "minsize 1920 1080, initialtitle:Hearthstone"
+      "center, initialtitle:Hearthstone"
 
       # idle inhibit while watching videos
       "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
