@@ -29,6 +29,7 @@
 
     # terminal emulators
     ../../terminal/emulators/kitty.nix
+    ../../terminal/emulators/ghostty.nix
 
     # catppuccin
     inputs.catppuccin.homeManagerModules.catppuccin
