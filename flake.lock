@@ -555,11 +555,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738275749,
-        "narHash": "sha256-PM+cGduJ05EZ+YXulqAwUFjvfKpPmW080mcuN6R1POw=",
+        "lastModified": 1738407251,
+        "narHash": "sha256-IDrc1qvFolaEDST/dWKgDcmJsemlfP4Yw6kh5O9TMVs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a8159195bfaef3c64df75d3b1e6a68d49d392be9",
+        "rev": "055c67056d87577a39af4144ad5eadb093cfb97d",
         "type": "github"
       },
       "original": {
@@ -745,11 +745,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1738339723,
-        "narHash": "sha256-FHSnfRBt0APN1muCM+MJcG/sKEYcdXhC+hHmDbV4syQ=",
+        "lastModified": 1738394946,
+        "narHash": "sha256-ogsieyUkPPFxa7vs7b59yY2JYdreny9Uen/A3CryMy0=",
         "ref": "refs/heads/main",
-        "rev": "ddf180fa304e71b1d6eaa9f2b250a907131b05d9",
-        "revCount": 5771,
+        "rev": "d11d0697155e0896c4ab76406e6d5dcf35abff05",
+        "revCount": 5772,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1367,11 +1367,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1737855374,
-        "narHash": "sha256-RRGX2C+c+GaR3YMiYm6l/Tp5N/KZtYpiTplUrBwH/og=",
+        "lastModified": 1738395007,
+        "narHash": "sha256-FRztpttPJBnvMD44NeUnkhOYMFd3jblx8baRlTU4RvU=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "4845fe94cda365c7550d9fd1ef899d45df0bc18a",
+        "rev": "cbe40678ac1b1cd345b169b6b8edbceeb43462b0",
         "type": "github"
       },
       "original": {
@@ -1430,11 +1430,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1738287944,
-        "narHash": "sha256-q8pOnhaA95ZZf+CJ4ahScSzt5pbnL7lShFuMwTwiw7I=",
+        "lastModified": 1738374609,
+        "narHash": "sha256-IyHDXC0zXFTtrheJHdr1M1lS1GkDBPo09/mWDt+UfUQ=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "529e0a84346f34db86ea24203c0b2e975fefb4f2",
+        "rev": "e26741603fb047295c7015c93746b75601c8c490",
         "type": "github"
       },
       "original": {
@@ -1954,11 +1954,11 @@
         "systems": "systems_8"
       },
       "locked": {
-        "lastModified": 1738099675,
-        "narHash": "sha256-q1oixDeEvoKm8t7Fr6vEGnv4sb8vRXCa6rF6YWIbGmk=",
+        "lastModified": 1738380602,
+        "narHash": "sha256-521irgFQstFJZNAXISC4iBNlB/Gnm8qzDrcz1Phm3Nw=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "2f0cc0c110c25804cd2f6c167ab66f567941452c",
+        "rev": "862ecb0c7dd2f77e145a81dfc10eb386449975fb",
         "type": "github"
       },
       "original": {

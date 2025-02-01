@@ -3,7 +3,7 @@
     enable = true;
     enableZshIntegration = true;
 
-    clearDefaultKeybinds = true;
+    clearDefaultKeybinds = false;
 
     settings = {
       font-family = "JetBrains Mono";

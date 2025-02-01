@@ -20,9 +20,6 @@
         # TOML
         tamasfe.even-better-toml
 
-        # AI
-        # continue.continue
-
         # Docker
         ms-azuretools.vscode-docker
 
@@ -33,9 +30,16 @@
         # Python
         ms-python.python
         ms-python.debugpy
+
+        # Git
+        waderyan.gitblame
+
         # Rust
         rust-lang.rust-analyzer
         vadimcn.vscode-lldb
+
+        # AI
+        continue.continue
       ])
       ++ [
         # Theme
@@ -59,9 +63,9 @@
   home.file.".continue/config.json".text = builtins.toJSON {
     models = [
       {
-        title = "llama 3.2";
+        title = "Deepseek-R1";
         provider = "ollama";
-        model = "llama3.2";
+        model = "deepseek-r1:14b";
       }
     ];
     tabAutocompleteModel = {

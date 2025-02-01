@@ -30,6 +30,7 @@
       "float, class:^(nm-connection-editor)$"
       "float, title:^(Spotify( Premium)?)$"
       "float, class:^(vesktop)$"
+      "float, initialClass:^(org.pulseaudio.pavucontrol)$"
 
       # opacity
       "opacity 0.80 0.70, class:^(pavucontrol)$"

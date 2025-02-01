@@ -1,19 +1,24 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  pkgs-unstable = import inputs.nixpkgs-unstable {system = "x86_64-linux";};
   port = 11434;
 in {
   services.ollama = {
-    enable = false;
-    package = pkgs.ollama-rocm;
+    enable = true;
+    package = pkgs-unstable.ollama-rocm;
     port = port;
-    loadModels = ["llama3.2" "qwen2.5-coder:3b"];
+    loadModels = ["deepseek-r1:14b" "qwen2.5-coder:3b"];
     acceleration = "rocm";
     rocmOverrideGfx = "10.3.0";
   };
 
-  nixpkgs.config.rocmSupport = false;
+  nixpkgs.config.rocmSupport = true;
 
   services.nextjs-ollama-llm-ui = {
-    enable = false;
+    enable = true;
     port = 3000;
     ollamaUrl = "http://127.0.0.1:${toString port}";
   };
