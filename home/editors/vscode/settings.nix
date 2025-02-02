@@ -20,6 +20,7 @@
 
   extensions = {
     "extensions.autoCheckUpdates" = false;
+    "extensions.autoUpdate" = false;
     "extensions.ignoreRecommendations" = true;
     "update.mode" = "none";
   };

@@ -3,12 +3,11 @@
   inputs,
   ...
 }: let
-  pkgs-unstable = import inputs.nixpkgs-unstable {system = "x86_64-linux";};
   port = 11434;
 in {
   services.ollama = {
     enable = true;
-    package = pkgs-unstable.ollama-rocm;
+    package = pkgs.ollama-rocm;
     port = port;
     loadModels = ["deepseek-r1:14b" "qwen2.5-coder:3b"];
     acceleration = "rocm";
