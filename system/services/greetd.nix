@@ -20,11 +20,13 @@
 
   programs.uwsm = {
     enable = true;
-    waylandCompositors.hyprland = {
+    /*
+      waylandCompositors.hyprland = {
       binPath = "/run/current-system/sw/bin/Hyprland";
       prettyName = "Hyprland";
       comment = "Hyprland managed by UWSM";
     };
+    */
   };
 
   # unlock GPG keyring on login
