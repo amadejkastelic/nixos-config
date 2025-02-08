@@ -19,8 +19,8 @@
       listener = [
         {
           timeout = 500;
-          onTimeout = "hyprctl dispatch dpms off";
-          onResume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
         }
       ];
     };
