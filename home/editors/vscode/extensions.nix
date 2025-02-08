@@ -36,7 +36,7 @@
 
         # Rust
         rust-lang.rust-analyzer
-        vadimcn.vscode-lldb
+        # vadimcn.vscode-lldb
 
         # AI
         continue.continue
