@@ -12,6 +12,9 @@
         jnoortheen.nix-ide
         arrterian.nix-env-selector
 
+        # Rust
+        vadimcn.vscode-lldb
+
         # Python
         ms-python.flake8
         ms-python.vscode-pylance
@@ -31,12 +34,8 @@
         ms-python.python
         ms-python.debugpy
 
-        # Git
-        waderyan.gitblame
-
         # Rust
         rust-lang.rust-analyzer
-        # vadimcn.vscode-lldb
 
         # AI
         continue.continue
