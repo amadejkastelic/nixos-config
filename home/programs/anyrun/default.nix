@@ -13,7 +13,7 @@
 
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        uwsm_app
+        applications
         shell
       ];
 
@@ -26,10 +26,11 @@
     extraCss = builtins.readFile (./. + "/style-${config.theme.name}.css");
 
     extraConfigFiles = {
-      "uwsm_app.ron".text = ''
+      "applications.ron".text = ''
         Config(
           desktop_actions: false,
           max_entries: 5,
+          terminal: Some("ghostty"),
         )
       '';
 

@@ -27,7 +27,7 @@
     ];
 
     systemd = {
-      enable = false;
+      enable = true;
       variables = ["--all"];
       extraCommands = [
         "systemctl --user stop graphical-session.target"
@@ -35,6 +35,4 @@
       ];
     };
   };
-
-  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 }

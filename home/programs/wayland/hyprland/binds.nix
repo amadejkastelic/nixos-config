@@ -17,9 +17,9 @@ let
     10);
   toggle = program: let
     prog = builtins.substring 0 14 program;
-  in "pkill ${prog} || uwsm app -- ${program}";
+  in "pkill ${prog} || ${program}";
 
-  runOnce = program: "pgrep ${program} || uwsm app -- ${program}";
+  runOnce = program: "pgrep ${program} || ${program}";
 in {
   wayland.windowManager.hyprland.settings = {
     # mouse movements
@@ -61,7 +61,7 @@ in {
         # lock screen
         "$mod, L, exec, ${runOnce "hyprlock"}"
         # select area to perform OCR on
-        "$mod, O, exec, uwsm app -- wl-ocr"
+        "$mod, O, exec, run-as-service wl-ocr"
         # Emoji picker
         "$mod, E, exec, pkill rofi || rofimoji -a clipboard -s light -r 🔍"
         # Clipboard manager

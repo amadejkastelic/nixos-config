@@ -61,7 +61,7 @@
       inputs.systems.follows = "systems";
     };
 
-    anyrun.url = "github:fufexan/anyrun/launch-prefix";
+    anyrun.url = "github:anyrun-org/anyrun";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 

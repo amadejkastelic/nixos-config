@@ -8,6 +8,6 @@
   # enable hyprland and required options
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
+    withUWSM = false;
   };
 }
