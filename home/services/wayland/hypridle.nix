@@ -6,7 +6,7 @@
   ...
 }: {
   services.hypridle = {
-    enable = true;
+    enable = false;
 
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
 
