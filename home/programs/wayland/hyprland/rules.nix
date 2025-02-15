@@ -87,13 +87,7 @@
       "float, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(xdg-desktop-portal-gtk)$"
       "size 1920 1080, class:^(xdg-desktop-portal-gtk)$"
-      "size 1920 1080, initialClass:^(org.gnome.Nautilus)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
-
-      # fix xwayland apps
-      # "rounding 0, xwayland:1"
-      "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
-      "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
     ];
   };
 }
