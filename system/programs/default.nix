@@ -3,7 +3,7 @@
     ./fonts.nix
     ./home-manager.nix
     ./xdg.nix
-    ./thunar.nix
+    ./nautilus.nix
   ];
 
   programs = {

@@ -4,8 +4,8 @@
   ...
 }: let
   browser = ["Schizofox"];
-  fileManager = ["thunar"];
-  archiver = ["xarchiver"];
+  fileManager = ["org.gnome.Nautilus"];
+  archiver = ["org.gnome.Nautilus"];
   imageViewer = ["org.gnome.Loupe"];
   videoPlayer = ["mpv"];
   audioPlayer = ["mpv"];

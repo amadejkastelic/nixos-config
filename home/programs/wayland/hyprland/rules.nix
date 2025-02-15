@@ -31,9 +31,11 @@
       "float, title:^(Spotify( Premium)?)$"
       "float, class:^(vesktop)$"
       "float, initialClass:^(org.pulseaudio.pavucontrol)$"
+      "float, initialClass:^(org.gnome.Nautilus)$"
 
       # opacity
-      "opacity 0.80 0.70, class:^(pavucontrol)$"
+      "opacity 0.80 0.70, initialClass:^(org.pulseaudio.pavucontrol)$"
+      "opacity 0.80 0.70, initialClass:^(org.pulseaudio.Nautilus)$"
       "opacity 0.80 0.70, class:^(nm-connection-editor)$"
       "opacity 0.80 0.70, class:^(vesktop)$"
       "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
@@ -85,6 +87,7 @@
       "float, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(xdg-desktop-portal-gtk)$"
       "size 1920 1080, class:^(xdg-desktop-portal-gtk)$"
+      "size 1920 1080, initialClass:^(org.gnome.Nautilus)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
 
       # fix xwayland apps

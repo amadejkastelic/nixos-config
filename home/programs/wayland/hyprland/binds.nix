@@ -66,6 +66,8 @@ in {
         "$mod, E, exec, pkill rofi || rofimoji -a clipboard -s light -r 🔍"
         # Clipboard manager
         "$mod, V, exec, pkill rofi || rofi -p '🔍' -modi clipboard:rofi-cliphist -show clipboard -show-icons"
+        # File manager
+        "$mod, N, exec, nautilus"
 
         # move focus
         "$mod, left, movefocus, l"
