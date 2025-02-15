@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = [pkgs.gh];
@@ -15,13 +16,11 @@
 
     delta.enable = true;
 
-    extraConfig = {
+    extraConfig = lib.mkForce {
       diff.colorMoved = "default";
       merge.conflictstyle = "diff3";
 
       gpg = {
-        format = "ssh";
-
         ssh.defaultKeyCommand = "sh -c 'echo key::$(ssh-add -L | head -1)'";
         commit.gpgsign = true;
       };
@@ -51,6 +50,7 @@
     ignores = ["*~" "*.swp" "*result*" ".direnv" "node_modules"];
 
     signing = {
+      format = "ssh";
       key = "${config.home.homeDirectory}/.ssh/id_ed25519_sk";
       signByDefault = true;
     };

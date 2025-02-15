@@ -20,6 +20,9 @@
         ms-python.vscode-pylance
         ms-python.black-formatter
 
+        # Flutter
+        dart-code.flutter
+
         # TOML
         tamasfe.even-better-toml
 
