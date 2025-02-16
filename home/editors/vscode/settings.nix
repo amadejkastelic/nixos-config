@@ -85,6 +85,20 @@
     "continue.enableTabAutocomplete" = false;
   };
 
+  twinny = {
+    "twinny.enabled" = true;
+    "twinny.enableLogging" = false;
+
+    "twinny.autoSuggestEnabled" = true;
+    "twinny.multilineCompletionsEnabled" = false;
+    "twinny.maxLines" = 1;
+    "twinny.fileContextEnabled" = false;
+    "twinny.completionCacheEnabled" = true;
+
+    "twinny.ollamaHostname" = "0.0.0.0";
+    "twinny.ollamaApiPort" = 11434;
+  };
+
   svelte = {
     "svelte.enable-ts-plugin" = true;
   };
@@ -103,5 +117,6 @@ in {
     // nix
     // python
     // continue
+    // twinny
     // svelte;
 }

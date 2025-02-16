@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.vscode = {
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
     extensions =
       (with pkgs.vscode-marketplace; [
         # Icons
@@ -31,6 +31,9 @@
 
         # Svelte
         svelte.svelte-vscode
+
+        # AI
+        rjmacarthy.twinny
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python
@@ -39,9 +42,6 @@
 
         # Rust
         rust-lang.rust-analyzer
-
-        # AI
-        continue.continue
       ])
       ++ [
         # Theme
@@ -71,9 +71,9 @@
       }
     ];
     tabAutocompleteModel = {
-      title = "Qwen Coder";
+      title = "Supernova-Medius";
       provider = "ollama";
-      model = "qwen2.5-coder:3b";
+      model = "vanilj/supernova-medius:iq2_m";
     };
   };
 }
