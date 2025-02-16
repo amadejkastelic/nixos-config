@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./../../lib/vfio.nix
     ./../../lib/virtualisation.nix
@@ -17,6 +17,7 @@
 
     docker.rootless = {
       enable = true;
+      package = pkgs.colima;
       setSocketVariable = true;
     };
 
