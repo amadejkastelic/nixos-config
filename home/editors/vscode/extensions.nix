@@ -14,6 +14,7 @@
 
         # Rust
         vadimcn.vscode-lldb
+        rust-lang.rust-analyzer
 
         # Python
         ms-python.flake8
@@ -39,9 +40,6 @@
         # Python
         ms-python.python
         ms-python.debugpy
-
-        # Rust
-        rust-lang.rust-analyzer
       ])
       ++ [
         # Theme

@@ -16,10 +16,5 @@
   };
 
   # Bleeding-edge mesa
-  chaotic.mesa-git.enable = true;
-
-  services.xserver.deviceSection = ''
-    Option "EnablePageFlip" "off"
-    Option "TearFree" "false"
-  '';
+  chaotic.mesa-git.enable = false;
 }

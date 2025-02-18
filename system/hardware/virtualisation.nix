@@ -17,7 +17,7 @@
 
     docker.rootless = {
       enable = true;
-      package = pkgs.colima;
+      package = pkgs.docker;
       setSocketVariable = true;
     };
 
