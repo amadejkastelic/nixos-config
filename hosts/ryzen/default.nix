@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./hyprland.nix
   ];
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;

@@ -37,13 +37,4 @@
     # Vesktop
     inputs.nixcord.homeManagerModules.nixcord
   ];
-
-  wayland.windowManager.hyprland.settings = {
-    monitor = [
-      "DP-2,5120x1440@120,0x0,1.25"
-    ];
-  };
-
-  wayland.windowManager.hyprland.extraConfig = ''
-  '';
 }

@@ -1,12 +1,8 @@
-{config, ...}: let
-  variant = config.theme.name;
-  c = config.programs.matugen.theme.colors.${variant};
-  pointer = config.home.pointerCursor;
-
+let
   cursorName = "HyprBibataModernIceSVG";
-  cursorSize = pointer.size;
+  cursorSize = 24;
 in {
-  wayland.windowManager.hyprland.settings = {
+  programs.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -81,8 +77,8 @@ in {
         gradients = false;
       };
 
-      "col.border_active" = "rgba(${c.primary_container}88)";
-      "col.border_inactive" = "rgba(${c.primary_container}88)";
+      "col.border_active" = "rgba(88888888)";
+      "col.border_inactive" = "rgba(00000088)";
     };
 
     input = {
@@ -139,7 +135,7 @@ in {
     };
   };
 
-  wayland.windowManager.hyprland.extraConfig = ''
+  programs.hyprland.extraConfig = ''
     plugin {
       csgo-vulkan-fix {
         res_w = 1280

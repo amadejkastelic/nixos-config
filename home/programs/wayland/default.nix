@@ -2,12 +2,13 @@
   pkgs,
   self,
   inputs,
+  lib,
   ...
 }:
 # Wayland config
 {
   imports = [
-    ./hyprland
+    #./hyprland
     ./hyprlock.nix
     ./hyprlux.nix
     ./hyprshade.nix
@@ -35,4 +36,6 @@
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
+
+  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
 }

@@ -1,5 +1,5 @@
 {lib, ...}: {
-  wayland.windowManager.hyprland.settings = {
+  programs.hyprland.settings = {
     # layer rules
     layerrule = let
       toRegex = list: let

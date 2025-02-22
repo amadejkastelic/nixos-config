@@ -22,7 +22,7 @@
         ++ [
           ./ryzen
 
-          "${mod}/programs/hyprland.nix"
+          "${mod}/programs/hyprland"
           "${mod}/programs/gaming"
           "${mod}/programs/noisetorch.nix"
 
