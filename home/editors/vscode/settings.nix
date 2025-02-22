@@ -103,7 +103,7 @@
     "svelte.enable-ts-plugin" = true;
   };
 in {
-  programs.vscode.userSettings =
+  programs.vscode.profiles.default.userSettings =
     {}
     // editor
     // explorer

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.vscode = {
     mutableExtensionsDir = false;
-    extensions =
+    profiles.default.extensions =
       (with pkgs.vscode-marketplace; [
         # Icons
         pkief.material-product-icons

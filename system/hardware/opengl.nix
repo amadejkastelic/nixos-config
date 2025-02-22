@@ -16,5 +16,5 @@
   };
 
   # Bleeding-edge mesa
-  chaotic.mesa-git.enable = false;
+  chaotic.mesa-git.enable = true;
 }

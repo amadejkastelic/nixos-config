@@ -9,8 +9,10 @@
     enable = true;
     package = pkgs.vscode;
 
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = false;
+    profiles.default = {
+      enableUpdateCheck = false;
+      enableExtensionUpdateCheck = false;
+    };
   };
 
   xdg.mimeApps.defaultApplications."text/plain" = "code.desktop";
