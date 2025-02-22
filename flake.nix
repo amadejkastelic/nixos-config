@@ -70,11 +70,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
+    hyprland.url = "github:hyprwm/hyprland";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
@@ -162,6 +158,6 @@
 
     nixcord.url = "github:kaylorben/nixcord";
 
-    clipboard-sync.url = "github:QuarterHeaven/clipboard-sync";
+    clipboard-sync.url = "github:dnut/clipboard-sync";
   };
 }

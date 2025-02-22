@@ -10,4 +10,6 @@
     enable = true;
     withUWSM = false;
   };
+
+  services.seatd.enable = true;
 }
