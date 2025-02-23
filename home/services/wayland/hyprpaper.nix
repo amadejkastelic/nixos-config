@@ -14,4 +14,6 @@
       wallpaper = [", ${config.theme.wallpaper}"];
     };
   };
+
+  systemd.user.services.hyprpaper.Unit.After = lib.mkForce "graphical-session.target";
 }

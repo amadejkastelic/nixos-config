@@ -12,9 +12,9 @@
     enable = true;
 
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        applications
-        shell
+      plugins = [
+        inputs.anyrun-uwsm.packages.${pkgs.system}.uwsm_app
+        inputs.anyrun.packages.${pkgs.system}.shell
       ];
 
       width.fraction = 0.3;
@@ -26,7 +26,7 @@
     extraCss = builtins.readFile (./. + "/style-${config.theme.name}.css");
 
     extraConfigFiles = {
-      "applications.ron".text = ''
+      "uwsm_app.ron".text = ''
         Config(
           desktop_actions: false,
           max_entries: 5,

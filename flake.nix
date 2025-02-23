@@ -62,6 +62,7 @@
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
+    anyrun-uwsm.url = "github:fufexan/anyrun/launch-prefix";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
