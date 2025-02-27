@@ -7,7 +7,7 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode;
+    package = pkgs.vscodium;
 
     profiles.default = {
       enableUpdateCheck = false;
