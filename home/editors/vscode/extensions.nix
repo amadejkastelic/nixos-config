@@ -18,7 +18,6 @@
 
         # Python
         ms-python.flake8
-        ms-python.vscode-pylance
         ms-python.black-formatter
 
         # Flutter
@@ -40,6 +39,7 @@
         # Python
         ms-python.python
         ms-python.debugpy
+        ms-python.vscode-pylance
       ])
       ++ [
         # Theme
