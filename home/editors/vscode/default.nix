@@ -7,7 +7,9 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    # Pylance doesn't work in vscodium
+    # https://github.com/VSCodium/vscodium/discussions/1641
+    package = pkgs.vscode;
 
     profiles.default = {
       enableUpdateCheck = false;

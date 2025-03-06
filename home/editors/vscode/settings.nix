@@ -86,7 +86,7 @@
   };
 
   twinny = {
-    "twinny.enabled" = true;
+    "twinny.enabled" = false;
     "twinny.enableLogging" = false;
 
     "twinny.autoSuggestEnabled" = true;

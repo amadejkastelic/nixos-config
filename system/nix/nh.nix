@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
   programs.nh = {
     enable = true;
     # monthly cleanup
