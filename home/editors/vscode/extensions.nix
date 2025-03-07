@@ -17,6 +17,7 @@
         rust-lang.rust-analyzer
 
         # Python
+        ms-python.python
         ms-python.flake8
         ms-python.black-formatter
 
@@ -37,7 +38,6 @@
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python
-        ms-python.python
         ms-python.debugpy
         ms-python.vscode-pylance
       ])
