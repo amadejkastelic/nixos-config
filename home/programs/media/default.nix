@@ -1,10 +1,6 @@
-{pkgs, ...}:
-# media - control and enjoy audio/video
-{
+{pkgs, ...}: {
   imports = [
     ./mpv.nix
-    #./rnnoise.nix
-    ./spicetify.nix
     ./noisetorch.nix
     ./obs.nix
   ];
@@ -17,9 +13,5 @@
     # images
     loupe
     krita
-
-    # Apple Music
-    # nix-store --add-fixed sha256 Cider-linux-appimage-x64.AppImage
-    # cider-2
   ];
 }
