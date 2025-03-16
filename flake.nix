@@ -102,7 +102,8 @@
     };
 
     hypr-dynamic-cursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
+      # https://github.com/VirtCode/hypr-dynamic-cursors/issues/65
+      url = "github:myamusashi/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland";
     };
 
