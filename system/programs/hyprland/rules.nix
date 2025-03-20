@@ -23,7 +23,7 @@
     ];
 
     # window rules
-    windowrulev2 = [
+    windowrule = [
       # float
       "float, title:^(Media viewer)$"
       "float, class:^(pavucontrol)$"

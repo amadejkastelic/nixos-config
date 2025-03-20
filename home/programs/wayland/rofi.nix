@@ -25,18 +25,17 @@
     EOF
     cliphist list | gawk "$prog"
   '';
-  rofiPkg = pkgs.rofi-wayland;
 in {
   home.packages = [
     rofi-cliphist
-    (pkgs.rofimoji.override {rofi = rofiPkg;})
+    pkgs.rofimoji
   ];
 
   catppuccin.rofi.enable = true;
   programs.rofi = {
     enable = true;
 
-    package = rofiPkg;
+    package = pkgs.rofi-wayland;
     terminal = "${pkgs.kitty}/bin/kitty";
 
     font = "JetBrains Mono Nerd Font 14";
