@@ -60,6 +60,9 @@
       ];
   };
 
+  # This breaks the extension, so disable it
+  catppuccin.vscode.enable = false;
+
   home.file.".continue/config.json".text = builtins.toJSON {
     models = [
       {
