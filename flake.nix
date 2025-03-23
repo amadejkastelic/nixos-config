@@ -144,7 +144,6 @@
     catppuccin.url = "github:catppuccin/nix";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    catppuccin-vsc.url = "github:catppuccin/vscode";
 
     schizofox = {
       url = "github:schizofox/schizofox";

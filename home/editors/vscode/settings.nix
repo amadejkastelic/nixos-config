@@ -62,6 +62,20 @@
   };
 
   # Extensions
+  catppuccin = {
+    "catppuccin.italicComments" = false;
+    "catppuccin.italicKeywords" = false;
+    "catppuccin.extraBordersEnabled" = false;
+    "catppuccin.workbenchMode" = "default";
+    "catppuccin.bracketMode" = "rainbow";
+    "catppuccin.customUIColors" = {
+      "all" = {
+        "statusBar.foreground" = "accent";
+        "statusBar.noFolderForeground" = "accent";
+      };
+    };
+  };
+
   formatter = {
     "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
     "[python]"."editor.defaultFormatter" = "ms-python.black-formatter";
@@ -113,6 +127,7 @@ in {
     // terminal
     // window
     // workbench
+    // catppuccin
     // formatter
     // nix
     // python

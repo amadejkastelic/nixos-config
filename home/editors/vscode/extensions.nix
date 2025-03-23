@@ -40,28 +40,13 @@
         # Python
         ms-python.debugpy
         ms-python.vscode-pylance
-      ])
-      ++ [
-        # Theme
-        (pkgs.catppuccin-vsc.override {
-          accent = "pink";
-          italicComments = false;
-          italicKeywords = false;
-          extraBordersEnabled = false;
-          workbenchMode = "default";
-          bracketMode = "rainbow";
-          customUIColors = {
-            all = {
-              "statusBar.foreground" = "accent";
-              "statusBar.noFolderForeground" = "accent";
-            };
-          };
-        })
-      ];
+      ]);
   };
 
-  # This breaks the extension, so disable it
-  catppuccin.vscode.enable = false;
+  catppuccin.vscode = {
+    enable = true;
+    accent = "pink";
+  };
 
   home.file.".continue/config.json".text = builtins.toJSON {
     models = [

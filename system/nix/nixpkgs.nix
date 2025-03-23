@@ -18,7 +18,6 @@
           };
       })
       inputs.nix-vscode-extensions.overlays.default
-      inputs.catppuccin-vsc.overlays.default
     ];
   };
 }
