@@ -8,7 +8,6 @@
   # enable hyprland and required options
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
   };
 
   services.seatd.enable = true;
