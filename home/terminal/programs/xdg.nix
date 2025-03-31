@@ -49,6 +49,7 @@
       "x-scheme-handler/discord" = ["vesktop.desktop"];
       "x-scheme-handler/tg" = ["org.telegram.desktop"];
       "x-scheme-handler/tonsite" = ["org.telegram.desktop"];
+      "x-scheme-handler/steam" = ["steam.desktop"];
     }
     // image
     // video
