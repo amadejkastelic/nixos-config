@@ -32,7 +32,7 @@
     ../../terminal/emulators/ghostty.nix
 
     # catppuccin
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
 
     # Vesktop
     inputs.nixcord.homeManagerModules.nixcord
