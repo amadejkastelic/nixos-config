@@ -1,4 +1,8 @@
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   cursorName = "HyprBibataModernIceSVG";
   cursorSize = 24;
 in {
@@ -20,6 +24,8 @@ in {
     exec-once = [
       "uwsm finalize"
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
+      "hyprctl plugin load ${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix}/lib/libcsgo-vulkan-fix.so"
+      "hyprctl plugin load ${inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so"
       "hyprlock"
       "waybar"
       "hyprlux > /tmp/hyprlux.log 2>&1"

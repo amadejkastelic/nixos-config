@@ -20,11 +20,16 @@
   # enable hyprland and required options
   programs.hyprland = {
     enable = true;
+
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
     withUWSM = true;
 
+    # Load plugins in exec-once, so hyprland doesn't break after updates
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.csgo-vulkan-fix
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
+      # inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
     ];
   };
 
