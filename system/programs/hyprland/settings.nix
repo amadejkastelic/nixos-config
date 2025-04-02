@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  cursorName = "HyprBibataModernIceSVG";
+  cursorName = "Bibata-Modern-Ice-Hyprcursor";
   cursorSize = 24;
 in {
   programs.hyprland.settings = {

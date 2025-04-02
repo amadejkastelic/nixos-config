@@ -13,6 +13,7 @@
 
   environment.systemPackages = [
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    inputs.self.packages.${pkgs.system}.bibata-cursors-svg
   ];
 
   environment.pathsToLink = ["/share/icons"];

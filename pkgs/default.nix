@@ -13,6 +13,8 @@
       catppuccin-plymouth = pkgs.callPackage ./catppuccin-plymouth {};
 
       wl-ocr = pkgs.callPackage ./wl-ocr {};
+
+      bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg {};
     };
   };
 }
