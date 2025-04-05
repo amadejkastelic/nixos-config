@@ -19,13 +19,12 @@ in {
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString cursorSize}"
       "STEAM_FORCE_DESKTOPUI_SCALING,1.25"
+      "GRIMBLAST_HIDE_CURSOR,0"
     ];
 
     exec-once = [
       "uwsm finalize"
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
-      "hyprctl plugin load ${inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix}/lib/libcsgo-vulkan-fix.so"
-      "hyprctl plugin load ${inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so"
       "hyprlock"
       "waybar"
       "hyprlux > /tmp/hyprlux.log 2>&1"
