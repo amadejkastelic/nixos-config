@@ -11,9 +11,12 @@
   powerprofilesctl = lib.getExe pkgs.power-profiles-daemon;
   notify-send = lib.getExe pkgs.libnotify;
 
+  resolutionScript = pkgs.writeShellScriptBin "resolution" ''
+    ${hyprctl} keyword monitor "DP-2,$1x$2@120,0x0,1";
+  '';
+
   startScript = writeDash "gamemode-start" ''
     ${hyprctl} --batch "\
-      keyword monitor "DP-2,2560x1440@120,0x0,1";\
       keyword animations:enabled 0;\
       keyword decoration:shadow:enabled 0;\
       keyword decoration:blur:enabled 0;\
@@ -31,6 +34,8 @@
     ${notify-send} -u low -a 'Gamemode' 'Optimizations deactivated'
   '';
 in {
+  environment.systemPackages = [resolutionScript];
+
   programs.gamemode = {
     enable = true;
     settings = {

@@ -11,7 +11,6 @@
   programs.steam = {
     enable = true;
 
-    # fix gamescope inside steam
     package = pkgs.steam.override {
       buildFHSEnv = args:
         pkgs.buildFHSEnv (args
