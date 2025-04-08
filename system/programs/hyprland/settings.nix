@@ -132,6 +132,13 @@ in {
       no_hardware_cursors = false;
     };
 
+    ecosystem = {
+      # Disable the permission system - allow screencopy for all apps
+      enforce_permissions = false;
+      no_update_news = true;
+      no_donation_nag = true;
+    };
+
     xwayland = {
       force_zero_scaling = true;
       use_nearest_neighbor = false;
