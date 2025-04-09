@@ -112,6 +112,9 @@ in {
 
       force_default_wallpaper = 0;
 
+      # disable annoying dialogs
+      enable_anr_dialog = false;
+
       # disable dragging animation
       animate_mouse_windowdragging = false;
 
