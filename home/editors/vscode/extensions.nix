@@ -34,12 +34,15 @@
         svelte.svelte-vscode
 
         # AI
-        rjmacarthy.twinny
+        github.copilot
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python
         ms-python.debugpy
         ms-python.vscode-pylance
+
+        # AI
+        # continue.continue
       ]);
   };
 
