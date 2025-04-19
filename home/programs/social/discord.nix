@@ -2,8 +2,16 @@
   programs.nixcord = {
     enable = true;
 
-    discord.enable = false;
-    vesktop.enable = true;
+    discord = {
+      enable = false;
+      vencord.enable = false;
+    };
+
+    vesktop = {
+      enable = true;
+      useSystemVencord = false;
+      autoscroll.enable = true;
+    };
 
     config = {
       themeLinks = [
