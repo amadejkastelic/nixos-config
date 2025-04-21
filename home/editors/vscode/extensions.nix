@@ -44,6 +44,9 @@
         # Typst
         myriad-dreamin.tinymist
 
+        # PDF preview
+        tomoki1207.pdf
+
         # AI
         # continue.continue
       ]);
