@@ -41,6 +41,9 @@
         ms-python.debugpy
         ms-python.vscode-pylance
 
+        # Typst
+        myriad-dreamin.tinymist
+
         # AI
         # continue.continue
       ]);
