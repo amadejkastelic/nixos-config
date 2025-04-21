@@ -32,6 +32,7 @@
       "float, class:^(vesktop)$"
       "float, initialClass:^(org.pulseaudio.pavucontrol)$"
       "float, initialClass:^(org.gnome.Nautilus)$"
+      "float, initialClass:^(Cider)$"
 
       # opacity
       "opacity 0.80 0.70, initialClass:^(org.pulseaudio.pavucontrol)$"
@@ -39,6 +40,7 @@
       "opacity 0.80 0.70, class:^(nm-connection-editor)$"
       "opacity 0.80 0.70, class:^(vesktop)$"
       "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
+      "opacity 0.80 0.70, initialClass:^(Cider)$"
 
       # make Firefox / Zen PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
@@ -53,6 +55,11 @@
       "workspace 9 silent, title:^(Spotify( Premium)?)$"
       "center, title:^(Spotify( Premium)?)$"
       "size 1920 1080, title:^(Spotify( Premium)?)$"
+
+      # Apple Music
+      "workspace 9 silent, initialClass:^(Cider)$"
+      "center, initialClass:^(Cider)$"
+      "size 1920 1080, initialClass:^(Cider)$"
 
       # Discord
       "workspace 8 silent, class:^(vesktop)$"

@@ -13,5 +13,8 @@
     # images
     loupe
     krita
+
+    # Apple Music
+    cider-2
   ];
 }
