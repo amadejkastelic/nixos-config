@@ -21,9 +21,6 @@
         ms-python.flake8
         ms-python.black-formatter
 
-        # Flutter
-        dart-code.flutter
-
         # TOML
         tamasfe.even-better-toml
 
