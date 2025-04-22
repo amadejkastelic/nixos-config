@@ -3,11 +3,11 @@
     ./anyrun
     ./browsers/chromium.nix
     ./browsers/schizofox.nix
-    ./social/discord.nix
     ./media
     ./gtk.nix
     ./qt.nix
     ./office
+    ./social
   ];
 
   home.packages = with pkgs; [
