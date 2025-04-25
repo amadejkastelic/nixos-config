@@ -35,6 +35,6 @@
     inputs.catppuccin.homeModules.catppuccin
 
     # Vesktop
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
 }
