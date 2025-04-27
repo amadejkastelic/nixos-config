@@ -30,6 +30,9 @@
         # Svelte
         svelte.svelte-vscode
 
+        # go
+        golang.go
+
         # AI
         github.copilot
       ])
