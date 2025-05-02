@@ -9,7 +9,8 @@
 
     vesktop = {
       enable = true;
-      useSystemVencord = false;
+      # Disable in case of errors
+      useSystemVencord = true;
       autoscroll.enable = true;
     };
 
