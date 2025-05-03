@@ -1,6 +1,17 @@
 name: nix
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths:
+      - "**.nix"
+      - "flake.lock"
+      - "flake.nix"
+  pull_request:
+    paths:
+      - "**.nix"
+      - "flake.lock"
+      - "flake.nix"
+  workflow_dispatch:
 
 jobs:
   nix:
