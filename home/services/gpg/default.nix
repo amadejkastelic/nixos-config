@@ -4,7 +4,7 @@
     enableZshIntegration = true;
     enableSshSupport = true;
     enableScDaemon = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   services.ssh-agent.enable = true;
