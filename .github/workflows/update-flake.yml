@@ -7,6 +7,9 @@ on:
 jobs:
   update-flake:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Check out source repository
         uses: actions/checkout@v4
@@ -29,7 +32,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.PAT_FOR_CI }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "flake.lock: update"
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
@@ -47,8 +50,6 @@ jobs:
             **Trigger Info**
             - Triggered by: ${{ github.actor }}
             - Event type: ${{ github.event_name }}
-            - Branch/Ref: ${{ github.ref }}
-            - Run started at: ${{ github.run_started_at }}
           labels: |
             flake
             update
