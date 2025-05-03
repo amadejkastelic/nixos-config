@@ -10,7 +10,7 @@
         # Nix
         kamadorueda.alejandra
         jnoortheen.nix-ide
-        arrterian.nix-env-selector
+        mkhl.direnv
 
         # Rust
         vadimcn.vscode-lldb
