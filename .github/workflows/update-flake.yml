@@ -1,7 +1,7 @@
 name: Update Nix Flake
 on:
   schedule:
-    - cron: "0 0 * * *" # Every day at midnight
+    - cron: "0 0 * * 5" # every Friday at midnight UTC
   workflow_dispatch:
 
 jobs:
