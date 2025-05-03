@@ -3,20 +3,28 @@
   config,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.virtualisation.vfio;
-in {
+in
+{
   options.virtualisation.vfio = {
     enable = mkEnableOption "VFIO Configuration";
     IOMMUType = mkOption {
-      type = types.enum ["intel" "amd"];
+      type = types.enum [
+        "intel"
+        "amd"
+      ];
       example = "intel";
       description = "Type of the IOMMU used";
     };
     devices = mkOption {
       type = types.listOf (types.strMatching "[0-9a-f]{4}:[0-9a-f]{4}");
-      default = [];
-      example = ["10de:1b80" "10de:10f0"];
+      default = [ ];
+      example = [
+        "10de:1b80"
+        "10de:10f0"
+      ];
       description = "PCI IDs of devices to bind to vfio-pci";
     };
     disableEFIfb = mkOption {
@@ -51,15 +59,17 @@ in {
 
     boot.kernelParams =
       (
-        if cfg.IOMMUType == "intel"
-        then [
-          "intel_iommu=on"
-          "intel_iommu=igfx_off"
-        ]
-        else ["amd_iommu=on"]
+        if cfg.IOMMUType == "intel" then
+          [
+            "intel_iommu=on"
+            "intel_iommu=igfx_off"
+          ]
+        else
+          [ "amd_iommu=on" ]
       )
-      ++ (optional (builtins.length cfg.devices > 0)
-        ("vfio-pci.ids=" + builtins.concatStringsSep "," cfg.devices))
+      ++ (optional (builtins.length cfg.devices > 0) (
+        "vfio-pci.ids=" + builtins.concatStringsSep "," cfg.devices
+      ))
       ++ (optional cfg.disableEFIfb "video=efifb:off")
       ++ (optionals cfg.ignoreMSRs [
         "kvm.ignore_msrs=1"
@@ -69,10 +79,20 @@ in {
         "pcie_aspm=off"
       ]);
 
-    boot.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio"];
+    boot.kernelModules = [
+      "vfio_pci"
+      "vfio_iommu_type1"
+      "vfio"
+    ];
 
-    boot.initrd.kernelModules = ["vfio_pci" "vfio_iommu_type1" "vfio"];
-    boot.blacklistedKernelModules =
-      optionals cfg.blacklistNvidia ["nvidia" "nouveau"];
+    boot.initrd.kernelModules = [
+      "vfio_pci"
+      "vfio_iommu_type1"
+      "vfio"
+    ];
+    boot.blacklistedKernelModules = optionals cfg.blacklistNvidia [
+      "nvidia"
+      "nouveau"
+    ];
   };
 }

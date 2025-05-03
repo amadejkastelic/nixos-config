@@ -3,24 +3,32 @@ let
   #screenshotarea = ''grimblast --freeze --notify copy area'';
 
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-  workspaces = builtins.concatLists (builtins.genList (
-      x: let
-        ws = let
-          c = (x + 1) / 10;
-        in
+  workspaces = builtins.concatLists (
+    builtins.genList (
+      x:
+      let
+        ws =
+          let
+            c = (x + 1) / 10;
+          in
           builtins.toString (x + 1 - (c * 10));
-      in [
+      in
+      [
         "$mod, ${ws}, workspace, ${toString (x + 1)}"
         "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
       ]
-    )
-    10);
-  toggle = program: let
-    prog = builtins.substring 0 14 program;
-  in "pkill ${prog} || uwsm app -- ${program}";
+    ) 10
+  );
+  toggle =
+    program:
+    let
+      prog = builtins.substring 0 14 program;
+    in
+    "pkill ${prog} || uwsm app -- ${program}";
 
   runOnce = program: "pgrep ${program} || uwsm app -- ${program}";
-in {
+in
+{
   programs.hyprland.settings = {
     # mouse movements
     bindm = [
@@ -30,9 +38,10 @@ in {
     ];
 
     # binds
-    bind = let
-      monocle = "dwindle:no_gaps_when_only";
-    in
+    bind =
+      let
+        monocle = "dwindle:no_gaps_when_only";
+      in
       [
         # compositor commands
         # "$mod SHIFT, E, exec, pkill Hyprland"

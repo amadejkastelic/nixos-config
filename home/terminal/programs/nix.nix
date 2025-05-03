@@ -6,7 +6,7 @@
 # nix tooling
 {
   home.packages = with pkgs; [
-    alejandra
+    nixfmt-rfc-style
     deadnix
     statix
     self.packages.${pkgs.system}.repl

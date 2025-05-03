@@ -7,28 +7,44 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
   ];
   boot.extraModprobeConfig = ''
     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
   '';
-  boot.kernelParams = ["acpi_enforce_resources=lax" "mitigations=off" "audit=0" "psi=1" "amdgpu.runpm=0" "usbcore.autosuspend=-1"];
+  boot.kernelParams = [
+    "acpi_enforce_resources=lax"
+    "mitigations=off"
+    "audit=0"
+    "psi=1"
+    "amdgpu.runpm=0"
+    "usbcore.autosuspend=-1"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5e8d4669-1563-49cd-9d94-657e99402fd8";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-836e758a-4fe0-4e78-a965-edfcf1f1445a".device = "/dev/disk/by-uuid/836e758a-4fe0-4e78-a965-edfcf1f1445a";
+  boot.initrd.luks.devices."luks-836e758a-4fe0-4e78-a965-edfcf1f1445a".device =
+    "/dev/disk/by-uuid/836e758a-4fe0-4e78-a965-edfcf1f1445a";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/1DD5-C2F3";

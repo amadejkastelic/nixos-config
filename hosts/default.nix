@@ -3,23 +3,24 @@
   inputs,
   homeImports,
   ...
-}: {
-  flake.nixosConfigurations = let
-    # shorten paths
-    inherit (inputs.nixpkgs.lib) nixosSystem;
-    mod = "${self}/system";
+}:
+{
+  flake.nixosConfigurations =
+    let
+      # shorten paths
+      inherit (inputs.nixpkgs.lib) nixosSystem;
+      mod = "${self}/system";
 
-    # get the basic config to build on top of
-    inherit (import "${self}/system") desktop laptop;
+      # get the basic config to build on top of
+      inherit (import "${self}/system") desktop laptop;
 
-    # get these into the module system
-    specialArgs = {inherit inputs self;};
-  in {
-    ryzen = nixosSystem {
-      inherit specialArgs;
-      modules =
-        desktop
-        ++ [
+      # get these into the module system
+      specialArgs = { inherit inputs self; };
+    in
+    {
+      ryzen = nixosSystem {
+        inherit specialArgs;
+        modules = desktop ++ [
           ./ryzen
 
           "${mod}/programs/hyprland"
@@ -41,6 +42,6 @@
           inputs.agenix.nixosModules.default
           inputs.chaotic.nixosModules.default
         ];
+      };
     };
-  };
 }

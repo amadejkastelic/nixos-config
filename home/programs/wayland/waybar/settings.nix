@@ -2,10 +2,11 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # https://www.nerdfonts.com/cheat-sheet
 
-  home.packages = [pkgs.radeontop];
+  home.packages = [ pkgs.radeontop ];
 
   programs.waybar.settings.mainBar = {
     position = "top";
@@ -46,23 +47,23 @@
       on-click = "activate";
       format-icons = {
         /*
-          "1" = "󰈹";
-        "2" = "";
-        "3" = "󰘙";
-        "4" = "󰙯";
-        "5" = "";
-        "6" = "";
-        urgent = "";
-        default = "";
+            "1" = "󰈹";
+          "2" = "";
+          "3" = "󰘙";
+          "4" = "󰙯";
+          "5" = "";
+          "6" = "";
+          urgent = "";
+          default = "";
         */
         sort-by-number = true;
       };
       persistent-workspaces = {
-        "1" = [];
-        "2" = [];
-        "3" = [];
-        "4" = [];
-        "5" = [];
+        "1" = [ ];
+        "2" = [ ];
+        "3" = [ ];
+        "4" = [ ];
+        "5" = [ ];
       };
     };
     memory = {
@@ -97,7 +98,7 @@
       format = "{icon} {volume}%";
       format-muted = "󰖁 ";
       format-icons = {
-        default = [" "];
+        default = [ " " ];
       };
       scroll-step = 5;
       on-click = "pavucontrol -t 3";

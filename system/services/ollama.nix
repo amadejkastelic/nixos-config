@@ -1,11 +1,16 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   port = 11434;
-in {
+in
+{
   services.ollama = {
     enable = true;
     package = pkgs.ollama-rocm;
     port = port;
-    loadModels = ["deepseek-r1:14b" "vanilj/supernova-medius:iq2_m"];
+    loadModels = [
+      "deepseek-r1:14b"
+      "vanilj/supernova-medius:iq2_m"
+    ];
     acceleration = "rocm";
     rocmOverrideGfx = "10.3.0";
   };

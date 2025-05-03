@@ -2,10 +2,12 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   cursorName = "Bibata-Modern-Ice-Hyprcursor";
   cursorSize = 24;
-in {
+in
+{
   programs.hyprland.settings = {
     "$mod" = "SUPER";
     env = [

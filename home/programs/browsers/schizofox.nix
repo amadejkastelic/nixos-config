@@ -1,6 +1,8 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   startPagePrefs = "cad014b9ee124fd704ea0f51be2f73bfc3349588a40d189dcba79c484d35183eb373638bc54f6b19a1455c4ca2df381259d97999446bc4bfef4720783438530f26eed9e2ca3f81bcfc149bae";
-in {
+in
+{
   imports = [
     inputs.schizofox.homeManagerModule
   ];
@@ -129,26 +131,28 @@ in {
       darkreader.enable = true;
       simplefox.enable = false;
       enableExtraExtensions = true;
-      extraExtensions = let
-        mkUrl = name: "https://addons.mozilla.org/firefox/downloads/latest/${name}/latest.xpi";
-      in {
-        "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}".install_url = mkUrl "auto-tab-discard";
-        "sponsorBlocker@ajay.app".install_url = mkUrl "sponsorblock";
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = mkUrl "bitwarden-password-manager";
-        "idcac-pub@guus.ninja".install_url = mkUrl "istilldontcareaboutcookies";
-        "{96ef5869-e3ba-4d21-b86e-21b163096400}".install_url = mkUrl "font-fingerprint-defender";
-        "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = mkUrl "return-youtube-dislikes";
-        "uBlock0@raymondhill.net".install_url = mkUrl "ublock-origin";
-        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}".install_url = mkUrl "old-reddit-redirect";
-        "{84601290-bec9-494a-b11c-1baa897a9683}".install_url = mkUrl "ctrl-number-to-switch-tabs";
-        "firefox@tampermonkey.net".install_url = mkUrl "tampermonkey";
-        "firefox@betterttv.net".install_url = mkUrl "betterttv";
-        "{7c42eea1-b3e4-4be4-a56f-82a5852b12dc}".install_url = mkUrl "phantom-app";
+      extraExtensions =
+        let
+          mkUrl = name: "https://addons.mozilla.org/firefox/downloads/latest/${name}/latest.xpi";
+        in
+        {
+          "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}".install_url = mkUrl "auto-tab-discard";
+          "sponsorBlocker@ajay.app".install_url = mkUrl "sponsorblock";
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}".install_url = mkUrl "bitwarden-password-manager";
+          "idcac-pub@guus.ninja".install_url = mkUrl "istilldontcareaboutcookies";
+          "{96ef5869-e3ba-4d21-b86e-21b163096400}".install_url = mkUrl "font-fingerprint-defender";
+          "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = mkUrl "return-youtube-dislikes";
+          "uBlock0@raymondhill.net".install_url = mkUrl "ublock-origin";
+          "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}".install_url = mkUrl "old-reddit-redirect";
+          "{84601290-bec9-494a-b11c-1baa897a9683}".install_url = mkUrl "ctrl-number-to-switch-tabs";
+          "firefox@tampermonkey.net".install_url = mkUrl "tampermonkey";
+          "firefox@betterttv.net".install_url = mkUrl "betterttv";
+          "{7c42eea1-b3e4-4be4-a56f-82a5852b12dc}".install_url = mkUrl "phantom-app";
 
-        # Disable
-        "{c607c8df-14a7-4f28-894f-29e8722976af}" = null; # Temporary containers
-        "7esoorv3@alefvanoon.anonaddy.me" = null; # LibRedirect
-      };
+          # Disable
+          "{c607c8df-14a7-4f28-894f-29e8722976af}" = null; # Temporary containers
+          "7esoorv3@alefvanoon.anonaddy.me" = null; # LibRedirect
+        };
     };
   };
 }

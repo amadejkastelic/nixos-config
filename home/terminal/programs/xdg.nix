@@ -2,25 +2,47 @@
   config,
   pkgs,
   ...
-}: let
-  browser = ["Schizofox"];
-  fileManager = ["org.gnome.Nautilus"];
-  archiver = ["org.gnome.Nautilus"];
-  imageViewer = ["org.gnome.Loupe"];
-  videoPlayer = ["mpv"];
-  audioPlayer = ["mpv"];
+}:
+let
+  browser = [ "Schizofox" ];
+  fileManager = [ "org.gnome.Nautilus" ];
+  archiver = [ "org.gnome.Nautilus" ];
+  imageViewer = [ "org.gnome.Loupe" ];
+  videoPlayer = [ "mpv" ];
+  audioPlayer = [ "mpv" ];
 
-  xdgAssociations = type: program: list:
-    builtins.listToAttrs (map (e: {
+  xdgAssociations =
+    type: program: list:
+    builtins.listToAttrs (
+      map (e: {
         name = "${type}/${e}";
         value = program;
-      })
-      list);
+      }) list
+    );
 
-  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif"];
-  video = xdgAssociations "video" videoPlayer ["mp4" "avi" "mkv"];
-  audio = xdgAssociations "audio" audioPlayer ["mp3" "flac" "wav" "aac"];
-  archive = xdgAssociations "application" archiver ["zip" "x-rar" "gzip" "x-7z-compressed"];
+  image = xdgAssociations "image" imageViewer [
+    "png"
+    "svg"
+    "jpeg"
+    "gif"
+  ];
+  video = xdgAssociations "video" videoPlayer [
+    "mp4"
+    "avi"
+    "mkv"
+  ];
+  audio = xdgAssociations "audio" audioPlayer [
+    "mp3"
+    "flac"
+    "wav"
+    "aac"
+  ];
+  archive = xdgAssociations "application" archiver [
+    "zip"
+    "x-rar"
+    "gzip"
+    "x-7z-compressed"
+  ];
   browserTypes =
     (xdgAssociations "application" browser [
       "json"
@@ -39,24 +61,27 @@
     ]);
 
   # XDG MIME types
-  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
+  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) (
+    {
+      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
       "text/html" = browser;
-      "text/plain" = ["codium"];
-      "x-scheme-handler/chrome" = ["chromium-browser"];
+      "text/plain" = [ "codium" ];
+      "x-scheme-handler/chrome" = [ "chromium-browser" ];
       "inode/directory" = fileManager;
-      "x-scheme-handler/spotify" = ["spotify.desktop"];
-      "x-scheme-handler/discord" = ["vesktop.desktop"];
-      "x-scheme-handler/tg" = ["org.telegram.desktop"];
-      "x-scheme-handler/tonsite" = ["org.telegram.desktop"];
-      "x-scheme-handler/steam" = ["steam.desktop"];
+      "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+      "x-scheme-handler/discord" = [ "vesktop.desktop" ];
+      "x-scheme-handler/tg" = [ "org.telegram.desktop" ];
+      "x-scheme-handler/tonsite" = [ "org.telegram.desktop" ];
+      "x-scheme-handler/steam" = [ "steam.desktop" ];
     }
     // image
     // video
     // audio
     // browserTypes
-    // archive);
-in {
+    // archive
+  );
+in
+{
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";

@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   script = pkgs.writeShellScript "power_monitor.sh" ''
     BAT=$(echo /sys/class/power_supply/BAT*)
     BAT_STATUS="$BAT/status"
@@ -52,14 +53,15 @@
     inotify-tools
     jaq
   ];
-in {
+in
+{
   # Power state monitor. Switches Power profiles based on charging state.
   # Plugged in - performance
   # Unplugged - power-saver
   systemd.user.services.power-monitor = {
     Unit = {
       Description = "Power Monitor";
-      After = ["power-profiles-daemon.service"];
+      After = [ "power-profiles-daemon.service" ];
     };
 
     Service = {
@@ -69,6 +71,6 @@ in {
       Restart = "on-failure";
     };
 
-    Install.WantedBy = ["default.target"];
+    Install.WantedBy = [ "default.target" ];
   };
 }

@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   editor = {
     "editor.fontFamily" = "JetBrains Mono Nerd Font";
     "editor.fontSize" = 18;
@@ -83,9 +84,13 @@
 
   nix = {
     "nix.enableLanguageServer" = true;
-    "nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
+    "nix.formatterPath" = "nixfmt";
     "nix.serverPath" = "${pkgs.nil}/bin/nil";
-    "nix.serverSettings"."nil"."formatting"."command" = ["${pkgs.alejandra}/bin/alejandra"];
+    "nix.serverSettings"."nil"."formatting"."command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+    "[nix]" = {
+      "editor.formatOnSave" = true;
+      "editor.tabSize" = 2;
+    };
   };
 
   python = {
@@ -102,9 +107,10 @@
   svelte = {
     "svelte.enable-ts-plugin" = true;
   };
-in {
+in
+{
   programs.vscode.profiles.default.userSettings =
-    {}
+    { }
     // editor
     // explorer
     // extensions

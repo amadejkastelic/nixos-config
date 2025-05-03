@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   systemd.user.services.noisetorch = {
     Unit = {
       Description = "Noisetorch Noise Cancelling";

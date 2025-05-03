@@ -1,5 +1,6 @@
-{inputs, ...}: {
-  imports = [inputs.clipboard-sync.nixosModules.default];
+{ inputs, ... }:
+{
+  imports = [ inputs.clipboard-sync.nixosModules.default ];
 
   services.clipboard-sync.enable = true;
 }

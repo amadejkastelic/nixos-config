@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     inputs.hyprland.nixosModules.default
 
@@ -16,14 +17,15 @@
     inputs.self.packages.${pkgs.system}.bibata-cursors-svg
   ];
 
-  environment.pathsToLink = ["/share/icons"];
+  environment.pathsToLink = [ "/share/icons" ];
 
   # enable hyprland and required options
   programs.hyprland = {
     enable = true;
 
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     withUWSM = true;
 

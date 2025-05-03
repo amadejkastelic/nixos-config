@@ -24,12 +24,11 @@ let
     ./services/printing.nix
   ];
 
-  laptop =
-    desktop
-    ++ [
-      ./services/backlight.nix
-      ./services/power.nix
-    ];
-in {
+  laptop = desktop ++ [
+    ./services/backlight.nix
+    ./services/power.nix
+  ];
+in
+{
   inherit desktop laptop;
 }

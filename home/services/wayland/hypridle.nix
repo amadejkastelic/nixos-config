@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   services.hypridle = {
     enable = false;
 

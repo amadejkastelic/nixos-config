@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./../../lib/vfio.nix
     ./../../lib/virtualisation.nix

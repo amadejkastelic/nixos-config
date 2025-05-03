@@ -21,7 +21,10 @@
   };
 
   # Don't wait for network startup
-  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+  systemd.services.NetworkManager-wait-online.serviceConfig.ExecStart = [
+    ""
+    "${pkgs.networkmanager}/bin/nm-online -q"
+  ];
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet

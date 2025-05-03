@@ -1,5 +1,5 @@
-{inputs, ...}
-: {
+{ inputs, ... }:
+{
   imports = [
     # editors
     ../../editors/neovim

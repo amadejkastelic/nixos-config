@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.vscode.profiles.default.keybindings = [
     {
       key = "ctrl+shift+o";

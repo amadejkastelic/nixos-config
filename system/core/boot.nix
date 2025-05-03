@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   boot = {
     bootspec.enable = true;
 
@@ -45,5 +46,5 @@
     tmp.cleanOnBoot = true;
   };
 
-  environment.systemPackages = [config.boot.kernelPackages.cpupower];
+  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
 }

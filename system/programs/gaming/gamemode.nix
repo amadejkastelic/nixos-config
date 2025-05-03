@@ -4,7 +4,8 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   inherit (pkgs.writers) writeDash;
 
   hyprctl = "${lib.getExe' config.programs.hyprland.package "hyprctl"} -i 0";
@@ -33,8 +34,9 @@
     ${powerprofilesctl} set balanced
     ${notify-send} -u low -a 'Gamemode' 'Optimizations deactivated'
   '';
-in {
-  environment.systemPackages = [resolutionScript];
+in
+{
+  environment.systemPackages = [ resolutionScript ];
 
   programs.gamemode = {
     enable = true;

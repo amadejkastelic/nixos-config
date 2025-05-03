@@ -37,5 +37,5 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-  systemd.user.targets.tray.Unit.Requires = lib.mkForce ["graphical-session.target"];
+  systemd.user.targets.tray.Unit.Requires = lib.mkForce [ "graphical-session.target" ];
 }

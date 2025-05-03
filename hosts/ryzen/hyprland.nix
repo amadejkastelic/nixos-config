@@ -6,7 +6,6 @@
       ];
     };
 
-    extraConfig = ''
-    '';
+    extraConfig = '''';
   };
 }

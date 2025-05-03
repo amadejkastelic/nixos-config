@@ -3,7 +3,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   programs.anyrun = {
     enable = true;
 

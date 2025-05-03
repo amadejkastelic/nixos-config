@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
@@ -18,7 +19,7 @@
 
     font = {
       name = "Inter";
-      package = pkgs.google-fonts.override {fonts = ["Inter"];};
+      package = pkgs.google-fonts.override { fonts = [ "Inter" ]; };
       size = 10;
     };
 
@@ -27,10 +28,10 @@
     theme = {
       name = "Catppuccin-GTK-Pink-Dark";
       package = pkgs.magnetic-catppuccin-gtk.override {
-        accent = ["pink"];
+        accent = [ "pink" ];
         shade = "dark";
         size = "standard";
-        tweaks = ["macos"];
+        tweaks = [ "macos" ];
       };
     };
 
@@ -44,9 +45,12 @@
   };
 
   xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
+    "gtk-4.0/assets".source =
+      "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source =
+      "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source =
+      "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
   dconf = {

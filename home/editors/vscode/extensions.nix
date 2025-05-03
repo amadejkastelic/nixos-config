@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.vscode = {
     mutableExtensionsDir = false;
     profiles.default.extensions =
@@ -8,7 +9,6 @@
         pkief.material-icon-theme
 
         # Nix
-        kamadorueda.alejandra
         jnoortheen.nix-ide
         mkhl.direnv
 

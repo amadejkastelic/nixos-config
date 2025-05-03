@@ -1,20 +1,22 @@
 {
-  systems = ["x86_64-linux"];
+  systems = [ "x86_64-linux" ];
 
-  perSystem = {
-    pkgs,
-    inputs',
-    ...
-  }: {
-    packages = {
-      # instant repl with automatic flake loading
-      repl = pkgs.callPackage ./repl {};
+  perSystem =
+    {
+      pkgs,
+      inputs',
+      ...
+    }:
+    {
+      packages = {
+        # instant repl with automatic flake loading
+        repl = pkgs.callPackage ./repl { };
 
-      catppuccin-plymouth = pkgs.callPackage ./catppuccin-plymouth {};
+        catppuccin-plymouth = pkgs.callPackage ./catppuccin-plymouth { };
 
-      wl-ocr = pkgs.callPackage ./wl-ocr {};
+        wl-ocr = pkgs.callPackage ./wl-ocr { };
 
-      bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg {};
+        bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg { };
+      };
     };
-  };
 }

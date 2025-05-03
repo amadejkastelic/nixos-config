@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
-  home.packages = [pkgs.gh];
+}:
+{
+  home.packages = [ pkgs.gh ];
 
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
@@ -47,7 +48,13 @@
       oops = "checkout --";
     };
 
-    ignores = ["*~" "*.swp" "*result*" ".direnv" "node_modules"];
+    ignores = [
+      "*~"
+      "*.swp"
+      "*result*"
+      ".direnv"
+      "node_modules"
+    ];
 
     signing = {
       format = "ssh";

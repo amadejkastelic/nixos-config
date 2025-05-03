@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.nautilus];
+{ pkgs, ... }:
+{
+  environment.systemPackages = [ pkgs.nautilus ];
 
   programs.nautilus-open-any-terminal = {
     enable = true;

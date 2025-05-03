@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   users.users.amadejk = {
     isNormalUser = true;
     shell = pkgs.zsh;

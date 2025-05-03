@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   catppuccin.hyprlock.enable = true;
   programs.hyprlock = {
     enable = true;

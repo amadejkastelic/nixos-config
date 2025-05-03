@@ -1,26 +1,45 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   programs.hyprland.settings = {
     # layer rules
-    layerrule = let
-      toRegex = list: let
-        elements = lib.concatStringsSep "|" list;
-      in "^(${elements})$";
+    layerrule =
+      let
+        toRegex =
+          list:
+          let
+            elements = lib.concatStringsSep "|" list;
+          in
+          "^(${elements})$";
 
-      ignorealpha = [
-        "calendar"
-        "notifications"
-        "osd"
-        "system-menu"
-        "anyrun"
+        ignorealpha = [
+          "calendar"
+          "notifications"
+          "osd"
+          "system-menu"
+          "anyrun"
+        ];
+
+        layers = ignorealpha ++ [
+          "bar"
+          "gtk-layer-shell"
+        ];
+      in
+      [
+        "blur, ${toRegex layers}"
+        "xray 1, ${
+          toRegex [
+            "bar"
+            "gtk-layer-shell"
+          ]
+        }"
+        "ignorealpha 0.2, ${
+          toRegex [
+            "bar"
+            "gtk-layer-shell"
+          ]
+        }"
+        "ignorealpha 0.5, ${toRegex (ignorealpha ++ [ "music" ])}"
       ];
-
-      layers = ignorealpha ++ ["bar" "gtk-layer-shell"];
-    in [
-      "blur, ${toRegex layers}"
-      "xray 1, ${toRegex ["bar" "gtk-layer-shell"]}"
-      "ignorealpha 0.2, ${toRegex ["bar" "gtk-layer-shell"]}"
-      "ignorealpha 0.5, ${toRegex (ignorealpha ++ ["music"])}"
-    ];
 
     # window rules
     windowrule = [

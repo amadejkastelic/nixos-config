@@ -1,29 +1,32 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.easyeffects = {
     enable = true;
   };
 
-  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-FiiO_K3-00.analog-stereo:analog-output.json" = {
-    text = ''
-      {
-        "device": "alsa_output.usb-FiiO_K3-00.analog-stereo",
-        "device-description": "K3 Analog Stereo",
-        "device-profile": "analog-output",
-        "preset-name": "Blessing3"
-      }
-    '';
-  };
+  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-FiiO_K3-00.analog-stereo:analog-output.json" =
+    {
+      text = ''
+        {
+          "device": "alsa_output.usb-FiiO_K3-00.analog-stereo",
+          "device-description": "K3 Analog Stereo",
+          "device-profile": "analog-output",
+          "preset-name": "Blessing3"
+        }
+      '';
+    };
 
-  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo:analog-output.json" = {
-    text = ''
-      {
-        "device": "alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo",
-        "device-description": "FiiO K7 Analog Stereo",
-        "device-profile": "analog-output",
-        "preset-name": "660S"
-      }
-    '';
-  };
+  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo:analog-output.json" =
+    {
+      text = ''
+        {
+          "device": "alsa_output.usb-GuangZhou_FiiO_Electronics_Co._Ltd_FiiO_K7-00.analog-stereo",
+          "device-description": "FiiO K7 Analog Stereo",
+          "device-profile": "analog-output",
+          "preset-name": "660S"
+        }
+      '';
+    };
 
   xdg.configFile."easyeffects/output/Blessing3.json" = {
     text = ''

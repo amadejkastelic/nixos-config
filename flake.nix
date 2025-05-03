@@ -1,9 +1,10 @@
 {
   description = "amadejk's NixOS and Home-Manager flake";
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
       imports = [
         ./home/profiles
@@ -14,26 +15,28 @@
         ./pre-commit-hooks.nix
       ];
 
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        devShells.default = pkgs.mkShell {
-          packages = [
-            pkgs.alejandra
-            pkgs.git
-            config.packages.repl
-          ];
-          name = "dots";
-          DIRENV_LOG_FORMAT = "";
-          shellHook = ''
-            ${config.pre-commit.installationScript}
-          '';
-        };
+      perSystem =
+        {
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.nixfmt-rfc-style
+              pkgs.git
+              config.packages.repl
+            ];
+            name = "dots";
+            DIRENV_LOG_FORMAT = "";
+            shellHook = ''
+              ${config.pre-commit.installationScript}
+            '';
+          };
 
-        formatter = pkgs.alejandra;
-      };
+          formatter = pkgs.nixfmt-rfc-style;
+        };
     };
 
   inputs = {

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.thunar = {
     enable = true;
 
@@ -9,7 +10,7 @@
     ];
   };
 
-  environment.systemPackages = [pkgs.xarchiver];
+  environment.systemPackages = [ pkgs.xarchiver ];
 
   programs.xfconf.enable = true;
   services.gvfs.enable = true;
