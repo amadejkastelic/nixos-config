@@ -2,11 +2,13 @@
   services.mako = {
     enable = true;
 
-    anchor = "top-right";
-    defaultTimeout = 3000;
-
-    borderRadius = 16;
+    settings = {
+      anchor = "top-right";
+      defaultTimeout = "3000";
+      borderRadius = "16";
+    };
   };
 
-  catppuccin.mako.enable = true;
+  # https://github.com/catppuccin/nix/pull/553
+  catppuccin.mako.enable = false;
 }
