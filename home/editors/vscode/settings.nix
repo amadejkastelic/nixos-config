@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   editor = {
-    "editor.fontFamily" = "JetBrains Mono Nerd Font";
+    "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
     "editor.fontSize" = 18;
     "editor.fontWeight" = "500";
     "editor.fontLigatures" = true;
@@ -41,7 +41,7 @@ let
 
   terminal = {
     "terminal.integrated.smoothScrolling" = false;
-    "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
+    "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
     "terminal.integrated.fontSize" = 14;
     "terminal.integrated.minimumContrastRatio" = 1;
   };

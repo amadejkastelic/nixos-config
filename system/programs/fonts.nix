@@ -17,6 +17,7 @@
 
       # nerdfonts
       nerd-fonts.symbols-only
+      nerd-fonts.jetbrains-mono
     ];
 
     # causes more issues than it solves
