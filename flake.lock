@@ -589,15 +589,15 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1746366995,
+        "lastModified": 1746373223,
         "narHash": "sha256-JsI1ikrPw5K0l/SXI5VC9W0q6bMeAUkiaCtaIr+X95c=",
-        "owner": "amadejkastelic",
+        "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
-        "rev": "a8b1f4ccf83b9efc13db7a7aa1dbc6d9aaded984",
+        "rev": "96915b61924b0d56c5e7dacff3dd5c7351558a09",
         "type": "github"
       },
       "original": {
-        "owner": "amadejkastelic",
+        "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
         "type": "github"
       }
