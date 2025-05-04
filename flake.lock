@@ -589,15 +589,15 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1746212543,
-        "narHash": "sha256-YHjwEULIH/Ttbz/TIj/dML9BX5fFQMlW/cYFTXarOKQ=",
-        "owner": "VirtCode",
+        "lastModified": 1746366995,
+        "narHash": "sha256-JsI1ikrPw5K0l/SXI5VC9W0q6bMeAUkiaCtaIr+X95c=",
+        "owner": "amadejkastelic",
         "repo": "hypr-dynamic-cursors",
-        "rev": "ed1942f09ffd9d10a5a4490f261f6ea31574ec9d",
+        "rev": "a8b1f4ccf83b9efc13db7a7aa1dbc6d9aaded984",
         "type": "github"
       },
       "original": {
-        "owner": "VirtCode",
+        "owner": "amadejkastelic",
         "repo": "hypr-dynamic-cursors",
         "type": "github"
       }
@@ -1418,11 +1418,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1746354832,
-        "narHash": "sha256-HBWimH3D6y9xEs4gaN5Tn/GMvHhdZ9Uc+Pjk75Rjb7Q=",
+        "lastModified": 1746362215,
+        "narHash": "sha256-f1N9rw5GiQZjUuAd14z2yml9IPt16v+RrteLEYyCMvo=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "7f4ccadd39b1dae274ab5e038139d222559c4deb",
+        "rev": "5809c8500215e5a46ca2e3469daff8f2c0a80665",
         "type": "github"
       },
       "original": {
