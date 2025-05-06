@@ -57,7 +57,7 @@ let
   workbench = {
     "workbench.colorTheme" = "Catppuccin Mocha";
     "workbench.iconTheme" = "material-icon-theme";
-    "workbench.productIconTheme" = "material-produc  t-icons";
+    "workbench.productIconTheme" = "material-product-icons";
     "workbench.startupEditor" = "none";
     "workbench.editor.tabActionCloseVisibility" = false;
   };
