@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
@@ -9,7 +8,6 @@
     ./hyprland.nix
   ];
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
   services.scx = {
     enable = true;
     package = pkgs.scx.full;

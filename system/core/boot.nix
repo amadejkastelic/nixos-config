@@ -15,8 +15,14 @@
       ];
     };
 
-    # use latest kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
+
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+      "armv7l-linux"
+      "i686-linux"
+      "riscv64-linux"
+    ];
 
     consoleLogLevel = 3;
     kernelParams = [
