@@ -40,7 +40,7 @@ in
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.kitty}/bin/kitty";
 
-    font = "JetBrains Mono Nerd Font 14";
+    font = "JetBrainsMono Nerd Font Mono 14";
     theme =
       let
         inherit (config.lib.formats.rasi) mkLiteral;

@@ -6,7 +6,7 @@
     clearDefaultKeybinds = false;
 
     settings = {
-      font-family = "JetBrains Mono";
+      font-family = "JetBrainsMono Nerd Font Mono";
       font-size = 13;
 
       background-opacity = "0.9";

@@ -49,7 +49,7 @@
           monitor = "";
           text = ''cmd[update:1000] echo "<b><big> $(date +"%H:%M:%S") </big></b>"'';
           font_size = 64;
-          font_family = "JetBrains Mono Nerd Font 10";
+          font_family = "JetBrainsMono Nerd Font Mono 10";
           position = "0, 75";
           halign = "center";
           valign = "center";
@@ -58,7 +58,7 @@
           monitor = "";
           text = ''Hey <span text_transform="capitalize" size="larger">$USER</span>'';
           font_size = 20;
-          font_family = "JetBrains Mono Nerd Font 10";
+          font_family = "JetBrainsMono Nerd Font Mono 10";
           position = "0, 0";
           halign = "center";
           valign = "center";
@@ -67,7 +67,7 @@
           monitor = "";
           text = "Type to unlock!";
           font_size = 16;
-          font_family = "JetBrains Mono Nerd Font 10";
+          font_family = "JetBrainsMono Nerd Font Mono 10";
           position = "0, 10";
           halign = "center";
           valign = "bottom";
