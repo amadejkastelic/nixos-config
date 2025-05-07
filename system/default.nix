@@ -12,7 +12,7 @@ let
     ./programs
 
     ./hardware/bluetooth.nix
-    ./hardware/controller.nix
+    ./hardware/input.nix
     ./hardware/ledger.nix
 
     ./services
