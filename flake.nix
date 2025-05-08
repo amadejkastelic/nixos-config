@@ -98,7 +98,7 @@
     };
 
     hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
+      url = "github:amadejkastelic/hyprpaper";
       inputs.hyprlang.follows = "hyprland/hyprlang";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
