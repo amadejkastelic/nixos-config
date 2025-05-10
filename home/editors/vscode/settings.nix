@@ -107,6 +107,15 @@ let
   svelte = {
     "svelte.enable-ts-plugin" = true;
   };
+
+  copilot = {
+    "github.copilot.enable" = {
+      "*" = true;
+      "plaintext" = false;
+      "markdown" = true;
+      "scminput" = false;
+    };
+  };
 in
 {
   programs.vscode.profiles.default.userSettings =
@@ -124,5 +133,6 @@ in
     // nix
     // python
     // continue
-    // svelte;
+    // svelte
+    // copilot;
 }
