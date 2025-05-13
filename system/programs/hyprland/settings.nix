@@ -1,8 +1,3 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
 let
   cursorName = "Bibata-Modern-Ice-Hyprcursor";
   cursorSize = 24;
