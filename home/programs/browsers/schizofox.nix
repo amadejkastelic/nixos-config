@@ -47,6 +47,13 @@ in
           Alias = "!no";
         }
         {
+          Name = "Nix Hydra";
+          Description = "Search Nix Hydra Builds";
+          Method = "GET";
+          URLTemplate = "https://hydra.nixos.org/search?query={searchTerms}";
+          Alias = "!nh";
+        }
+        {
           Name = "Home Manager Options";
           Description = "Search hm options";
           Method = "GET";
