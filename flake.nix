@@ -74,7 +74,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:gulafaran/hyprland?ref=gl2";
+    hyprland.url = "github:hyprwm/hyprland";
 
     hypridle = {
       url = "github:hyprwm/hypridle";
