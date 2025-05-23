@@ -25,6 +25,7 @@
           devShells.default = pkgs.mkShell {
             packages = [
               pkgs.nixfmt-rfc-style
+              pkgs.nodejs-slim
               pkgs.git
               config.packages.repl
             ];

@@ -6,6 +6,8 @@
   ];
 
   virtualisation = {
+    waydroid.enable = true;
+
     vfio = {
       enable = false;
       IOMMUType = "amd";

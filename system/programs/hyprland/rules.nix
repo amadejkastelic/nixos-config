@@ -114,6 +114,9 @@
       "center, class:^(xdg-desktop-portal-gtk)$"
       "size 1920 1080, class:^(xdg-desktop-portal-gtk)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+
+      # Waydroid
+      "float, class:Waydroid"
     ];
   };
 }
