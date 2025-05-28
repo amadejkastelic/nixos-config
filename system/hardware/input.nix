@@ -8,7 +8,7 @@
   '';
 
   # Logitech G923
-  hardware.new-lg4ff.enable = true;
+  hardware.new-lg4ff.enable = false;
 
   services.udev.packages = [
     pkgs.oversteer

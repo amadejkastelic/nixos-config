@@ -13,7 +13,6 @@
         mkhl.direnv
 
         # Rust
-        vadimcn.vscode-lldb
         rust-lang.rust-analyzer
 
         # Python
@@ -40,6 +39,9 @@
         # Python
         ms-python.debugpy
         ms-python.vscode-pylance
+
+        # Rust
+        vadimcn.vscode-lldb
 
         # Typst
         myriad-dreamin.tinymist
