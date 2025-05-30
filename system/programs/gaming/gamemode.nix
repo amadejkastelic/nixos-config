@@ -13,7 +13,8 @@ let
   notify-send = lib.getExe pkgs.libnotify;
 
   resolutionScript = pkgs.writeShellScriptBin "resolution" ''
-    ${hyprctl} keyword monitor "DP-2,$1x$2@120,0x0,1";
+    refresh_rate=''${3:-120}
+    ${hyprctl} keyword monitor "DP-2,$1x$2@''${refresh_rate},0x0,1"
   '';
 
   startScript = writeDash "gamemode-start" ''
