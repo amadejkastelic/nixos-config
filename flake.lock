@@ -547,11 +547,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748627197,
-        "narHash": "sha256-7dTtcq4Yi78cHfZcJaxlqkNs+cDBotrHjR9mkXfiUz4=",
+        "lastModified": 1748668774,
+        "narHash": "sha256-fYk/vk4ClmvHIgnGv/5GNRiDLtNCwXo9aLq36L/x+P4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "379c9fb858ef9abe92d5590e7502a7c1387c076a",
+        "rev": "60e4624302d956fe94d3f7d96a560d14d70591b9",
         "type": "github"
       },
       "original": {
@@ -737,17 +737,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1748438403,
-        "narHash": "sha256-uNgR25LfmSOYQ1wNlC91UZ/avt+bmxZpwlqOYM6vI20=",
+        "lastModified": 1748645134,
+        "narHash": "sha256-nXTdGPXgI/aUsLSS0vjNqZfCYiWoG7TCp/dVfg2Bwsc=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "9bf1b491440eac6f9c0d6853013ad5666c12d1d9",
+        "rev": "af2fdb5d58f5d3017aafd78a8ddafb40f710e34b",
         "type": "github"
       },
       "original": {
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "9bf1b491440eac6f9c0d6853013ad5666c12d1d9",
         "type": "github"
       }
     },
@@ -1357,11 +1356,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748570315,
-        "narHash": "sha256-laTKC6M+ciljWgUpzhLHyoz1+iRaMBWbQoycX0hhbe8=",
+        "lastModified": 1748656608,
+        "narHash": "sha256-VU+8/kZ57Y7XTmgMBpybGMxO/elvUn/4yMndZji2pY8=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "f85768830fdaee114ea6d18dee80737c74a8dcc9",
+        "rev": "b585487bb87faec1c7a09aada7cfe77dd7b3c5fe",
         "type": "github"
       },
       "original": {
@@ -1419,11 +1418,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1748570411,
-        "narHash": "sha256-OU1Jzg0y2t6VfISh2wiXx4elwx8iV++KKStmaQLceXc=",
+        "lastModified": 1748656810,
+        "narHash": "sha256-oLy1QBWqpg/KIBwalt395Oq02BzZLDI4lKsF/XpDVxM=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "fbaeabcfec7ac4e583461c923f360b6da7836f16",
+        "rev": "e082782f89fbca5c6bd346e70aa306f124fcae16",
         "type": "github"
       },
       "original": {
@@ -1635,11 +1634,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1748026106,
-        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
+        "lastModified": 1748460289,
+        "narHash": "sha256-7doLyJBzCllvqX4gszYtmZUToxKvMUrg45EUWaUYmBg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
+        "rev": "96ec055edbe5ee227f28cdbc3f1ddf1df5965102",
         "type": "github"
       },
       "original": {

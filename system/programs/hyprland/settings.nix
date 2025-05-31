@@ -115,7 +115,7 @@ in
       # disable dragging animation
       animate_mouse_windowdragging = false;
 
-      vrr = 2;
+      vrr = 0;
       render_ahead_of_time = false;
       render_unfocused_fps = 60;
     };
@@ -124,7 +124,10 @@ in
       explicit_sync = true;
       explicit_sync_kms = true;
       direct_scanout = true;
+      cm_fs_passthrough = true;
     };
+
+    experimental.xx_color_management_v4 = true;
 
     cursor = {
       inactive_timeout = 0;
