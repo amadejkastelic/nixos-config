@@ -3,12 +3,11 @@
     enable = true;
 
     settings = {
-      anchor = "top-right";
-      defaultTimeout = "3000";
-      borderRadius = "16";
+      anchor = "top-center";
+      default-timeout = "3000";
+      border-radius = "16";
     };
   };
 
-  # https://github.com/catppuccin/nix/pull/553
-  catppuccin.mako.enable = false;
+  catppuccin.mako.enable = true;
 }
