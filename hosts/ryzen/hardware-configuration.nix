@@ -45,6 +45,7 @@
     "psi=1"
     "amdgpu.runpm=0"
     "usbcore.autosuspend=-1"
+    "ipv6.disable=1" # Disable IPv6 - slow ghcr downloads
   ];
 
   fileSystems."/" = {
