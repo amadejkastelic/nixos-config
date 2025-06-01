@@ -124,10 +124,10 @@ in
       explicit_sync = true;
       explicit_sync_kms = true;
       direct_scanout = true;
-      cm_fs_passthrough = true;
+      cm_fs_passthrough = false;
     };
 
-    experimental.xx_color_management_v4 = true;
+    experimental.xx_color_management_v4 = false;
 
     cursor = {
       inactive_timeout = 0;
