@@ -2,8 +2,9 @@
   imports = [
     ./fonts.nix
     ./home-manager.nix
-    ./xdg.nix
     ./nautilus.nix
+    ./obs.nix
+    ./xdg.nix
   ];
 
   programs = {

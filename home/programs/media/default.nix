@@ -3,7 +3,6 @@
   imports = [
     ./mpv.nix
     ./noisetorch.nix
-    ./obs.nix
   ];
 
   home.packages = with pkgs; [
