@@ -111,7 +111,6 @@
 
     hyprlux = {
       url = "github:amadejkastelic/Hyprlux";
-      # url = "git+file:///home/amadejk/Documents/hyprlux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -145,6 +144,8 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
