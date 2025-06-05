@@ -1,4 +1,7 @@
 { inputs, ... }:
+let
+  vscode-server = "${inputs.vscode-server}/modules/vscode-server/home.nix";
+in
 {
   imports = [
     # editors
@@ -36,5 +39,7 @@
 
     # Vesktop
     inputs.nixcord.homeModules.nixcord
+
+    vscode-server
   ];
 }

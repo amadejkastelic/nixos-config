@@ -18,5 +18,10 @@
     };
   };
 
+  services.vscode-server = {
+    enable = true;
+    enableFHS = false;
+  };
+
   xdg.mimeApps.defaultApplications."text/plain" = "code.desktop";
 }
