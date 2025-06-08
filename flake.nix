@@ -98,7 +98,7 @@
     };
 
     hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
+      url = "github:hyprwm/hyprpaper?rev=99213a1854d172c529e815834e5b43dab95a3b67";
       inputs.hyprlang.follows = "hyprland/hyprlang";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
