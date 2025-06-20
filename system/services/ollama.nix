@@ -4,7 +4,7 @@ let
 in
 {
   services.ollama = {
-    enable = true;
+    enable = false;
     package = pkgs.ollama-rocm;
     port = port;
     loadModels = [
@@ -18,7 +18,7 @@ in
   nixpkgs.config.rocmSupport = true;
 
   services.nextjs-ollama-llm-ui = {
-    enable = true;
+    enable = false;
     port = 3000;
     ollamaUrl = "http://127.0.0.1:${toString port}";
   };

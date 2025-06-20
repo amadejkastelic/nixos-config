@@ -6,7 +6,7 @@
   ];
 
   virtualisation = {
-    waydroid.enable = true;
+    waydroid.enable = false;
 
     vfio = {
       enable = false;
