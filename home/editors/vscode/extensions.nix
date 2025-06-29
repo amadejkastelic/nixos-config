@@ -46,8 +46,8 @@
         # Typst
         myriad-dreamin.tinymist
 
-        # PDF preview
-        tomoki1207.pdf
+        # Git Blame
+        eamodio.gitlens
 
         # AI
         # continue.continue
