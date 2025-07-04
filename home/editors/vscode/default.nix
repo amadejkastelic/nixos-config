@@ -4,6 +4,7 @@
     ./extensions.nix
     ./keybindings.nix
     ./settings.nix
+    ./server.nix
   ];
 
   programs.vscode = {
@@ -16,11 +17,6 @@
       enableUpdateCheck = false;
       enableExtensionUpdateCheck = false;
     };
-  };
-
-  services.vscode-server = {
-    enable = true;
-    enableFHS = false;
   };
 
   xdg.mimeApps.defaultApplications."text/plain" = "code.desktop";

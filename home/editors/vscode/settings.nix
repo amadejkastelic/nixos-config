@@ -23,6 +23,7 @@ let
     "extensions.autoCheckUpdates" = false;
     "extensions.autoUpdate" = false;
     "extensions.ignoreRecommendations" = true;
+    "extensions.verifySignature" = false;
     "update.mode" = "none";
   };
 

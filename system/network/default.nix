@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 # networking configuration
 {
   networking.networkmanager = {

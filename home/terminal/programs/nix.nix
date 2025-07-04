@@ -6,6 +6,7 @@
 # nix tooling
 {
   home.packages = with pkgs; [
+    nil
     nixfmt-rfc-style
     deadnix
     statix
