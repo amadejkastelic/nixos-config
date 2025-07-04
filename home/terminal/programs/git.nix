@@ -58,7 +58,7 @@
 
     signing = {
       format = "ssh";
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519_sk";
+      key = "${config.home.homeDirectory}/.ssh/id_ed25519";
       signByDefault = true;
     };
 
