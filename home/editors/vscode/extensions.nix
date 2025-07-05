@@ -19,6 +19,7 @@
         ms-python.python
         ms-python.flake8
         ms-python.black-formatter
+        charliermarsh.ruff
 
         # TOML
         tamasfe.even-better-toml
