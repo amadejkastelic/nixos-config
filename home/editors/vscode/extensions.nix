@@ -55,7 +55,7 @@
       ]);
   };
 
-  catppuccin.vscode = {
+  catppuccin.vscode.profiles.default = {
     enable = true;
     accent = "pink";
   };
