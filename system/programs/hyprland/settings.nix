@@ -26,6 +26,7 @@ in
       "waybar"
       "hyprlux > /tmp/hyprlux.log 2>&1"
       "wl-paste --watch cliphist store"
+      "tailscale-systray"
     ];
 
     general = {
