@@ -68,7 +68,8 @@
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun-uwsm.url = "github:fufexan/anyrun/launch-prefix";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # TODO: unpin when 6.15.4 kernel regressions are fixed
+    chaotic.url = "github:chaotic-cx/nyx?ref=c744288de83ee89c63ad9744f59a905b455b9017";
 
     hm = {
       url = "github:nix-community/home-manager";
