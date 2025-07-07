@@ -1,12 +1,20 @@
-{ config, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   catppuccin.hyprlock.enable = true;
   programs.hyprlock = {
     enable = true;
 
+    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+
     settings = {
       general = {
         disable_loading_bar = true;
+        immediate_render = true;
         hide_cursor = false;
         no_fade_in = true;
       };

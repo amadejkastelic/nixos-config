@@ -7,14 +7,15 @@
 }:
 {
   services.hypridle = {
-    enable = false;
+    enable = true;
 
     package = inputs.hypridle.packages.${pkgs.system}.hypridle;
 
     settings = {
       general = {
-        lock_cmd = lib.getExe config.programs.hyprlock.package;
+        lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
         before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
       listener = [
