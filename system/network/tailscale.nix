@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
@@ -9,8 +8,4 @@
     enable = true;
     openFirewall = true;
   };
-
-  environment.systemPackages = [
-    pkgs.tailscale-systray
-  ];
 }

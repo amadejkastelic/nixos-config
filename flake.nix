@@ -175,5 +175,10 @@
     nixcord.url = "github:KaylorBen/nixcord";
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
+
+    tailray = {
+      url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

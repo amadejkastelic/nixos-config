@@ -1892,6 +1892,7 @@
         "schizofox": "schizofox",
         "spicetify-nix": "spicetify-nix",
         "systems": "systems_9",
+        "tailray": "tailray",
         "vscode-server": "vscode-server"
       }
     },
@@ -2162,6 +2163,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tailray": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1744495086,
+        "narHash": "sha256-19mloyqcU3d5mO+qPdPfrgo39CwaG+aQjA43vBbwDwI=",
+        "owner": "NotAShelf",
+        "repo": "tailray",
+        "rev": "39d088c362590a1082109d7e53268c8a5892736b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "tailray",
         "type": "github"
       }
     },
