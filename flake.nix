@@ -48,6 +48,11 @@
 
     flake-compat.url = "github:edolstra/flake-compat";
 
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
