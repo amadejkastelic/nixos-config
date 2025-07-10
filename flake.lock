@@ -603,15 +603,16 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1750862487,
-        "narHash": "sha256-D9z4TjTiU0dBLYFYRFgac+JWkRE1NPmOy3rArnvbc2g=",
-        "owner": "VirtCode",
+        "lastModified": 1752171216,
+        "narHash": "sha256-nKsdPPUQx+E8KW6i7OvGOpfpnZqRReZQpSo+cN2wiAM=",
+        "owner": "amadejkastelic",
         "repo": "hypr-dynamic-cursors",
-        "rev": "0e0e58ca95a58ea44896558409e0a151e7013fc0",
+        "rev": "64ba8cbe9a7223257d18c10ab264f4e5c8066138",
         "type": "github"
       },
       "original": {
-        "owner": "VirtCode",
+        "owner": "amadejkastelic",
+        "ref": "fix-build",
         "repo": "hypr-dynamic-cursors",
         "type": "github"
       }
