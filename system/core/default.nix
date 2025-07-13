@@ -6,6 +6,7 @@
     ./users.nix
     ../nix
     ../programs/zsh.nix
+    ./sops.nix
   ];
 
   documentation.dev.enable = true;

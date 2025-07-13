@@ -1,4 +1,5 @@
 {
+  config,
   self,
   inputs,
   ...
@@ -10,6 +11,7 @@
     ./theme
     inputs.matugen.nixosModules.default
     inputs.nix-index-db.homeModules.nix-index
+    inputs.sops-nix.homeManagerModules.sops
     self.nixosModules.theme
   ];
 
@@ -21,6 +23,13 @@
       "doc"
       "devdoc"
     ];
+  };
+
+  sops = {
+    age.sshKeyPaths = [
+      "${config.home.homeDirectory}/.ssh/id_ed25519"
+    ];
+    defaultSopsFile = ./secrets.yaml;
   };
 
   # disable manuals as nmd fails to build often

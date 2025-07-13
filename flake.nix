@@ -58,11 +58,14 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "hm";
-      inputs.systems.follows = "systems";
+    };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     anyrun.url = "github:anyrun-org/anyrun";
@@ -178,6 +181,11 @@
 
     tailray = {
       url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    discord-video-embed-bot = {
+      url = "github:amadejkastelic/discord-video-embed-bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

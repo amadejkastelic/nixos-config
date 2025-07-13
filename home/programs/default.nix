@@ -5,6 +5,7 @@
     ./browsers/chromium.nix
     ./browsers/schizofox.nix
     ./media
+    ./nix.nix
     ./gtk.nix
     ./qt.nix
     ./office

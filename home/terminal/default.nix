@@ -23,7 +23,11 @@ in
     EDITOR = "nvim";
     DIRENV_LOG_FORMAT = "";
 
+    GITHUB_TOKEN = "$(cat ${config.sops.secrets.github-token.path})";
+
     # auto-run programs using nix-index-database
     NIX_AUTO_RUN = "1";
   };
+
+  sops.secrets.github-token = { };
 }

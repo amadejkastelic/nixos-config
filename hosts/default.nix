@@ -12,7 +12,7 @@
       mod = "${self}/system";
 
       # get the basic config to build on top of
-      inherit (import "${self}/system") desktop laptop;
+      inherit (import "${self}/system") desktop server;
 
       # get these into the module system
       specialArgs = { inherit inputs self; };
@@ -39,9 +39,15 @@
             };
           }
 
-          inputs.agenix.nixosModules.default
           inputs.chaotic.nixosModules.default
           inputs.catppuccin.nixosModules.catppuccin
+        ];
+      };
+
+      server = nixosSystem {
+        inherit specialArgs;
+        modules = server ++ [
+          ./server
         ];
       };
     };
