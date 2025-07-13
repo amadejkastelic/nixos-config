@@ -23,6 +23,8 @@
         modules = desktop ++ [
           ./ryzen
 
+          ./common/secrets.nix
+
           "${mod}/programs/hyprland"
           "${mod}/programs/gaming"
           "${mod}/programs/noisetorch.nix"
@@ -48,6 +50,8 @@
         inherit specialArgs;
         modules = server ++ [
           ./server
+
+          ./common/secrets.nix
         ];
       };
     };
