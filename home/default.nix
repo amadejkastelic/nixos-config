@@ -9,7 +9,7 @@
     ./terminal
     ./theme
     inputs.matugen.nixosModules.default
-    inputs.nix-index-db.hmModules.nix-index
+    inputs.nix-index-db.homeModules.nix-index
     self.nixosModules.theme
   ];
 
