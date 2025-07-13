@@ -38,6 +38,8 @@
     };
   };
 
+  systemd.services.discord-video-embed-bot.after = [ "sops-nix.service" ];
+
   sops.secrets.discord-video-embed-bot-secrets = {
     owner = config.services.discordVideoEmbedBot.user;
     group = config.services.discordVideoEmbedBot.group;
