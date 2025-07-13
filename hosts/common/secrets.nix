@@ -1,7 +1,6 @@
 {
   sops.secrets = {
-    tailscale-auth-key = {
-      sopsFile = ./secrets.yaml;
-    };
+    hashed-password.sopsFile = ./secrets.yaml;
+    tailscale-auth-key.sopsFile = ./secrets.yaml;
   };
 }

@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  hasPassword = builtins.hasAttr "hashed-password" config.sops.secrets;
+in
 {
   users.users.amadejk = {
     isNormalUser = true;
@@ -14,6 +17,8 @@
       "wheel"
       "gamemode"
     ];
+
+    hashedPasswordFile = if hasPassword then config.sops.secrets.hashed-password.path else null;
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIN7DVOB0DJ1x6G9WetQGxzKhj2TgH8DitfTf2xof/Ep amadejkastelic7@gmail.com"
