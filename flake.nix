@@ -63,6 +63,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     anyrun.url = "github:anyrun-org/anyrun";
     anyrun-uwsm.url = "github:fufexan/anyrun/launch-prefix";
 
@@ -176,6 +181,11 @@
 
     tailray = {
       url = "github:NotAShelf/tailray";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    discord-video-embed-bot = {
+      url = "github:amadejkastelic/discord-video-embed-bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

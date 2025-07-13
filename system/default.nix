@@ -1,14 +1,18 @@
 let
-  desktop = [
+  common = [
+    ./core/default.nix
+
+    ./network/default.nix
+    ./network/tailscale.nix
+  ];
+
+  desktop = common ++ [
     ./core/boot.nix
     ./core/lanzaboote.nix
-    ./core/default.nix
 
     ./hardware/opengl.nix
 
     ./network/avahi.nix
-    ./network/default.nix
-    ./network/tailscale.nix
 
     ./programs
 
@@ -25,11 +29,12 @@ let
     ./services/printing.nix
   ];
 
-  laptop = desktop ++ [
-    ./services/backlight.nix
-    ./services/power.nix
+  server = common ++ [
+    ./hardware/docker.nix
+
+    ./services/discord-bot.nix
   ];
 in
 {
-  inherit desktop laptop;
+  inherit desktop server;
 }

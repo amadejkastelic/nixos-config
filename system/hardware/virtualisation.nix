@@ -1,6 +1,6 @@
-{ pkgs, ... }:
 {
   imports = [
+    ./docker.nix
     ./../../lib/vfio.nix
     ./../../lib/virtualisation.nix
   ];
@@ -16,18 +16,6 @@
         "1002:aaf0"
       ];
       disableEFIfb = false;
-    };
-
-    docker.rootless = {
-      enable = true;
-      package = pkgs.docker;
-      setSocketVariable = true;
-      daemon.settings = {
-        dns = [
-          "1.1.1.1"
-          "8.8.8.8"
-        ];
-      };
     };
 
     libvirtd.enable = true;
