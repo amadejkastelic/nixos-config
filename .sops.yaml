@@ -21,3 +21,9 @@ creation_rules:
           - *amadejk
           - *ryzen
           - *server
+  # hm secrets
+  - path_regex: home/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *amadejk
+          - *ryzen
