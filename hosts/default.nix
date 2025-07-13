@@ -48,6 +48,8 @@
         inherit specialArgs;
         modules = server ++ [
           ./server
+
+          "${mod}/services/arr.nix"
         ];
       };
     };
