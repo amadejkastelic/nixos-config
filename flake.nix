@@ -120,7 +120,7 @@
     };
 
     hypr-dynamic-cursors = {
-      url = "github:amadejkastelic/hypr-dynamic-cursors?ref=fix-build";
+      url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland";
     };
 
