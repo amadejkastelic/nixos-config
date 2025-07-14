@@ -3,7 +3,7 @@ keys:
     - &amadejk age176gcz66r7zrgnaczund22f5adzhckdvteszxgw0egalflmpwhywshssfuh
   - &hosts:
     - &ryzen age122w6sw60n7xymp70fvq3p96k8x9a4s7070h0xque8c0j64rt05fqse463a
-    - &server age1v2h0vgvcsn7kvurzz383um3zq8muw8xkgvxq8w80u0xz57c2fcmsnuvat5
+    - &server age1vnppc0tm8nezdn8zrdvjtwsec7da4lvr9j5ym2j7fd7h9h4upyfqr4m4mr
 creation_rules:
   - path_regex: hosts/ryzen/secrets.ya?ml$
     key_groups:

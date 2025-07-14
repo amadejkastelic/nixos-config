@@ -1,9 +1,13 @@
 { config, ... }:
 {
-  nix.extraOptions = ''
-    # Include the SOPS file for Nix access tokens
-    !include ${config.sops.secrets.nix-access-tokens.path}
-  '';
+  nix = {
+    settings.accept-flake-config = false;
+
+    extraOptions = ''
+      # Include the SOPS file for Nix access tokens
+      !include ${config.sops.secrets.nix-access-tokens.path}
+    '';
+  };
 
   sops.secrets.nix-access-tokens = { };
 }
