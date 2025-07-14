@@ -41,6 +41,8 @@
         keep-derivations = true;
         keep-outputs = true;
 
+        accept-flake-config = false;
+
         trusted-users = [
           "root"
           "@wheel"
