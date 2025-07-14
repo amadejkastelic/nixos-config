@@ -19,4 +19,4 @@ jobs:
           CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
         run: |
           git remote add codeberg https://amadejkastelic:${CODEBERG_TOKEN}@codeberg.org/amadejkastelic/nixos-config.git
-          git push codeberg main:main
+          git push codeberg main:main -f
