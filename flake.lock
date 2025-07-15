@@ -174,11 +174,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1752418810,
-        "narHash": "sha256-Di7JvLi79+CbNcjSZ0icHh+elR6XYPqXoIlcXTotac4=",
+        "lastModified": 1752590916,
+        "narHash": "sha256-9fkgB+r8Qk4U01BdRe98oHPmzts1PxxFtZEXmAqpiY8=",
         "owner": "amadejkastelic",
         "repo": "discord-video-embed-bot",
-        "rev": "b05751c717aa572c19a0ad86a9e002fd379f023f",
+        "rev": "52dd16a736eee2ecab43a718f976bbd9ce685d25",
         "type": "github"
       },
       "original": {
