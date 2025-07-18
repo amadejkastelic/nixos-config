@@ -1,7 +1,17 @@
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [
     inputs.discord-video-embed-bot.nixosModules.default
+  ];
+
+  # Expose the bot as a system package so we can use django shell
+  environment.systemPackages = [
+    inputs.discord-video-embed-bot.packages.${pkgs.system}.default
   ];
 
   services.discordVideoEmbedBot = {
