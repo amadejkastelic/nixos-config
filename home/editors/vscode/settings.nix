@@ -80,7 +80,7 @@ let
 
   formatter = {
     "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-    "[python]"."editor.defaultFormatter" = "ms-python.black-formatter";
+    "[python]"."editor.defaultFormatter" = "charliermarsh.ruff";
   };
 
   nix = {

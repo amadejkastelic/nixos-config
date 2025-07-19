@@ -17,8 +17,6 @@
 
         # Python
         ms-python.python
-        ms-python.flake8
-        ms-python.black-formatter
         charliermarsh.ruff
 
         # TOML
@@ -35,6 +33,7 @@
 
         # AI
         github.copilot
+        anthropic.claude-code
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python
