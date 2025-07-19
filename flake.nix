@@ -165,7 +165,8 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     schizofox = {
-      url = "github:schizofox/schizofox";
+      # https://github.com/schizofox/schizofox/pull/135
+      url = "github:surfaceflinger/schizofox?ref=ff-esr-140";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
