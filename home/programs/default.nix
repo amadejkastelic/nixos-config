@@ -13,6 +13,7 @@
   ];
 
   home.packages = with pkgs; [
+    cemu
     mission-center
     wineWowPackages.wayland
     ledger-live-desktop
