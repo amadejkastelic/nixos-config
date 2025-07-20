@@ -5,7 +5,10 @@
   ...
 }:
 {
-  home.packages = [ pkgs.fzf ];
+  home.packages = [
+    pkgs.fzf
+    pkgs.microfetch
+  ];
 
   programs.zsh = {
     enable = true;
@@ -84,7 +87,9 @@
       _comp_options+=(globdots)
 
       # Set up fzf key bindings and fuzzy completion
-      source <(fzf --zsh)
+      source <(${lib.getExe pkgs.fzf} --zsh)
+
+      ${lib.getExe pkgs.microfetch}
     '';
   };
 
