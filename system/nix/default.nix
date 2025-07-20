@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ./nh.nix
     ./nixpkgs.nix
     ./substituters.nix
   ];
@@ -47,6 +46,13 @@
           "root"
           "@wheel"
         ];
+      };
+
+      # Automatic garbage collection
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
       };
     };
 }
