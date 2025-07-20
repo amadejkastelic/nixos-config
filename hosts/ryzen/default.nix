@@ -26,6 +26,9 @@
 
   security.tpm2.enable = true;
 
+  # Windows dual-boot time fix
+  time.hardwareClockInLocalTime = true;
+
   services = {
     fstrim.enable = true;
   };

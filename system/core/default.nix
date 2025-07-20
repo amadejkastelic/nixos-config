@@ -22,12 +22,7 @@
   # don't touch this
   system.stateVersion = lib.mkDefault "23.11";
 
-  time = {
-    timeZone = lib.mkDefault "Europe/Ljubljana";
-
-    # Windows dual-boot time fix
-    hardwareClockInLocalTime = true;
-  };
+  time.timeZone = lib.mkDefault "Europe/Ljubljana";
 
   # compresses half the ram for use as swap
   zramSwap.enable = false;
