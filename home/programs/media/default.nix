@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
   imports = [
     ./mpv.nix
@@ -15,6 +15,6 @@
     krita
 
     # Apple Music
-    cider-2
+    self.packages.${pkgs.system}.cider
   ];
 }

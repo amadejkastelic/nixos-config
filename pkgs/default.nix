@@ -17,6 +17,8 @@
         wl-ocr = pkgs.callPackage ./wl-ocr { };
 
         bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg { };
+
+        cider = pkgs.callPackage ./cider { };
       };
     };
 }
