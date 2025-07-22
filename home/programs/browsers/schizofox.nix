@@ -152,7 +152,7 @@ in
           "uBlock0@raymondhill.net".install_url = mkUrl "ublock-origin";
           "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}".install_url = mkUrl "old-reddit-redirect";
           "{84601290-bec9-494a-b11c-1baa897a9683}".install_url = mkUrl "ctrl-number-to-switch-tabs";
-          "firefox@tampermonkey.net".install_url = mkUrl "tampermonkey";
+          "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}".install_url = mkUrl "violentmonkey";
           "firefox@betterttv.net".install_url = mkUrl "betterttv";
           "{7c42eea1-b3e4-4be4-a56f-82a5852b12dc}".install_url = mkUrl "phantom-app";
 
