@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   editor = {
     "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
@@ -57,7 +57,7 @@ let
 
   workbench = {
     "workbench.colorTheme" = "Catppuccin Mocha";
-    "workbench.iconTheme" = "material-icon-theme";
+    "workbench.iconTheme" = lib.mkForce "material-icon-theme";
     "workbench.productIconTheme" = "material-product-icons";
     "workbench.startupEditor" = "none";
     "workbench.editor.tabActionCloseVisibility" = false;
