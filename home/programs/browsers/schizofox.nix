@@ -88,6 +88,13 @@ in
           URLTemplate = "https://old.reddit.com/search?q={searchTerms}";
           Alias = "!r";
         }
+        {
+          Name = "Perplexity";
+          Description = "Search Perplexity";
+          Alias = "!pe";
+          Method = "GET";
+          URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
+        }
       ];
     };
 
