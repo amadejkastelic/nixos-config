@@ -34,14 +34,6 @@
         tweaks = [ "macos" ];
       };
     };
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "pink";
-      };
-    };
   };
 
   xdg.configFile = {
