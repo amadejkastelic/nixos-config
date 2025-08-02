@@ -15,7 +15,7 @@
       ];
     };
 
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
