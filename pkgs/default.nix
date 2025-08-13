@@ -20,9 +20,6 @@
 
         # https://github.com/NixOS/nixpkgs/pull/427005
         cider = pkgs.callPackage ./cider { };
-
-        # https://github.com/NixOS/nixpkgs/pull/428868
-        mcp-nixos = pkgs.callPackage ./mcp-nixos { };
       };
     };
 }

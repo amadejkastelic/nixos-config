@@ -1,16 +1,12 @@
 {
   lib,
   pkgs,
-  self,
   config,
   ...
 }:
-let
-  mcp-nixos = self.packages.${pkgs.system}.mcp-nixos;
-in
 {
   home.packages = [
-    mcp-nixos
+    pkgs.mcp-nixos
     (pkgs.claude-code.overrideAttrs (oa: {
       postInstall = ''
         wrapProgram $out/bin/claude \
@@ -31,7 +27,7 @@ in
     ".config/mcp.json".text = builtins.toJSON {
       mcpServers = {
         nixos = {
-          command = lib.getExe mcp-nixos;
+          command = lib.getExe pkgs.mcp-nixos;
         };
       };
     };
