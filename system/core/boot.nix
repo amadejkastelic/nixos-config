@@ -40,8 +40,8 @@
 
     plymouth = {
       enable = true;
-      themePackages = with pkgs; [
-        (catppuccin-plymouth.override {
+      themePackages = [
+        (pkgs.catppuccin-plymouth.override {
           variant = "mocha";
         })
       ];
