@@ -62,9 +62,9 @@
   home.file.".continue/config.json".text = builtins.toJSON {
     models = [
       {
-        title = "Deepseek-R1";
+        title = "gpt-oss";
         provider = "ollama";
-        model = "deepseek-r1:14b";
+        model = "gpt-oss:20b";
       }
     ];
     tabAutocompleteModel = {

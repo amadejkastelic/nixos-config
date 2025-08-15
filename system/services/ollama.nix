@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.ollama-rocm;
     loadModels = [
-      "deepseek-r1:14b"
+      "gpt-oss:20b"
       "vanilj/supernova-medius:iq2_m"
     ];
     acceleration = "rocm";
