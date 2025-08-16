@@ -163,6 +163,8 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    nix-userstyles.url = "github:knoopx/nix-userstyles";
+
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";

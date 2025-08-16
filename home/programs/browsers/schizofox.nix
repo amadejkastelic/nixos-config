@@ -1,6 +1,42 @@
-{ inputs, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   startPagePrefs = "cad014b9ee124fd704ea0f51be2f73bfc3349588a40d189dcba79c484d35183eb373638bc54f6b19a1455c4ca2df381259d97999446bc4bfef4720783438530f26eed9e2ca3f81bcfc149bae";
+
+  styles = [
+    "advent-of-code"
+    "arch-wiki"
+    "claude"
+    "codeberg"
+    "duckduckgo"
+    "freedesktop"
+    "github"
+    "gmail"
+    "google"
+    "hacker-news"
+    "home-manager-options-search"
+    "linkedin"
+    "nixos-manual"
+    "nixos-search"
+    "ollama"
+    "perplexity"
+    "pypi"
+    "reddit"
+    "stack-overflow"
+    "startpage"
+    "twitch"
+    "twitter"
+    "wiki.nixos.org"
+    "wikipedia"
+    "youtube"
+  ];
+  palette =
+    inputs.nix-userstyles.inputs.nix-colors.colorSchemes."catppuccin-${config.catppuccin.flavor}".palette;
+  userStyles = inputs.nix-userstyles.packages.${pkgs.system}.mkUserStyles palette styles;
 in
 {
   imports = [
@@ -109,6 +145,8 @@ in
       contextMenu.enable = true;
       disableWebgl = false;
     };
+
+    theme.extraUserContent = builtins.readFile "${userStyles}";
 
     settings = {
       "gfx.webrender.all" = true;
