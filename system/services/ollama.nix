@@ -11,10 +11,6 @@
     rocmOverrideGfx = "10.3.0";
   };
 
-  # Fix amdgpu race condition
-  # https://github.com/NixOS/nixpkgs/pull/422355
-  systemd.services.ollama.after = [ "systemd-modules-load.service" ];
-
   nixpkgs.config.rocmSupport = true;
 
   services.nextjs-ollama-llm-ui = {

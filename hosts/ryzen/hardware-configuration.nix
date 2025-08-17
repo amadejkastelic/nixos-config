@@ -17,7 +17,10 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "amdgpu" # https://github.com/ollama/ollama/issues/11916
+  ];
   boot.kernelParams = [
     "acpi_enforce_resources=lax"
     "mitigations=off"
