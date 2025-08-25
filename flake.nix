@@ -111,10 +111,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprsysteminfo = {
-      url = "github:hyprwm/hyprsysteminfo";
-    };
-
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs.hyprlang.follows = "hyprland/hyprlang";
@@ -123,8 +119,9 @@
     };
 
     hypr-dynamic-cursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
+      url = "github:amadejkastelic/hypr-dynamic-cursors?ref=fix-build";
       inputs.hyprland.follows = "hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprlux = {
