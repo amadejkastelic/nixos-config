@@ -15,6 +15,6 @@
     krita
 
     # Apple Music
-    self.packages.${pkgs.system}.cider
+    cider-2
   ];
 }

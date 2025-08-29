@@ -15,9 +15,6 @@
         wl-ocr = pkgs.callPackage ./wl-ocr { };
 
         bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg { };
-
-        # https://github.com/NixOS/nixpkgs/pull/427005
-        cider = pkgs.callPackage ./cider { };
       };
     };
 }
