@@ -22,8 +22,6 @@
     grim
     slurp
 
-    inputs.hyprsysteminfo.packages.${pkgs.system}.default
-
     # utils
     self.packages.${pkgs.system}.wl-ocr
     wl-clipboard
