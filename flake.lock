@@ -698,16 +698,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1756492576,
+        "lastModified": 1756718721,
         "narHash": "sha256-2JQ/KxMEVDjauaFU62T0udjKXKSiCyKO5frjVf4b4A8=",
-        "owner": "amadejkastelic",
+        "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
-        "rev": "2688f3f5f61a16fc5eeed4bbe918ea6d6bf1f0b8",
+        "rev": "0e11ed12dbd4d0c62b362dda2559c2e374814d56",
         "type": "github"
       },
       "original": {
-        "owner": "amadejkastelic",
-        "ref": "fix-build",
+        "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
         "type": "github"
       }
