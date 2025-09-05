@@ -36,6 +36,10 @@ let
     };
   };
 
+  search = {
+    "search.followSymlinks" = false;
+  };
+
   telemetry = {
     "telemetry.telemetryLevel" = "off";
   };
@@ -125,6 +129,7 @@ in
     // explorer
     // extensions
     // files
+    // search
     // telemetry
     // terminal
     // window
