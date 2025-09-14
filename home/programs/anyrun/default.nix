@@ -6,19 +6,35 @@
   ...
 }:
 let
+  anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
+
   preprocessScript = pkgs.writeShellScriptBin "anyrun-preprocess-application-exec" ''
     shift
     echo "uwsm app -- $*"
   '';
 in
 {
+  imports = [
+    (
+      { modulesPath, ... }:
+      {
+        # Important! We disable home-manager's module to avoid option
+        # definition collisions
+        disabledModules = [ "${modulesPath}/programs/anyrun.nix" ];
+      }
+    )
+    inputs.anyrun.homeManagerModules.default
+  ];
+
   programs.anyrun = {
     enable = true;
 
-    config = {
+    package = anyrunPkgs.anyrun;
+
+    config = with anyrunPkgs; {
       plugins = [
-        inputs.anyrun.packages.${pkgs.system}.applications
-        inputs.anyrun.packages.${pkgs.system}.shell
+        applications
+        shell
       ];
 
       width.fraction = 0.3;
