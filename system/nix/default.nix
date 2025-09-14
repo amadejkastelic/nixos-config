@@ -19,7 +19,16 @@
       flakeInputs = lib.filterAttrs (_: v: lib.isType "flake" v) inputs;
     in
     {
-      package = pkgs.lixPackageSets.latest.lix;
+      # https://nixpkgs-tracker.ocfox.me/?pr=442624
+      package = pkgs.lixPackageSets.latest.lix.overrideAttrs (old: {
+        patches = old.patches ++ [
+          (pkgs.fetchpatch {
+            name = "lix-lowdown-1.4.0.patch";
+            url = "https://git.lix.systems/lix-project/lix/commit/858de5f47a1bfd33835ec97794ece339a88490f1.patch";
+            hash = "sha256-FfLO2dFSWV1qwcupIg8dYEhCHir2XX6/Hs89eLwd+SY=";
+          })
+        ];
+      });
 
       # pin the registry to avoid downloading and evaling a new nixpkgs version every time
       registry = lib.mapAttrs (_: v: { flake = v; }) flakeInputs;

@@ -37,7 +37,6 @@ in
   programs.rofi = {
     enable = true;
 
-    package = pkgs.rofi-wayland;
     terminal = "${pkgs.kitty}/bin/kitty";
 
     font = "JetBrainsMono Nerd Font Mono 14";
