@@ -107,7 +107,8 @@
     };
 
     hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+      #url = "github:hyprwm/hyprland-plugins";
+      url = "github:amadejkastelic/hyprland-plugins?ref=build-fix";
       inputs.hyprland.follows = "hyprland";
     };
 
