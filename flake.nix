@@ -79,8 +79,7 @@
     };
 
     hyprland = {
-      # https://github.com/hyprwm/Hyprland/discussions/11846
-      url = "github:hyprwm/hyprland?ref=7ce451d20c33025d4aaaf55444150c4a875b83ea";
+      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
