@@ -8,10 +8,6 @@
         pkief.material-product-icons
         pkief.material-icon-theme
 
-        # Nix
-        jnoortheen.nix-ide
-        mkhl.direnv
-
         # Rust
         rust-lang.rust-analyzer
 
@@ -38,6 +34,10 @@
         # Python
         ms-python.debugpy
         ms-python.vscode-pylance
+
+        # Nix
+        jnoortheen.nix-ide
+        mkhl.direnv
 
         # Rust
         vadimcn.vscode-lldb
