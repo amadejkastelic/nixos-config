@@ -8,6 +8,9 @@
     winetricks
     adwsteamgtk
     steam-run
-    shadps4
+    oversteer
+    # https://nixpkgs-tracker.ocfox.me/?pr=449160
+    # shadps4
+    # cemu
   ];
 }

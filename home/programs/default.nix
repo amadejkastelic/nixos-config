@@ -13,7 +13,6 @@
   ];
 
   home.packages = with pkgs; [
-    cemu
     mission-center
     wineWowPackages.wayland
     ledger-live-desktop
@@ -21,7 +20,6 @@
     gnumake
     hoppscotch
     qbittorrent-enhanced
-    oversteer
     telegram-desktop
   ];
 }

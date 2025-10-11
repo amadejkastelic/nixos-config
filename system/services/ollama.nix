@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   services.ollama = {
-    enable = true;
+    # https://nixpkgs-tracker.ocfox.me/?pr=449985
+    enable = false;
     package = pkgs.ollama-rocm;
     loadModels = [
       "gpt-oss:20b"
