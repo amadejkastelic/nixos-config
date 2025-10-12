@@ -146,7 +146,7 @@ in
 
     debug = {
       disable_logs = true;
-      full_cm_proto = true;
+      full_cm_proto = false;
     };
   };
 
