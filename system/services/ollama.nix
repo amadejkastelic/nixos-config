@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   services.ollama = {
-    # https://nixpkgs-tracker.ocfox.me/?pr=449985
     enable = false;
     package = pkgs.ollama-rocm;
     loadModels = [
@@ -15,7 +14,7 @@
   nixpkgs.config.rocmSupport = true;
 
   services.nextjs-ollama-llm-ui = {
-    enable = true;
+    enable = false;
     port = 3000;
     ollamaUrl = "http://127.0.0.1:${toString config.services.ollama.port}";
   };

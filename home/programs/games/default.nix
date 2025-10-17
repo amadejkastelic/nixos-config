@@ -9,8 +9,7 @@
     adwsteamgtk
     steam-run
     oversteer
-    # https://nixpkgs-tracker.ocfox.me/?pr=449160
-    # shadps4
-    # cemu
+    shadps4
+    cemu
   ];
 }
