@@ -5,6 +5,6 @@
   ];
 
   home.packages = [
-    pkgs.onlyoffice-bin
+    pkgs.onlyoffice-desktopeditors
   ];
 }
