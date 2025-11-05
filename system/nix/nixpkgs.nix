@@ -5,7 +5,10 @@
 }:
 {
   nixpkgs = {
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [ "gradle-7.6.6" ];
+    };
 
     overlays = [
       (final: prev: {

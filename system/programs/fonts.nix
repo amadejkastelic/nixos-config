@@ -8,7 +8,7 @@
       # Sans(Serif) fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       roboto
       (google-fonts.override { fonts = [ "Inter" ]; })
 
