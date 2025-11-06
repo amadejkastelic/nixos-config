@@ -79,7 +79,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/hyprland";
+      url = "github:amadejkastelic/Hyprland?ref=plugin-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
