@@ -176,6 +176,7 @@ in
       # Scroll
       "general.autoScroll" = true;
       "general.smoothScroll" = true;
+      "extensions.update.enabled" = true;
     };
 
     extensions = {
