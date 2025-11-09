@@ -11,7 +11,7 @@
 
   # Expose the bot as a system package so we can use django shell
   environment.systemPackages = [
-    inputs.discord-video-embed-bot.packages.${pkgs.system}.default
+    inputs.discord-video-embed-bot.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   services.discordVideoEmbedBot = {

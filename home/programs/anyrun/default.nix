@@ -6,7 +6,7 @@
   ...
 }:
 let
-  anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
+  anyrunPkgs = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system};
 
   preprocessScript = pkgs.writeShellScriptBin "anyrun-preprocess-application-exec" ''
     shift

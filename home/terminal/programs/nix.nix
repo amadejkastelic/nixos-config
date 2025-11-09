@@ -10,7 +10,7 @@
     nixfmt-rfc-style
     deadnix
     statix
-    self.packages.${pkgs.system}.repl
+    self.packages.${pkgs.stdenv.hostPlatform.system}.repl
   ];
 
   programs.direnv = {

@@ -36,7 +36,9 @@ let
   ];
   palette =
     inputs.nix-userstyles.inputs.nix-colors.colorSchemes."catppuccin-${config.catppuccin.flavor}".palette;
-  userStyles = inputs.nix-userstyles.packages.${pkgs.system}.mkUserStyles palette styles;
+  userStyles =
+    inputs.nix-userstyles.packages.${pkgs.stdenv.hostPlatform.system}.mkUserStyles palette
+      styles;
 in
 {
   imports = [
