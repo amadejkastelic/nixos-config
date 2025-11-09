@@ -26,10 +26,21 @@
     eza.enable = true;
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
 
-      matchBlocks."github.com" = {
-        user = "git";
-        identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
+      matchBlocks = {
+        # Default settings for all hosts
+        "*" = {
+          addKeysToAgent = "yes";
+          compression = true;
+          serverAliveInterval = 60;
+          serverAliveCountMax = 3;
+        };
+
+        "github.com" = {
+          user = "git";
+          identityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
+        };
       };
     };
   };
