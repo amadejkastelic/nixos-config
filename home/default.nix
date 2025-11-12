@@ -12,7 +12,7 @@
     inputs.matugen.nixosModules.default
     inputs.nix-index-db.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
-    self.nixosModules.theme
+    self.homeManagerModules.theme
   ];
 
   home = {
