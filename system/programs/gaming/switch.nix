@@ -1,3 +1,3 @@
 {
-  programs.quark-goldleaf.enable = true;
+  programs.quark-goldleaf.enable = false;
 }

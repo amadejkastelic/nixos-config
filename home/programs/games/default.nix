@@ -9,7 +9,7 @@
     adwsteamgtk
     steam-run
     oversteer
-    shadps4
+    #shadps4
     cemu
   ];
 }
