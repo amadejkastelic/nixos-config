@@ -1,15 +1,27 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }:
 {
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+  ];
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     jack.enable = true;
     pulse.enable = true;
+
+    lowLatency = {
+      # Causes crackling
+      enable = false;
+      quantum = 64;
+      rate = 44100;
+    };
 
     wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-alsa-config.conf" ''
@@ -81,6 +93,8 @@
       '')
     ];
   };
+
+  security.rtkit.enable = true;
 
   services.pulseaudio.enable = lib.mkForce false;
 }
