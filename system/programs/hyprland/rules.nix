@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   programs.hyprland.settings = {
+    # layer rules
     layerrule =
       let
         toRegex =
@@ -24,70 +25,98 @@
         ];
       in
       [
-        "match:namespace ${toRegex layers}, blur true"
-        "match:namespace ${
+        "blur, ${toRegex layers}"
+        "xray 1, ${
           toRegex [
             "bar"
             "gtk-layer-shell"
           ]
-        }, xray 1"
-        "match:namespace ${
+        }"
+        "ignorealpha 0.2, ${
           toRegex [
             "bar"
             "gtk-layer-shell"
           ]
-        }, ignore_alpha 0.2"
-        "match:namespace ${toRegex (ignorealpha ++ [ "music" ])}, ignore_alpha 0.5"
+        }"
+        "ignorealpha 0.5, ${toRegex (ignorealpha ++ [ "music" ])}"
       ];
 
+    # window rules
     windowrule = [
-      # Media viewer
-      "match:title ^(Media viewer)$, float true"
+      # float
+      "float, title:^(Media viewer)$"
+      "float, class:^(pavucontrol)$"
+      "float, class:^(nm-connection-editor)$"
+      "float, title:^(Spotify( Premium)?)$"
+      "float, class:^(vesktop)$"
+      "float, initialClass:^(org.pulseaudio.pavucontrol)$"
+      "float, initialClass:^(org.gnome.Nautilus)$"
+      "float, initialClass:^(Cider)$"
 
-      # Audio/Network controls
-      "match:class ^(pavucontrol)$, float true, opacity 0.80 0.70"
-      "match:initial_class ^(org.pulseaudio.pavucontrol)$, float true, opacity 0.80 0.70"
-      "match:class ^(nm-connection-editor)$, float true, opacity 0.80 0.70"
+      # opacity
+      "opacity 0.80 0.70, initialClass:^(org.pulseaudio.pavucontrol)$"
+      "opacity 0.80 0.70, initialClass:^(org.pulseaudio.Nautilus)$"
+      "opacity 0.80 0.70, class:^(nm-connection-editor)$"
+      "opacity 0.80 0.70, class:^(vesktop)$"
+      "opacity 0.80 0.70, title:^(Spotify( Premium)?)$"
+      "opacity 0.80 0.70, initialClass:^(Cider)$"
 
-      # File manager
-      "match:initial_class ^(org.gnome.Nautilus)$, float true, opacity 0.80 0.70"
+      # make Firefox / Zen PiP window floating and sticky
+      "float, title:^(Picture-in-Picture)$"
+      "pin, title:^(Picture-in-Picture)$"
 
-      # Communication apps
-      "match:class ^(vesktop)$, float true, opacity 0.80 0.70, workspace 8 silent, center true, size 1920 1080"
+      # throw sharing indicators away
+      "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+      "workspace special silent, title:^(Zen — Sharing Indicator)$"
+      "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
-      # Music apps
-      "match:title ^(Spotify( Premium)?)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
-      "match:initial_class ^(Cider)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
+      # Spotify
+      "workspace 9 silent, title:^(Spotify( Premium)?)$"
+      "center, title:^(Spotify( Premium)?)$"
+      "size 1920 1080, title:^(Spotify( Premium)?)$"
 
-      # Firefox/Zen Picture-in-Picture
-      "match:title ^(Picture-in-Picture)$, float true, pin true"
+      # Apple Music
+      "workspace 9 silent, initialClass:^(Cider)$"
+      "center, initialClass:^(Cider)$"
+      "size 1920 1080, initialClass:^(Cider)$"
 
-      # Sharing indicators
-      "match:title ^(Firefox — Sharing Indicator)$, workspace special silent"
-      "match:title ^(Zen — Sharing Indicator)$, workspace special silent"
-      "match:title ^(.*is sharing (your screen|a window)\\.)$, workspace special silent"
+      # Discord
+      "workspace 8 silent, class:^(vesktop)$"
+      "center, class:^(vesktop)$"
+      "size 1920 1080, class:^(vesktop)$"
 
       # Steam
-      "match:class ^(steam), workspace 10 silent"
+      "workspace 10 silent, class:^(steam)"
 
-      # Gaming
-      "match:class gamescope, workspace name:Gaming"
-      "match:initial_class cs2, workspace name:Gaming, fullscreen true, render_unfocused true"
-      "match:initial_class ^(steam_app_)(.*)$, workspace name:Gaming, immediate true, fullscreen true, render_unfocused true"
-      "match:initial_title Hearthstone, float true, size 1920 1080, max_size 1920 1080, min_size 1920 1080, center true"
+      # Games
+      "workspace name:Gaming, class:gamescope"
+      "workspace name:Gaming, initialClass:cs2"
+      "workspace name:Gaming, initialClass:^(steam_app_)(.*)"
+      #"immediate, initialClass:^(steam_app_\d+|SDL Application)$"
+      "immediate, initialClass:^(steam_app_)(.*)$"
+      "fullscreen, initialClass:^(steam_app_)(.*)$"
+      "fullscreen, initialClass:cs2"
+      "renderunfocused, initialClass:^(steam_app_)(.*)^(steam_app_\d+|cs2)$"
+      "float, initialTitle:Hearthstone"
+      "size 1920 1080, initialTitle:Hearthstone"
+      "maxsize 1920 1080, initialTitle:Hearthstone"
+      "minsize 1920 1080, initialTitle:Hearthstone"
+      "center, initialTitle:Hearthstone"
 
-      # Idle inhibit
-      "match:class ^(mpv|.+exe|celluloid)$, idle_inhibit focus"
-      "match:class ^(firefox)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
-      "match:class ^(firefox)$, match:fullscreen true, idle_inhibit fullscreen"
+      # idle inhibit while watching videos
+      "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+      "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
+      "idleinhibit fullscreen, class:^(firefox)$"
 
-      # System dialogs
-      "match:class ^(gcr-prompter)$, dim_around true"
-      "match:class ^(xdg-desktop-portal-gtk)$, dim_around true, float true, center true, size 1920 1080"
-      "match:class ^(polkit-gnome-authentication-agent-1)$, dim_around true"
+      "dimaround, class:^(gcr-prompter)$"
+      "dimaround, class:^(xdg-desktop-portal-gtk)$"
+      "float, class:^(xdg-desktop-portal-gtk)$"
+      "center, class:^(xdg-desktop-portal-gtk)$"
+      "size 1920 1080, class:^(xdg-desktop-portal-gtk)$"
+      "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
 
       # Waydroid
-      "match:class Waydroid, float true"
+      "float, class:Waydroid"
     ];
   };
 }
