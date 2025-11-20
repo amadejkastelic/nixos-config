@@ -1,14 +1,14 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
+let
+  rate = 48000;
+  quantum = 64;
+  quantumStr = "${toString quantum}/${toString rate}";
+in
 {
-  imports = [
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
-  ];
-
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -16,15 +16,30 @@
     jack.enable = true;
     pulse.enable = true;
 
-    lowLatency = {
-      # Causes crackling
-      enable = false;
-      quantum = 64;
-      rate = 44100;
+    extraConfig.pipewire."92-low-latency" = {
+      "context.properties" = {
+        "default.clock.rate" = rate;
+        "default.clock.quantum" = quantum;
+        "default.clock.min-quantum" = quantum / 2;
+        "default.clock.max-quantum" = quantum;
+        "default.clock.quantum-limit" = quantum;
+      };
+    };
+
+    extraConfig.pipewire-pulse."92-low-latency" = {
+      "pulse.properties" = {
+        "pulse.min.req" = quantumStr;
+        "pulse.default.req" = quantumStr;
+        "pulse.min.quantum" = quantumStr;
+      };
+      "stream.properties" = {
+        "node.latency" = quantumStr;
+        "resample.quality" = 1;
+      };
     };
 
     wireplumber.configPackages = [
-      (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-alsa-config.conf" ''
+      (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-low-latency.conf" ''
         monitor.alsa.rules = [
           {
             matches = [
@@ -50,10 +65,14 @@
             ]
             actions = {
               update-props = {
+                device.profile = "pro-audio"
                 audio.channels = 2
-                audio.rate = 44100
-                api.alsa.period-size = 128
+                audio.rate = ${toString rate}
+                audio.allowed-rates = "44100,${toString rate},96000"
+                api.alsa.period-size = ${toString quantum}
+                api.alsa.period-num = 3
                 api.alsa.headroom = 0
+                api.alsa.disable-batch = true
               }
             }
           }
@@ -66,9 +85,12 @@
             actions = {
               update-props = {
                 node.nick = "FiioK3"
+                device.profile = "pro-audio"
                 audio.channels = 2
-                audio.rate = 44100
-                api.alsa.period-size = 128
+                audio.rate = ${toString rate}
+                audio.allowed-rates = "44100,${toString rate},96000"
+                api.alsa.period-size = ${toString quantum}
+                api.alsa.period-num = 3
                 api.alsa.headroom = 0
                 api.alsa.disable-batch = true
               }
@@ -83,9 +105,9 @@
             actions = {
               update-props = {
                 node.nick = "YetiPro"
-                audio.rate = 48000
-                audio.allowed-rates = "44100,48000"
-                api.alsa.period-size = 128
+                audio.rate = ${toString rate}
+                audio.allowed-rates = "44100,${toString rate}"
+                api.alsa.period-size = ${toString (quantum * 2)}
               }
             }
           }
