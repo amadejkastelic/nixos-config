@@ -156,7 +156,7 @@ in
         res_w = 1280
         res_h = 960
         class = cs2
-        fix_mouse = false
+        fix_mouse = true
       }
       dynamic-cursors {
         enabled = true
