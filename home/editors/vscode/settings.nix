@@ -121,6 +121,10 @@ let
       "scminput" = false;
     };
   };
+
+  claude = {
+    "claudeCode.useTerminal" = true;
+  };
 in
 {
   programs.vscode.profiles.default.userSettings =
@@ -140,5 +144,6 @@ in
     // python
     // continue
     // svelte
-    // copilot;
+    // copilot
+    // claude;
 }
