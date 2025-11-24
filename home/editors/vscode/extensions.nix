@@ -28,7 +28,8 @@
         golang.go
 
         # AI
-        github.copilot
+        # github.copilot
+        anthropic.claude-code
       ])
       ++ (with pkgs.vscode-extensions; [
         # Python
@@ -50,7 +51,6 @@
 
         # AI
         # continue.continue
-        anthropic.claude-code
       ]);
   };
 
