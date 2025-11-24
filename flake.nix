@@ -177,7 +177,10 @@
       };
     };
 
-    nixcord.url = "github:KaylorBen/nixcord";
+    nixcord = {
+      url = "github:amadejkastelic/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
