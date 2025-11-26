@@ -107,7 +107,8 @@
     };
 
     hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+      # https://github.com/hyprwm/hyprland-plugins/pull/549
+      url = "github:nnra6864/hyprland-plugins?ref=40d8fa8-fixes";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -178,7 +179,7 @@
     };
 
     nixcord = {
-      url = "github:amadejkastelic/nixcord";
+      url = "github:KaylorBen/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
