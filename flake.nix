@@ -74,7 +74,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     hm = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -107,8 +107,7 @@
     };
 
     hyprland-plugins = {
-      # https://github.com/hyprwm/hyprland-plugins/pull/549
-      url = "github:nnra6864/hyprland-plugins?ref=40d8fa8-fixes";
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
 
