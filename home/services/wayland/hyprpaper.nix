@@ -10,8 +10,12 @@
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     settings = {
-      preload = [ "${config.theme.wallpaper}" ];
-      wallpaper = [ ", ${config.theme.wallpaper}" ];
+      wallpaper = {
+        monitor = "DP-2";
+        path = toString config.theme.wallpaper;
+        fit_mode = "fit";
+      };
+      splash = false;
     };
   };
 }
