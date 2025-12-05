@@ -29,6 +29,7 @@
         };
         webKeybinds.enable = true;
         webScreenShareFixes.enable = true;
+        urlHighlighter.patterns = "";
       };
     };
   };
