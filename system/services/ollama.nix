@@ -7,7 +7,6 @@
       "gpt-oss:20b"
       "vanilj/supernova-medius:iq2_m"
     ];
-    acceleration = "rocm";
     rocmOverrideGfx = "10.3.0";
   };
 

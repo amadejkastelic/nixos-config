@@ -13,7 +13,7 @@
       wallpaper = {
         monitor = "DP-2";
         path = toString config.theme.wallpaper;
-        fit_mode = "fit";
+        fit_mode = "cover";
       };
       splash = false;
     };
