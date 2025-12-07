@@ -203,6 +203,7 @@ in
           "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}".install_url = mkUrl "violentmonkey";
           "firefox@betterttv.net".install_url = mkUrl "betterttv";
           "{7c42eea1-b3e4-4be4-a56f-82a5852b12dc}".install_url = mkUrl "phantom-app";
+          "{194d0dc6-7ada-41c6-88b8-95d7636fe43c}".install_url = mkUrl "csgofloat";
 
           # Disable
           "{c607c8df-14a7-4f28-894f-29e8722976af}" = null; # Temporary containers
