@@ -41,7 +41,6 @@
             };
           }
 
-          inputs.chaotic.nixosModules.default
           inputs.catppuccin.nixosModules.catppuccin
         ];
       };
