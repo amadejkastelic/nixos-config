@@ -8,7 +8,6 @@
 # Wayland config
 {
   imports = [
-    #./hyprland
     ./hyprlock.nix
     ./hyprlux.nix
     ./hyprshade.nix

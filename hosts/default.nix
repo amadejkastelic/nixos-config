@@ -26,6 +26,7 @@
           ./common/secrets.nix
 
           "${mod}/programs/hyprland"
+          #"${mod}/programs/gnome"
           "${mod}/programs/gaming"
           "${mod}/programs/noisetorch.nix"
 
