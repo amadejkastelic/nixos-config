@@ -15,7 +15,7 @@
       ];
     };
 
-    kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
@@ -51,7 +51,6 @@
       theme = "catppuccin-mocha";
     };
 
-    # clear tmp on boot
     tmp.cleanOnBoot = true;
   };
 
