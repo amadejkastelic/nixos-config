@@ -49,6 +49,7 @@ let
     "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
     "terminal.integrated.fontSize" = 14;
     "terminal.integrated.minimumContrastRatio" = 1;
+    "terminal.integrated.stickyScroll.enabled" = false;
   };
 
   window = {

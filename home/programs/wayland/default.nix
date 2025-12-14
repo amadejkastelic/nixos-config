@@ -1,7 +1,6 @@
 {
   pkgs,
   self,
-  inputs,
   lib,
   ...
 }:
@@ -10,7 +9,6 @@
   imports = [
     ./hyprlock.nix
     ./hyprlux.nix
-    ./hyprshade.nix
     ./wlogout.nix
     ./waybar
     ./rofi.nix

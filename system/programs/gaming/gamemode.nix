@@ -17,6 +17,7 @@ let
   '';
 
   startScript = writeDash "gamemode-start" ''
+    ${hyprctl} hyprsunset identity
     ${hyprctl} --batch "\
       keyword animations:enabled 0;\
       keyword decoration:shadow:enabled 0;\
@@ -30,6 +31,7 @@ let
     ${notify-send} -u low -a 'Gamemode' 'Optimizations activated'
   '';
   endScript = writeDash "gamemode-end" ''
+    ${hyprctl} hyprsunset reset
     ${hyprctl} reload
     ${powerprofilesctl} set balanced
     ${notify-send} -u low -a 'Gamemode' 'Optimizations deactivated'

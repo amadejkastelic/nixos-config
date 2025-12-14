@@ -122,6 +122,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprsunset = {
+      url = "github:hyprwm/hyprsunset";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
     hyprlux = {
       url = "github:amadejkastelic/Hyprlux";
       inputs.nixpkgs.follows = "nixpkgs";

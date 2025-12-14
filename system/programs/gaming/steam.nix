@@ -35,7 +35,6 @@
         pkgs: with pkgs; [
           gamemode
           config.programs.hyprland.package
-          hyprshade
         ];
 
       extraLibraries =
@@ -50,9 +49,6 @@
     ];
 
     extest.enable = true;
-    extraPackages = with pkgs; [
-      hyprshade
-    ];
 
     protontricks.enable = true;
     platformOptimizations.enable = true;

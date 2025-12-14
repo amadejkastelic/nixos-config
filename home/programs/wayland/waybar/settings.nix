@@ -10,7 +10,7 @@
 
   programs.waybar.settings.mainBar = {
     position = "top";
-    layer = "top";
+    layer = "bottom";
     height = 31;
     width = 1920;
     margin-top = 0;
@@ -50,7 +50,7 @@
             "1" = "󰈹";
           "2" = "";
           "3" = "󰘙";
-          "4" = "󰙯";
+          "4" = "";
           "5" = "";
           "6" = "";
           urgent = "";
@@ -114,7 +114,8 @@
         "󱠃"
         "󱠂"
       ];
-      on-click = "hyprshade toggle night-light";
+      on-click = "hyprctl hyprsunset temperature 3000";
+      on-click-right = "hyprctl hyprsunset identity";
       tooltip = false;
     };
     "custom/gpu-usage" = {
