@@ -24,7 +24,7 @@ in
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
       "hyprlock"
       "waybar"
-      "hyprlux > /tmp/hyprlux.log 2>&1"
+      # "hyprlux > /tmp/hyprlux.log 2>&1"
       "wl-paste --watch cliphist store"
     ];
 
@@ -124,7 +124,7 @@ in
       cm_fs_passthrough = false;
     };
 
-    experimental.xx_color_management_v4 = false;
+    experimental.xx_color_management_v4 = true;
 
     cursor = {
       inactive_timeout = 0;
@@ -152,9 +152,12 @@ in
 
   programs.hyprland.extraConfig = ''
     plugin {
+      hyprvibr {
+        hyprvibr-app = cs2, 3.3, 2560, 1440, 120
+      }
       csgo-vulkan-fix {
-        res_w = 1280
-        res_h = 960
+        res_w = 1920
+        res_h = 1440
         class = cs2
         fix_mouse = true
       }

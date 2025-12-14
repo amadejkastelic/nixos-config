@@ -33,6 +33,7 @@
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.csgo-vulkan-fix
       inputs.hypr-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
+      inputs.hyprvibr.packages.${pkgs.stdenv.hostPlatform.system}.hyprvibr
     ];
   };
 
