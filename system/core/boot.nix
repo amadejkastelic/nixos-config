@@ -15,7 +15,7 @@
       ];
     };
 
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
