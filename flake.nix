@@ -187,7 +187,7 @@
     };
 
     nixcord = {
-      url = "github:KaylorBen/nixcord";
+      url = "github:amadejkastelic/nixcord?ref=hash-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
