@@ -138,17 +138,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprshutdown = {
-      url = "github:hyprwm/hyprshutdown";
-      inputs = {
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprutils.follows = "hyprland/hyprutils";
-        aquamarine.follows = "hyprland/aquamarine";
-      };
-    };
-
     lanzaboote.url = "github:nix-community/lanzaboote";
 
     matugen = {
