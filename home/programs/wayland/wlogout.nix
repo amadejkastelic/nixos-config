@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,10 @@ let
       background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
     }
   '';
+  hyprshutdown =
+    lib.getExe
+      inputs.hyprshutdown.packages.${pkgs.stdenv.hostPlatform.system}.hyprshutdown;
+  hyprlock = lib.getExe inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock;
 in
 {
   programs.wlogout = {
@@ -17,22 +22,22 @@ in
     layout = [
       {
         label = "lock";
-        action = "hyprlock";
+        action = "${hyprlock}";
         text = "Lock";
       }
       {
         label = "logout";
-        action = "hyprctl dispatch exit";
+        action = "${hyprshutdown}";
         text = "Logout";
       }
       {
         label = "shutdown";
-        action = "systemctl poweroff";
+        action = "${hyprshutdown} -t 'Shutting down...' --post-cmd 'systemctl poweroff'";
         text = "Shutdown";
       }
       {
         label = "reboot";
-        action = "systemctl reboot";
+        action = "${hyprshutdown} -t 'Restarting...' --post-cmd 'systemctl reboot'";
         text = "Reboot";
       }
     ];
