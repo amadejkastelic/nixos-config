@@ -2,6 +2,7 @@
 {
   imports = [
     ./mangohud.nix
+    ./osu.nix
   ];
 
   home.packages = with pkgs; [

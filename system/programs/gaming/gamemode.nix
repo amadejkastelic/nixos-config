@@ -17,6 +17,7 @@ let
   '';
 
   startScript = writeDash "gamemode-start" ''
+    ${lib.getExe resolutionScript} 2560 1440
     ${hyprctl} hyprsunset identity
     ${hyprctl} --batch "\
       keyword animations:enabled 0;\
