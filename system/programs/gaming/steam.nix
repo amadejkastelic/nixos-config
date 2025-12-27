@@ -1,4 +1,5 @@
 {
+  self,
   pkgs,
   inputs,
   config,
@@ -35,6 +36,7 @@
         pkgs: with pkgs; [
           gamemode
           config.programs.hyprland.package
+          self.packages.${pkgs.stdenv.hostPlatform.system}.sekiro-fps-unlock
         ];
 
       extraLibraries =

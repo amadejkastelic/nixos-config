@@ -15,6 +15,8 @@
         wl-ocr = pkgs.callPackage ./wl-ocr { };
 
         bibata-cursors-svg = pkgs.callPackage ./bibata-cursors-svg { };
+
+        sekiro-fps-unlock = pkgs.callPackage ./sekiro-fps-unlock { };
       };
     };
 }
