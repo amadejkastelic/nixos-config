@@ -202,5 +202,7 @@
       url = "github:amadejkastelic/discord-video-embed-bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sekiro-tweaker.url = "github:amadejkastelic/sekiro-tweaker";
   };
 }
