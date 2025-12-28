@@ -30,7 +30,7 @@
     };
 
   theme = {
-    wallpaper = ./wallpaper.png;
+    wallpaper = ./wallpaper.jpeg;
   };
 
   programs.matugen = {
