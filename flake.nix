@@ -68,9 +68,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # https://github.com/anyrun-org/anyrun/issues/231
-    anyrun.url = "github:anyrun-org/anyrun?ref=0c3fa788227d29cf8b0184e553c83021bcebad7c";
-
     hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -204,5 +201,8 @@
     };
 
     sekiro-tweaker.url = "github:amadejkastelic/sekiro-tweaker";
+
+    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae-extensions.url = "github:vicinaehq/extensions";
   };
 }

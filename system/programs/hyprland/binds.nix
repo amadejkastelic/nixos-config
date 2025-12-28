@@ -71,9 +71,9 @@ in
         # select area to perform OCR on
         "$mod, O, exec, uwsm app -- wl-ocr"
         # Emoji picker
-        "$mod, E, exec, pkill rofi || rofimoji -a clipboard -s light -r 🔍"
+        "$mod, E, exec, vicinae vicinae://extensions/vicinae/core/search-emojis"
         # Clipboard manager
-        "$mod, V, exec, pkill rofi || rofi -p '🔍' -modi clipboard:rofi-cliphist -show clipboard -show-icons"
+        "$mod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         # File manager
         "$mod, N, exec, nautilus"
 
@@ -84,7 +84,7 @@ in
         "$mod, down, movefocus, d"
 
         # Launcher
-        "$mod, R, exec, ${toggle "anyrun"}"
+        "$mod, R, exec, vicinae toggle"
 
         # screenshot
         # stop animations while screenshotting; makes black border go away

@@ -15,13 +15,15 @@
           "notifications"
           "osd"
           "system-menu"
-          "anyrun"
+          "vicinae"
         ];
 
         layers = ignorealpha ++ [
           "bar"
           "gtk-layer-shell"
         ];
+
+        noanim = [ "vicinae" ];
       in
       [
         "match:namespace ${toRegex layers}, blur true"
@@ -38,6 +40,7 @@
           ]
         }, ignore_alpha 0.2"
         "match:namespace ${toRegex (ignorealpha ++ [ "music" ])}, ignore_alpha 0.5"
+        "match:namespace ${toRegex noanim}, no_anim on"
       ];
 
     windowrule = [

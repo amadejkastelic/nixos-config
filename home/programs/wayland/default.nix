@@ -11,7 +11,7 @@
     ./hyprlux.nix
     ./wlogout.nix
     ./waybar
-    ./rofi.nix
+    #./rofi.nix
   ];
 
   home.packages = with pkgs; [

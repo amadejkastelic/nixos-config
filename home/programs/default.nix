@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./anyrun
     ./browsers/chromium.nix
     ./browsers/schizofox.nix
     ./media
@@ -10,6 +9,7 @@
     ./qt.nix
     ./office
     ./social
+    ./vicinae
   ];
 
   home.packages = with pkgs; [

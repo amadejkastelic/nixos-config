@@ -105,7 +105,7 @@
     };
     "custom/launcher" = {
       format = "";
-      on-click = "pkill anyrun || anyrun";
+      on-click = "vicinae toggle";
       tooltip = "false";
     };
     "custom/blue-light-filter" = {
