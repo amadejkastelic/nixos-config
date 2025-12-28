@@ -10,7 +10,15 @@
 
   services.vicinae = {
     enable = true;
-    systemd.enable = true;
+
+    systemd = {
+      enable = true;
+
+      environment = {
+        USE_LAYER_SHELL = 1;
+        QT_SCALE_FACTOR = 1;
+      };
+    };
 
     settings = {
       close_on_focus_loss = true;
@@ -20,12 +28,17 @@
       theme = {
         light = {
           name = "catppuccin-latte";
-          icon_theme = "Catppuccin Latte ${lib.toSentenceCase config.catppuccin.accent}";
+          icon_theme = "Papirus-Dark";
         };
         dark = {
           name = "catppuccin-${config.catppuccin.flavor}";
-          icon_theme = "Catppuccin ${lib.toSentenceCase config.catppuccin.flavor} ${lib.toSentenceCase config.catppuccin.accent}";
+          icon_theme = "Papirus-Dark";
         };
+      };
+
+      font.normal = {
+        size = 12;
+        normal = "JetBrainsMono Nerd Font Mono";
       };
 
       providers = {
