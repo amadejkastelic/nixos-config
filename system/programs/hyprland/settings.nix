@@ -124,8 +124,6 @@ in
       cm_fs_passthrough = false;
     };
 
-    experimental.xx_color_management_v4 = true;
-
     cursor = {
       inactive_timeout = 0;
       enable_hyprcursor = true;
