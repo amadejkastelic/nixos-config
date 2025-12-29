@@ -1,6 +1,8 @@
 {
   lib,
   pkgs,
+  config,
+  inputs,
   ...
 }:
 let
@@ -14,6 +16,8 @@ let
     ripgrep
     procps
     util-linux
+    config.services.vicinae.package
+    inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
   ];
 
   QML2_IMPORT_PATH = lib.concatStringsSep ":" [

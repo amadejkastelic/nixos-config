@@ -10,7 +10,6 @@
     ./hyprlock.nix
     ./hyprlux.nix
     ./wlogout.nix
-    ./waybar
     ./quickshell
   ];
 
