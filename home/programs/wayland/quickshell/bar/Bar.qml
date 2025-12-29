@@ -79,7 +79,6 @@ PanelWindow {
             Tray {}
             Resources {}
             NightLight {}
-            Battery {}
             Clock {}
         }
     }
