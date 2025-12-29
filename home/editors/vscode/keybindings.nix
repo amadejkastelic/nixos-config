@@ -9,5 +9,11 @@
       key = "ctrl+d";
       command = "editor.action.copyLinesDownAction";
     }
+    {
+      key = "shift+enter";
+      command = "workbench.action.terminal.sendSequence";
+      args.text = "\\\r\n";
+      when = "terminalFocus";
+    }
   ];
 }

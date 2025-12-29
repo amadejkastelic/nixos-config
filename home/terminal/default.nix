@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    ./agents
     ./programs
     ./shell/starship.nix
     ./shell/zsh.nix
