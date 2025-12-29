@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
@@ -79,19 +78,19 @@ WrapperMouseArea {
                         radius: height / 2
 
                         color: {
-                            ws.modelData.workspace ?? false ? Colors.monitorColors[ws.modelData.workspace?.monitor?.id] : Colors.bgBlur;
+                            const workspace = ws.modelData.workspace;
+                            if (workspace) {
+                                return workspace.focused ? Colors.accent : Colors.surface1;
+                            }
+                            return Colors.surface0;
                         }
 
                         implicitHeight: parent.height
                         implicitWidth: parent.width
-                    }
-                    MultiEffect {
-                        source: wsRect
-                        anchors.fill: wsRect
-                        shadowEnabled: Config.shadowEnabled
-                        shadowVerticalOffset: Config.shadowVerticalOffset
-                        blurMax: Config.blurMax
-                        opacity: Config.shadowOpacity
+
+                        Behavior on color {
+                            ColorAnimation { duration: 200 }
+                        }
                     }
                 }
             }

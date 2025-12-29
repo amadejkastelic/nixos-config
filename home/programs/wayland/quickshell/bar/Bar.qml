@@ -12,14 +12,24 @@ PanelWindow {
     anchors {
         top: true
     }
-    implicitHeight: 32
-    implicitWidth: 1920
+
+    WlrLayershell.margins {
+        top: Config.padding
+    }
+
+    WlrLayershell.exclusiveZone: 0
+
+    implicitHeight: Config.barHeight
+    implicitWidth: screen?.width ?? 1920
 
     color: "transparent"
 
     Rectangle {
         id: bar
-        anchors.fill: parent
+        anchors.centerIn: parent
+        width: parent.width * 0.5
+        height: parent.height
+        radius: Config.radius
 
         color: Colors.bgBar
 
@@ -35,6 +45,7 @@ PanelWindow {
             anchors.rightMargin: Config.spacing
             spacing: Config.spacing
 
+            Launcher {}
             Workspaces {}
         }
 
@@ -50,7 +61,7 @@ PanelWindow {
             anchors.rightMargin: Config.spacing
             spacing: Config.spacing
 
-            Mpris {}
+            MediaPlayer {}
         }
 
         // right
@@ -67,7 +78,7 @@ PanelWindow {
 
             Tray {}
             Resources {}
-            Bluetooth {}
+            NightLight {}
             Battery {}
             Clock {}
         }

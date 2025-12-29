@@ -12,41 +12,47 @@ Scope {
     property real progress: 0
     property string icon: ""
 
-    Connections {
-        target: PipeWireState.defaultSink?.audio
-
-        function update() {
+    // Watch sink volume changes
+    property var sinkVolume: PipeWireState.defaultSink?.audio?.volume
+    onSinkVolumeChanged: {
+        if (sinkVolume !== undefined) {
             scope.osdVisible = true;
             scope.icon = PipeWireState.sinkIcon();
-            scope.progress = PipeWireState.defaultSink?.audio.volume ?? 0;
+            scope.progress = sinkVolume;
             hideTimer.restart();
-        }
-
-        function onVolumeChanged() {
-            update();
-        }
-
-        function onMutedChanged() {
-            update();
         }
     }
 
-    Connections {
-        target: PipeWireState.defaultSource?.audio
-
-        function update() {
+    // Watch sink mute changes
+    property var sinkMuted: PipeWireState.defaultSink?.audio?.muted
+    onSinkMutedChanged: {
+        if (sinkMuted !== undefined) {
             scope.osdVisible = true;
-            scope.icon = PipeWireState.sourceIcon();
-            scope.progress = PipeWireState.defaultSource?.audio.volume ?? 0;
+            scope.icon = PipeWireState.sinkIcon();
+            scope.progress = PipeWireState.defaultSink?.audio?.volume ?? 0;
             hideTimer.restart();
         }
+    }
 
-        function onVolumeChanged() {
-            update();
+    // Watch source volume changes
+    property var sourceVolume: PipeWireState.defaultSource?.audio?.volume
+    onSourceVolumeChanged: {
+        if (sourceVolume !== undefined) {
+            scope.osdVisible = true;
+            scope.icon = PipeWireState.sourceIcon();
+            scope.progress = sourceVolume;
+            hideTimer.restart();
         }
+    }
 
-        function onMutedChanged() {
-            update();
+    // Watch source mute changes
+    property var sourceMuted: PipeWireState.defaultSource?.audio?.muted
+    onSourceMutedChanged: {
+        if (sourceMuted !== undefined) {
+            scope.osdVisible = true;
+            scope.icon = PipeWireState.sourceIcon();
+            scope.progress = PipeWireState.defaultSource?.audio?.volume ?? 0;
+            hideTimer.restart();
         }
     }
 

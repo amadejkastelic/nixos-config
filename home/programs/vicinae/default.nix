@@ -36,7 +36,7 @@
       };
 
       font.normal = {
-        size = 12;
+        size = 11;
         normal = "JetBrainsMono Nerd Font Mono";
       };
 

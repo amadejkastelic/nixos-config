@@ -60,7 +60,7 @@ WrapperMouseArea {
             anchors.fill: mainRect
             radius: mainRect.radius
             blur: Config.blurMax
-            spread: Config.padding * 2
+            spread: Config.padding
             color: Colors.windowShadow
         }
 
@@ -70,7 +70,7 @@ WrapperMouseArea {
             implicitWidth: Config.notificationWidth
             implicitHeight: mainLayout.implicitHeight
             radius: Config.radius
-            color: Colors.bgBlurShadow
+            color: Qt.rgba(Colors.mantle.r, Colors.mantle.g, Colors.mantle.b, 1.0)
 
             RowLayout {
                 id: mainLayout
@@ -144,16 +144,19 @@ WrapperMouseArea {
                             maximumLineCount: 1
                             wrapMode: Text.Wrap
                             font.weight: Font.Bold
+                            color: Colors.foreground
                         }
 
                         Text {
                             visible: root?.showTime
                             text: "·"
+                            color: Colors.subtext0
                         }
 
                         Text {
                             visible: root?.showTime
                             text: Utils.humanTime(root.elapsed)
+                            color: Colors.subtext0
                         }
                     }
 
@@ -165,6 +168,7 @@ WrapperMouseArea {
                         font.weight: Font.Medium
                         maximumLineCount: root.expanded ? 5 : (root.n?.actions.length > 1 ? 1 : 2)
                         text: root.n?.body
+                        color: Colors.subtext1
                     }
 
                     RowLayout {

@@ -45,7 +45,7 @@ WrapperMouseArea {
             id: wrapper
 
             implicitWidth: parent.width
-            color: Colors.bgBlurShadow
+            color: "transparent"
             margin: Config.spacing
             radius: Config.radius
 
@@ -68,10 +68,11 @@ WrapperMouseArea {
                         text: "Previous month"
 
                         Text {
-                            // anchors.fill: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             text: "‹"
+                            color: Colors.foreground
+                            font.pixelSize: Config.iconSize + 4
                         }
                     }
                     HoverTooltip {
@@ -85,6 +86,9 @@ WrapperMouseArea {
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             text: `${root.monthShift != 0 ? "• " : ""}${monthGrid.title}`
+                            color: Colors.foreground
+                            font.pixelSize: Config.iconSize
+                            font.weight: Font.Medium
                         }
                     }
                     HoverTooltip {
@@ -96,6 +100,8 @@ WrapperMouseArea {
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             text: "›"
+                            color: Colors.foreground
+                            font.pixelSize: Config.iconSize + 4
                         }
                     }
                 }
@@ -109,6 +115,8 @@ WrapperMouseArea {
                         verticalAlignment: Text.AlignVCenter
                         text: shortName
                         font.weight: Font.Bold
+                        font.pixelSize: Config.iconSize - 2
+                        color: Colors.subtext0
 
                         required property string shortName
                     }
@@ -130,21 +138,21 @@ WrapperMouseArea {
                     delegate: WrapperRectangle {
                         id: wr
                         required property var model
-                        radius: Config.radius
+                        radius: Config.radius / 2
                         readonly property bool today: model.day === root._today.getDate() && model.month === root._today.getMonth() && model.year === root._today.getFullYear()
-                        color: today ? Colors.foreground : "transparent"
+                        color: today ? Colors.accent : "transparent"
 
                         Text {
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             text: wr.model.day
-                            // font: control.font
+                            font.pixelSize: Config.iconSize - 2
                             color: {
                                 if (wr.model.month !== root.displayMonth) {
-                                    return Colors.buttonDisabledHover;
+                                    return Colors.overlay0;
                                 }
                                 if (wr.today) {
-                                    return Colors.bg;
+                                    return Colors.crust;
                                 }
                                 return Colors.foreground;
                             }

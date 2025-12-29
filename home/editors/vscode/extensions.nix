@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   programs.vscode = {
     mutableExtensionsDir = false;
@@ -51,7 +55,7 @@
         eamodio.gitlens
 
         # AI
-        # continue.continue
+        continue.continue
       ]);
   };
 
@@ -74,4 +78,32 @@
       model = "vanilj/supernova-medius:iq2_m";
     };
   };
+
+  sops.templates."continue-config.json" = {
+    content = builtins.toJSON {
+      models = [
+        {
+          title = "GLM-4.7";
+          provider = "openai";
+          model = "GLM-4.7";
+          apiKey = config.sops.placeholder.z-ai-api-token;
+          apiBase = "https://api.z.ai/api/coding/paas/v4";
+        }
+      ];
+      tabAutocompleteModel = {
+        title = "GLM-4.7";
+        provider = "openai";
+        model = "GLM-4.7";
+        apiKey = config.sops.placeholder.z-ai-api-token;
+        apiBase = "https://api.z.ai/api/coding/paas/v4";
+        useLegacyCompletionsEndpoint = false;
+      };
+    };
+    mode = "0400";
+    path = "${config.home.homeDirectory}/.continue/config.json";
+  };
+
+  home.file.".continue/config.json".force = true;
+
+  sops.secrets.z-ai-api-token = { };
 }

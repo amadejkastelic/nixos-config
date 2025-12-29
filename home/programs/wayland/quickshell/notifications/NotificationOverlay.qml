@@ -12,36 +12,39 @@ PanelWindow {
 
     screen: Config.preferredMonitor
     visible: NotificationState.notifOverlayOpen && !Config.showSidebar && !Config.doNotDisturb
-
+    
     WlrLayershell.exclusionMode: ExclusionMode.Ignore
     WlrLayershell.namespace: "quickshell:notifications:overlay"
-
+    
     implicitWidth: Config.notificationWidth + Config.padding * 6
-
+    
     color: "transparent"
     mask: Region {
         item: notifs
     }
 
+    // Position below bar's right edge (bar is centered at 50% screen width)
     anchors {
         top: true
         right: true
-        bottom: true
     }
 
     margins {
-        top: Config.barHeight
+        // Align notification right edge with bar right edge
+        // Bar is centered at 50% screen width, 50% width
+        // Bar right edge is at screen.width * 0.75
+        // Right margin = distance from screen right edge to bar right edge = 25% of screen
+        right: screen.width * 0.25
+        top: Config.barHeight + Config.padding * 2
     }
 
     ColumnLayout {
         id: notifs
 
+        width: parent.width
         anchors {
             top: parent.top
             right: parent.right
-            left: parent.left
-            leftMargin: Config.padding * 5
-            rightMargin: Config.padding * 5
             topMargin: Config.padding * 2
         }
 

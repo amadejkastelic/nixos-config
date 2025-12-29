@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import Quickshell.Widgets
 import qs.components
 import qs.utils
@@ -10,9 +11,10 @@ WrapperMouseArea {
     id: root
 
     Layout.fillHeight: true
+    implicitWidth: height
 
     property bool menuVisible: false
-
+    
     // Calculate position
     property real screenCenterOffset: (barWindow.screen?.width ?? 1920) * 0.25
     property real barX: {
@@ -21,24 +23,33 @@ WrapperMouseArea {
         return screenCenterOffset + bar.width - (barRight.width - rightLayoutX);
     }
 
-    onClicked: () => {
-        NotificationState.notifOverlayOpen = false;
-        menuVisible = !menuVisible;
-    }
-
-    RowLayout {
+    Rectangle {
+        id: notifButton
         anchors.centerIn: parent
-        spacing: Config.padding * 2
+        implicitWidth: parent.height * 0.4
+        implicitHeight: parent.height * 0.4
+        radius: height / 2
+        color: root.containsMouse || menuVisible ? Colors.accent : "transparent"
+
+        Behavior on color {
+            ColorAnimation { duration: 200 }
+        }
 
         Text {
-            text: Qt.formatDateTime(Utils.clock.date, "ddd MMM d  hh:mm")
-            color: Colors.foreground
-        }
+            anchors.centerIn: parent
+            text: "󰂚" // Bell icon
+            font.family: "Symbols Nerd Font"
+            font.pixelSize: parent.height * 0.7
+            color: root.containsMouse || menuVisible ? Colors.crust : Colors.foreground
 
-        MaterialIcon {
-            text: "notifications" + (NotificationState.allNotifs.length > 0 ? "_unread" : "")
-            font.pointSize: Config.iconSize
+            Behavior on color {
+                ColorAnimation { duration: 200 }
+            }
         }
+    }
+
+    onClicked: {
+        menuVisible = !menuVisible;
     }
 
     PopupMenu {
@@ -47,10 +58,10 @@ WrapperMouseArea {
         anchorX: root.barX + (root.width / 2)
         anchorY: bar.height + Config.padding
         isVisible: root.menuVisible
-
+        
         menuWidth: 400
         menuHeight: 500
-
+        
         onIsVisibleChanged: {
             root.menuVisible = isVisible;
         }
@@ -61,8 +72,8 @@ WrapperMouseArea {
             spacing: Config.padding * 2
 
             Text {
-                text: "Calendar & Notifications"
-                font.pixelSize: Config.iconSize + 2
+                text: "Notifications & Calendar"
+                font.pixelSize: Config.iconSize
                 font.weight: Font.Bold
                 color: Colors.foreground
             }

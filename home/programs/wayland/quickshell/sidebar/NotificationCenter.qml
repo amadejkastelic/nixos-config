@@ -19,7 +19,7 @@ ColumnLayout {
             anchors.fill: wrapper
             radius: wrapper.radius
             blur: Config.blurMax
-            spread: Config.padding * 2
+            spread: Config.padding
             color: Colors.windowShadow
         }
 
@@ -28,7 +28,7 @@ ColumnLayout {
             implicitWidth: parent.width
             margin: Config.padding
             radius: Config.radius
-            color: Colors.bgBlurShadow
+            color: Qt.rgba(Colors.mantle.r, Colors.mantle.g, Colors.mantle.b, 1.0)
 
             RowLayout {
                 WrapperRectangle {
@@ -37,6 +37,7 @@ ColumnLayout {
                     color: "transparent"
                     Text {
                         text: (NotificationState.allNotifs.length || "No") + " notification" + (NotificationState.allNotifs.length != 1 ? "s" : "")
+                        color: Colors.foreground
                     }
                 }
 
