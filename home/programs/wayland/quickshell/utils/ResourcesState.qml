@@ -11,6 +11,8 @@ Singleton {
     property string cpu_freq
     property int mem_percent
     property string mem_used
+    property int gpu_percent
+    property string gpu_used
 
     Process {
         id: process_cpu_percent
@@ -29,9 +31,7 @@ Singleton {
             id: collector
             onStreamFinished: () => {
                 const data = collector.text
-                // delete the first 4 lines (comments)
                 const mhz = data.split("\n").slice(4);
-                // compute mean frequency
                 const total = mhz.reduce((acc, e) => acc + Number(e), 0)
                 const freq = total / mhz.length;
 
@@ -52,9 +52,34 @@ Singleton {
     Process {
         id: process_mem_used
         running: true
-        command: ["sh", "-c", "free --si -h | awk 'NR==2{print $3}'"]
+        command: ["sh", "-c", "free --si -h | awk 'NR==2{v=$3; if(v ~ /[GMK]$/) v=v\"B\"; print v}'"]
         stdout: SplitParser {
             onRead: data => root.mem_used = data
+        }
+    }
+
+    Process {
+        id: process_gpu_percent
+        running: true
+        command: ["sh", "-c", "cat /sys/class/hwmon/hwmon*/device/gpu_busy_percent 2>/dev/null || echo 0"]
+        stdout: SplitParser {
+            onRead: data => root.gpu_percent = Math.round(Number(data))
+        }
+    }
+
+    Process {
+        id: process_gpu_used
+        running: true
+        command: ["sh", "-c", "awk '{pct=$2*100.0/$1; printf \"%.1fGB (%.1f%%)\\n\", $2/1073741824, pct}' <(paste /sys/class/drm/card1/device/mem_info_vram_total /sys/class/drm/card1/device/mem_info_vram_used)"]
+        stdout: SplitParser {
+            onRead: data => {
+                const trimmed = data.trim();
+                if (trimmed && trimmed !== '' && trimmed !== 'GB') {
+                    root.gpu_used = trimmed;
+                } else {
+                    root.gpu_used = 'N/A';
+                }
+            }
         }
     }
 
@@ -67,6 +92,8 @@ Singleton {
             process_cpu_freq.running = true
             process_mem_percent.running = true
             process_mem_used.running = true
+            process_gpu_percent.running = true
+            process_gpu_used.running = true
         }
     }
 }

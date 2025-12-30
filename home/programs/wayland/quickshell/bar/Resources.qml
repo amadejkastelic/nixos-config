@@ -43,7 +43,7 @@ Rectangle {
         }
 
         HoverTooltip {
-            text: ResourcesState.mem_used
+            text: ResourcesState.mem_used + " (" + ResourcesState.mem_percent + "%)"
 
             ColumnLayout {
                 spacing: root.spacing
@@ -58,6 +58,27 @@ Rectangle {
                     color: root.valueColor
                     font.pointSize: root.valueSize
                     text: ResourcesState.mem_percent + "%"
+                    Layout.alignment: Qt.AlignCenter
+                }
+            }
+        }
+
+        HoverTooltip {
+            text: ResourcesState.gpu_used
+
+            ColumnLayout {
+                spacing: root.spacing
+
+                Text {
+                    color: root.textColor
+                    font.pointSize: root.textSize
+                    text: "GPU"
+                    Layout.alignment: Qt.AlignCenter
+                }
+                Text {
+                    color: root.valueColor
+                    font.pointSize: root.valueSize
+                    text: ResourcesState.gpu_percent + "%"
                     Layout.alignment: Qt.AlignCenter
                 }
             }

@@ -24,11 +24,16 @@ in
     EDITOR = "nvim";
     DIRENV_LOG_FORMAT = "";
 
+    # Secrets
     GITHUB_TOKEN = "$(cat ${config.sops.secrets.github-token.path})";
+    Z_AI_API_TOKEN = "$(cat ${config.sops.secrets.z-ai-api-token.path})";
 
     # auto-run programs using nix-index-database
     NIX_AUTO_RUN = "1";
   };
 
-  sops.secrets.github-token = { };
+  sops.secrets = {
+    github-token = { };
+    z-ai-api-token = { };
+  };
 }
