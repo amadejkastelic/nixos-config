@@ -17,7 +17,7 @@ PanelWindow {
         top: Config.padding
     }
 
-    WlrLayershell.exclusiveZone: 0
+    WlrLayershell.exclusiveZone: Config.barHeight
 
     implicitHeight: Config.barHeight
     implicitWidth: screen?.width ?? 1920

@@ -75,7 +75,7 @@
 
       # Gaming
       "match:class gamescope, workspace name:Gaming"
-      "match:initial_class cs2, workspace name:Gaming, fullscreen true, render_unfocused true"
+      "match:initial_class cs2, workspace name:Gaming, immediate true, fullscreen true, render_unfocused true"
       "match:initial_class ^(steam_app_)(.*)$, workspace name:Gaming, immediate true, fullscreen true, render_unfocused true"
       "match:initial_title Hearthstone, float true, size 1920 1080, max_size 1920 1080, min_size 1920 1080, center true"
 
