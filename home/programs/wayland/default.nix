@@ -10,8 +10,7 @@
     ./hyprlock.nix
     ./hyprlux.nix
     ./wlogout.nix
-    ./waybar
-    #./rofi.nix
+    ./quickshell
   ];
 
   home.packages = with pkgs; [

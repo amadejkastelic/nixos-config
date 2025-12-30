@@ -107,7 +107,7 @@ let
 
   continue = {
     "continue.telemetryEnabled" = false;
-    "continue.enableTabAutocomplete" = false;
+    "continue.enableTabAutocomplete" = true;
   };
 
   svelte = {
@@ -121,6 +121,7 @@ let
       "markdown" = true;
       "scminput" = false;
     };
+    "chat.disableAIFeatures" = true;
   };
 
   claude = {

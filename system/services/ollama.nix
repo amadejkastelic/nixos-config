@@ -1,19 +1,16 @@
 { config, pkgs, ... }:
 {
   services.ollama = {
-    enable = false;
+    enable = true;
     package = pkgs.ollama-rocm;
-    loadModels = [
-      "gpt-oss:20b"
-      "vanilj/supernova-medius:iq2_m"
-    ];
+    loadModels = [ "qwen2.5-coder:7b" ];
     rocmOverrideGfx = "10.3.0";
   };
 
   nixpkgs.config.rocmSupport = true;
 
   services.nextjs-ollama-llm-ui = {
-    enable = false;
+    enable = true;
     port = 3000;
     ollamaUrl = "http://127.0.0.1:${toString config.services.ollama.port}";
   };
