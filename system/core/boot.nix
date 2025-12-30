@@ -39,6 +39,7 @@
       systemd-boot = {
         enable = true;
         edk2-uefi-shell.enable = true;
+        consoleMode = "max";
       };
     };
 
