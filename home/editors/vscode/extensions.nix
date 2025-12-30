@@ -74,11 +74,18 @@
           apiKey = config.sops.placeholder.z-ai-api-token;
           apiBase = "https://api.z.ai/api/coding/paas/v4";
         }
+        {
+          title = "qwen2.5-coder";
+          provider = "ollama";
+          model = "qwen2.5-coder:7b";
+        }
       ];
       tabAutocompleteModel = {
         title = "qwen2.5-coder";
         provider = "ollama";
         model = "qwen2.5-coder:7b";
+        autocompleteOptions.maxTokens = 1024;
+        temperature = 0.1;
       };
     };
     mode = "0400";
