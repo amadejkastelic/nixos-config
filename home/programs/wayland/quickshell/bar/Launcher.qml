@@ -24,8 +24,8 @@ WrapperMouseArea {
     Rectangle {
         id: launcherBg
         anchors.centerIn: parent
-        implicitWidth: parent.height * 0.4
-        implicitHeight: parent.height * 0.4
+        implicitWidth: parent.height * 0.6
+        implicitHeight: parent.height * 0.6
         radius: height / 2
         color: root.containsMouse ? Colors.accent : "transparent"
 
@@ -37,7 +37,7 @@ WrapperMouseArea {
             anchors.centerIn: parent
             text: "󱄅"
             font.family: "Symbols Nerd Font"
-            font.pixelSize: parent.height * 0.5
+            font.pixelSize: parent.height * 0.7
             color: root.containsMouse ? Colors.crust : Colors.foreground
 
             Behavior on color {
