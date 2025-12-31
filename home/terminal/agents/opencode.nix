@@ -10,6 +10,15 @@
     settings = {
       theme = "catppuccin";
       autoupdate = false;
+      permission = {
+        edit = "ask";
+        bash = "ask";
+        skill = "allow";
+        doom_loop = "ask";
+        external_directory = "ask";
+        webfetch = "ask";
+      };
+      default_agent = "plan";
     };
   };
 
