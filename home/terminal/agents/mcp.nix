@@ -8,12 +8,25 @@ let
   zAiAuthorization = "Bearer {env:Z_AI_API_TOKEN}";
 in
 {
-  home.packages = [ pkgs.mcp-nixos ];
+  home.packages = with pkgs; [
+    github-mcp-server
+    mcp-nixos
+  ];
 
   programs.mcp = {
     enable = true;
 
     servers = {
+      github = {
+        command = lib.getExe pkgs.github-mcp-server;
+        args = [
+          "stdio"
+          "--read-only"
+          "--toolsets"
+          "context,repos,issues,pull_requests,actions"
+        ];
+        env.GITHUB_PERSONAL_ACCESS_TOKEN = "{env:GITHUB_TOKEN}";
+      };
       nixos = {
         command = lib.getExe pkgs.mcp-nixos;
       };
