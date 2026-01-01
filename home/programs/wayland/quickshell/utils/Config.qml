@@ -29,5 +29,5 @@ PersistentProperties {
     readonly property int shadowVerticalOffset: 2
     readonly property bool shadowEnabled: true
 
-    readonly property int osdTimeout: 1000
+    readonly property int osdTimeout: 1500
 }

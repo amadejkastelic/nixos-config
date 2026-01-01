@@ -4,6 +4,7 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Effects
+import QtQuick.Layouts
 import qs.utils
 
 Scope {
@@ -12,7 +13,6 @@ Scope {
     property real progress: 0
     property string icon: ""
 
-    // Watch sink volume changes
     property var sinkVolume: PipeWireState.defaultSink?.audio?.volume
     onSinkVolumeChanged: {
         if (sinkVolume !== undefined) {
@@ -23,35 +23,12 @@ Scope {
         }
     }
 
-    // Watch sink mute changes
     property var sinkMuted: PipeWireState.defaultSink?.audio?.muted
     onSinkMutedChanged: {
         if (sinkMuted !== undefined) {
             scope.osdVisible = true;
             scope.icon = PipeWireState.sinkIcon();
             scope.progress = PipeWireState.defaultSink?.audio?.volume ?? 0;
-            hideTimer.restart();
-        }
-    }
-
-    // Watch source volume changes
-    property var sourceVolume: PipeWireState.defaultSource?.audio?.volume
-    onSourceVolumeChanged: {
-        if (sourceVolume !== undefined) {
-            scope.osdVisible = true;
-            scope.icon = PipeWireState.sourceIcon();
-            scope.progress = sourceVolume;
-            hideTimer.restart();
-        }
-    }
-
-    // Watch source mute changes
-    property var sourceMuted: PipeWireState.defaultSource?.audio?.muted
-    onSourceMutedChanged: {
-        if (sourceMuted !== undefined) {
-            scope.osdVisible = true;
-            scope.icon = PipeWireState.sourceIcon();
-            scope.progress = PipeWireState.defaultSource?.audio?.volume ?? 0;
             hideTimer.restart();
         }
     }
@@ -91,65 +68,49 @@ Scope {
             }
 
             margins {
-                bottom: Config.barHeight
+                bottom: Config.barHeight + Config.padding * 4
             }
 
-            implicitWidth: bg.implicitWidth
-            implicitHeight: bg.implicitHeight + bg.anchors.bottomMargin
+            implicitWidth: 320
+            implicitHeight: 56
 
             Rectangle {
-                id: bg
-                radius: Config.radius
-
+                anchors.fill: parent
+                radius: height / 2
                 color: Colors.bgBar
 
-                implicitHeight: Config.barHeight * 1.5
-                implicitWidth: Config.osdWidth + Config.padding * 8
+                RowLayout {
+                    anchors {
+                        fill: parent
+                        leftMargin: 16
+                        rightMargin: 16
+                    }
+                    spacing: 16
 
-                anchors {
-                    fill: parent
-                    leftMargin: Config.padding * 4
-                    topMargin: Config.padding * 4
-                    rightMargin: Config.padding * 4
-                    bottomMargin: Config.padding * 6
-                }
-
-                ClippingWrapperRectangle {
-                    id: progress
-                    anchors.fill: parent
-                    radius: Config.radius
-                    resizeChild: false
-                    color: 'transparent'
+                    IconImage {
+                        implicitSize: 32
+                        source: Quickshell.iconPath(scope.icon)
+                    }
 
                     Rectangle {
-                        color: Colors.foregroundBlur
-                        anchors.left: parent.left
-                        implicitHeight: Config.barHeight
-                        implicitWidth: parent.width * scope.progress ?? 0
+                        Layout.fillWidth: true
+                        implicitHeight: 6
+                        radius: 3
+                        color: Colors.surface0
+
+                        Rectangle {
+                            anchors {
+                                left: parent.left
+                                top: parent.top
+                                bottom: parent.bottom
+                            }
+
+                            implicitWidth: parent.width * scope.progress
+                            radius: parent.radius
+                            color: Colors.accent
+                        }
                     }
                 }
-
-                IconImage {
-                    id: icon
-
-                    anchors {
-                        horizontalCenter: bg.left
-                        horizontalCenterOffset: icon.implicitSize + Config.padding
-                        verticalCenter: bg.verticalCenter
-                    }
-                    mipmap: true
-                    implicitSize: Config.iconSize
-                    source: Quickshell.iconPath(scope.icon)
-                }
-            }
-
-            RectangularShadow {
-                anchors.fill: bg
-                radius: bg.radius
-                offset.y: Config.padding
-                blur: Config.blurMax
-                spread: Config.padding * 2
-                color: Colors.windowShadow
             }
         }
     }
