@@ -111,6 +111,7 @@ in
 
       # disable annoying dialogs
       enable_anr_dialog = false;
+      disable_watchdog_warning = true;
 
       # disable dragging animation
       animate_mouse_windowdragging = false;
