@@ -16,39 +16,64 @@ let
     mkdir -p "$STATE_DIR"
 
     STATE_FILE="$STATE_DIR/floating-windows.json"
+    MONITOR_FILE="$STATE_DIR/monitors.json"
 
-    # Get all floating windows
+    # Get all floating windows and monitor names
     ${hyprctl} clients -j | ${jq} -r '[.[] | select(.floating == true and .mapped == true) | {
       pid: .pid,
-      monitor: .monitor,
+      monitor_id: .monitor,
+      monitor_name: (.monitor | tostring),
       at: .at,
       fullscreen: .fullscreen
     }]' > "$STATE_FILE"
 
+    # Save monitor names for later
+    ${hyprctl} monitors -j | ${jq} -r '[.[] | select(.id >= 0) | {id: .id, name: .name}]' > "$MONITOR_FILE"
+
     echo "Saved floating window positions to $STATE_FILE"
+    echo "Saved monitors to $MONITOR_FILE"
     ${jq} '.' "$STATE_FILE"
   '';
 
   restoreWindows = pkgs.writeShellScriptBin "hyprland-restore-windows" ''
     STATE_DIR="/tmp/hyprland-window-state"
     STATE_FILE="$STATE_DIR/floating-windows.json"
+    MONITOR_FILE="$STATE_DIR/monitors.json"
 
     if [ ! -f "$STATE_FILE" ]; then
       echo "No window state file found"
       exit 1
     fi
 
+    if [ ! -f "$MONITOR_FILE" ]; then
+      echo "No monitor state file found"
+      exit 1
+    fi
+
     echo "Waiting for displays to reconnect..."
 
-    # Wait for monitors to be available
-    for i in $(seq 1 40); do
-      MON_COUNT=$(${hyprctl} monitors -j | ${jq} -e 'length')
-      if [ "$MON_COUNT" -gt 0 ]; then
-        echo "Displays available"
-        break
-      fi
-      sleep 0.5
-    done
+    # Get monitor names from saved state
+    MONITOR_NAMES=$(${jq} -r '[.[].name | select(.)] | join(" ")' "$MONITOR_FILE")
+    echo "Waiting for monitors: $MONITOR_NAMES"
+
+    # Wait for all saved monitor names to be available
+    if [ -n "$MONITOR_NAMES" ]; then
+      for MONITOR_NAME in $MONITOR_NAMES; do
+        echo "Waiting for monitor $MONITOR_NAME..."
+        for i in $(seq 1 50); do
+          AVAILABLE=$(${hyprctl} monitors -j | ${jq} -e "[.[] | select(.name == \"$MONITOR_NAME\" and .id >= 0)] | length")
+          if [ "$AVAILABLE" = "1" ]; then
+            echo "Monitor $MONITOR_NAME is available"
+            break 2
+          fi
+          sleep 0.5
+        done
+      done
+    fi
+
+    # Additional wait for display to stabilize
+    echo "Waiting for displays to stabilize..."
+    sleep 2
 
     echo "Restoring window positions from $STATE_FILE"
 
@@ -79,6 +104,11 @@ let
   '';
 in
 {
+  home.packages = [
+    saveWindows
+    restoreWindows
+  ];
+
   services.hypridle = {
     enable = true;
 

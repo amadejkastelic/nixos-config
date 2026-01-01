@@ -21,6 +21,7 @@
         layers = ignorealpha ++ [
           "bar"
           "gtk-layer-shell"
+          "logout_dialog"
         ];
 
         noanim = [ "vicinae" ];

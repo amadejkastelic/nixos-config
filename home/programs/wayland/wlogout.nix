@@ -2,6 +2,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
 let
@@ -23,9 +24,9 @@ in
         text = "Lock";
       }
       {
-        label = "logout";
-        action = "hyprctl dispatch exit";
-        text = "Logout";
+        label = "suspend";
+        action = "${config.services.hypridle.settings.general.before_sleep_cmd} && systemctl suspend";
+        text = "Suspend";
       }
       {
         label = "shutdown";
@@ -72,7 +73,7 @@ in
 
       ${lib.concatMapStringsSep "\n" bgImageSection [
         "lock"
-        "logout"
+        "suspend"
         "shutdown"
         "reboot"
       ]}
