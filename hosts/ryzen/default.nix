@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
+    ./thermal-fix.nix
   ];
 
   services.scx = {
