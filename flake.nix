@@ -46,6 +46,8 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixpkgs-kernel.url = "github:NixOS/nixpkgs?ref=3a7affa77a5a539afa1c7859e2c31abdb1aeadf3";
+
     flake-compat.url = "github:edolstra/flake-compat";
 
     flake-utils = {

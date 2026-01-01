@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
@@ -15,7 +16,7 @@
       ];
     };
 
-    kernelPackages = pkgs.linuxKernel.packages.linux_lqx;
+    kernelPackages = inputs.nixpkgs-kernel.legacyPackages.${pkgs.system}.linuxKernel.packages.linux_lqx;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
