@@ -4,7 +4,7 @@
   ...
 }:
 let
-  browser = [ "Schizofox" ];
+  browser = [ "zen" ];
   fileManager = [ "org.gnome.Nautilus" ];
   archiver = [ "org.gnome.Nautilus" ];
   imageViewer = [ "org.gnome.Loupe" ];

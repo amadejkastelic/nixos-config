@@ -16,6 +16,7 @@
       nixcord.enable = false;
       mangohud.enable = false;
       hyprlock.enable = false;
+      zen-browser.profileNames = [ "default" ];
     };
   };
 }

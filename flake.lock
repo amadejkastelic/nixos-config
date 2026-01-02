@@ -334,6 +334,28 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1767326613,
+        "narHash": "sha256-XKeo9F/AB+AyzgR2xaoxyLpI2sRJiu60f9etGJymyMk=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "bc31b4b6220009dc5fda6082496b9d97b1e855ee",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -2391,6 +2413,7 @@
         "clipboard-sync": "clipboard-sync",
         "discord-video-embed-bot": "discord-video-embed-bot",
         "disko": "disko",
+        "firefox-addons": "firefox-addons",
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
@@ -2423,7 +2446,8 @@
         "tailray": "tailray",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
-        "vscode-server": "vscode-server"
+        "vscode-server": "vscode-server",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -3085,6 +3109,29 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": [
+          "hm"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767325268,
+        "narHash": "sha256-pfcdocdj2IChXdIwOdUSqP/uXa3JyphrUw+9fIPg5C8=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "ddc559d690ea07092d9c1fa52ead35394a613c80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }
