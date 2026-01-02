@@ -141,6 +141,7 @@ in
                 template = "https://www.youtube.com/results?search_query={searchTerms}";
               }
             ];
+            icon = "https://upload.wikimedia.org/wikipedia/commons/f/fd/YouTube_full-color_icon_%282024%29.svg";
             definedAliases = [ "@yt" ];
           };
 
@@ -206,7 +207,7 @@ in
                 template = "https://github.com/search?type=code&q={searchTerms}";
               }
             ];
-
+            icon = "https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg";
             definedAliases = [ "@gh" ];
           };
 
@@ -217,6 +218,7 @@ in
                 template = "https://github.com/search?type=repositories&q={searchTerms}";
               }
             ];
+            icon = "https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg";
             definedAliases = [ "@ghr" ];
           };
 
@@ -227,6 +229,7 @@ in
                 template = "https://old.reddit.com/search?q={searchTerms}";
               }
             ];
+            icon = "https://upload.wikimedia.org/wikipedia/en/b/bd/Reddit_Logo_Icon.svg";
             definedAliases = [ "@r" ];
           };
 
@@ -237,6 +240,7 @@ in
                 template = "https://www.perplexity.ai/search?q={searchTerms}";
               }
             ];
+            icon = "https://upload.wikimedia.org/wikipedia/commons/b/b5/Perplexity_AI_Turquoise_on_White.png";
             definedAliases = [ "@pe" ];
           };
         };
