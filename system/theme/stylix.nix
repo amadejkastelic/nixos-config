@@ -1,10 +1,11 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 let
-  fonts = inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system};
+  appleFonts = inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system};
   emojiPkg = inputs.apple-emoji.packages.${pkgs.stdenv.hostPlatform.system}.apple-emoji-linux;
 in
 {
@@ -20,18 +21,15 @@ in
 
     fonts = {
       serif = {
-        package = fonts.sf-pro-nerd;
+        package = appleFonts.sf-pro-nerd;
         name = "SFProText Nerd Font";
       };
 
-      sansSerif = {
-        package = fonts.sf-pro-nerd;
-        name = "SFProText Nerd Font";
-      };
+      sansSerif = config.stylix.fonts.serif;
 
       monospace = {
-        package = fonts.sf-mono-nerd;
-        name = "SFMono Nerd Font";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
       };
 
       emoji = {
