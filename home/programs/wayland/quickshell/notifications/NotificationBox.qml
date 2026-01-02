@@ -199,7 +199,6 @@ WrapperMouseArea {
             RowLayout {
                 id: buttonLayout
                 visible: root.containsMouse
-                implicitHeight: Config.radius
 
                 anchors {
                     top: parent.top
@@ -211,8 +210,7 @@ WrapperMouseArea {
                 IconButton {
                     id: expandButton
 
-                    Layout.fillHeight: true
-                    Layout.minimumHeight: Config.padding * 4
+                    Layout.alignment: Qt.AlignVCenter
                     visible: bodyText.text.length > (root.n?.actions.length > 1 ? 50 : 100)
 
                     icon: root.expanded ? "go-up-symbolic" : "go-down-symbolic"
@@ -223,9 +221,8 @@ WrapperMouseArea {
 
                 IconButton {
                     id: closeButton
-                    Layout.minimumHeight: Config.padding * 4
 
-                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignVCenter
 
                     icon: "process-stop-symbolic"
                     text: ""

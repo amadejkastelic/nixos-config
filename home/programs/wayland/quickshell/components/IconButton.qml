@@ -20,6 +20,10 @@ HoverTooltip {
         implicitWidth: Config.iconSize + 2 * Config.padding
         implicitHeight: Config.iconSize + 2 * Config.padding
 
+        Behavior on color {
+            ColorAnimation { duration: 150 }
+        }
+
         Icon {
             id: iconItem
             source: Quickshell.iconPath(root.icon)

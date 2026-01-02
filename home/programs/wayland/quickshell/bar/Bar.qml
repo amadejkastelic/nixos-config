@@ -72,14 +72,15 @@ PanelWindow {
             anchors.right: parent.right
             anchors.top: parent.top
 
-            anchors.leftMargin: Config.spacing
+            anchors.leftMargin: Config.spacing * 0.5
             anchors.rightMargin: Config.spacing
-            spacing: Config.spacing
+            spacing: Config.spacing * 0.5
 
             Tray {}
             Resources {}
             NightLight {}
             Clock {}
+            PowerMenu {}
         }
     }
 }
