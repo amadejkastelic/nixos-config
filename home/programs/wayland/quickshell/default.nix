@@ -15,6 +15,7 @@ let
     gawk
     ripgrep
     procps
+    systemd
     util-linux
     config.services.vicinae.package
     inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
