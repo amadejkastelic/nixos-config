@@ -41,8 +41,6 @@
               extraSpecialArgs = specialArgs;
             };
           }
-
-          inputs.catppuccin.nixosModules.catppuccin
         ];
       };
 

@@ -13,6 +13,4 @@
       };
     };
   };
-
-  catppuccin.thunderbird.enable = true;
 }

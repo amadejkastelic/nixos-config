@@ -10,8 +10,6 @@
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
 
-  catppuccin.delta.enable = true;
-
   programs.delta.enable = true;
 
   programs.git = {

@@ -8,7 +8,6 @@
     enableMcpIntegration = true;
 
     settings = {
-      theme = "catppuccin";
       autoupdate = false;
       permission = {
         edit = "ask";

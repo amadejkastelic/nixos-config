@@ -64,8 +64,6 @@ in
         # utility
         # terminal
         "$mod, T, exec, ghostty"
-        # logout menu
-        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell -b 2"
         # lock screen
         "$mod, L, exec, ${runOnce "hyprlock"}"
         # select area to perform OCR on

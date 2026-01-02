@@ -33,7 +33,6 @@ in
     pkgs.rofimoji
   ];
 
-  catppuccin.rofi.enable = true;
   programs.rofi = {
     enable = true;
 

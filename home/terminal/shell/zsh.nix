@@ -92,6 +92,4 @@
       ${lib.getExe pkgs.microfetch}
     '';
   };
-
-  catppuccin.zsh-syntax-highlighting.enable = true;
 }

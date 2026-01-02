@@ -1,7 +1,7 @@
 {
-  config,
   inputs,
   pkgs,
+  config,
   ...
 }:
 {
@@ -23,7 +23,7 @@
       background = [
         {
           monitor = "";
-          path = "${config.theme.wallpaper}";
+          path = toString config.stylix.image;
 
           blur_size = 4;
           blur_passes = 3;

@@ -8,6 +8,4 @@
       border-radius = "16";
     };
   };
-
-  catppuccin.mako.enable = true;
 }

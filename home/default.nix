@@ -6,10 +6,8 @@
 }:
 {
   imports = [
-    ./specialisations.nix
     ./terminal
     ./theme
-    inputs.matugen.nixosModules.default
     inputs.nix-index-db.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
     self.homeManagerModules.theme

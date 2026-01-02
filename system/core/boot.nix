@@ -16,7 +16,8 @@
       ];
     };
 
-    kernelPackages = inputs.nixpkgs-kernel.legacyPackages.${pkgs.system}.linuxKernel.packages.linux_lqx;
+    kernelPackages =
+      inputs.nixpkgs-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxKernel.packages.linux_lqx;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
@@ -43,15 +44,7 @@
       };
     };
 
-    plymouth = {
-      enable = true;
-      themePackages = [
-        (pkgs.catppuccin-plymouth.override {
-          variant = "mocha";
-        })
-      ];
-      theme = "catppuccin-mocha";
-    };
+    plymouth.enable = true;
 
     tmp.cleanOnBoot = true;
   };

@@ -10,6 +10,4 @@
       "--exact"
     ];
   };
-
-  catppuccin.skim.enable = true;
 }

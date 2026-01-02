@@ -1,10 +1,6 @@
 {
   programs.kitty = {
     enable = true;
-    font = {
-      size = 13;
-      name = "JetBrainsMono Nerd Font Mono";
-    };
 
     settings = {
       scrollback_lines = 10000;
@@ -17,11 +13,6 @@
 
       selection_foreground = "none";
       selection_background = "none";
-
-      # colors
-      background_opacity = "0.9";
     };
   };
-
-  catppuccin.kitty.enable = true;
 }

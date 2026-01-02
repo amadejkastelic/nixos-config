@@ -1,8 +1,7 @@
 { pkgs, lib, ... }:
 let
   editor = {
-    "editor.fontFamily" = "JetBrainsMono Nerd Font Mono";
-    "editor.fontSize" = 18;
+    "editor.fontSize" = lib.mkForce 18;
     "editor.fontWeight" = "500";
     "editor.fontLigatures" = true;
     "editor.semanticHighlighting.enabled" = true;
@@ -46,8 +45,7 @@ let
 
   terminal = {
     "terminal.integrated.smoothScrolling" = false;
-    "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
-    "terminal.integrated.fontSize" = 14;
+    "terminal.integrated.fontSize" = lib.mkForce 14;
     "terminal.integrated.minimumContrastRatio" = 1;
     "terminal.integrated.stickyScroll.enabled" = false;
   };
@@ -61,7 +59,7 @@ let
   };
 
   workbench = {
-    "workbench.colorTheme" = "Catppuccin Mocha";
+    "workbench.colorTheme" = lib.mkForce "Catppuccin Mocha";
     "workbench.iconTheme" = lib.mkForce "material-icon-theme";
     "workbench.productIconTheme" = "material-product-icons";
     "workbench.startupEditor" = "none";
@@ -91,7 +89,7 @@ let
   nix = {
     "nix.enableLanguageServer" = true;
     "nix.formatterPath" = "nixfmt";
-    "nix.serverPath" = "${pkgs.nil}/bin/nil";
+    "nix.serverPath" = lib.getExe pkgs.nil;
     "nix.serverSettings"."nil"."formatting"."command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
     "[nix]" = {
       "editor.formatOnSave" = true;
@@ -100,7 +98,7 @@ let
   };
 
   python = {
-    "python.defaultInterpreterPath" = "${pkgs.python312}/bin/python";
+    "python.defaultInterpreterPath" = lib.getExe pkgs.python3;
     "python.languageServer" = "Pylance";
     "python.analysis.typeCheckingMode" = "strict";
   };

@@ -7,6 +7,4 @@
       mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });
   };
-
-  catppuccin.waybar.enable = true;
 }

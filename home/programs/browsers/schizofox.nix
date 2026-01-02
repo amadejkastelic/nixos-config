@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  config,
   ...
 }:
 let
@@ -34,8 +33,7 @@ let
     "wikipedia"
     "youtube"
   ];
-  palette =
-    inputs.nix-userstyles.inputs.nix-colors.colorSchemes."catppuccin-${config.catppuccin.flavor}".palette;
+  palette = inputs.nix-userstyles.inputs.nix-colors.colorSchemes."catppuccin-mocha".palette;
   userStyles =
     inputs.nix-userstyles.packages.${pkgs.stdenv.hostPlatform.system}.mkUserStyles palette
       styles;
@@ -104,6 +102,13 @@ in
           Method = "GET";
           URLTemplate = "https://nix.catppuccin.com/search/rolling/?option_scope=1&query={searchTerms}";
           Alias = "!co";
+        }
+        {
+          Name = "Stylix";
+          Description = "Search Stylix docs";
+          Method = "GET";
+          URLTemplate = "https://nix-community.github.io/stylix?search={searchTerms}";
+          Alias = "!stylix";
         }
         {
           Name = "Github Code";

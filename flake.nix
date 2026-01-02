@@ -75,6 +75,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    catppuccin.url = "github:catppuccin/nix";
+
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    apple-emoji.url = "github:samuelngs/apple-emoji-linux";
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -139,11 +148,6 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote";
 
-    matugen = {
-      url = "github:InioX/matugen";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-index-db = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -165,8 +169,6 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    catppuccin.url = "github:catppuccin/nix";
 
     nix-userstyles.url = "github:knoopx/nix-userstyles";
 

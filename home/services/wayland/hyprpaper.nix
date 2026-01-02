@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   config,
@@ -10,9 +11,9 @@
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     settings = {
-      wallpaper = {
+      wallpaper = lib.mkForce {
         monitor = "DP-2";
-        path = toString config.theme.wallpaper;
+        path = toString config.stylix.image;
         fit_mode = "cover";
       };
       splash = false;

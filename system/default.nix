@@ -27,6 +27,8 @@ let
     ./services/pipewire.nix
     ./services/gpg.nix
     ./services/printing.nix
+
+    ./theme/stylix.nix
   ];
 
   server = common ++ [

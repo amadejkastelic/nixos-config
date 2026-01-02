@@ -11,6 +11,4 @@
       position = "top-right";
     };
   };
-
-  catppuccin.mangohud.enable = false;
 }

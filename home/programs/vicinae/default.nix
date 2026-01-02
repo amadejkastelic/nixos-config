@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  config,
   ...
 }:
 {
@@ -27,17 +26,12 @@
       theme = {
         light = {
           name = "catppuccin-latte";
-          icon_theme = "Papirus-Dark";
+          icon_theme = "Papirus-Light";
         };
         dark = {
-          name = "catppuccin-${config.catppuccin.flavor}";
+          name = "catppuccin-mocha";
           icon_theme = "Papirus-Dark";
         };
-      };
-
-      font.normal = {
-        size = 11;
-        normal = "JetBrainsMono Nerd Font Mono";
       };
 
       providers = {

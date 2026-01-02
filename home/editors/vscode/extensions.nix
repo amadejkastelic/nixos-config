@@ -59,11 +59,6 @@
       ]);
   };
 
-  catppuccin.vscode.profiles.default = {
-    enable = true;
-    accent = "pink";
-  };
-
   sops.templates."continue-config.json" = {
     content = builtins.toJSON {
       models = [

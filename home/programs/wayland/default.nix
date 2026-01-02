@@ -9,7 +9,6 @@
   imports = [
     ./hyprlock.nix
     ./hyprlux.nix
-    ./wlogout.nix
     ./quickshell
   ];
 
