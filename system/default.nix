@@ -10,15 +10,13 @@ let
     ./core/boot.nix
     ./core/lanzaboote.nix
 
-    ./hardware/opengl.nix
-
     ./network/avahi.nix
-
-    ./programs
-
     ./hardware/bluetooth.nix
     ./hardware/input.nix
     ./hardware/ledger.nix
+    ./hardware/opengl.nix
+
+    ./programs
 
     ./services
     ./services/clipboard-sync.nix
