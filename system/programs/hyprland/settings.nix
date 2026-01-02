@@ -1,8 +1,17 @@
+{
+  pkgs,
+  inputs,
+  ...
+}:
 let
   cursorName = "Bibata-Modern-Ice-Hyprcursor";
   cursorSize = 24;
 in
 {
+  environment.systemPackages = [
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.bibata-cursors-svg
+  ];
+
   programs.hyprland.settings = {
     "$mod" = "SUPER";
     env = [

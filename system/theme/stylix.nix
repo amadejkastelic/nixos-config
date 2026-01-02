@@ -48,8 +48,8 @@ in
     };
 
     cursor = {
-      package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.bibata-cursors-svg;
-      name = "Bibata-Modern-Ice-Hyprcursor";
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
       size = 24;
     };
 
