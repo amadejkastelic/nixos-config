@@ -4,7 +4,7 @@
 
   catppuccin = {
     enable = false;
-    accent = "pink";
+    accent = "mauve";
     flavor = "mocha";
   };
 }

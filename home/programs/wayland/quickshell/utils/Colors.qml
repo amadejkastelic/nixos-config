@@ -16,7 +16,7 @@ Singleton {
     readonly property color text: "#cdd6f4"
     readonly property color subtext0: "#a6adc8"
     readonly property color subtext1: "#bac2de"
-    
+
     // Catppuccin accent colors
     readonly property color rosewater: "#f5e0dc"
     readonly property color flamingo: "#f2cdcd"
@@ -33,8 +33,7 @@ Singleton {
     readonly property color blue: "#89b4fa"
     readonly property color lavender: "#b4befe"
 
-    // Your selected accent (pink from catppuccin config)
-    readonly property color accent: pink
+    readonly property color accent: mauve
 
     // Bar specific colors
     readonly property color bgBar: mantle
@@ -43,16 +42,16 @@ Singleton {
     readonly property color foreground: text
     readonly property color foregroundBlur: Qt.rgba(text.r, text.g, text.b, 0.7)
     readonly property color windowShadow: Qt.rgba(crust.r, crust.g, crust.b, 0.5)
-    
+
     // Workspace colors
     readonly property list<color> monitorColors: [pink, mauve, blue, lavender]
-    
+
     // Button states
     readonly property color buttonEnabled: accent
     readonly property color buttonEnabledHover: Qt.lighter(accent, 1.1)
     readonly property color buttonDisabled: surface1
     readonly property color buttonDisabledHover: surface2
-    
+
     // Additional semantic colors
     readonly property color surface: surface0
     readonly property color overlay: overlay0
