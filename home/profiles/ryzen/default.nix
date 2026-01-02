@@ -1,7 +1,3 @@
-{ inputs, ... }:
-let
-  vscode-server = "${inputs.vscode-server}/modules/vscode-server/home.nix";
-in
 {
   imports = [
     # editors
@@ -35,13 +31,5 @@ in
     # terminal emulators
     ../../terminal/emulators/kitty.nix
     ../../terminal/emulators/ghostty.nix
-
-    # catppuccin
-    inputs.catppuccin.homeModules.catppuccin
-
-    # Vesktop
-    inputs.nixcord.homeModules.nixcord
-
-    vscode-server
   ];
 }
