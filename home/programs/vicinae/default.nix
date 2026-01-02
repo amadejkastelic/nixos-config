@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -19,18 +20,16 @@
     };
 
     settings = {
-      close_on_focus_loss = true;
-
       launcher_window.opacity = 0.5;
 
       theme = {
         light = {
           name = "catppuccin-latte";
-          icon_theme = "Papirus-Light";
+          icon_theme = config.stylix.iconTheme.light;
         };
         dark = {
           name = "catppuccin-mocha";
-          icon_theme = "Papirus-Dark";
+          icon_theme = config.stylix.iconTheme.dark;
         };
       };
 
