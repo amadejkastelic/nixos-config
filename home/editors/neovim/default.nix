@@ -5,4 +5,6 @@
     vimAlias = true;
     viAlias = true;
   };
+
+  catppuccin.nvim.enable = true;
 }

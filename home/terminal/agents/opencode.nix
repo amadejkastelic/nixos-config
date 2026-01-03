@@ -9,6 +9,7 @@
 
     settings = {
       autoupdate = false;
+      theme = "catppuccin";
       permission = {
         edit = "ask";
         bash = "ask";

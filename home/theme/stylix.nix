@@ -13,6 +13,8 @@
     };
 
     targets = {
+      opencode.enable = false;
+      neovim.enable = false;
       nixcord.enable = false;
       mangohud.enable = false;
       hyprlock.enable = false;
