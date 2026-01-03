@@ -1,7 +1,7 @@
 {
+  lib,
   pkgs,
   inputs,
-  config,
   ...
 }:
 {
@@ -20,18 +20,7 @@
     };
 
     settings = {
-      launcher_window.opacity = 0.5;
-
-      theme = {
-        light = {
-          name = "catppuccin-latte";
-          icon_theme = config.stylix.iconTheme.light;
-        };
-        dark = {
-          name = "catppuccin-mocha";
-          icon_theme = config.stylix.iconTheme.dark;
-        };
-      };
+      launcher_window.opacity = lib.mkForce 0.5;
 
       providers = {
         "applications" = {
