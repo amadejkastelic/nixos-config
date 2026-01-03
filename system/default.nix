@@ -22,6 +22,7 @@ let
     ./services/clipboard-sync.nix
     ./services/greetd.nix
     ./services/ollama.nix
+    ./services/openrgb.nix
     ./services/pipewire.nix
     ./services/gpg.nix
     ./services/printing.nix

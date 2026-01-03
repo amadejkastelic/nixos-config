@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ./hyprland.nix
+    ./openrgb
     ./thermal-fix.nix
   ];
 
