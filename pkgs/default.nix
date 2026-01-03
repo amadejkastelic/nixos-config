@@ -22,6 +22,8 @@
           pkgs.openrgb-plugin-effects
           pkgs.openrgb-plugin-hardwaresync
         ];
+
+        z-ai-vision-mcp-server = pkgs.callPackage ./z-ai-vision-mcp-server { };
       };
     };
 }
