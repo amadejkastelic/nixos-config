@@ -1,11 +1,12 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
   zAiBaseUrl = "https://api.z.ai/api/mcp";
-  zAiAuthorization = "Bearer {env:Z_AI_API_TOKEN}";
+  zAiAuthorization = "Bearer {env:Z_AI_API_KEY}";
 in
 {
   home.packages = with pkgs; [
@@ -47,6 +48,10 @@ in
         type = "remote";
         url = zAiBaseUrl + "/zread/mcp";
         headers.Authorization = zAiAuthorization;
+      };
+      z-ai-vision = {
+        command = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.z-ai-vision-mcp-server;
+        env.Z_AI_API_KEY = "{env:Z_AI_API_KEY}";
       };
     };
   };

@@ -33,6 +33,7 @@ buildNpmPackage rec {
   '';
 
   meta = {
+    mainProgram = pname;
     description = "MCP Server for Z.AI - Model Context Protocol server providing AI capabilities";
     homepage = "https://www.npmjs.com/package/@z_ai/mcp-server";
     license = lib.licenses.mit;
