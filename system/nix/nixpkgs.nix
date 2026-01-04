@@ -18,6 +18,7 @@
       })
       inputs.nix-vscode-extensions.overlays.default
       inputs.firefox-addons.overlays.default
+      inputs.cachyos-kernel.overlays.pinned
     ];
   };
 }

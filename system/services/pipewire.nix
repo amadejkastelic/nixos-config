@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,8 @@ let
   quantumStr = "${toString quantum}/${toString rate}";
 in
 {
+  imports = [ inputs.musnix.nixosModules.musnix ];
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -24,6 +27,9 @@ in
         "default.clock.max-quantum" = quantum;
         "default.clock.quantum-limit" = quantum;
       };
+      "context.modules" = [
+        { name = "libpipewire-module-rt"; }
+      ];
     };
 
     extraConfig.pipewire-pulse."92-low-latency" = {
@@ -115,6 +121,9 @@ in
       '')
     ];
   };
+
+  musnix.enable = true;
+  users.users.amadejk.extraGroups = [ "audio" ];
 
   security.rtkit.enable = true;
 

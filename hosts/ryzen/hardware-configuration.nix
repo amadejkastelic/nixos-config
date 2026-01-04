@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -8,26 +9,32 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "nvme"
-    "xhci_pci"
-    "ahci"
-    "usbhid"
-    "usb_storage"
-    "sd_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [
-    "kvm-amd"
-    "amdgpu" # https://github.com/ollama/ollama/issues/11916
-  ];
-  boot.kernelParams = [
-    "acpi_enforce_resources=lax"
-    "mitigations=off"
-    "audit=0"
-    "usbcore.autosuspend=-1"
-    "ipv6.disable=1" # Disable IPv6 - slow ghcr downloads
-  ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+    };
+
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    kernelModules = [
+      "kvm-amd"
+      "amdgpu" # https://github.com/ollama/ollama/issues/11916
+    ];
+    kernelParams = [
+      "acpi_enforce_resources=lax"
+      "mitigations=off"
+      "audit=0"
+      "usbcore.autosuspend=-1"
+      "ipv6.disable=1" # Disable IPv6 - slow ghcr downloads
+    ];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5e8d4669-1563-49cd-9d94-657e99402fd8";

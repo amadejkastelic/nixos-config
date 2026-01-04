@@ -220,5 +220,9 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    musnix.url = "github:musnix/musnix";
   };
 }

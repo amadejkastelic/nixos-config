@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  ...
-}:
+{ config, ... }:
 {
   boot = {
     bootspec.enable = true;
@@ -15,9 +10,6 @@
         "ntfs"
       ];
     };
-
-    kernelPackages =
-      inputs.nixpkgs-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxKernel.packages.linux_lqx;
 
     binfmt.emulatedSystems = [
       "aarch64-linux"
