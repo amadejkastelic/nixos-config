@@ -51,7 +51,10 @@ in
       };
       z-ai-vision = {
         command = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.z-ai-vision-mcp-server;
-        env.Z_AI_API_KEY = "{env:Z_AI_API_KEY}";
+        env = {
+          Z_AI_MODE = "ZAI";
+          Z_AI_API_KEY = "{env:Z_AI_API_KEY}";
+        };
       };
     };
   };
