@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }:
 {
@@ -23,7 +24,12 @@
   programs.hyprland = {
     enable = true;
 
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.overrideAttrs (old: {
+      postInstall = old.postInstall + ''
+        mkdir -p $out/share/hypr
+        cp ${toString config.stylix.image} $out/share/hypr/wall0.png
+      '';
+    });
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
