@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   modulesPath,
   ...
 }:
@@ -22,7 +23,10 @@
       kernelModules = [ ];
     };
 
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    # cs2 frame time issues on 6.18
+    # kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    kernelPackages =
+      inputs.nixpkgs-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxKernel.packages.linux_lqx;
 
     kernelModules = [
       "kvm-amd"
