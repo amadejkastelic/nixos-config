@@ -42,6 +42,27 @@ in
       };
     };
 
+    configPackages = [
+      (pkgs.writeTextDir "share/pipewire/client.conf.d/10-cs2-client.conf" ''
+        stream.rules = [
+          {
+            matches = [
+              { application.name = "SDL Application" }
+              { media.role = "Game" }
+            ]
+            actions = {
+              update-props = {
+                node.name = "Counter Strike 2"
+                node.nick = "Counter Strike 2"
+                node.force-quantum = ${builtins.toString quantum}
+                node.rate = 1/${builtins.toString rate}
+              }
+            }
+          }
+        ]
+      '')
+    ];
+
     wireplumber.configPackages = [
       (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-low-latency.conf" ''
         monitor.alsa.rules = [
