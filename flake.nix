@@ -222,7 +222,5 @@
     };
 
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
-    musnix.url = "github:musnix/musnix";
   };
 }

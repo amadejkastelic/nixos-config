@@ -23,10 +23,12 @@
     };
 
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+
     kernelModules = [
       "kvm-amd"
       "amdgpu" # https://github.com/ollama/ollama/issues/11916
     ];
+
     kernelParams = [
       "acpi_enforce_resources=lax"
       "mitigations=off"
