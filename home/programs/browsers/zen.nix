@@ -112,6 +112,7 @@ in
         violentmonkey
         betterttv
         csgofloat
+        metamask
       ];
 
       search = {
