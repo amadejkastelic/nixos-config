@@ -51,6 +51,9 @@
         # Typst
         myriad-dreamin.tinymist
 
+        # Zig
+        ziglang.vscode-zig
+
         # Git Blame
         eamodio.gitlens
 

@@ -103,6 +103,12 @@ let
     "python.analysis.typeCheckingMode" = "strict";
   };
 
+  zig = {
+    "zig.path" = "zig";
+    "zig.zls.enabled" = "on";
+    "zig.zls.path" = "zls";
+  };
+
   continue = {
     "continue.telemetryEnabled" = false;
     "continue.enableTabAutocomplete" = true;
@@ -142,6 +148,7 @@ in
     // formatter
     // nix
     // python
+    // zig
     // continue
     // svelte
     // copilot
