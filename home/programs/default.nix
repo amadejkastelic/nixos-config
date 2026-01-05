@@ -2,7 +2,6 @@
 {
   imports = [
     ./browsers/chromium.nix
-    ./browsers/schizofox.nix
     ./browsers/zen.nix
     ./media
     ./nix.nix

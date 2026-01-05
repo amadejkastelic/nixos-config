@@ -317,21 +317,6 @@
         "type": "github"
       }
     },
-    "crane_2": {
-      "locked": {
-        "lastModified": 1762189950,
-        "narHash": "sha256-aotggLUXjlDGqKWibGPQcMZJGgdr79S21ISrv1Wz6RI=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "50700219af884287ad7c85507e2f163b23a027a9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
     "discord-userstyle": {
       "flake": false,
       "locked": {
@@ -849,33 +834,6 @@
         "ref": "gnome-49",
         "repo": "gnome-shell",
         "type": "gitlab"
-      }
-    },
-    "hercules-ci-effects": {
-      "inputs": {
-        "flake-parts": [
-          "schizofox",
-          "nixpak",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "schizofox",
-          "nixpak",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1765774562,
-        "narHash": "sha256-UQhfCggNGDc7eam+EittlYmeW89CZVT1KkFIHZWBH7k=",
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "rev": "edcbb19948b6caf1700434e369fde6ff9e6a3c93",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "hercules-ci-effects",
-        "type": "github"
       }
     },
     "hm": {
@@ -1994,32 +1952,6 @@
         "type": "github"
       }
     },
-    "nixpak": {
-      "inputs": {
-        "flake-parts": [
-          "schizofox",
-          "flake-parts"
-        ],
-        "hercules-ci-effects": "hercules-ci-effects",
-        "nixpkgs": [
-          "schizofox",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767234689,
-        "narHash": "sha256-b44HZf+3NbRvxH3rXtjLNTW3ojAXn172iygCcJr6NhA=",
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "rev": "ff179ec0158164037ee9036f93c081de6a8bf949",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixpak",
-        "repo": "nixpak",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1748370509,
@@ -2558,7 +2490,6 @@
         "nixpkgs": "nixpkgs_10",
         "nixpkgs-kernel": "nixpkgs-kernel",
         "pre-commit-hooks": "pre-commit-hooks_4",
-        "schizofox": "schizofox",
         "sekiro-tweaker": "sekiro-tweaker",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
@@ -2589,62 +2520,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "schizofox": {
-      "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "home-manager": [
-          "hm"
-        ],
-        "nixpak": "nixpak",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "searx-randomizer": "searx-randomizer",
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767296010,
-        "narHash": "sha256-m5BFPDK7SQ6Q5hvt5oJEdvGNLb5mHvRibWXsUrGfeeU=",
-        "owner": "schizofox",
-        "repo": "schizofox",
-        "rev": "291047c0eb190f3689c76cc5776ce1437901bfe9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "schizofox",
-        "repo": "schizofox",
-        "type": "github"
-      }
-    },
-    "searx-randomizer": {
-      "inputs": {
-        "crane": "crane_2",
-        "nixpkgs": [
-          "schizofox",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762277104,
-        "narHash": "sha256-7hAdU+YiphWsXNs5r6CKQ+YVJaBBE1nBFgr3pTummDQ=",
-        "owner": "schizofox",
-        "repo": "searx-randomizer",
-        "rev": "73a690ec270fe5e200abd051c7f142d6e0c1a404",
-        "type": "github"
-      },
-      "original": {
-        "owner": "schizofox",
-        "repo": "searx-randomizer",
         "type": "github"
       }
     },

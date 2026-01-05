@@ -176,17 +176,6 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    schizofox = {
-      url = "github:schizofox/schizofox";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        home-manager.follows = "hm";
-        flake-compat.follows = "flake-compat";
-        flake-parts.follows = "flake-parts";
-      };
-    };
-
     nixcord = {
       url = "github:KaylorBen/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
