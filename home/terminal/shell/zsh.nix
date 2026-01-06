@@ -2,12 +2,16 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
+let
+  nanofetch = inputs.nanofetch.packages.${pkgs.stdenv.hostPlatform.system}.nanofetch;
+in
 {
   home.packages = [
     pkgs.fzf
-    pkgs.microfetch
+    nanofetch
   ];
 
   programs.zsh = {
@@ -89,7 +93,7 @@
       # Set up fzf key bindings and fuzzy completion
       source <(${lib.getExe pkgs.fzf} --zsh)
 
-      ${lib.getExe pkgs.microfetch}
+      ${lib.getExe nanofetch}
     '';
   };
 }
