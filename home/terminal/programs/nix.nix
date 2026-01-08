@@ -7,7 +7,7 @@
 {
   home.packages = with pkgs; [
     nil
-    nixfmt-rfc-style
+    nixfmt
     deadnix
     statix
     self.packages.${pkgs.stdenv.hostPlatform.system}.repl

@@ -72,7 +72,7 @@ nix build .#bibata-cursors-svg
 
 The development shell includes:
 - **nil**: Nix language server
-- **nixfmt-rfc-style**: Code formatter
+- **nixfmt**: Code formatter
 - **git**: Version control
 - **repl**: Custom REPL for configuration testing
 

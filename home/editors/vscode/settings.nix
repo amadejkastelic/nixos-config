@@ -90,7 +90,7 @@ let
     "nix.enableLanguageServer" = true;
     "nix.formatterPath" = "nixfmt";
     "nix.serverPath" = lib.getExe pkgs.nil;
-    "nix.serverSettings"."nil"."formatting"."command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+    "nix.serverSettings"."nil"."formatting"."command" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
     "[nix]" = {
       "editor.formatOnSave" = true;
       "editor.tabSize" = 2;

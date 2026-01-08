@@ -25,7 +25,7 @@
           devShells.default = pkgs.mkShell {
             packages = [
               pkgs.nil
-              pkgs.nixfmt-rfc-style
+              pkgs.nixfmt
               pkgs.nodejs-slim
               pkgs.git
               config.packages.repl
@@ -37,7 +37,7 @@
             '';
           };
 
-          formatter = pkgs.nixfmt-rfc-style;
+          formatter = pkgs.nixfmt;
         };
     };
 
