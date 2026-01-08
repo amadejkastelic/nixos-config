@@ -33,7 +33,6 @@
           "${mod}/hardware/virtualisation.nix"
 
           "${mod}/services/gnome-services.nix"
-          "${mod}/services/adb.nix"
 
           {
             home-manager = {
