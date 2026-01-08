@@ -60,7 +60,6 @@
       "match:class ^(vesktop)$, float true, opacity 0.80 0.70, workspace 8 silent, center true, size 1920 1080"
 
       # Music apps
-      "match:title ^(Spotify( Premium)?)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
       "match:initial_class ^(Cider)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
 
       # Firefox/Zen Picture-in-Picture

@@ -165,11 +165,6 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-userstyles.url = "github:knoopx/nix-userstyles";
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";

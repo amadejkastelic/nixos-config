@@ -68,7 +68,6 @@ let
       "text/plain" = [ "codium" ];
       "x-scheme-handler/chrome" = [ "chromium-browser" ];
       "inode/directory" = fileManager;
-      "x-scheme-handler/spotify" = [ "spotify.desktop" ];
       "x-scheme-handler/discord" = [ "vesktop.desktop" ];
       "x-scheme-handler/tg" = [ "org.telegram.desktop" ];
       "x-scheme-handler/tonsite" = [ "org.telegram.desktop" ];
