@@ -43,10 +43,10 @@
         ];
       };
 
-      server = nixosSystem {
+      razer = nixosSystem {
         inherit specialArgs;
         modules = server ++ [
-          ./server
+          ./razer
 
           ./common/secrets.nix
         ];

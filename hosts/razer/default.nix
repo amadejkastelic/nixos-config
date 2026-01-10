@@ -26,7 +26,7 @@
     pkgs.gitMinimal
   ];
 
-  networking.hostName = "server";
+  networking.hostName = "razer";
 
   services.fstrim.enable = true;
 }

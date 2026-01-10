@@ -3,24 +3,24 @@ keys:
     - &amadejk age176gcz66r7zrgnaczund22f5adzhckdvteszxgw0egalflmpwhywshssfuh
   - &hosts:
     - &ryzen age122w6sw60n7xymp70fvq3p96k8x9a4s7070h0xque8c0j64rt05fqse463a
-    - &server age1f8vqtkwvdnlyp95xnp09n0fd887ptv6hrpnaxx7dw0yyv22x5cvslnkh5w
+    - &razer age19vhjmhcla7z4n6sskwjjt6yd5dtafwnqrled8pdrrwheap9fqq5slf82vz
 creation_rules:
   - path_regex: hosts/ryzen/secrets.ya?ml$
     key_groups:
       - age:
           - *amadejk
           - *ryzen
-  - path_regex: hosts/server/secrets.ya?ml$
+  - path_regex: hosts/razer/secrets.ya?ml$
     key_groups:
       - age:
           - *amadejk
-          - *server
+          - *razer
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
       - age:
           - *amadejk
           - *ryzen
-          - *server
+          - *razer
   # hm secrets
   - path_regex: home/secrets.ya?ml$
     key_groups:

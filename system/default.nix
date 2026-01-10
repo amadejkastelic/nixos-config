@@ -32,8 +32,6 @@ let
 
   server = common ++ [
     ./hardware/docker.nix
-
-    ./services/discord-bot.nix
   ];
 in
 {
