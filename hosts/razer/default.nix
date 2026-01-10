@@ -9,6 +9,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./disk-config.nix
     ./hardware-configuration.nix
+    ./openrazer.nix
   ];
 
   sops.defaultSopsFile = ./secrets.yaml;
@@ -29,4 +30,24 @@
   networking.hostName = "razer";
 
   services.fstrim.enable = true;
+
+  # Laptop server, disable lid and power key
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandlePowerKey = "ignore";
+    HandleSuspendKey = "ignore";
+    HandleHibernateKey = "ignore";
+    IdleAction = "ignore";
+    IdleActionSec = "0sec";
+  };
+
+  powerManagement.enable = false;
+  systemd.targets = {
+    sleep.enable = false;
+    suspend.enable = false;
+    hibernate.enable = false;
+  };
+
+  # Turn off screen after 10 seconds of inactivity
+  boot.kernelParams = [ "consoleblank=10" ];
 }
