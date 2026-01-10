@@ -208,5 +208,7 @@
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nanofetch.url = "github:amadejkastelic/nanofetch";
+
+    opencode.url = "github:anomalyco/opencode";
   };
 }

@@ -1,11 +1,15 @@
 {
+  pkgs,
   config,
+  inputs,
   ...
 }:
 {
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
+
+    package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     settings = {
       autoupdate = false;
@@ -19,6 +23,10 @@
         webfetch = "ask";
       };
       default_agent = "plan";
+      server = {
+        port = 4096;
+        hostname = "0.0.0.0";
+      };
     };
   };
 
