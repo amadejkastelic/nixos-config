@@ -32,6 +32,8 @@ let
 
   server = common ++ [
     ./hardware/docker.nix
+
+    ./services/grabby.nix
   ];
 in
 {
