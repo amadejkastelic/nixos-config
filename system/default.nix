@@ -33,8 +33,9 @@ let
   server = common ++ [
     ./hardware/docker.nix
 
-    ./services/metrics
     ./services/grabby.nix
+    ./services/jellyfin.nix
+    ./services/metrics
   ];
 in
 {

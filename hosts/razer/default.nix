@@ -10,6 +10,8 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     ./openrazer.nix
+    ./jellyfin.nix
+    ./nvidia.nix
   ];
 
   sops.defaultSopsFile = ./secrets.yaml;
