@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./grafana
+    ./prometheus.nix
+  ];
+}
