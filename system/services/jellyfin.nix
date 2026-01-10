@@ -2,6 +2,8 @@
   services.jellyfin = {
     enable = true;
 
+    openFirewall = true;
+
     transcoding = {
       # Manually enable enableHardwareEncoding in respective host configuration
 
