@@ -5,7 +5,7 @@
   };
 
   systemd.services.disable-backlight = {
-    description = "Disable Razen keyboard backlight";
+    description = "Disable Razer keyboard backlight";
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
     script = ''
