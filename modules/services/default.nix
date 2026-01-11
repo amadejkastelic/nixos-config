@@ -1,0 +1,11 @@
+{
+  imports = [
+    ./jellyfin.nix
+    ./prowlarr.nix
+    ./qbittorrent.nix
+    ./radarr.nix
+    ./readarr.nix
+    ./sonarr.nix
+    ./tailscale-funnel.nix
+  ];
+}
