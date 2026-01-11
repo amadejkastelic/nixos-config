@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   services.prowlarr = {
     enable = true;
@@ -8,12 +9,13 @@
       log.analyticsEnabled = false;
       update.automatically = false;
       server.port = 9696;
-
-      auth = {
-        authenticationEnabled = false;
-        authenticationMethod = "external";
-        authenticationRequired = false;
-      };
     };
+
+    environmentFiles = [
+      (pkgs.writeText "prowlarr.env" ''
+        PROWLARR__AUTH__METHOD=Extenral
+        PROWLARR__AUTH__REQUIRED=DisabledForLocalAddresses
+      '')
+    ];
   };
 }
