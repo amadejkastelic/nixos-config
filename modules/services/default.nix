@@ -7,5 +7,6 @@
     ./readarr.nix
     ./sonarr.nix
     ./tailscale-funnel.nix
+    ./tailscale-tls.nix
   ];
 }
