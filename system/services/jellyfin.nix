@@ -2,6 +2,8 @@
   services.jellyfin = {
     enable = true;
 
+    nginx.enable = true;
+
     openFirewall = true;
 
     transcoding = {
