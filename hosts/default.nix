@@ -12,7 +12,7 @@
       mod = "${self}/system";
 
       # get the basic config to build on top of
-      inherit (import "${self}/system") desktop server;
+      inherit (import "${self}/system" { inherit self; }) desktop server;
 
       # get these into the module system
       specialArgs = { inherit inputs self; };
@@ -26,7 +26,6 @@
           ./common/secrets.nix
 
           "${mod}/programs/hyprland"
-          #"${mod}/programs/gnome"
           "${mod}/programs/gaming"
           "${mod}/programs/noisetorch.nix"
 
@@ -43,10 +42,10 @@
         ];
       };
 
-      server = nixosSystem {
+      razer = nixosSystem {
         inherit specialArgs;
         modules = server ++ [
-          ./server
+          ./razer
 
           ./common/secrets.nix
         ];

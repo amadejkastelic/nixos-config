@@ -2,6 +2,8 @@
 
 To install on a server, run the following commands:
 
+** Make sure you configure SOPS AFTER installation!**
+
 ### x86_64
 
 - Update hardware-configuration:
@@ -20,6 +22,11 @@ nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-ag
 ```bash
 nix-shell -p sops --run "sops updatekeys hosts/common/secrets.yaml"
 nix-shell -p sops --run "sops updatekeys hosts/server/secrets.yaml"
+```
+
+- Upgrade host:
+```bash
+nixos-rebuild switch --flake .#server --target-host user@host --sudo
 ```
 
 ### aarch64

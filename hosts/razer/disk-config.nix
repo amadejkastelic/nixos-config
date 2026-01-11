@@ -1,12 +1,10 @@
 { lib, inputs, ... }:
 {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
+  imports = [ inputs.disko.nixosModules.disko ];
 
   disko.devices = {
     disk.main = {
-      device = lib.mkDefault "/dev/sda";
+      device = lib.mkDefault "/dev/nvme0n1";
       type = "disk";
       content = {
         type = "gpt";
@@ -47,9 +45,7 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [
-                "defaults"
-              ];
+              mountOptions = [ "defaults" ];
             };
           };
         };

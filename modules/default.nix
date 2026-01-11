@@ -1,9 +1,7 @@
 {
-  flake.nixosModules = {
-    theme = import ./theme;
+  flake.modules = {
+    services = import ./services;
   };
 
-  flake.homeManagerModules = {
-    theme = import ./theme;
-  };
+  flake.homeManagerModules = { };
 }

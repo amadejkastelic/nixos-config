@@ -1,5 +1,8 @@
+{ self, ... }:
 let
   common = [
+    self.modules.services
+
     ./core/default.nix
 
     ./network/default.nix
@@ -33,7 +36,12 @@ let
   server = common ++ [
     ./hardware/docker.nix
 
-    ./services/discord-bot.nix
+    ./services/arr
+    ./services/dashboard.nix
+    ./services/grabby.nix
+    ./services/jellyfin.nix
+    ./services/metrics
+    ./services/nginx.nix
   ];
 in
 {

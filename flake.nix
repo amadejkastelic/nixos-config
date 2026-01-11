@@ -210,5 +210,7 @@
     nanofetch.url = "github:amadejkastelic/nanofetch";
 
     opencode.url = "github:anomalyco/opencode";
+
+    grabby.url = "github:amadejkastelic/grabby";
   };
 }
