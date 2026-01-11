@@ -382,11 +382,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1768104216,
-        "narHash": "sha256-LSgAmBS9JKqQG3GitIScLxoLuA9egTrZMd3+LNz895E=",
+        "lastModified": 1768150501,
+        "narHash": "sha256-601j0FWA9UzEaDF3xj+12n94bkuVF/zkpLIOt6EfRK0=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "44506353be518d73a3eaa37e354e97637edb5f66",
+        "rev": "1b848102f204ce846360009d193ea6d0280c814a",
         "type": "gitlab"
       },
       "original": {
@@ -2003,27 +2003,6 @@
         "type": "github"
       }
     },
-    "nix-github-actions_2": {
-      "inputs": {
-        "nixpkgs": [
-          "sekiro-tweaker",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1737420293,
-        "narHash": "sha256-F1G5ifvqTpJq7fdkT34e/Jy9VCyzd5XfJ9TO8fHhJWE=",
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "rev": "f4158fa080ef4503c8f4c820967d946c2af31ec9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "type": "github"
-      }
-    },
     "nix-index-db": {
       "inputs": {
         "nixpkgs": [
@@ -2493,11 +2472,11 @@
         "nixpkgs": "nixpkgs_14"
       },
       "locked": {
-        "lastModified": 1768147934,
-        "narHash": "sha256-DMIf0rd2F1pzDDmKw8+ZpRK1PThGiAQ0Vvdx1fIs7HY=",
+        "lastModified": 1768158244,
+        "narHash": "sha256-Cmp7cdomz1I3Kn422VCmw+uejjKokMmSE3iFXfs5QQE=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "bdbbcd8a0c60be5cee7a5206d5727be7e1100edf",
+        "rev": "b81eca4ebc73279ab2c16fb1ca3291449501729d",
         "type": "github"
       },
       "original": {
@@ -2803,16 +2782,15 @@
     },
     "sekiro-tweaker": {
       "inputs": {
-        "nix-github-actions": "nix-github-actions_2",
         "nixpkgs": "nixpkgs_15",
         "pre-commit-hooks": "pre-commit-hooks_6"
       },
       "locked": {
-        "lastModified": 1768050705,
-        "narHash": "sha256-U2rOAR9zxecpLZYqFgCSjRE2qKEY/d3W6G31XciXNSU=",
+        "lastModified": 1768159536,
+        "narHash": "sha256-VPh8CBqHyVCDk4O3wKlqRQn1iiBtcTLDzuhlMfvPKhM=",
         "owner": "amadejkastelic",
         "repo": "sekiro-tweaker",
-        "rev": "bb2046beed20fd0a7818daa196a88ffd42ada509",
+        "rev": "acb471239f4c1cb9cc387e0c5c8cd13cc841825d",
         "type": "github"
       },
       "original": {
