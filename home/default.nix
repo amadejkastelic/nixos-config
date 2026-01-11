@@ -1,6 +1,5 @@
 {
   config,
-  self,
   inputs,
   ...
 }:
@@ -10,7 +9,6 @@
     ./theme
     inputs.nix-index-db.homeModules.nix-index
     inputs.sops-nix.homeManagerModules.sops
-    self.homeManagerModules.theme
   ];
 
   home = {
