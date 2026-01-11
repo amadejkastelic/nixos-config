@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  hostName = config.newroking.hostName;
+  hostName = config.networking.hostName;
 in
 {
   services.nginx = {
@@ -23,6 +23,15 @@ in
     };
 
     tailscaleAuth = {
+      enable = true;
+      virtualHosts = [ hostName ];
+    };
+  };
+
+  services.tailscale.tls = {
+    enable = true;
+
+    nginx = {
       enable = true;
       virtualHosts = [ hostName ];
     };
