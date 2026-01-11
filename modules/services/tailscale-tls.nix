@@ -9,11 +9,7 @@ let
 
   tailscale = lib.getExe config.services.tailscale.package;
 
-  domainExpression =
-    if cfg.domain-override != null then
-      cfg.domain-override
-    else
-      "$(${tailscale} cert 2>&1 | grep use | cut -d '\"' -f2)";
+  domainExpression = "$(${tailscale} cert 2>&1 | grep use | cut -d '\"' -f2)";
 in
 {
   options.services.tailscale.tls = {
@@ -31,10 +27,10 @@ in
       default = "0640";
     };
 
-    domain-override = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
+    domain = lib.mkOption {
+      type = lib.types.str;
       description = "Override domain. Defaults to suggested one by tailscale";
-      default = null;
+      default = domainExpression;
     };
 
     nginx = {
@@ -87,7 +83,7 @@ in
 
         mkdir -p "${cfg.certDir}"
 
-        DOMAIN=${domainExpression}
+        DOMAIN=${cfg.domain}
         CERT_FILE="${cfg.certDir}/cert.crt"
         KEY_FILE="${cfg.certDir}/key.key"
 

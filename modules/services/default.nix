@@ -1,5 +1,6 @@
 {
   imports = [
+    ./dashboard.nix
     ./jellyfin.nix
     ./prowlarr.nix
     ./qbittorrent.nix

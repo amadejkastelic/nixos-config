@@ -37,6 +37,7 @@ let
     ./hardware/docker.nix
 
     ./services/arr
+    ./services/dashboard.nix
     ./services/grabby.nix
     ./services/jellyfin.nix
     ./services/metrics
