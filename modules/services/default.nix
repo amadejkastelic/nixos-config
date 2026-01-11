@@ -1,5 +1,6 @@
 {
   imports = [
+    ./blocky.nix
     ./dashboard.nix
     ./grafana.nix
     ./jellyfin.nix
