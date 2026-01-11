@@ -1,6 +1,7 @@
 {
   imports = [
     ./dashboard.nix
+    ./grafana.nix
     ./jellyfin.nix
     ./prowlarr.nix
     ./qbittorrent.nix
