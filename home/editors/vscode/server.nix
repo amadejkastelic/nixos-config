@@ -1,8 +1,6 @@
 { inputs, ... }:
 {
-  imports = [
-    "${inputs.vscode-server}/modules/vscode-server/home.nix"
-  ];
+  imports = [ inputs.vscode-server.homeModules.default ];
 
   services.vscode-server = {
     enable = true;
