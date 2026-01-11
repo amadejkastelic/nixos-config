@@ -1,4 +1,7 @@
 { config, ... }:
+let
+  hostName = config.newroking.hostName;
+in
 {
   services.nginx = {
     enable = true;
@@ -9,20 +12,24 @@
     recommendedTlsSettings = true;
     recommendedProxySettings = true;
 
-    virtualHosts."${config.networking.hostName}" = {
+    virtualHosts."${hostName}" = {
+      root = "/var/www/${hostName}";
       locations."/" = {
-        return = "200 '${config.networking.hostName} server OK [nginx:${config.services.nginx.package.version}]'";
-        extraConfig = "add_header Content-Type text/plain;";
+        extraConfig = ''
+          default_type text/plain;
+          try_files /index.html =404;
+        '';
       };
+    };
+
+    tailscaleAuth = {
+      enable = true;
+      virtualHosts = [ hostName ];
     };
   };
 
-  services.tailscaleAuth.enable = true;
-
-  # Tailscale funnel
-  services.tailscale.funnel = {
-    enable = true;
-    host = "localhost";
-    port = 80;
-  };
+  systemd.tmpfiles.rules = [
+    "d /var/www/${hostName} 0755 nginx nginx -"
+    "f /var/www/${hostName}/index.html 0644 nginx nginx - '${hostName} server OK [nginx:${config.services.nginx.package.version}]'"
+  ];
 }
