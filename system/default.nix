@@ -39,6 +39,7 @@ let
     ./services/arr
     ./services/blocky.nix
     ./services/dashboard.nix
+    ./services/flaresolverr.nix
     ./services/grabby.nix
     ./services/jellyfin.nix
     ./services/metrics
