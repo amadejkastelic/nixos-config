@@ -183,11 +183,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    discord-video-embed-bot = {
-      url = "github:amadejkastelic/discord-video-embed-bot";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sekiro-tweaker.url = "github:amadejkastelic/sekiro-tweaker";
 
     vicinae.url = "github:vicinaehq/vicinae";
@@ -200,6 +195,7 @@
         home-manager.follows = "hm";
       };
     };
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
