@@ -1,5 +1,14 @@
 { lib, ... }:
+let
+  dnsServers = [
+    "1.1.1.1"
+    "8.8.8.8"
+    "8.8.4.4"
+  ];
+in
 {
+  networking.nameservers = [ "127.0.0.1" ] ++ dnsServers;
+
   services.blocky = {
     enable = true;
     nginx.enable = true;
@@ -10,11 +19,7 @@
         http = 8084;
       };
 
-      upstreams.groups.default = [
-        "1.1.1.1"
-        "8.8.8.8"
-        "8.8.4.4"
-      ];
+      upstreams.groups.default = dnsServers;
 
       log = {
         level = "info";
@@ -23,6 +28,7 @@
       };
 
       blocking = {
+        loading.strategy = "fast";
         blockType = "zeroIP";
         denylists = {
           ads = [
