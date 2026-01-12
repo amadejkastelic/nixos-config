@@ -18,12 +18,10 @@ in
 
     extraConfig.pipewire."92-low-latency" = {
       "context.properties" = {
-        "link.max-buffers" = 8;
         "default.clock.rate" = rate;
         "default.clock.quantum" = quantum / 2;
-        "default.clock.min-quantum" = quantum / 2;
-        "default.clock.max-quantum" = quantum;
-        "default.clock.quantum-limit" = quantum;
+        "default.clock.min-quantum" = quantum / 4;
+        "default.clock.max-quantum" = quantum * 4;
       };
       "context.modules" = [
         { name = "libpipewire-module-rt"; }
