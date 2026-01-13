@@ -44,6 +44,7 @@ let
     ./services/jellyfin.nix
     ./services/metrics
     ./services/nginx.nix
+    ./services/vaultwarden.nix
   ];
 in
 {

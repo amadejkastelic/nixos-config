@@ -45,10 +45,15 @@ in
             };
           }
           {
-            # TODO
             Blocky = {
               href = "/blocky";
               icon = "blocky";
+            };
+          }
+          {
+            Vaultwarden = {
+              href = "/vaultwarden";
+              icon = "vaultwarden";
             };
           }
         ];

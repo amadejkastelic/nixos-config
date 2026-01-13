@@ -11,5 +11,6 @@
     ./sonarr.nix
     ./tailscale-funnel.nix
     ./tailscale-tls.nix
+    ./vaultwarden.nix
   ];
 }
