@@ -123,16 +123,16 @@ in
 
       listener = [
         {
-          timeout = 120;
+          timeout = 300;
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 300;
+          timeout = 360;
           on-timeout = "${lib.getExe saveWindows} && hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on && ${lib.getExe restoreWindows}";
         }
         {
-          timeout = 360;
+          timeout = 600;
           on-timeout = "systemctl suspend";
         }
       ];
