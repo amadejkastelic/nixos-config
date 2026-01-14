@@ -26,7 +26,6 @@
     ../../services/wayland/hyprpaper.nix
     ../../services/wayland/hypridle.nix
     ../../services/wayland/hyprsunset.nix
-    # ../../services/wayland/mako.nix
 
     # terminal emulators
     ../../terminal/emulators/kitty.nix

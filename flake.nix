@@ -208,5 +208,10 @@
     opencode.url = "github:anomalyco/opencode";
 
     grabby.url = "github:amadejkastelic/grabby";
+
+    voxtype = {
+      url = "github:peteonrails/voxtype";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
