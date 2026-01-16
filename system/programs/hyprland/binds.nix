@@ -1,5 +1,5 @@
 let
-  screenshotarea = ''grimblast --freeze --notify copy area'';
+  screenshotarea = "grimblast --freeze --notify copy area";
 
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
   workspaces = builtins.concatLists (
