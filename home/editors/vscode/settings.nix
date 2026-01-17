@@ -66,6 +66,10 @@ let
     "workbench.editor.tabActionCloseVisibility" = false;
   };
 
+  update = {
+    "update.showReleaseNotes" = false;
+  };
+
   # Extensions
   catppuccin = {
     "catppuccin.italicComments" = false;
@@ -144,6 +148,7 @@ in
     // terminal
     // window
     // workbench
+    // update
     // catppuccin
     // formatter
     // nix
