@@ -8,6 +8,7 @@ in
     shell = pkgs.zsh;
     extraGroups = [
       "adbusers"
+      "audio"
       "input"
       "libvirtd"
       "networkmanager"

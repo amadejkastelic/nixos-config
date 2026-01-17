@@ -213,5 +213,7 @@
       url = "github:peteonrails/voxtype";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    musnix.url = "github:musnix/musnix";
   };
 }
