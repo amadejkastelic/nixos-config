@@ -25,6 +25,7 @@ in
     DIRENV_LOG_FORMAT = "";
 
     # Secrets
+    CODEBERG_TOKEN = "$(cat ${config.sops.secrets.codeberg-token.path})";
     GITHUB_TOKEN = "$(cat ${config.sops.secrets.github-token.path})";
     Z_AI_API_KEY = "$(cat ${config.sops.secrets.z-ai-api-token.path})";
 
@@ -33,6 +34,7 @@ in
   };
 
   sops.secrets = {
+    codeberg-token = { };
     github-token = { };
     z-ai-api-token = { };
   };
