@@ -21,5 +21,6 @@
     hoppscotch
     qbittorrent-enhanced
     telegram-desktop
+    gnome-disk-utility
   ];
 }
