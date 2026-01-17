@@ -11,8 +11,7 @@ in
 {
   home.packages = with pkgs; [
     github-mcp-server
-    # https://github.com/NixOS/nixpkgs/pull/475389
-    # mcp-nixos
+    mcp-nixos
   ];
 
   programs.mcp = {
@@ -29,11 +28,9 @@ in
         ];
         env.GITHUB_PERSONAL_ACCESS_TOKEN = "{env:GITHUB_TOKEN}";
       };
-      /*
-        nixos = {
-          command = lib.getExe pkgs.mcp-nixos;
-        };
-      */
+      nixos = {
+        command = lib.getExe pkgs.mcp-nixos;
+      };
       web-search-prime = {
         type = "remote";
         url = zAiBaseUrl + "/web_search_prime/mcp";
