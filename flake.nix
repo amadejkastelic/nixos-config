@@ -173,7 +173,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     nixcord = {
-      url = "github:amadejkastelic/nixcord?ref=hm-module-fix";
+      url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

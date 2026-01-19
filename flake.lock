@@ -2026,16 +2026,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1768844182,
-        "narHash": "sha256-MKAp+h2g2/g0SiC/Xf0X6W1pOR/JD2O0JYvIJu1noIg=",
-        "owner": "amadejkastelic",
+        "lastModified": 1768845897,
+        "narHash": "sha256-RpGlRmG2UGiv8D+bxTClaDjpzNUOyNZ/qqfw83KMuOI=",
+        "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "132b91986a034063f662fa59fbf1e9c59913059b",
+        "rev": "1fc8c300280dcd69e0f733132ac380231486185f",
         "type": "github"
       },
       "original": {
-        "owner": "amadejkastelic",
-        "ref": "hm-module-fix",
+        "owner": "FlameFlag",
         "repo": "nixcord",
         "type": "github"
       }
