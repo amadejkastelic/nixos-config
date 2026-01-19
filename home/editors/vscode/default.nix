@@ -1,4 +1,16 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  mkNixpkgsUnfree =
+    system:
+    import inputs.nixpkgs-vscode {
+      inherit system;
+      config.allowUnfree = true;
+    };
+in
 {
   imports = [
     ./extensions.nix
@@ -9,9 +21,9 @@
 
   programs.vscode = {
     enable = true;
-    # Pylance doesn't work in vscodium
-    # https://github.com/VSCodium/vscodium/discussions/1641
-    package = pkgs.vscode;
+
+    # https://github.com/microsoft/vscode/issues/260391
+    package = (mkNixpkgsUnfree pkgs.stdenv.hostPlatform.system).vscode;
 
     profiles.default = {
       enableUpdateCheck = false;

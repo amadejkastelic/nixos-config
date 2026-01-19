@@ -2026,15 +2026,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1768836665,
-        "narHash": "sha256-xxON6Z3nF4qos0oCNT5LM46+n1VR+pe4qH8myA1fuXU=",
-        "owner": "KaylorBen",
+        "lastModified": 1768844182,
+        "narHash": "sha256-MKAp+h2g2/g0SiC/Xf0X6W1pOR/JD2O0JYvIJu1noIg=",
+        "owner": "amadejkastelic",
         "repo": "nixcord",
-        "rev": "8375c1a21522a19b8362dcc7933b1cf3c805d397",
+        "rev": "132b91986a034063f662fa59fbf1e9c59913059b",
         "type": "github"
       },
       "original": {
-        "owner": "KaylorBen",
+        "owner": "amadejkastelic",
+        "ref": "hm-module-fix",
         "repo": "nixcord",
         "type": "github"
       }
@@ -2082,6 +2083,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-vscode": {
+      "locked": {
+        "lastModified": 1764506988,
+        "narHash": "sha256-clj4TsIVqiFfvyu+mfm3s94Y7iOP+eRa62wxzLUV49M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c7d90a136071eb8154d6b3fe63b0046de9d4712",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c7d90a136071eb8154d6b3fe63b0046de9d4712",
         "type": "github"
       }
     },
@@ -2150,22 +2167,6 @@
     },
     "nixpkgs_14": {
       "locked": {
-        "lastModified": 1768569498,
-        "narHash": "sha256-bB6Nt99Cj8Nu5nIUq0GLmpiErIT5KFshMQJGMZwgqUo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "be5afa0fcb31f0a96bf9ecba05a516c66fcd8114",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_15": {
-      "locked": {
         "lastModified": 1768564909,
         "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
         "owner": "NixOS",
@@ -2180,7 +2181,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_16": {
+    "nixpkgs_15": {
       "locked": {
         "lastModified": 1762111121,
         "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
@@ -2196,7 +2197,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_17": {
+    "nixpkgs_16": {
       "locked": {
         "lastModified": 1763421233,
         "narHash": "sha256-Stk9ZYRkGrnnpyJ4eqt9eQtdFWRRIvMxpNRf4sIegnw=",
@@ -2212,7 +2213,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_18": {
+    "nixpkgs_17": {
       "locked": {
         "lastModified": 1682134069,
         "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
@@ -2391,24 +2392,6 @@
         "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
       }
     },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_14"
-      },
-      "locked": {
-        "lastModified": 1768841169,
-        "narHash": "sha256-jThoqBMQRTEwLsOTvGS+fATKJuVnEn2g/K7fhWXkuoA=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "453417ed47774fc3077ef67c49c831b4014494f4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_6",
@@ -2581,7 +2564,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_13",
-        "opencode": "opencode",
+        "nixpkgs-vscode": "nixpkgs-vscode",
         "pre-commit-hooks": "pre-commit-hooks_4",
         "sekiro-tweaker": "sekiro-tweaker",
         "sops-nix": "sops-nix",
@@ -2636,7 +2619,7 @@
     },
     "sekiro-tweaker": {
       "inputs": {
-        "nixpkgs": "nixpkgs_15",
+        "nixpkgs": "nixpkgs_14",
         "pre-commit-hooks": "pre-commit-hooks_5"
       },
       "locked": {
@@ -3080,7 +3063,7 @@
     },
     "vicinae": {
       "inputs": {
-        "nixpkgs": "nixpkgs_16",
+        "nixpkgs": "nixpkgs_15",
         "systems": "systems_8"
       },
       "locked": {
@@ -3099,7 +3082,7 @@
     },
     "vicinae-extensions": {
       "inputs": {
-        "nixpkgs": "nixpkgs_17",
+        "nixpkgs": "nixpkgs_16",
         "systems": "systems_9",
         "vicinae": "vicinae_2"
       },
@@ -3166,7 +3149,7 @@
     "vscode-server": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_18"
+        "nixpkgs": "nixpkgs_17"
       },
       "locked": {
         "lastModified": 1753541826,

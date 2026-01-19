@@ -46,6 +46,9 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # https://github.com/microsoft/vscode/issues/260391
+    nixpkgs-vscode.url = "github:NixOS/nixpkgs?ref=4c7d90a136071eb8154d6b3fe63b0046de9d4712";
+
     flake-compat.url = "github:edolstra/flake-compat";
 
     flake-utils = {
@@ -170,7 +173,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     nixcord = {
-      url = "github:KaylorBen/nixcord";
+      url = "github:amadejkastelic/nixcord?ref=hm-module-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -202,8 +205,6 @@
     cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nanofetch.url = "github:amadejkastelic/nanofetch";
-
-    opencode.url = "github:anomalyco/opencode";
 
     grabby.url = "github:amadejkastelic/grabby";
 
