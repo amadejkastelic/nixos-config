@@ -7,7 +7,7 @@
     environmentFile = config.sops.secrets.vaultwarden-env.path;
 
     dbBackend = "sqlite";
-    backupDir = "/var/backup/vaultwarden/";
+    backupDir = "${config.nas.backupDir}/vaultwarden/";
 
     config = {
       domain = "http://${config.networking.hostName}/vaultwarden";

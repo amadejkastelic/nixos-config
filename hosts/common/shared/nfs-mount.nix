@@ -1,4 +1,12 @@
+{
+  config,
+  lib,
+  ...
+}:
+
 let
+  cfg = config.nas;
+
   options = [
     "x-systemd.automount"
     "noauto"
@@ -7,23 +15,45 @@ let
   ];
 in
 {
-  fileSystems = {
-    "/mnt/nas-data" = {
-      device = "oblak.local:/storage/data";
-      fsType = "nfs";
-      options = options;
+  options.nas = {
+    dataDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/mnt/nas-data";
+      description = "Mount point for NAS data directory";
     };
 
-    "/mnt/nas-media" = {
-      device = "oblak.local:/storage/media";
-      fsType = "nfs";
-      options = options;
+    mediaDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/mnt/nas-media";
+      description = "Mount point for NAS media directory";
     };
 
-    "/mnt/nas-backups" = {
-      device = "oblak.local:/storage/backups";
-      fsType = "nfs";
-      options = options;
+    backupDir = lib.mkOption {
+      type = lib.types.str;
+      default = "/mnt/nas-backups";
+      description = "Mount point for NAS backups directory";
+    };
+  };
+
+  config = {
+    fileSystems = {
+      "${cfg.dataDir}" = {
+        device = "oblak.local:/storage/data";
+        fsType = "nfs";
+        options = options;
+      };
+
+      "${cfg.mediaDir}" = {
+        device = "oblak.local:/storage/media";
+        fsType = "nfs";
+        options = options;
+      };
+
+      "${cfg.backupDir}" = {
+        device = "oblak.local:/storage/backups";
+        fsType = "nfs";
+        options = options;
+      };
     };
   };
 }
