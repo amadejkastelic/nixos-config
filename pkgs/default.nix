@@ -24,6 +24,8 @@
         ];
 
         z-ai-vision-mcp-server = pkgs.callPackage ./z-ai-vision-mcp-server { };
+
+        magewell-usb-capture = pkgs.callPackage ./magewell-usb-capture { };
       };
     };
 }
