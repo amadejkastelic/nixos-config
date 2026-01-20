@@ -5,7 +5,9 @@ let
 
     ./core/default.nix
 
+    ./network/avahi.nix
     ./network/default.nix
+    ./network/nfs.nix
     ./network/tailscale.nix
   ];
 
@@ -13,7 +15,6 @@ let
     ./core/boot.nix
     ./core/lanzaboote.nix
 
-    ./network/avahi.nix
     ./hardware/bluetooth.nix
     ./hardware/input.nix
     ./hardware/ledger.nix
@@ -33,6 +34,8 @@ let
     ./theme/stylix.nix
   ];
 
+  nas = common ++ [ ./services/nfs.nix ];
+
   server = common ++ [
     ./hardware/docker.nix
 
@@ -48,5 +51,5 @@ let
   ];
 in
 {
-  inherit desktop server;
+  inherit desktop server nas;
 }

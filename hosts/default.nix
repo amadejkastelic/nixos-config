@@ -12,7 +12,7 @@
       mod = "${self}/system";
 
       # get the basic config to build on top of
-      inherit (import "${self}/system" { inherit self; }) desktop server;
+      inherit (import "${self}/system" { inherit self; }) desktop server nas;
 
       # get these into the module system
       specialArgs = { inherit inputs self; };
@@ -24,6 +24,7 @@
           ./ryzen
 
           ./common/secrets.nix
+          ./common/shared/nfs-mount.nix
 
           "${mod}/programs/hyprland"
           "${mod}/programs/gaming"
@@ -46,6 +47,16 @@
         inherit specialArgs;
         modules = server ++ [
           ./razer
+
+          ./common/secrets.nix
+          ./common/shared/nfs-mount.nix
+        ];
+      };
+
+      oblak = nixosSystem {
+        inherit specialArgs;
+        modules = nas ++ [
+          ./oblak
 
           ./common/secrets.nix
         ];

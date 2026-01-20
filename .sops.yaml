@@ -4,6 +4,7 @@ keys:
   - &hosts:
     - &ryzen age122w6sw60n7xymp70fvq3p96k8x9a4s7070h0xque8c0j64rt05fqse463a
     - &razer age19vhjmhcla7z4n6sskwjjt6yd5dtafwnqrled8pdrrwheap9fqq5slf82vz
+    - &oblak age14uz7wqwu7vurf63h2rdcrwanqun9sw9qvcwh9ktxyxl4486jdejqmxzd4h
 creation_rules:
   - path_regex: hosts/ryzen/secrets.ya?ml$
     key_groups:
@@ -15,12 +16,18 @@ creation_rules:
       - age:
           - *amadejk
           - *razer
+  - path_regex: hosts/oblak/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *amadejk
+          - *oblak
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
       - age:
           - *amadejk
           - *ryzen
           - *razer
+          - *oblak
   # hm secrets
   - path_regex: home/secrets.ya?ml$
     key_groups:
