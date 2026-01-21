@@ -6,7 +6,7 @@
 {
   services.smartd = {
     enable = true;
-    autodetect.enable = true;
+    autodetect = true;
 
     notifications = {
       x11.enable = false;
