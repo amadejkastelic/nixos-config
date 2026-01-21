@@ -67,9 +67,21 @@ in
             };
           }
           {
-            Sonarr = {
+            "Sonarr TV" = {
               icon = "sonarr";
               href = "/sonarr";
+            };
+          }
+          {
+            "Sonarr KDrama" = {
+              icon = "sonarr";
+              href = "/sonarr-kdrama";
+            };
+          }
+          {
+            "Sonarr Anime" = {
+              icon = "sonarr";
+              href = "/sonarr-anime";
             };
           }
           {

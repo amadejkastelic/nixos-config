@@ -1,0 +1,509 @@
+{
+  lib,
+  pkgs,
+  config,
+}:
+let
+  mkHostConfigService =
+    serviceName: serviceConfig:
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} host via API";
+      after = [ "${serviceName}.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [
+          "api_key:${serviceConfig.apiKeyPath}"
+        ]
+        ++ lib.optional (
+          serviceConfig.hostConfig.passwordPath != null
+        ) "auth_password:${serviceConfig.hostConfig.passwordPath}";
+        ExecStartPre = import ./wait-for-api.nix {
+          inherit
+            lib
+            pkgs
+            serviceName
+            serviceConfig
+            ;
+        };
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        ${lib.optionalString (
+          serviceConfig.hostConfig.passwordPath != null
+        ) "AUTH_PASSWORD=$(cat $CREDENTIALS_DIRECTORY/auth_password)"}
+
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching current host configuration..."
+        HOST_CONFIG=$(${pkgs.curl}/bin/curl -s -H "X-Api-Key: $API_KEY" "$BASE_URL/config/host" 2>&1)
+        CURL_EXIT=$?
+
+        if [ $CURL_EXIT -ne 0 ]; then
+          echo "Failed to fetch host configuration (curl exit code: $CURL_EXIT): $HOST_CONFIG"
+          exit 1
+        fi
+
+        if [ -z "$HOST_CONFIG" ]; then
+          echo "Failed to fetch host configuration (empty response)"
+          exit 1
+        fi
+
+        echo "Host config response: $HOST_CONFIG"
+
+        CONFIG_ID=$(echo "$HOST_CONFIG" | ${pkgs.jq}/bin/jq -r '.id' 2>&1)
+        JQ_EXIT=$?
+
+        if [ $JQ_EXIT -ne 0 ]; then
+          echo "Failed to parse config ID from host config: $CONFIG_ID"
+          exit 1
+        fi
+
+        echo "Building configuration..."
+        NEW_CONFIG=$(echo "$HOST_CONFIG" | ${pkgs.jq}/bin/jq \
+          --arg apiKey "$API_KEY" \
+          ${
+            lib.optionalString (
+              serviceConfig.hostConfig.passwordPath != null
+            ) "--arg password \"$AUTH_PASSWORD\""
+          } \
+          --argjson port "${builtins.toString serviceConfig.hostConfig.port}" \
+          --arg urlBase "${serviceConfig.hostConfig.urlBase}" \
+          --arg instanceName "${serviceConfig.hostConfig.instanceName}" \
+          --arg logLevel "info" \
+          --argjson launchBrowser false \
+          --argjson analyticsEnabled false \
+          --arg authenticationMethod "External" \
+          --arg authenticationRequired "DisabledForLocalAddresses" \
+          '{
+            port: $port,
+            urlBase: $urlBase,
+            instanceName: $instanceName,
+            apiKey: $apiKey,
+            ${lib.optionalString (
+              serviceConfig.hostConfig.passwordPath != null
+            ) "password: $password,\n            passwordConfirmation: $password,"}
+            launchBrowser: $launchBrowser,
+            analyticsEnabled: $analyticsEnabled,
+            authenticationMethod: $authenticationMethod,
+            authenticationRequired: $authenticationRequired,
+            logLevel: $logLevel
+          } as $updates
+          | . * $updates')
+
+        echo "Updating ${capitalizedName} configuration via API..."
+        UPDATE_RESPONSE=$(${pkgs.curl}/bin/curl -s -w "\n%{http_code}" -X PUT \
+          -H "X-Api-Key: $API_KEY" \
+          -H "Content-Type: application/json" \
+          -d "$NEW_CONFIG" \
+          "$BASE_URL/config/host/$CONFIG_ID")
+
+        HTTP_CODE=$(echo "$UPDATE_RESPONSE" | tail -n1)
+
+        if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "202" ]; then
+          echo "Configuration updated successfully (HTTP $HTTP_CODE)"
+
+          echo "Restarting ${capitalizedName} service..."
+          systemctl restart ${serviceName}.service
+          echo "${capitalizedName} service restarted"
+        else
+          echo "Failed to update configuration (HTTP $HTTP_CODE)"
+          echo "Response: $(echo "$UPDATE_RESPONSE" | head -n -1)"
+          exit 1
+        fi
+      '';
+    };
+
+  mkRootFoldersService =
+    serviceName: serviceConfig:
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} root folders via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [ "api_key:${serviceConfig.apiKeyPath}" ];
+        ExecStartPre = import ./wait-for-api.nix {
+          inherit
+            lib
+            pkgs
+            serviceName
+            serviceConfig
+            ;
+        };
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching existing root folders..."
+        ROOT_FOLDERS=$(${pkgs.curl}/bin/curl -s -H "X-Api-Key: $API_KEY" "$BASE_URL/rootfolder")
+
+        CONFIGURED_PATHS=$(cat <<'EOF'
+        ${builtins.toJSON (map (f: f.path) serviceConfig.rootFolders)}
+        EOF
+        )
+
+        echo "Removing root folders not in configuration..."
+        echo "$ROOT_FOLDERS" | ${pkgs.jq}/bin/jq -r '.[] | @json' | while IFS= read -r folder; do
+          FOLDER_PATH=$(echo "$folder" | ${pkgs.jq}/bin/jq -r '.path')
+          if ! echo "$CONFIGURED_PATHS" | ${pkgs.jq}/bin/jq -e --arg path "$FOLDER_PATH" 'index($path)' >/dev/null 2>&1; then
+            FOLDER_ID=$(echo "$folder" | ${pkgs.jq}/bin/jq -r '.id')
+            echo "Deleting root folder not in config: $FOLDER_PATH (ID: $FOLDER_ID)"
+            ${pkgs.curl}/bin/curl -sSf -X DELETE \
+              -H "X-Api-Key: $API_KEY" \
+              "$BASE_URL/rootfolder/$FOLDER_ID" >/dev/null || echo "Warning: Failed to delete root folder $FOLDER_PATH"
+          fi
+        done
+
+        echo "Creating root folders..."
+        ${lib.concatMapStringsSep "\n" (folder: ''
+          echo "Processing root folder: ${folder.path}"
+
+          EXISTING_FOLDER=$(echo "$ROOT_FOLDERS" | ${pkgs.jq}/bin/jq -r '.[] | select(.path == "${folder.path}") | @json' || echo "")
+
+          if [ -n "$EXISTING_FOLDER" ]; then
+            echo "Root folder ${folder.path} already exists"
+          else
+            NEW_FOLDER=$(${pkgs.jq}/bin/jq -n \
+              --arg path "${folder.path}" \
+              '{path: $path}')
+
+            ${pkgs.curl}/bin/curl -sSf -X POST \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$NEW_FOLDER" \
+              "$BASE_URL/rootfolder" >/dev/null
+
+            echo "Root folder ${folder.path} created"
+          fi
+        '') serviceConfig.rootFolders}
+
+        echo "${capitalizedName} root folders configuration complete"
+      '';
+    };
+
+  mkDownloadClientsService =
+    serviceName: serviceConfig:
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+      arrType = builtins.elemAt (lib.splitString "-" serviceName) 0;
+      categoryField =
+        if arrType == "radarr" then
+          "movieCategory"
+        else if lib.hasPrefix "sonarr" serviceName then
+          "tvCategory"
+        else if arrType == "lidarr" then
+          "musicCategory"
+        else
+          "category";
+    in
+    {
+      description = "Configure ${capitalizedName} download clients via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [
+          "api_key:${serviceConfig.apiKeyPath}"
+        ]
+        ++ map (
+          c: "client_api_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower c.name)}:${c.apiKeyPath}"
+        ) serviceConfig.downloadClients;
+        ExecStartPre = import ./wait-for-api.nix {
+          inherit
+            lib
+            pkgs
+            serviceName
+            serviceConfig
+            ;
+        };
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching download client schemas..."
+        SCHEMAS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/downloadclient/schema")
+
+        echo "Fetching existing download clients..."
+        DOWNLOAD_CLIENTS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/downloadclient")
+
+        CONFIGURED_NAMES=$(cat <<'EOF'
+        ${builtins.toJSON (map (d: d.name) serviceConfig.downloadClients)}
+        EOF
+        )
+
+        echo "Removing download clients not in configuration..."
+        echo "$DOWNLOAD_CLIENTS" | ${pkgs.jq}/bin/jq -r '.[] | @json' | while IFS= read -r downloadClient; do
+          CLIENT_NAME=$(echo "$downloadClient" | ${pkgs.jq}/bin/jq -r '.name')
+          CLIENT_ID=$(echo "$downloadClient" | ${pkgs.jq}/bin/jq -r '.id')
+
+          if ! echo "$CONFIGURED_NAMES" | ${pkgs.jq}/bin/jq -e --arg name "$CLIENT_NAME" 'index($name)' >/dev/null 2>&1; then
+            echo "Deleting download client not in config: $CLIENT_NAME (ID: $CLIENT_ID)"
+            ${pkgs.curl}/bin/curl -sSf -X DELETE \
+              -H "X-Api-Key: $API_KEY" \
+              "$BASE_URL/downloadclient/$CLIENT_ID" >/dev/null || echo "Warning: Failed to delete download client $CLIENT_NAME"
+          fi
+        done
+
+        ${lib.concatMapStringsSep "\n" (clientConfig: ''
+          echo "Processing download client: ${clientConfig.name}"
+
+          CLIENT_API_KEY=$(cat $CREDENTIALS_DIRECTORY/client_api_${
+            lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower clientConfig.name)
+          })
+
+          ALL_OVERRIDES=$(${pkgs.jq}/bin/jq -n \
+            --arg host "${clientConfig.host or "127.0.0.1"}" \
+            --arg port "${toString (clientConfig.port or 8080)}" \
+            '{host: $host, port: ($port | tonumber)}')
+          echo "ALL_OVERRIDES: $ALL_OVERRIDES"
+          echo "DOWNLOAD_CLIENTS: $DOWNLOAD_CLIENTS"
+          FIELD_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" --arg cat "${
+            clientConfig.category or "movies"
+          }" '$all + {${categoryField}: $cat} | with_entries(select(.key | startswith("_") | not))')
+
+          echo "DOWNLOAD_CLIENTS: $DOWNLOAD_CLIENTS"
+          EXISTING_CLIENT=$(echo "$DOWNLOAD_CLIENTS" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${clientConfig.name}") | @json' || echo "")
+
+          if [ -n "$EXISTING_CLIENT" ]; then
+            echo "Download client ${clientConfig.name} already exists, updating..."
+            CLIENT_ID=$(echo "$EXISTING_CLIENT" | ${pkgs.jq}/bin/jq -r '.id')
+
+            UPDATED_CLIENT=$(${pkgs.jq}/bin/jq -n \
+              --arg apiKey "$CLIENT_API_KEY" \
+              --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson existing "$EXISTING_CLIENT" \
+              '$existing |
+                .enable = true |
+                .priority = 1 |
+                .fields |= map(
+                  if .name == "apiKey" then .value = $apiKey
+                  elif (.name | IN($overrides | keys[])) then .value = $overrides[.name]
+                  else .
+                  end
+                )')
+
+            echo "Updating download client with payload:"
+            echo "$UPDATED_CLIENT"
+
+            ${pkgs.curl}/bin/curl -sSf -X PUT \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$UPDATED_CLIENT" \
+              "$BASE_URL/downloadclient/$CLIENT_ID"
+
+            echo "Download client ${clientConfig.name} updated"
+          else
+            echo "Download client ${clientConfig.name} does not exist, creating..."
+
+            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementationName == "${clientConfig.implementationName}") | @json' || echo "")
+
+            if [ -z "$SCHEMA" ]; then
+              echo "Error: No schema found for download client implementationName ${clientConfig.implementationName}"
+              exit 1
+            fi
+
+            NEW_CLIENT=$(${pkgs.jq}/bin/jq -n \
+              --arg name "${clientConfig.name}" \
+              --arg implName "${clientConfig.implementationName}" \
+              --arg apiKey "$CLIENT_API_KEY" \
+              --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson schema "$SCHEMA" \
+              '{
+                name: $name,
+                enable: true,
+                priority: 1,
+                implementation: $implName,
+                implementationName: $implName,
+                configContract: $schema.configContract,
+                fields: $schema.fields |
+                  map(if .name == "apiKey" then .value = $apiKey
+                       elif (.name | IN($overrides | keys[])) then .value = $overrides[.name]
+                       else .
+                       end)
+              }')
+
+            echo "Creating download client with payload:"
+            echo "$NEW_CLIENT"
+
+            echo "Creating download client..."
+            CREATE_RESPONSE=$(${pkgs.curl}/bin/curl -sS -w "\n%{http_code}" -X POST \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$NEW_CLIENT" \
+              "$BASE_URL/downloadclient")
+
+            HTTP_CODE=$(echo "$CREATE_RESPONSE" | tail -n1)
+            RESPONSE_BODY=$(echo "$CREATE_RESPONSE" | head -n -1)
+
+            if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ] || [ "$HTTP_CODE" = "202" ]; then
+              echo "Download client ${clientConfig.name} created (HTTP $HTTP_CODE)"
+            else
+              echo "Failed to create download client (HTTP $HTTP_CODE)"
+              echo "Response: $RESPONSE_BODY"
+              exit 1
+            fi
+
+            echo "Download client ${clientConfig.name} created"
+          fi
+        '') serviceConfig.downloadClients}
+
+        echo "${capitalizedName} download clients configuration complete"
+      '';
+    };
+
+  mkIndexersService =
+    serviceName: serviceConfig:
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} indexers via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [
+          "api_key:${serviceConfig.apiKeyPath}"
+        ]
+        ++ map (
+          i: "indexer_api_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower i.name)}:${i.apiKeyPath}"
+        ) serviceConfig.indexers;
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching indexer schemas..."
+        SCHEMAS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/indexer/schema")
+
+        echo "Fetching existing indexers..."
+        INDEXERS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/indexer")
+
+        CONFIGURED_NAMES=$(cat <<'EOF'
+        ${builtins.toJSON (map (i: i.name) serviceConfig.indexers)}
+        EOF
+        )
+
+        echo "Removing indexers not in configuration..."
+        echo "$INDEXERS" | ${pkgs.jq}/bin/jq -r '.[] | @json' | while IFS= read -r indexer; do
+          INDEXER_NAME=$(echo "$indexer" | ${pkgs.jq}/bin/jq -r '.name')
+          INDEXER_ID=$(echo "$indexer" | ${pkgs.jq}/bin/jq -r '.id')
+
+          if ! echo "$CONFIGURED_NAMES" | ${pkgs.jq}/bin/jq -e --arg name "$INDEXER_NAME" 'index($name)' >/dev/null 2>&1; then
+            echo "Deleting indexer not in config: $INDEXER_NAME (ID: $INDEXER_ID)"
+            ${pkgs.curl}/bin/curl -sSf -X DELETE \
+              -H "X-Api-Key: $API_KEY" \
+              "$BASE_URL/indexer/$INDEXER_ID" >/dev/null || echo "Warning: Failed to delete indexer $INDEXER_NAME"
+          fi
+        done
+
+        ${lib.concatMapStringsSep "\n" (indexerConfig: ''
+          echo "Processing indexer: ${indexerConfig.name}"
+
+          INDEXER_API_KEY=$(cat $CREDENTIALS_DIRECTORY/indexer_api_${
+            lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower indexerConfig.name)
+          })
+
+          ALL_OVERRIDES=${
+            builtins.toJSON (
+              builtins.removeAttrs indexerConfig [
+                "name"
+                "apiKeyPath"
+              ]
+            )
+          }
+          FIELD_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" '$all | with_entries(select(.value != null and .key | startswith("_") | not))')
+
+          EXISTING_INDEXER=$(echo "$INDEXERS" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${indexerConfig.name}") | @json' || echo "")
+
+          if [ -n "$EXISTING_INDEXER" ]; then
+            echo "Indexer ${indexerConfig.name} already exists, updating..."
+            INDEXER_ID=$(echo "$EXISTING_INDEXER" | ${pkgs.jq}/bin/jq -r '.id')
+
+            UPDATED_INDEXER=$(${pkgs.jq}/bin/jq -n \
+              --arg apiKey "$INDEXER_API_KEY" \
+              --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson existing "$EXISTING_INDEXER" \
+              '$existing | .fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else . end) | .fields += ($overrides | to_entries | map({name: .key, value: .value}))')
+
+            ${pkgs.curl}/bin/curl -sSf -X PUT \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$UPDATED_INDEXER" \
+              "$BASE_URL/indexer/$INDEXER_ID" >/dev/null
+
+            echo "Indexer ${indexerConfig.name} updated"
+          else
+            echo "Indexer ${indexerConfig.name} does not exist, creating..."
+
+            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${indexerConfig.name}") | @json' || echo "")
+
+            if [ -z "$SCHEMA" ]; then
+              echo "Error: No schema found for indexer ${indexerConfig.name}"
+              exit 1
+            fi
+
+            NEW_INDEXER=$(${pkgs.jq}/bin/jq -n \
+              --arg apiKey "$INDEXER_API_KEY" \
+              --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson schema "$SCHEMA" \
+              '$schema | .fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else . end) | .fields += ($overrides | to_entries | map({name: .key, value: .value}))')
+
+            ${pkgs.curl}/bin/curl -sSf -X POST \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$NEW_INDEXER" \
+              "$BASE_URL/indexer" >/dev/null
+
+            echo "Indexer ${indexerConfig.name} created"
+          fi
+        '') serviceConfig.indexers}
+
+        echo "${capitalizedName} indexers configuration complete"
+      '';
+    };
+in
+{
+  inherit
+    mkHostConfigService
+    mkRootFoldersService
+    mkDownloadClientsService
+    mkIndexersService
+    ;
+}

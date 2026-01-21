@@ -1,13 +1,13 @@
 { config, ... }:
 {
-  services.radarr = {
+  services.sonarr-kdrama = {
     enable = true;
     nginx.enable = true;
 
     settings = {
       log.analyticsEnabled = false;
       update.automatically = false;
-      server.port = 7878;
+      server.port = 8991;
       auth = {
         authenticationMethod = "External";
         authenticationRequired = "DisabledForLocalAddresses";
@@ -16,9 +16,9 @@
 
     apiConfig = {
       enable = true;
-      apiKeyPath = config.sops.secrets."radarr/api_key".path;
+      apiKeyPath = config.sops.secrets."sonarr-kdrama/api_key".path;
       rootFolders = [
-        { path = "${config.nas.mediaDir}/movies"; }
+        { path = "${config.nas.mediaDir}/kdrama"; }
       ];
       downloadClients = [
         {
@@ -27,19 +27,14 @@
           host = "127.0.0.1";
           port = 8088;
           apiKeyPath = config.sops.secrets."qbittorrent/api_key".path;
-          category = "movies";
+          category = "kdrama";
         }
       ];
     };
   };
 
-  sops.secrets."radarr/api_key" = {
-    owner = "radarr";
-    group = "radarr";
-  };
-
-  sops.secrets."qbittorrent/api_key" = {
-    owner = "qbittorrent";
-    group = "qbittorrent";
+  sops.secrets."sonarr-kdrama/api_key" = {
+    owner = "sonarr-kdrama";
+    group = "sonarr-kdrama";
   };
 }
