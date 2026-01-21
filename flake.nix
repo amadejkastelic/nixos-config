@@ -26,11 +26,12 @@
         }:
         {
           devShells.default = pkgs.mkShell {
-            packages = [
-              pkgs.nil
-              pkgs.nixfmt
-              pkgs.nodejs-slim
-              pkgs.git
+            packages = with pkgs; [
+              just
+              nil
+              nixfmt
+              nodejs-slim
+              git
               config.packages.repl
             ];
             name = "dots";
@@ -89,7 +90,8 @@
     apple-emoji.url = "github:samuelngs/apple-emoji-linux";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # https://github.com/hyprwm/Hyprland/discussions/13043
+      url = "github:hyprwm/Hyprland?ref=eb0480ba0d0870ab5d8a876f01c6ab033a4b35f4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
