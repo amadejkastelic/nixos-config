@@ -136,7 +136,6 @@ stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "Magewell USB Capture Utility for configuring USB capture devices";
     homepage = "https://www.magewell.com/usb-capture";
-    license = lib.licenses.unfree;
     platforms = [ "x86_64-linux" ];
     mainProgram = "usbcaptureutility";
   };
