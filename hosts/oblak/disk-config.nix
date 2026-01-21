@@ -8,7 +8,7 @@
     supportedFilesystems = [ "zfs" ];
     kernelParams = [
       # 7 / 8 GiB for ARC
-      "zfs.zfs_arc_max=${toString 7 * 1024 * 1024 * 1024}"
+      "zfs.zfs_arc_max=${toString (7 * 1024 * 1024 * 1024)}"
     ];
   };
 
