@@ -46,7 +46,6 @@
           zfs_log = {
             name = "zfs-log";
             size = "8G";
-            content.type = "zfs_slog";
           };
           zfs_cache = {
             name = "zfs-cache";
