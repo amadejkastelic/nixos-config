@@ -34,10 +34,16 @@ let
     ./theme/stylix.nix
   ];
 
-  nas = common ++ [ ./services/nfs.nix ];
+  nas = common ++ [
+    ./programs/msmtp.nix
+
+    ./services/nas
+  ];
 
   server = common ++ [
     ./hardware/docker.nix
+
+    ./programs/msmtp.nix
 
     ./services/arr
     ./services/blocky.nix

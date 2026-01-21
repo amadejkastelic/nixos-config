@@ -3,7 +3,14 @@
   imports = [ inputs.disko.nixosModules.disko ];
 
   networking.hostId = "6736bb90";
-  boot.supportedFilesystems = [ "zfs" ];
+
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    kernelParams = [
+      # 7 / 8 GiB for ARC
+      "zfs.zfs_arc_max=${toString 7 * 1024 * 1024 * 1024}"
+    ];
+  };
 
   disko.devices = {
     disk.main = {
@@ -39,12 +46,11 @@
           zfs_log = {
             name = "zfs-log";
             size = "8G";
-            # NO content here - we'll add it manually
+            content.type = "zfs_slog";
           };
           zfs_cache = {
             name = "zfs-cache";
             size = "100%";
-            # NO content here - we'll add it manually
           };
         };
       };

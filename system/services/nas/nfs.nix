@@ -16,4 +16,6 @@ in
 
   networking.firewall.allowedTCPPorts = ports;
   networking.firewall.allowedUDPPorts = ports;
+
+  services.rpcbind.enable = true;
 }
