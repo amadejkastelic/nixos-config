@@ -98,6 +98,11 @@ in
               type = lib.types.str;
               description = "Download client category";
             };
+            importMode = lib.mkOption {
+              type = lib.types.str;
+              default = "copy";
+              description = "Import mode (copy, move, hardlink)";
+            };
           };
         }
       );
@@ -160,5 +165,14 @@ in
         );
       })
     ];
+
+    users.users = lib.mkIf (config.services.radarr.user == "radarr") {
+      radarr = {
+        group = config.services.radarr.group;
+        extraGroups = [ "download" ];
+        home = config.services.radarr.dataDir;
+        isSystemUser = true;
+      };
+    };
   };
 }

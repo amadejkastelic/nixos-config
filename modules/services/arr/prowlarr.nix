@@ -33,16 +33,8 @@ let
       useNginx = config.services.${serviceName}.nginx.enable or false;
       servicePort = config.services.${serviceName}.settings.server.port;
       serviceLocation = config.services.${serviceName}.nginx.location or "";
-      baseUrl =
-        if useNginx then
-          "http://127.0.0.1/${serviceLocation}"
-        else
-          "http://127.0.0.1:${toString servicePort}${serviceLocation}";
-      prowlarrUrl =
-        if useNginx then
-          "http://127.0.0.1/${nginxCfg.location}"
-        else
-          "http://127.0.0.1:${toString config.services.prowlarr.settings.server.port}${nginxCfg.location}";
+      baseUrl = "http://127.0.0.1:${toString servicePort}/${serviceLocation}";
+      prowlarrUrl = "http://127.0.0.1:${toString config.services.prowlarr.settings.server.port}/${nginxCfg.location}";
     in
     {
       name = displayName;
@@ -50,6 +42,8 @@ let
       apiKeyPath = lib.mkDefault serviceConfig.apiKeyPath;
       baseUrl = lib.mkDefault baseUrl;
       prowlarrUrl = lib.mkDefault prowlarrUrl;
+      configContract = lib.mkDefault "${implementationName}Settings";
+      syncLevel = lib.mkDefault "FullSync";
     };
 
   defaultApplications =
@@ -150,6 +144,15 @@ in
               default = 1;
               description = "Application profile ID";
             };
+            syncLevel = lib.mkOption {
+              type = lib.types.str;
+              default = "FullSync";
+              description = "Sync level for application";
+            };
+            configContract = lib.mkOption {
+              type = lib.types.str;
+              description = "Config contract for application";
+            };
           };
         }
       );
@@ -200,6 +203,14 @@ in
         prowlarr-config-indexers = lib.mkIf (apiCfg.indexers != [ ]) (
           apiConfigurator.mkIndexersService "prowlarr" {
             inherit (apiCfg) apiKeyPath indexers;
+            inherit hostConfig;
+            apiVersion = "v1";
+          }
+        );
+
+        prowlarr-config-applications = lib.mkIf (apiCfg.applications != [ ]) (
+          apiConfigurator.mkApplicationsService "prowlarr" {
+            inherit (apiCfg) apiKeyPath applications;
             inherit hostConfig;
             apiVersion = "v1";
           }

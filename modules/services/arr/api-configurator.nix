@@ -89,9 +89,9 @@ let
             urlBase: $urlBase,
             instanceName: $instanceName,
             apiKey: $apiKey,
-            ${lib.optionalString (
-              serviceConfig.hostConfig.passwordPath != null
-            ) "password: $password,\n            passwordConfirmation: $password,"}
+            ${lib.optionalString (serviceConfig.hostConfig.passwordPath != null) ''
+              password: $password,
+              passwordConfirmation: $password,''}
             launchBrowser: $launchBrowser,
             analyticsEnabled: $analyticsEnabled,
             authenticationMethod: $authenticationMethod,
@@ -283,7 +283,8 @@ let
           ALL_OVERRIDES=$(${pkgs.jq}/bin/jq -n \
             --arg host "${clientConfig.host or "127.0.0.1"}" \
             --arg port "${toString (clientConfig.port or 8080)}" \
-            '{host: $host, port: ($port | tonumber)}')
+            --arg importMode "${clientConfig.importMode or "copy"}" \
+            '{host: $host, port: ($port | tonumber), importMode: $importMode}')
           echo "ALL_OVERRIDES: $ALL_OVERRIDES"
           echo "DOWNLOAD_CLIENTS: $DOWNLOAD_CLIENTS"
           FIELD_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" --arg cat "${
@@ -324,14 +325,15 @@ let
           else
             echo "Download client ${clientConfig.name} does not exist, creating..."
 
-            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementationName == "${clientConfig.implementationName}") | @json' || echo "")
+            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementation == "${clientConfig.implementationName}") | @json' || echo "")
 
-            if [ -z "$SCHEMA" ]; then
-              echo "Error: No schema found for download client implementationName ${clientConfig.implementationName}"
-              exit 1
-            fi
+          if [ -z "$SCHEMA" ]; then
+            echo "Error: No schema found for download client implementation ${clientConfig.implementationName}"
+            echo "Available implementations: $(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '[.[].implementation] | join(", ")')"
+            exit 1
+          fi
 
-            NEW_CLIENT=$(${pkgs.jq}/bin/jq -n \
+          NEW_CLIENT=$(${pkgs.jq}/bin/jq -n \
               --arg name "${clientConfig.name}" \
               --arg implName "${clientConfig.implementationName}" \
               --arg apiKey "$CLIENT_API_KEY" \
@@ -371,8 +373,6 @@ let
               echo "Response: $RESPONSE_BODY"
               exit 1
             fi
-
-            echo "Download client ${clientConfig.name} created"
           fi
         '') serviceConfig.downloadClients}
 
@@ -380,11 +380,127 @@ let
       '';
     };
 
-  mkIndexersService =
+  mkApplicationsService =
     serviceName: serviceConfig:
     let
       capitalizedName =
         lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} applications via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [
+          "api_key:${serviceConfig.apiKeyPath}"
+        ]
+        ++ map (
+          app: "app_api_${lib.replaceStrings [ " " ] [ "-" ] (lib.toLower app.name)}:${app.apiKeyPath}"
+        ) serviceConfig.applications;
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching application schemas..."
+        echo "URL: $BASE_URL/applications/schema"
+        SCHEMAS=$(${pkgs.curl}/bin/curl -sS -w "\nHTTP_CODE:%{http_code}" -H "X-Api-Key: $API_KEY" "$BASE_URL/applications/schema")
+        HTTP_CODE=$(echo "$SCHEMAS" | grep "HTTP_CODE:" | cut -d: -f2)
+        SCHEMAS=$(echo "$SCHEMAS" | grep -v "HTTP_CODE:")
+        echo "HTTP Status: $HTTP_CODE"
+        echo "Schemas response: $SCHEMAS"
+
+        if [ -z "$SCHEMAS" ]; then
+          echo "Error: Empty response from schemas API"
+          exit 1
+        fi
+
+        echo "Fetching existing applications..."
+        APPLICATIONS=$(${pkgs.curl}/bin/curl -sS -w "\nHTTP_CODE:%{http_code}" -H "X-Api-Key: $API_KEY" "$BASE_URL/applications")
+        APP_HTTP_CODE=$(echo "$APPLICATIONS" | grep "HTTP_CODE:" | cut -d: -f2)
+        APPLICATIONS=$(echo "$APPLICATIONS" | grep -v "HTTP_CODE:")
+        echo "Applications HTTP Status: $APP_HTTP_CODE"
+
+        CONFIGURED_NAMES=$(cat <<'EOF'
+        ${builtins.toJSON (map (a: a.name) serviceConfig.applications)}
+        EOF
+        )
+
+        echo "Removing all configured applications for clean recreation..."
+        echo "$APPLICATIONS" | ${pkgs.jq}/bin/jq -r '.[] | @json' | while IFS= read -r app; do
+          APP_NAME=$(echo "$app" | ${pkgs.jq}/bin/jq -r '.name')
+          APP_ID=$(echo "$app" | ${pkgs.jq}/bin/jq -r '.id')
+
+          echo "Deleting application: $APP_NAME (ID: $APP_ID)"
+          ${pkgs.curl}/bin/curl -sSf -X DELETE \
+            -H "X-Api-Key: $API_KEY" \
+            "$BASE_URL/applications/$APP_ID" >/dev/null || echo "Warning: Failed to delete application $APP_NAME"
+        done
+
+        ${lib.concatMapStringsSep "\n" (appConfig: ''
+          echo "Creating application: ${appConfig.name}"
+
+          APP_API_KEY=$(cat $CREDENTIALS_DIRECTORY/app_api_${
+            lib.replaceStrings [ " " ] [ "-" ] (lib.toLower appConfig.name)
+          })
+
+          SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementation == "${appConfig.implementationName}") | @json' || echo "")
+
+          if [ -z "$SCHEMA" ]; then
+            echo "Error: No schema found for application implementation ${appConfig.implementationName}"
+            echo "All schemas: $SCHEMAS"
+            echo "Available implementations: $(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '[.[].implementation] | join(", ")')" || echo "Could not parse implementations"
+            echo "Trying to find with name: $(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | "\(.name) - \(.implementation)"' || echo "Could not parse names")"
+            exit 1
+          fi
+
+          NEW_APP=$(echo "$SCHEMA" | ${pkgs.jq}/bin/jq \
+              --arg name "${appConfig.name}" \
+              --arg apiKey "$APP_API_KEY" \
+              --arg baseUrl "${appConfig.baseUrl}" \
+              --arg prowlarrUrl "${appConfig.prowlarrUrl}" \
+              --arg syncLevel "${appConfig.syncLevel}" \
+              '{
+                name: $name,
+                implementation: .implementation,
+                implementationName: .implementation,
+                configContract: .configContract,
+                syncLevel: $syncLevel,
+                fields: (.fields // []) |
+                  map(
+                    if .name == "apiKey" then .value = $apiKey
+                    elif .name == "baseUrl" then .value = $baseUrl
+                    elif .name == "prowlarrUrl" then .value = $prowlarrUrl
+                    else .
+                    end
+                  )
+              }')
+
+          ${pkgs.curl}/bin/curl -sSf -X POST \
+            -H "X-Api-Key: $API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$NEW_APP" \
+            "$BASE_URL/applications" >/dev/null
+
+          echo "Application ${appConfig.name} created"
+        '') serviceConfig.applications}
+
+        echo "${capitalizedName} applications configuration complete"
+      '';
+    };
+
+  mkIndexersService =
+    serviceName: serviceConfig:
+    let
+      capitalizedName =
+        lib.toUPPER (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
     in
     {
       description = "Configure ${capitalizedName} indexers via API";
@@ -504,6 +620,7 @@ in
     mkHostConfigService
     mkRootFoldersService
     mkDownloadClientsService
+    mkApplicationsService
     mkIndexersService
     ;
 }

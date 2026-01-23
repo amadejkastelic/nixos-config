@@ -28,6 +28,7 @@
           port = 8088;
           apiKeyPath = config.sops.secrets."qbittorrent/api_key".path;
           category = "movies";
+          importMode = "hardlink";
         }
       ];
     };
@@ -40,6 +41,6 @@
 
   sops.secrets."qbittorrent/api_key" = {
     owner = "qbittorrent";
-    group = "qbittorrent";
+    group = "download";
   };
 }

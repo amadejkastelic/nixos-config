@@ -28,6 +28,7 @@
           port = 8088;
           apiKeyPath = config.sops.secrets."qbittorrent/api_key".path;
           category = "anime";
+          importMode = "hardlink";
         }
       ];
     };

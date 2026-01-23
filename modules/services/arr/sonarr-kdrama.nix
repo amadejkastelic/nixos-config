@@ -123,6 +123,11 @@ in
               type = lib.types.str;
               description = "Download client category";
             };
+            importMode = lib.mkOption {
+              type = lib.types.str;
+              default = "copy";
+              description = "Import mode (copy, move, hardlink)";
+            };
           };
         }
       );
@@ -211,6 +216,7 @@ in
     users.users = lib.mkIf (config.services.sonarr-kdrama.user == "sonarr-kdrama") {
       sonarr-kdrama = {
         group = config.services.sonarr-kdrama.group;
+        extraGroups = [ "download" ];
         home = config.services.sonarr-kdrama.dataDir;
         isSystemUser = true;
       };

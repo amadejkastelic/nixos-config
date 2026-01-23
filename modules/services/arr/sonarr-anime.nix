@@ -123,6 +123,11 @@ in
               type = lib.types.str;
               description = "Download client category";
             };
+            importMode = lib.mkOption {
+              type = lib.types.str;
+              default = "copy";
+              description = "Import mode (copy, move, hardlink)";
+            };
           };
         }
       );
@@ -208,6 +213,7 @@ in
     users.users = lib.mkIf (config.services.sonarr-anime.user == "sonarr-anime") {
       sonarr-anime = {
         group = config.services.sonarr-anime.group;
+        extraGroups = [ "download" ];
         home = config.services.sonarr-anime.dataDir;
         isSystemUser = true;
       };

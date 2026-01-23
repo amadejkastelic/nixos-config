@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   services.qbittorrent = {
     enable = true;
@@ -7,6 +8,9 @@
     webuiPort = 8088;
 
     extraArgs = [ "--confirm-legal-notice" ];
+
+    user = "qbittorrent";
+    group = "download";
 
     serverConfig = {
       Core.AutoDeleteAddedTorrentFile = "Never";
@@ -19,8 +23,8 @@
       };
 
       BitTorrent.Session = {
-        DefaultSavePath = "/todo";
-        TempPath = "/todo";
+        DefaultSavePath = "${config.nas.mediaDir}/downloads";
+        TempPath = "${config.nas.mediaDir}/downloads/.temp";
         TempPathEnabled = true;
         AnonymousModeEnabled = true;
         GlobalMaxSeedingMinutes = -1;
@@ -28,6 +32,19 @@
         MaxActiveDownloads = -1;
         MaxActiveUploads = -1;
       };
+    };
+  };
+
+  systemd.tmpfiles.settings."qbittorrent" = {
+    "${config.nas.mediaDir}/downloads".d = {
+      user = "qbittorrent";
+      group = "download";
+      mode = "0775";
+    };
+    "${config.nas.mediaDir}/downloads/.temp".d = {
+      user = "qbittorrent";
+      group = "download";
+      mode = "0775";
     };
   };
 }
