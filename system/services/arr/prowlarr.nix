@@ -58,9 +58,33 @@
             "cloudflare"
           ];
         }
+        {
+          name = "AvistaZ";
+          credentialsPaths = [
+            {
+              baseName = "username";
+              path = config.sops.secrets."avistaz/username".path;
+            }
+            {
+              baseName = "password";
+              path = config.sops.secrets."avistaz/password".path;
+            }
+            {
+              baseName = "pid";
+              path = config.sops.secrets."avistaz/pid".path;
+            }
+          ];
+          tags = [
+            "kdrama"
+            "cloudflare"
+          ];
+        }
       ];
     };
   };
 
   sops.secrets."prowlarr/api_key" = { };
+  sops.secrets."avistaz/username" = { };
+  sops.secrets."avistaz/password" = { };
+  sops.secrets."avistaz/pid" = { };
 }

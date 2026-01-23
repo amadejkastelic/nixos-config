@@ -109,6 +109,24 @@ in
               default = null;
               description = "Path to file containing API key for indexer";
             };
+            credentialsPaths = lib.mkOption {
+              type = lib.types.listOf (
+                lib.types.submodule {
+                  options = {
+                    baseName = lib.mkOption {
+                      type = lib.types.str;
+                      description = "Base name used for environment variable and credential lookup (e.g., username, password, pid)";
+                    };
+                    path = lib.mkOption {
+                      type = lib.types.path;
+                      description = "Path to credential file";
+                    };
+                  };
+                }
+              );
+              default = [ ];
+              description = "List of credential files for indexers requiring multiple auth fields (e.g., username, password, pid)";
+            };
             tags = lib.mkOption {
               type = lib.types.listOf lib.types.str;
               default = [ ];

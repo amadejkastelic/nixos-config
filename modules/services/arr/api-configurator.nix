@@ -516,7 +516,15 @@ let
         ]
         ++ map (
           i: "indexer_api_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower i.name)}:${i.apiKeyPath}"
-        ) (builtins.filter (i: i.apiKeyPath != null) serviceConfig.indexers);
+        ) (builtins.filter (i: i.apiKeyPath != null) serviceConfig.indexers)
+        ++ lib.flatten (
+          map (
+            i:
+            map (
+              c: "indexer_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower i.name)}_${c.baseName}:${c.path}"
+            ) (i.credentialsPaths or [ ])
+          ) serviceConfig.indexers
+        );
       };
 
       script = ''
@@ -561,6 +569,16 @@ let
             })
           ''}
 
+          ${lib.optionalString (indexerConfig ? credentialsPaths && indexerConfig.credentialsPaths != [ ]) ''
+            CREDENTIAL_OVERRIDES=$(${pkgs.jq}/bin/jq -n '{}')
+            ${lib.concatMapStringsSep "\n" (cred: ''
+              CREDENTIAL_VALUE=$(cat $CREDENTIALS_DIRECTORY/indexer_${
+                lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower indexerConfig.name)
+              }_${cred.baseName})
+              CREDENTIAL_OVERRIDES=$(echo "$CREDENTIAL_OVERRIDES" | ${pkgs.jq}/bin/jq --arg value "$CREDENTIAL_VALUE" --arg key "${cred.baseName}" '. + { ($key): $value }')
+            '') indexerConfig.credentialsPaths}
+          ''}
+
           TAG_IDS="[]"
           ALL_OVERRIDES=$(${pkgs.jq}/bin/jq -n \
             --argjson config '${
@@ -568,6 +586,7 @@ let
                 builtins.removeAttrs indexerConfig [
                   "name"
                   "apiKeyPath"
+                  "credentialsPaths"
                   "appProfileId"
                 ]
               )
@@ -610,13 +629,21 @@ let
               --argjson topLevel "$TOPLEVEL_OVERRIDES" \
               --argjson existing "$EXISTING_INDEXER" \
               --arg tagIds "$TAG_IDS" \
-              '$existing | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
+              '$existing | .enable = true | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
 
             ${lib.optionalString (indexerConfig.apiKeyPath != null) ''
               UPDATED_INDEXER=$(echo "$UPDATED_INDEXER" | ${pkgs.jq}/bin/jq \
                 --arg apiKey "$INDEXER_API_KEY" \
                 '.fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else .)')
             ''}
+
+            ${lib.optionalString (indexerConfig ? credentialsPaths && indexerConfig.credentialsPaths != [ ])
+              ''
+                UPDATED_INDEXER=$(echo "$UPDATED_INDEXER" | ${pkgs.jq}/bin/jq \
+                  --argjson credentials "$CREDENTIAL_OVERRIDES" \
+                  '.fields |= map(. + if ($credentials[.name] != null) then {value: $credentials[.name]} else {} end)')
+              ''
+            }
 
             ${pkgs.curl}/bin/curl -sSf -X PUT \
               -H "X-Api-Key: $API_KEY" \
@@ -640,13 +667,21 @@ let
               --argjson topLevel "$TOPLEVEL_OVERRIDES" \
               --argjson schema "$SCHEMA" \
               --arg tagIds "$TAG_IDS" \
-              '$schema | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
+              '$schema | .enable = true | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
 
             ${lib.optionalString (indexerConfig.apiKeyPath != null) ''
               NEW_INDEXER=$(echo "$NEW_INDEXER" | ${pkgs.jq}/bin/jq \
                 --arg apiKey "$INDEXER_API_KEY" \
                 '.fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else .)')
             ''}
+
+            ${lib.optionalString (indexerConfig ? credentialsPaths && indexerConfig.credentialsPaths != [ ])
+              ''
+                NEW_INDEXER=$(echo "$NEW_INDEXER" | ${pkgs.jq}/bin/jq \
+                  --argjson credentials "$CREDENTIAL_OVERRIDES" \
+                  '.fields |= map(. + if ($credentials[.name] != null) then {value: $credentials[.name]} else {} end)')
+              ''
+            }
 
             ${pkgs.curl}/bin/curl -sSf -X POST \
               -H "X-Api-Key: $API_KEY" \
