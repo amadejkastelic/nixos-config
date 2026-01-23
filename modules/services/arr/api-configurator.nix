@@ -500,7 +500,7 @@ let
     serviceName: serviceConfig:
     let
       capitalizedName =
-        lib.toUPPER (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
     in
     {
       description = "Configure ${capitalizedName} indexers via API";
@@ -516,7 +516,7 @@ let
         ]
         ++ map (
           i: "indexer_api_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower i.name)}:${i.apiKeyPath}"
-        ) serviceConfig.indexers;
+        ) (builtins.filter (i: i.apiKeyPath != null) serviceConfig.indexers);
       };
 
       script = ''
@@ -530,6 +530,9 @@ let
 
         echo "Fetching existing indexers..."
         INDEXERS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/indexer")
+
+        echo "Fetching existing tags..."
+        EXISTING_TAGS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/tag")
 
         CONFIGURED_NAMES=$(cat <<'EOF'
         ${builtins.toJSON (map (i: i.name) serviceConfig.indexers)}
@@ -552,31 +555,68 @@ let
         ${lib.concatMapStringsSep "\n" (indexerConfig: ''
           echo "Processing indexer: ${indexerConfig.name}"
 
-          INDEXER_API_KEY=$(cat $CREDENTIALS_DIRECTORY/indexer_api_${
-            lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower indexerConfig.name)
-          })
+          ${lib.optionalString (indexerConfig.apiKeyPath != null) ''
+            INDEXER_API_KEY=$(cat $CREDENTIALS_DIRECTORY/indexer_api_${
+              lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower indexerConfig.name)
+            })
+          ''}
 
-          ALL_OVERRIDES=${
-            builtins.toJSON (
-              builtins.removeAttrs indexerConfig [
-                "name"
-                "apiKeyPath"
-              ]
-            )
-          }
-          FIELD_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" '$all | with_entries(select(.value != null and .key | startswith("_") | not))')
+          TAG_IDS="[]"
+          ALL_OVERRIDES=$(${pkgs.jq}/bin/jq -n \
+            --argjson config '${
+              builtins.toJSON (
+                builtins.removeAttrs indexerConfig [
+                  "name"
+                  "apiKeyPath"
+                  "appProfileId"
+                ]
+              )
+            }' \
+            '$config')
+          TOPLEVEL_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" '$all | del(.tags) | with_entries(select(.key != "priority" and .key != "downloadClientId" and .key != "rss")) + {appProfileId: 1}')
+          FIELD_OVERRIDES=$(${pkgs.jq}/bin/jq -n --argjson all "$ALL_OVERRIDES" '$all | with_entries(select(.value != null and (.key | startswith("_") | not) and .key != "tags" and .key != "priority" and .key != "downloadClientId" and .key != "rss"))')
 
           EXISTING_INDEXER=$(echo "$INDEXERS" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${indexerConfig.name}") | @json' || echo "")
+
+          ${lib.optionalString (indexerConfig.tags != [ ]) ''
+            echo "Processing tags for indexer ${indexerConfig.name}..."
+
+            ${builtins.foldl' (acc: tag: ''
+              ${acc}
+              TAG_LABEL="${tag}"
+              TAG_ID=$(echo "$EXISTING_TAGS" | ${pkgs.jq}/bin/jq -r ".[] | select(.label == \"$TAG_LABEL\") | .id")
+
+              if [ -z "$TAG_ID" ] || [ "$TAG_ID" = "null" ]; then
+                echo "Tag $TAG_LABEL does not exist, creating..."
+                TAG_RESPONSE=$(${pkgs.curl}/bin/curl -sS -X POST \
+                  -H "X-Api-Key: $API_KEY" \
+                  -H "Content-Type: application/json" \
+                  -d "{\"label\":\"$TAG_LABEL\"}" \
+                  "$BASE_URL/tag")
+                TAG_ID=$(echo "$TAG_RESPONSE" | ${pkgs.jq}/bin/jq -r '.id')
+                echo "Tag $TAG_LABEL created with ID: $TAG_ID"
+              fi
+
+              TAG_IDS=$(echo "$TAG_IDS" | ${pkgs.jq}/bin/jq -c --arg id "$TAG_ID" '. + [$id | tonumber]')
+            '') "" indexerConfig.tags}
+          ''}
 
           if [ -n "$EXISTING_INDEXER" ]; then
             echo "Indexer ${indexerConfig.name} already exists, updating..."
             INDEXER_ID=$(echo "$EXISTING_INDEXER" | ${pkgs.jq}/bin/jq -r '.id')
 
             UPDATED_INDEXER=$(${pkgs.jq}/bin/jq -n \
-              --arg apiKey "$INDEXER_API_KEY" \
               --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson topLevel "$TOPLEVEL_OVERRIDES" \
               --argjson existing "$EXISTING_INDEXER" \
-              '$existing | .fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else . end) | .fields += ($overrides | to_entries | map({name: .key, value: .value}))')
+              --arg tagIds "$TAG_IDS" \
+              '$existing | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
+
+            ${lib.optionalString (indexerConfig.apiKeyPath != null) ''
+              UPDATED_INDEXER=$(echo "$UPDATED_INDEXER" | ${pkgs.jq}/bin/jq \
+                --arg apiKey "$INDEXER_API_KEY" \
+                '.fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else .)')
+            ''}
 
             ${pkgs.curl}/bin/curl -sSf -X PUT \
               -H "X-Api-Key: $API_KEY" \
@@ -596,10 +636,17 @@ let
             fi
 
             NEW_INDEXER=$(${pkgs.jq}/bin/jq -n \
-              --arg apiKey "$INDEXER_API_KEY" \
               --argjson overrides "$FIELD_OVERRIDES" \
+              --argjson topLevel "$TOPLEVEL_OVERRIDES" \
               --argjson schema "$SCHEMA" \
-              '$schema | .fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else . end) | .fields += ($overrides | to_entries | map({name: .key, value: .value}))')
+              --arg tagIds "$TAG_IDS" \
+              '$schema | . + $topLevel | .fields = (.fields | map(select(.name != "tags"))) + ($overrides | to_entries | map({name: .key, value: .value})) | .tags = ($tagIds | fromjson)')
+
+            ${lib.optionalString (indexerConfig.apiKeyPath != null) ''
+              NEW_INDEXER=$(echo "$NEW_INDEXER" | ${pkgs.jq}/bin/jq \
+                --arg apiKey "$INDEXER_API_KEY" \
+                '.fields |= (if any(.name == "apiKey") then (.[] | if .name == "apiKey" then .value = $apiKey else . end) else .)')
+            ''}
 
             ${pkgs.curl}/bin/curl -sSf -X POST \
               -H "X-Api-Key: $API_KEY" \
@@ -614,6 +661,116 @@ let
         echo "${capitalizedName} indexers configuration complete"
       '';
     };
+
+  mkIndexerProxiesService =
+    serviceName: serviceConfig:
+
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} indexer proxies via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [ "api_key:${serviceConfig.apiKeyPath}" ];
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching indexer proxy schemas..."
+        SCHEMAS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/indexerproxy/schema")
+
+        echo "Fetching existing indexer proxies..."
+        PROXIES=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/indexerproxy")
+
+        echo "Fetching existing tags..."
+        EXISTING_TAGS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/tag")
+
+        ${lib.concatMapStringsSep "\n" (proxyConfig: ''
+          echo "Processing indexer proxy: ${proxyConfig.name}"
+
+          TAG_IDS="[]"
+          ${lib.optionalString (proxyConfig.tags != [ ]) ''
+            ${builtins.foldl' (acc: tag: ''
+              ${acc}
+              TAG_LABEL="${tag}"
+              TAG_ID=$(echo "$EXISTING_TAGS" | ${pkgs.jq}/bin/jq -r ".[] | select(.label == \"$TAG_LABEL\") | .id")
+
+              if [ -z "$TAG_ID" ] || [ "$TAG_ID" = "null" ]; then
+                echo "Tag $TAG_LABEL does not exist, creating..."
+                TAG_RESPONSE=$(${pkgs.curl}/bin/curl -sS -X POST \
+                  -H "X-Api-Key: $API_KEY" \
+                  -H "Content-Type: application/json" \
+                  -d "{\"label\":\"$TAG_LABEL\"}" \
+                  "$BASE_URL/tag")
+                TAG_ID=$(echo "$TAG_RESPONSE" | ${pkgs.jq}/bin/jq -r '.id')
+                echo "Tag $TAG_LABEL created with ID: $TAG_ID"
+              fi
+
+              TAG_IDS=$(echo "$TAG_IDS" | ${pkgs.jq}/bin/jq -c --arg id "$TAG_ID" '. + [$id | tonumber]')
+            '') "" proxyConfig.tags}
+          ''}
+
+          EXISTING_PROXY=$(echo "$PROXIES" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${proxyConfig.name}") | @json' || echo "")
+
+          if [ -n "$EXISTING_PROXY" ]; then
+            echo "Indexer proxy ${proxyConfig.name} already exists, updating..."
+            PROXY_ID=$(echo "$EXISTING_PROXY" | ${pkgs.jq}/bin/jq -r '.id')
+
+            UPDATED_PROXY=$(echo "$EXISTING_PROXY" | ${pkgs.jq}/bin/jq \
+              --arg hostUrl "${proxyConfig.hostUrl}" \
+              --argjson requestTimeout ${builtins.toString proxyConfig.requestTimeout} \
+              --argjson tagIds "$TAG_IDS" \
+              '.fields |= (map(if .name == "hostUrl" then .value = $hostUrl elif .name == "requestTimeout" then .value = $requestTimeout else . end)) | .tags = $tagIds')
+
+            ${pkgs.curl}/bin/curl -sSf -X PUT \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$UPDATED_PROXY" \
+              "$BASE_URL/indexerproxy/$PROXY_ID" >/dev/null
+
+            echo "Indexer proxy ${proxyConfig.name} updated"
+          else
+            echo "Indexer proxy ${proxyConfig.name} does not exist, creating..."
+
+            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementation == "${proxyConfig.implementation}") | @json' || echo "")
+
+            if [ -z "$SCHEMA" ]; then
+              echo "Error: No schema found for indexer proxy implementation ${proxyConfig.implementation}"
+              exit 1
+            fi
+
+            NEW_PROXY=$(echo "$SCHEMA" | ${pkgs.jq}/bin/jq \
+              --arg name "${proxyConfig.name}" \
+              --arg hostUrl "${proxyConfig.hostUrl}" \
+              --argjson requestTimeout ${builtins.toString proxyConfig.requestTimeout} \
+              --argjson tagIds "$TAG_IDS" \
+              '.name = $name | .fields |= (map(if .name == "hostUrl" then .value = $hostUrl elif .name == "requestTimeout" then .value = $requestTimeout else . end)) | .tags = $tagIds')
+
+            ${pkgs.curl}/bin/curl -sSf -X POST \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$NEW_PROXY" \
+              "$BASE_URL/indexerproxy" >/dev/null
+
+            echo "Indexer proxy ${proxyConfig.name} created"
+          fi
+        '') serviceConfig.proxies}
+
+        echo "${capitalizedName} indexer proxies configuration complete"
+      '';
+    };
+
 in
 {
   inherit
@@ -622,5 +779,6 @@ in
     mkDownloadClientsService
     mkApplicationsService
     mkIndexersService
+    mkIndexerProxiesService
     ;
 }

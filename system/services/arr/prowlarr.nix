@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   services.prowlarr = {
     enable = true;
@@ -21,6 +26,39 @@
     apiConfig = {
       enable = true;
       apiKeyPath = config.sops.secrets."prowlarr/api_key".path;
+
+      indexerProxies = lib.optional config.services.flaresolverr.enable {
+        name = "FlareSolverr";
+        implementation = "FlareSolverr";
+        hostUrl = "http://127.0.0.1:${toString config.services.flaresolverr.port}";
+        requestTimeout = 60;
+        tags = [ "cloudflare" ];
+      };
+
+      indexers = [
+        {
+          name = "YTS";
+          tags = [ "movies" ];
+        }
+        {
+          name = "Nyaa.si";
+          tags = [ "anime" ];
+        }
+        {
+          name = "SubsPlease";
+          tags = [ "anime" ];
+        }
+      ]
+      ++ lib.optionals config.services.flaresolverr.enable [
+        {
+          name = "1337x";
+          tags = [
+            "movies"
+            "tv"
+            "cloudflare"
+          ];
+        }
+      ];
     };
   };
 

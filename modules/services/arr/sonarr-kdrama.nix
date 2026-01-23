@@ -216,7 +216,7 @@ in
     users.users = lib.mkIf (config.services.sonarr-kdrama.user == "sonarr-kdrama") {
       sonarr-kdrama = {
         group = config.services.sonarr-kdrama.group;
-        extraGroups = [ "download" ];
+        extraGroups = [ "media" ];
         home = config.services.sonarr-kdrama.dataDir;
         isSystemUser = true;
       };

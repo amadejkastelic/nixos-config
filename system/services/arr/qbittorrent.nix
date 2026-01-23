@@ -10,7 +10,7 @@
     extraArgs = [ "--confirm-legal-notice" ];
 
     user = "qbittorrent";
-    group = "download";
+    group = "media";
 
     serverConfig = {
       Core.AutoDeleteAddedTorrentFile = "Never";
@@ -38,12 +38,12 @@
   systemd.tmpfiles.settings."qbittorrent" = {
     "${config.nas.mediaDir}/downloads".d = {
       user = "qbittorrent";
-      group = "download";
+      group = "media";
       mode = "0775";
     };
     "${config.nas.mediaDir}/downloads/.temp".d = {
       user = "qbittorrent";
-      group = "download";
+      group = "media";
       mode = "0775";
     };
   };

@@ -105,14 +105,55 @@ in
               description = "Name of Prowlarr indexer schema";
             };
             apiKeyPath = lib.mkOption {
-              type = lib.types.path;
+              type = lib.types.nullOr lib.types.path;
+              default = null;
               description = "Path to file containing API key for indexer";
+            };
+            tags = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              default = [ ];
+              description = "List of tag labels to assign to indexer (tags are auto-created if they don't exist)";
             };
           };
         }
       );
       default = [ ];
       description = "List of indexers to configure in Prowlarr";
+    };
+
+    indexerProxies = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = "Name of the indexer proxy";
+            };
+            implementation = lib.mkOption {
+              type = lib.types.str;
+              default = "FlareSolverr";
+              description = "Proxy implementation type (e.g., FlareSolverr)";
+            };
+            tags = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              default = [ ];
+              description = "List of tag labels - proxy will only be used for indexers with matching tags";
+            };
+            hostUrl = lib.mkOption {
+              type = lib.types.str;
+              default = "http://127.0.0.1:8191";
+              description = "URL to the FlareSolverr instance";
+            };
+            requestTimeout = lib.mkOption {
+              type = lib.types.int;
+              default = 60;
+              description = "Request timeout in seconds (1-180)";
+            };
+          };
+        }
+      );
+      default = [ ];
+      description = "List of indexer proxies (e.g., FlareSolverr) to configure in Prowlarr";
     };
 
     applications = lib.mkOption {
@@ -200,11 +241,27 @@ in
           apiVersion = "v1";
         };
 
-        prowlarr-config-indexers = lib.mkIf (apiCfg.indexers != [ ]) (
-          apiConfigurator.mkIndexersService "prowlarr" {
-            inherit (apiCfg) apiKeyPath indexers;
+        prowlarr-config-indexer-proxies = lib.mkIf (apiCfg.indexerProxies != [ ]) (
+          apiConfigurator.mkIndexerProxiesService "prowlarr" {
+            inherit (apiCfg) apiKeyPath;
+            proxies = apiCfg.indexerProxies;
             inherit hostConfig;
             apiVersion = "v1";
+          }
+        );
+
+        prowlarr-config-indexers = lib.mkIf (apiCfg.indexers != [ ]) (
+          let
+            indexerService = apiConfigurator.mkIndexersService "prowlarr" {
+              inherit (apiCfg) apiKeyPath indexers;
+              inherit hostConfig;
+              apiVersion = "v1";
+            };
+          in
+          indexerService
+          // lib.optionalAttrs (apiCfg.indexerProxies != [ ]) {
+            after = indexerService.after ++ [ "prowlarr-config-indexer-proxies.service" ];
+            requires = indexerService.requires ++ [ "prowlarr-config-indexer-proxies.service" ];
           }
         );
 

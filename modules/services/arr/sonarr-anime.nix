@@ -213,7 +213,7 @@ in
     users.users = lib.mkIf (config.services.sonarr-anime.user == "sonarr-anime") {
       sonarr-anime = {
         group = config.services.sonarr-anime.group;
-        extraGroups = [ "download" ];
+        extraGroups = [ "media" ];
         home = config.services.sonarr-anime.dataDir;
         isSystemUser = true;
       };

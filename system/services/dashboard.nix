@@ -103,12 +103,6 @@ in
             };
           }
           {
-            Readarr = {
-              icon = "readarr";
-              href = "/readarr";
-            };
-          }
-          {
             qBittorrent = {
               icon = "qbittorrent";
               href = "/qbittorrent";

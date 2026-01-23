@@ -31,9 +31,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.groups.download = { };
+    users.groups.media = { };
 
-    services.qbittorrent.group = lib.mkDefault "download";
+    services.qbittorrent.group = lib.mkDefault "media";
 
     services.nginx = {
       enable = true;

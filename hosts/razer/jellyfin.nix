@@ -7,5 +7,10 @@
 
       device = "/dev/dri/renderD128";
     };
+
+    user = "jellyfin";
+    group = "media";
   };
+
+  users.users.jellyfin.extraGroups = [ "media" ];
 }

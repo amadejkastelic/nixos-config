@@ -169,7 +169,7 @@ in
     users.users = lib.mkIf (config.services.radarr.user == "radarr") {
       radarr = {
         group = config.services.radarr.group;
-        extraGroups = [ "download" ];
+        extraGroups = [ "media" ];
         home = config.services.radarr.dataDir;
         isSystemUser = true;
       };

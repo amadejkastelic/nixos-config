@@ -169,7 +169,7 @@ in
     users.users = lib.mkIf (config.services.sonarr.user == "sonarr") {
       sonarr = {
         group = config.services.sonarr.group;
-        extraGroups = [ "download" ];
+        extraGroups = [ "media" ];
         home = config.services.sonarr.dataDir;
         isSystemUser = true;
       };

@@ -1,4 +1,8 @@
 { config, ... }:
+let
+  category = "movies";
+  dir = "${config.nas.mediaDir}/${category}";
+in
 {
   services.radarr = {
     enable = true;
@@ -18,7 +22,7 @@
       enable = true;
       apiKeyPath = config.sops.secrets."radarr/api_key".path;
       rootFolders = [
-        { path = "${config.nas.mediaDir}/movies"; }
+        { path = dir; }
       ];
       downloadClients = [
         {
@@ -27,7 +31,7 @@
           host = "127.0.0.1";
           port = 8088;
           apiKeyPath = config.sops.secrets."qbittorrent/api_key".path;
-          category = "movies";
+          category = category;
           importMode = "hardlink";
         }
       ];
@@ -41,6 +45,14 @@
 
   sops.secrets."qbittorrent/api_key" = {
     owner = "qbittorrent";
-    group = "download";
+    group = "media";
+  };
+
+  systemd.tmpfiles.settings."radarr" = {
+    "${dir}".d = {
+      user = "radarr";
+      group = "media";
+      mode = "0775";
+    };
   };
 }
