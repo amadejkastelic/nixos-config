@@ -4,6 +4,16 @@
   config,
   ...
 }:
+let
+  hyprlandPkg =
+    inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.overrideAttrs
+      (old: {
+        postInstall = (old.postInstall or "") + ''
+          mkdir -p $out/share/hypr
+          cp ${toString config.stylix.image} $out/share/hypr/wall0.png
+        '';
+      });
+in
 {
   imports = [
     inputs.hyprland.nixosModules.default
@@ -23,12 +33,7 @@
   programs.hyprland = {
     enable = true;
 
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland.overrideAttrs (old: {
-      postInstall = old.postInstall + ''
-        mkdir -p $out/share/hypr
-        cp ${toString config.stylix.image} $out/share/hypr/wall0.png
-      '';
-    });
+    package = hyprlandPkg;
 
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;

@@ -91,7 +91,7 @@
 
     hyprland = {
       # https://github.com/hyprwm/Hyprland/discussions/13043
-      url = "github:hyprwm/Hyprland?ref=eb0480ba0d0870ab5d8a876f01c6ab033a4b35f4";
+      url = "github:amadejkastelic/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
