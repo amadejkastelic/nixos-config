@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   modulesPath,
   ...
 }:
@@ -23,7 +22,8 @@
       kernelModules = [ ];
     };
 
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+    # 6.18.x is plagued with pageflip timeouts and has poor cs2 performance
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-lts-lto;
 
     kernelModules = [
       "kvm-amd"
