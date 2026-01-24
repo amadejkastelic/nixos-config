@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   services.jellyfin = {
     enable = true;
@@ -6,9 +7,35 @@
 
     openFirewall = true;
 
-    transcoding = {
-      # Manually enable enableHardwareEncoding in respective host configuration
+    apiConfig = {
+      enable = true;
 
+      users = {
+        admin = {
+          password = {
+            _secret = config.sops.secrets."jellyfin/password".path;
+          };
+          policy = {
+            isAdministrator = true;
+            enableAllFolders = true;
+            enableMediaPlayback = true;
+          };
+        };
+
+        amadejk = {
+          password = {
+            _secret = config.sops.secrets."jellyfin/password".path;
+          };
+          policy = {
+            isAdministrator = false;
+            enableAllFolders = true;
+            enableMediaPlayback = true;
+          };
+        };
+      };
+    };
+
+    transcoding = {
       enableSubtitleExtraction = true;
 
       hardwareEncodingCodecs = {
@@ -29,5 +56,12 @@
         av1 = true;
       };
     };
+  };
+
+  users.users."${config.services.jellyfin.user}".extraGroups = [ "media" ];
+
+  sops.secrets."jellyfin/password" = {
+    owner = config.services.jellyfin.user;
+    group = config.services.jellyfin.group;
   };
 }

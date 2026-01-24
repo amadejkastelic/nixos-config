@@ -1,16 +1,28 @@
+{ lib, ... }:
 {
   services.jellyfin = {
-    transcoding.enableHardwareEncoding = true;
-
     hardwareAcceleration = {
       enable = true;
-
-      device = "/dev/dri/renderD128";
+      type = "nvenc";
+      device = "/dev/nvidia0";
     };
 
-    user = "jellyfin";
-    group = "media";
-  };
+    transcoding = {
+      enableHardwareEncoding = true;
+      enableSubtitleExtraction = true;
+      enableToneMapping = false;
 
-  users.users.jellyfin.extraGroups = [ "media" ];
+      hardwareEncodingCodecs = {
+        av1 = lib.mkForce false;
+      };
+
+      hardwareDecodingCodecs = {
+        hevcRExt12bit = lib.mkForce false;
+        hevcRExt10bit = lib.mkForce false;
+        hevc10bit = lib.mkForce false;
+        hevc = lib.mkForce false;
+        av1 = lib.mkForce false;
+      };
+    };
+  };
 }
