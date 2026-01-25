@@ -221,7 +221,13 @@
             { id = "Notifications"; }
             { id = "PowerProfile"; }
             { id = "KeepAwake"; }
-            { id = "NightLight"; }
+            {
+              id = "CustomButton";
+              generalTooltipText = "Night Light";
+              icon = "moon";
+              onClicked = "hyprctl hyprsunset temperature 3000";
+              onRightClicked = "hyprctl hyprsunset identity";
+            }
           ];
         };
         cards = [
