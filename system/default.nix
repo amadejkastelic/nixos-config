@@ -51,12 +51,13 @@ let
     ./services/arr
     ./services/blocky.nix
     ./services/dashboard.nix
+    ./services/databases
+    ./services/firefox-syncserver.nix
     ./services/grabby.nix
     ./services/immich.nix
     ./services/jellyfin.nix
     ./services/metrics
     ./services/nginx.nix
-    ./services/postgresql.nix
     ./services/vaultwarden.nix
   ];
 in

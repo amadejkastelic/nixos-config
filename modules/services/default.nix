@@ -3,6 +3,7 @@
     ./arr
     ./blocky.nix
     ./dashboard.nix
+    ./firefox-syncserver.nix
     ./grafana.nix
     ./immich.nix
     ./jellyfin
