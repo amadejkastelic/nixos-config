@@ -9,7 +9,7 @@
   imports = [
     ./hyprlock.nix
     ./hyprlux.nix
-    ./quickshell
+    ./noctalia.nix
   ];
 
   home.packages = with pkgs; [

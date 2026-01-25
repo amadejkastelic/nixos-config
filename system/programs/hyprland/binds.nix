@@ -84,6 +84,9 @@ in
         # Launcher
         "$mod, R, exec, vicinae toggle"
 
+        # Session menu
+        "$mod, Escape, exec, noctalia-shell ipc call sessionMenu toggle"
+
         # screenshot
         # stop animations while screenshotting; makes black border go away
         ", Print, exec, ${screenshotarea}"

@@ -2354,6 +2354,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769364085,
+        "narHash": "sha256-Ij7ytiN/u0Bh7e6l3KVeHOGb9dt+3oc8+ydOv8al/p8=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "42bfa9fb1c664bf2ef601b086e665c3acf49d97b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -2564,6 +2584,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_13",
         "nixpkgs-vscode": "nixpkgs-vscode",
+        "noctalia": "noctalia",
         "pre-commit-hooks": "pre-commit-hooks_4",
         "sekiro-tweaker": "sekiro-tweaker",
         "sops-nix": "sops-nix",
