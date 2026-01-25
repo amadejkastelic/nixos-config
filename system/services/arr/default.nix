@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bazarr.nix
     ./flaresolverr.nix
     ./prowlarr.nix
     ./qbittorrent.nix

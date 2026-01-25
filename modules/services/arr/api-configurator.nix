@@ -806,6 +806,141 @@ let
       '';
     };
 
+  mkInstancesService =
+    serviceName: serviceConfig:
+
+    let
+      capitalizedName =
+        lib.toUpper (builtins.substring 0 1 serviceName) + builtins.substring 1 (-1) serviceName;
+    in
+    {
+      description = "Configure ${capitalizedName} Sonarr/Radarr instances via API";
+      after = [ "${serviceName}-config-host.service" ];
+      requires = [ "${serviceName}-config-host.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        LoadCredential = [
+          "api_key:${serviceConfig.apiKeyPath}"
+        ]
+        ++ map (
+          i: "instance_api_${lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower i.name)}:${i.apiKeyPath}"
+        ) serviceConfig.instances;
+      };
+
+      script = ''
+        set -eu
+
+        API_KEY=$(cat $CREDENTIALS_DIRECTORY/api_key)
+        BASE_URL="http://127.0.0.1:${builtins.toString serviceConfig.hostConfig.port}${serviceConfig.hostConfig.urlBase}/api/${serviceConfig.apiVersion}"
+
+        echo "Fetching instance schemas..."
+        SCHEMAS=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/instance/schema")
+
+        echo "Fetching existing instances..."
+        INSTANCES=$(${pkgs.curl}/bin/curl -sS -H "X-Api-Key: $API_KEY" "$BASE_URL/instance")
+
+        CONFIGURED_NAMES=$(cat <<'EOF'
+        ${builtins.toJSON (map (i: i.name) serviceConfig.instances)}
+        EOF
+        )
+
+        echo "Removing instances not in configuration..."
+        echo "$INSTANCES" | ${pkgs.jq}/bin/jq -r '.[] | @json' | while IFS= read -r instance; do
+          INSTANCE_NAME=$(echo "$instance" | ${pkgs.jq}/bin/jq -r '.name')
+          if ! echo "$CONFIGURED_NAMES" | ${pkgs.jq}/bin/jq -e --arg name "$INSTANCE_NAME" 'index($name)' >/dev/null 2>&1; then
+            INSTANCE_ID=$(echo "$instance" | ${pkgs.jq}/bin/jq -r '.id')
+            echo "Deleting instance not in config: $INSTANCE_NAME (ID: $INSTANCE_ID)"
+            ${pkgs.curl}/bin/curl -sSf -X DELETE \
+              -H "X-Api-Key: $API_KEY" \
+              "$BASE_URL/instance/$INSTANCE_ID" >/dev/null || echo "Warning: Failed to delete instance $INSTANCE_NAME"
+          fi
+        done
+
+        ${lib.concatMapStringsSep "\n" (instanceConfig: ''
+          echo "Processing instance: ${instanceConfig.name}"
+
+          INSTANCE_API_KEY=$(cat $CREDENTIALS_DIRECTORY/instance_api_${
+            lib.replaceStrings [ "-" ] [ "_" ] (lib.toLower instanceConfig.name)
+          })
+
+          ALL_OVERRIDES=$(${pkgs.jq}/bin/jq -n \
+            --arg hostname "${instanceConfig.hostname}" \
+            --arg port "${toString (instanceConfig.port or 80)}" \
+            --arg baseUrl "${instanceConfig.baseUrl or ""}" \
+            --argjson ssl ${if instanceConfig.ssl or false then "true" else "false"} \
+            --argjson isDefault ${if instanceConfig.is_default or false then "true" else "false"} \
+            '{hostname: $hostname, port: ($port | tonumber), baseUrl: $baseUrl, ssl: $ssl, isDefault: $isDefault}')
+
+          EXISTING_INSTANCE=$(echo "$INSTANCES" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "${instanceConfig.name}") | @json' || echo "")
+
+          if [ -n "$EXISTING_INSTANCE" ]; then
+            echo "Instance ${instanceConfig.name} already exists, updating..."
+            INSTANCE_ID=$(echo "$EXISTING_INSTANCE" | ${pkgs.jq}/bin/jq -r '.id')
+
+            UPDATED_INSTANCE=$(echo "$EXISTING_INSTANCE" | ${pkgs.jq}/bin/jq \
+              --arg apiKey "$INSTANCE_API_KEY" \
+              --argjson overrides "$ALL_OVERRIDES" \
+              '$existing | .apiKey = $apiKey | . + $overrides')
+
+            ${pkgs.curl}/bin/curl -sSf -X PUT \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$UPDATED_INSTANCE" \
+              "$BASE_URL/instance/$INSTANCE_ID"
+
+            echo "Instance ${instanceConfig.name} updated"
+          else
+            echo "Instance ${instanceConfig.name} does not exist, creating..."
+
+            SCHEMA=$(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '.[] | select(.implementation == "${instanceConfig.implementation}") | @json' || echo "")
+
+            if [ -z "$SCHEMA" ]; then
+              echo "Error: No schema found for instance implementation ${instanceConfig.implementation}"
+              echo "Available implementations: $(echo "$SCHEMAS" | ${pkgs.jq}/bin/jq -r '[.[].implementation] | join(", ")')" || echo "Could not parse implementations"
+              exit 1
+            fi
+
+            NEW_INSTANCE=$(echo "$SCHEMA" | ${pkgs.jq}/bin/jq \
+              --arg name "${instanceConfig.name}" \
+              --arg apiKey "$INSTANCE_API_KEY" \
+              --argjson overrides "$ALL_OVERRIDES" \
+              --argjson schema "$SCHEMA" \
+              '{
+                name: $name,
+                implementation: .implementation,
+                implementationName: .implementation,
+                configContract: .configContract,
+                isDefault: $overrides.isDefault
+              } as $base
+              | $base + {
+                apiKey: $apiKey
+              } | .fields |= (.schema.fields // []) | map(
+                if .name == "hostname" then .value = $overrides.hostname
+                elif .name == "port" then .value = $overrides.port
+                elif .name == "baseUrl" then .value = $overrides.baseUrl
+                elif .name == "ssl" then .value = $overrides.ssl
+                elif .name == "isDefault" then .value = $overrides.isDefault
+                else .
+                end
+              )')
+
+            ${pkgs.curl}/bin/curl -sSf -X POST \
+              -H "X-Api-Key: $API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "$NEW_INSTANCE" \
+              "$BASE_URL/instance"
+
+            echo "Instance ${instanceConfig.name} created"
+          fi
+        '') serviceConfig.instances}
+
+        echo "${capitalizedName} instances configuration complete"
+      '';
+    };
+
 in
 {
   inherit
@@ -815,5 +950,6 @@ in
     mkApplicationsService
     mkIndexersService
     mkIndexerProxiesService
+    mkInstancesService
     ;
 }

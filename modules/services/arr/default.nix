@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bazarr.nix
     ./radarr.nix
     ./sonarr.nix
     ./sonarr-anime.nix
