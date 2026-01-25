@@ -3,7 +3,13 @@
   services.immich = {
     enable = true;
     openFirewall = true;
-    machine-learning.enable = true;
+    machine-learning = {
+      enable = true;
+
+      environment = {
+        MPLCONFIGDIR = "/var/lib/immich/.config/matplotlib";
+      };
+    };
 
     tailscale = {
       enable = true;
