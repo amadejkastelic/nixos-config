@@ -4,7 +4,7 @@ let
     self.modules.hardware
     self.modules.services
 
-    ./core/default.nix
+    ./core
 
     ./network/avahi.nix
     ./network/default.nix
@@ -35,6 +35,8 @@ let
     ./theme/stylix.nix
   ];
 
+  laptop = desktop ++ [ ./services/power.nix ];
+
   nas = common ++ [
     ./programs/msmtp.nix
 
@@ -57,5 +59,10 @@ let
   ];
 in
 {
-  inherit desktop server nas;
+  inherit
+    desktop
+    laptop
+    server
+    nas
+    ;
 }
