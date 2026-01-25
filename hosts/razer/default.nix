@@ -10,6 +10,7 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     ./openrazer.nix
+    ./immich.nix
     ./jellyfin.nix
     ./nvidia.nix
   ];

@@ -1,3 +1,4 @@
+{ config, ... }:
 let
   port = 8082;
 in
@@ -27,9 +28,8 @@ in
       {
         Services = [
           {
-            # TODO
             Immich = {
-              href = "/immich";
+              href = ":${toString config.services.immich.tailscale.port}";
               icon = "immich";
             };
           }
