@@ -1,6 +1,7 @@
 { self, ... }:
 let
   common = [
+    self.modules.hardware
     self.modules.services
 
     ./core/default.nix
