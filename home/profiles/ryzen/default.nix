@@ -20,7 +20,6 @@
     # system services
     ../../services/system/polkit-agent.nix
     ../../services/system/cliphist.nix
-    ../../services/system/tailray.nix
 
     # wayland-specific
     ../../services/wayland/hyprpaper.nix

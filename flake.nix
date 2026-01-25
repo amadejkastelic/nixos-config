@@ -184,11 +184,6 @@
 
     clipboard-sync.url = "github:dnut/clipboard-sync";
 
-    tailray = {
-      url = "github:NotAShelf/tailray";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sekiro-tweaker.url = "github:amadejkastelic/sekiro-tweaker";
 
     vicinae.url = "github:vicinaehq/vicinae";

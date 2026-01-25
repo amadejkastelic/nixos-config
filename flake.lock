@@ -2590,7 +2590,6 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "systems": "systems_7",
-        "tailray": "tailray",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
         "voxtype": "voxtype",
@@ -2956,26 +2955,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tailray": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767902700,
-        "narHash": "sha256-jqYXwsnhtsw0OTYm4VErNuZQF/UDNBxmQPYHas8I7tM=",
-        "owner": "NotAShelf",
-        "repo": "tailray",
-        "rev": "81cf200f0f7ad4ec8db1bc32f662faaf5d0431c2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "tailray",
         "type": "github"
       }
     },
