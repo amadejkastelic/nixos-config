@@ -121,6 +121,9 @@
               displayMode = "onhover";
             }
             {
+              id = "Tray";
+            }
+            {
               id = "Clock";
               customFont = "";
               formatHorizontal = "HH:mm";
