@@ -96,7 +96,7 @@
             {
               id = "SystemMonitor";
               compactMode = true;
-              diskPath = "/dev/nvme0n1p2";
+              diskPath = "/";
               showCpuTemp = true;
               showCpuUsage = true;
               showDiskUsage = false;
