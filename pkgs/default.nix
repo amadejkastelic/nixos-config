@@ -28,6 +28,8 @@
         magewell-usb-capture = pkgs.callPackage ./magewell-usb-capture { };
 
         ib-edavki = pkgs.callPackage ./ib-edavki { };
+
+        idescriptor = pkgs.callPackage ./idescriptor { };
       };
     };
 }
