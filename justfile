@@ -3,12 +3,17 @@ host := `hostname`
 update:
     nix flake update --commit-lock-file
 
-upgrade TARGET='ryzen':
+upgrade TARGET=host:
     #!/usr/bin/env bash
     if [ "{{TARGET}}" = "{{host}}" ]; then
-        nixos-rebuild switch --flake .#{{TARGET}} --sudo
+        nixos-rebuild switch \
+            --flake .#{{TARGET}} \
+            --sudo
     else
-        nixos-rebuild switch --flake .#{{TARGET}} --target-host amadejk@{{TARGET}} --sudo
+        nixos-rebuild switch \
+            --flake .#{{TARGET}} \
+            --target-host amadejk@{{TARGET}} \
+            --sudo
     fi
 
 gc FLAGS='':
