@@ -1,5 +1,5 @@
 let
-  screenshotarea = "grimblast --freeze --notify copy area";
+  screenshotarea = "grimblast --freeze --notify copysave area";
 
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
   workspaces = builtins.concatLists (
@@ -88,15 +88,9 @@ in
         "$mod, Escape, exec, noctalia-shell ipc call sessionMenu toggle"
 
         # screenshot
-        # stop animations while screenshotting; makes black border go away
+        # stop animations while screenshotting
         ", Print, exec, ${screenshotarea}"
-        "$mod SHIFT, R, exec, ${screenshotarea}"
-
-        "CTRL, Print, exec, grimblast --notify --cursor copysave output"
-        "$mod SHIFT CTRL, R, exec, grimblast --notify --cursor copysave output"
-
-        "ALT, Print, exec, grimblast --notify --cursor copysave screen"
-        "$mod SHIFT ALT, R, exec, grimblast --notify --cursor copysave screen"
+        "$mod, Print, exec, grimblast --notify --cursor copysave output"
       ]
       ++ workspaces;
 
