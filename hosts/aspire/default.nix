@@ -7,6 +7,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ./cpu.nix
     ./disk-config.nix
     ./hardware-configuration.nix
     ./hyprland.nix
