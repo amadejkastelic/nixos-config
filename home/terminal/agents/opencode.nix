@@ -29,9 +29,16 @@
         type = "api";
         key = config.sops.placeholder.z-ai-api-token;
       };
+      kimi-for-coding = {
+        type = "api";
+        key = config.sops.placeholder.kimi-api-token;
+      };
     };
     path = "${config.xdg.dataHome}/opencode/auth.json";
   };
 
-  sops.secrets.z-ai-api-token = { };
+  sops.secrets = {
+    z-ai-api-token = { };
+    kimi-api-token = { };
+  };
 }
