@@ -2,7 +2,6 @@
 let
   common = [
     self.modules.hardware
-    self.modules.programs
     self.modules.services
 
     ./core
