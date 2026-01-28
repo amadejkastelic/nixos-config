@@ -7,6 +7,7 @@
     ./grafana.nix
     ./immich.nix
     ./jellyfin
+    ./jellyseerr
     ./qbittorrent.nix
     ./tailscale-funnel.nix
     ./tailscale-tls.nix

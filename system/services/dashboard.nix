@@ -61,6 +61,12 @@ in
       {
         Multimedia = [
           {
+            Jellyseerr = {
+              icon = "jellyseerr";
+              href = "/jellyseerr";
+            };
+          }
+          {
             Jellyfin = {
               icon = "jellyfin";
               href = "/jellyfin";
