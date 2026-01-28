@@ -16,6 +16,8 @@
       port = 8443;
     };
 
+    nginx.redirect.enable = true;
+
     port = 2283;
 
     mediaLocation = "${config.nas.dataDir}/photos";
