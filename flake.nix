@@ -90,8 +90,7 @@
     apple-emoji.url = "github:samuelngs/apple-emoji-linux";
 
     hyprland = {
-      # https://github.com/hyprwm/Hyprland/discussions/13043
-      url = "github:amadejkastelic/Hyprland";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
