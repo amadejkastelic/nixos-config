@@ -61,7 +61,7 @@
             {
               id = "Workspace";
               characterCount = 2;
-              colorizeIcons = false;
+              colorizeIcons = true;
               enableScrollWheel = false;
               followFocusedScreen = false;
               groupedBorderOpacity = 1;
@@ -75,6 +75,18 @@
           ];
 
           center = [
+            {
+              id = "ActiveWindow";
+              maxWidth = 300;
+              colorizeIcons = true;
+              scrollingMode = "hover";
+              showIcon = true;
+              useFixedWidth = false;
+              hideMode = "hidden";
+            }
+          ];
+
+          right = [
             {
               id = "MediaMini";
               compactMode = true;
@@ -90,9 +102,6 @@
               useFixedWidth = false;
               visualizerType = "linear";
             }
-          ];
-
-          right = [
             {
               id = "SystemMonitor";
               compactMode = true;
@@ -122,6 +131,7 @@
             }
             {
               id = "Tray";
+              colorizeIcons = true;
             }
             {
               id = "Clock";
