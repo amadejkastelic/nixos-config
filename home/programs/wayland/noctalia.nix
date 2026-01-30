@@ -77,7 +77,7 @@
           center = [
             {
               id = "ActiveWindow";
-              maxWidth = 300;
+              maxWidth = 1000;
               colorizeIcons = true;
               scrollingMode = "hover";
               showIcon = true;
