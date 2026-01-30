@@ -131,10 +131,6 @@ let
     };
     "chat.disableAIFeatures" = true;
   };
-
-  claude = {
-    "claudeCode.useTerminal" = true;
-  };
 in
 {
   programs.vscode.profiles.default.userSettings =
@@ -156,6 +152,5 @@ in
     // zig
     // continue
     // svelte
-    // copilot
-    // claude;
+    // copilot;
 }

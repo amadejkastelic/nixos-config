@@ -32,8 +32,6 @@
         golang.go
 
         # AI
-        # github.copilot
-        anthropic.claude-code
         sst-dev.opencode
       ])
       ++ (with pkgs.vscode-extensions; [
