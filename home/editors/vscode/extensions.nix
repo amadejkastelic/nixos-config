@@ -72,14 +72,16 @@
         }
         {
           title = "qwen2.5-coder";
-          provider = "ollama";
-          model = "qwen2.5-coder:7b";
+          provider = "openai";
+          model = "qwen2.5-coder";
+          apiBase = "http://127.0.0.1:11434/v1";
         }
       ];
       tabAutocompleteModel = {
         title = "qwen2.5-coder";
-        provider = "ollama";
-        model = "qwen2.5-coder:7b";
+        provider = "openai";
+        model = "qwen2.5-coder";
+        apiBase = "http://127.0.0.1:11434/v1";
         autocompleteOptions.maxTokens = 1024;
         temperature = 0.1;
       };

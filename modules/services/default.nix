@@ -8,6 +8,7 @@
     ./immich.nix
     ./jellyfin
     ./jellyseerr
+    ./llama-cpp.nix
     ./qbittorrent.nix
     ./tailscale-funnel.nix
     ./tailscale-tls.nix
