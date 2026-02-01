@@ -63,7 +63,7 @@ in
 
         # utility
         # terminal
-        "$mod, T, exec, ghostty"
+        "$mod, T, exec, GTK_IM_MODULE=simple ghostty"
         # lock screen
         "$mod, L, exec, ${runOnce "hyprlock"}"
         # select area to perform OCR on

@@ -8,6 +8,8 @@ in
   imports = [
     ./agents
     ./programs
+    ./shell/carapace.nix
+    ./shell/nushell.nix
     ./shell/starship.nix
     ./shell/zsh.nix
   ];

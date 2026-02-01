@@ -3,6 +3,7 @@
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     enableSshSupport = true;
     enableScDaemon = true;
     pinentry.package = pkgs.pinentry-gnome3;
