@@ -23,10 +23,11 @@ in
     dirHashes = {
       dl = "$HOME/Downloads";
       docs = "$HOME/Documents";
-      dots = "$HOME/Documents/dotfiles";
+      dots = "$HOME/Projects/dotfiles";
       pics = "$HOME/Pictures";
       vids = "$HOME/Videos";
-      nixpkgs = "$HOME/Documents/nixpkgs";
+      nixpkgs = "$HOME/Projects/nixpkgs";
+      projects = "$HOME/Projects";
     };
     dotDir = "${config.xdg.configHome}/zsh";
     history = {
@@ -42,8 +43,6 @@ in
       l = "eza -l";
       la = "eza -la";
       md = "mkdir -p";
-      ppc = "powerprofilesctl";
-      pf = "powerprofilesctl launch -p performance";
       ssh = "TERM=xterm-color ssh";
       us = "systemctl --user";
       rs = "sudo systemctl";
