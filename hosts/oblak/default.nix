@@ -10,6 +10,7 @@
     ./disk-config.nix
     ./hardware-configuration.nix
     ./nfs.nix
+    ./ugreen-leds.nix
   ];
 
   boot.loader.grub = {
