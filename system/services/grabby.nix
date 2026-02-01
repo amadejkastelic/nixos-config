@@ -16,6 +16,14 @@
         serverId = "181329349167939585";
         autoEmbedChannels = [ "1459218273307721758" ];
         embedEnabled = true;
+        disabledDomains = [
+          "discordapp.net"
+          "tenor.com"
+          "kkinstagram.com"
+          "fxtwitter.com"
+          "vxreddit.com"
+          "tnktok.com"
+        ];
       }
     ];
   };
