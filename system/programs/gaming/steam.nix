@@ -49,8 +49,6 @@
       proton-ge-bin
     ];
 
-    extest.enable = true;
-
     protontricks.enable = true;
     platformOptimizations.enable = true;
   };
