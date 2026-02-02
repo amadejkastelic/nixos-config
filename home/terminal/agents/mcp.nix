@@ -31,6 +31,10 @@ in
       nixos = {
         command = lib.getExe pkgs.mcp-nixos;
       };
+      nushell = {
+        command = lib.getExe pkgs.nushell;
+        args = [ "--mcp" ];
+      };
       web-search-prime = {
         type = "remote";
         url = zAiBaseUrl + "/web_search_prime/mcp";

@@ -25,6 +25,9 @@
     }
     // lib.optionalAttrs (config.programs.bat.enable == true) { cat = "bat"; };
 
+    # Workaround - https://github.com/nix-community/home-manager/issues/4313
+    environmentVariables = config.home.sessionVariables;
+
     settings = {
       show_banner = false;
       edit_mode = "vi";
@@ -49,5 +52,22 @@
     extraConfig = ''
       ${lib.getExe inputs.nanofetch.packages.${pkgs.stdenv.hostPlatform.system}.nanofetch}
     '';
+
+    extraEnv = ''
+      let cb_path = "${config.sops.secrets.codeberg-token.path}"
+      $env.CODEBERG_TOKEN = (open $cb_path | str trim)
+
+      let gh_path = "${config.sops.secrets.github-token.path}"
+      $env.GITHUB_TOKEN = (open $gh_path | str trim)
+
+      let zai_path = "${config.sops.secrets.z-ai-api-token.path}"
+      $env.Z_AI_API_KEY = (open $zai_path | str trim)
+    '';
+  };
+
+  sops.secrets = {
+    codeberg-token = { };
+    github-token = { };
+    z-ai-api-token = { };
   };
 }
