@@ -2,7 +2,7 @@
 
 Personal NixOS and Home Manager configuration using flake-parts for a modular, reproducible system setup.
 
-
+<img width="5120" height="1440" alt="20260203_185658" src="https://github.com/user-attachments/assets/5c87ec52-7c7a-4e9a-82a9-a4ea9a6470b5" />
 
 ## Features
 
