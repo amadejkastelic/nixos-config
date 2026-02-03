@@ -28,6 +28,9 @@
         magewell-usb-capture = pkgs.callPackage ./magewell-usb-capture { };
 
         ib-edavki = pkgs.callPackage ./ib-edavki { };
+
+        jellyfin-plugin-intro-skipper = pkgs.callPackage ./jellyfin-plugin-intro-skipper { };
+        jellyfin-plugin-file-transformation = pkgs.callPackage ./jellyfin-plugin-file-transformation { };
       };
     };
 }
