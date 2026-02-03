@@ -1,7 +1,17 @@
-{ config, ... }:
+{
+  pkgs,
+  config,
+  self,
+  ...
+}:
 {
   services.jellyfin = {
     enable = true;
+
+    plugins = with self.packages.${pkgs.stdenv.hostPlatform.system}; [
+      jellyfin-plugin-intro-skipper
+      jellyfin-plugin-file-transformation
+    ];
 
     nginx.enable = true;
 

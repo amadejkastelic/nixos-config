@@ -292,6 +292,13 @@ in
     };
   };
 
+  options.services.jellyfin.plugins = lib.mkOption {
+    type = lib.types.listOf lib.types.package;
+    default = [ ];
+    description = "List of Jellyfin plugins to install";
+    example = lib.literalExpression "[ pkgs.jellyfin-plugin-intro-skipper ]";
+  };
+
   config = lib.mkIf cfg.apiConfig.enable {
     services.jellyfin.apiConfig.libraries = lib.mkMerge [
       (lib.mkIf (config.services.radarr.apiConfig.enable or false) {
@@ -330,6 +337,40 @@ in
       jellyfin-libraries = mkLibrariesService { };
 
       jellyfin-users = mkUserService { };
+
+      jellyfin-plugins = lib.mkIf (cfg.plugins != [ ]) {
+        description = "Install Jellyfin plugins";
+        after = [ "jellyfin-auth.service" ];
+        requires = [ "jellyfin-auth.service" ];
+        wantedBy = [ "multi-user.target" ];
+
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          User = cfg.user;
+          Group = cfg.group;
+        };
+
+        script = ''
+          set -eu
+
+          PLUGIN_DIR="${cfg.dataDir}/plugins"
+          mkdir -p "$PLUGIN_DIR"
+
+          ${lib.concatMapStringsSep "\n" (plugin: ''
+            PLUGIN_NAME="$(basename ${plugin}/share/jellyfin/plugins/*)"
+            PLUGIN_SRC="${plugin}/share/jellyfin/plugins/$PLUGIN_NAME"
+            PLUGIN_DEST="$PLUGIN_DIR/$PLUGIN_NAME"
+
+            if [ -L "$PLUGIN_DEST" ] || [ -e "$PLUGIN_DEST" ]; then
+              rm -rf "$PLUGIN_DEST"
+            fi
+
+            cp -r "$PLUGIN_SRC" "$PLUGIN_DEST"
+            chmod -R u+w "$PLUGIN_DEST"
+          '') cfg.plugins}
+        '';
+      };
     };
 
     systemd.services.jellyfin.serviceConfig =
