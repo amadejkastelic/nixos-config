@@ -65,6 +65,8 @@
     '';
   };
 
+  catppuccin.nushell.enable = true;
+
   sops.secrets = {
     codeberg-token = { };
     github-token = { };

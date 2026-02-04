@@ -25,4 +25,6 @@
       };
     };
   };
+
+  catppuccin.starship.enable = true;
 }
