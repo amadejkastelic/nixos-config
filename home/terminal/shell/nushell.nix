@@ -50,18 +50,26 @@
     };
 
     extraConfig = ''
-      ${lib.getExe inputs.nanofetch.packages.${pkgs.stdenv.hostPlatform.system}.nanofetch}
+      if ($nu.is-interactive and ($env | get -o TERM) != null) {
+        ${lib.getExe inputs.nanofetch.packages.${pkgs.stdenv.hostPlatform.system}.nanofetch}
+      }
     '';
 
     extraEnv = ''
       let cb_path = "${config.sops.secrets.codeberg-token.path}"
-      $env.CODEBERG_TOKEN = (open $cb_path | str trim)
+      if ($cb_path | path exists) {
+        $env.CODEBERG_TOKEN = (open $cb_path | str trim)
+      }
 
       let gh_path = "${config.sops.secrets.github-token.path}"
-      $env.GITHUB_TOKEN = (open $gh_path | str trim)
+      if ($gh_path | path exists) {
+        $env.GITHUB_TOKEN = (open $gh_path | str trim)
+      }
 
       let zai_path = "${config.sops.secrets.z-ai-api-token.path}"
-      $env.Z_AI_API_KEY = (open $zai_path | str trim)
+      if ($zai_path | path exists) {
+        $env.Z_AI_API_KEY = (open $zai_path | str trim)
+      }
     '';
   };
 

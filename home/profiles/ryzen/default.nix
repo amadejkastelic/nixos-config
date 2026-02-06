@@ -3,6 +3,7 @@
     # editors
     ../../editors/neovim
     ../../editors/vscode
+    ../../editors/zed
 
     # programs
     ../../programs

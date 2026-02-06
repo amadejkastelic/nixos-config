@@ -29,6 +29,7 @@
             packages = with pkgs; [
               just
               nil
+              nixd
               nixfmt
               nodejs-slim
               git

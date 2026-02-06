@@ -22,6 +22,7 @@
       hyprpaper.enable = false;
       nushell.enable = false;
       starship.enable = false;
+      zed.enable = false;
     };
   };
 }
