@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   zed-wrapped = pkgs.symlinkJoin {
     name = "zed-wrapped";
@@ -41,9 +46,19 @@ in
         font_size = 14;
       };
 
+      tabs.file_icons = true;
+
       telemetry = {
         diagnostics = false;
         metrics = false;
+      };
+
+      agent_servers = {
+        OpenCode = {
+          type = "extension";
+          command = lib.getExe config.programs.opencode.package;
+          args = [ "acp" ];
+        };
       };
 
       language_models = {
