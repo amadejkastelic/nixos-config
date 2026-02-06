@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -25,6 +24,7 @@ in
     package = zed-wrapped;
 
     extensions = [
+      "just"
       "nix"
       "material-icon-theme"
       "opencode"
@@ -56,8 +56,6 @@ in
       agent_servers = {
         OpenCode = {
           type = "extension";
-          command = lib.getExe config.programs.opencode.package;
-          args = [ "acp" ];
         };
       };
 
