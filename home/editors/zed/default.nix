@@ -1,8 +1,23 @@
 { lib, pkgs, ... }:
+let
+  zed-wrapped = pkgs.symlinkJoin {
+    name = "zed-wrapped";
+    paths = [ pkgs.zed-editor ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zeditor \
+        --unset WAYLAND_DISPLAY \
+        --set SHELL ${lib.getExe pkgs.zsh} \
+        --set GPUI_X11_SCALE_FACTOR 1.5
+    '';
+  };
+in
 {
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
+
+    package = zed-wrapped;
 
     extensions = [
       "nix"
@@ -20,10 +35,10 @@
       icon_theme = "Material Icon Theme";
 
       ui_font_size = 16;
-      buffer_font_size = 18;
+      buffer_font_size = 16;
 
       terminal = {
-        font_size = 16;
+        font_size = 14;
       };
 
       telemetry = {
@@ -49,10 +64,6 @@
       nil
       nixd
       nixfmt
-
-      # These two are needed because nushell depends on them
-      starship
-      carapace
     ];
   };
 
