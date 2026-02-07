@@ -4,7 +4,6 @@
   perSystem =
     {
       pkgs,
-      inputs',
       ...
     }:
     {
@@ -31,6 +30,8 @@
 
         jellyfin-plugin-intro-skipper = pkgs.callPackage ./jellyfin-plugin-intro-skipper { };
         jellyfin-plugin-file-transformation = pkgs.callPackage ./jellyfin-plugin-file-transformation { };
+
+        hyprvoice = pkgs.callPackage ./hyprvoice { };
       };
     };
 }
