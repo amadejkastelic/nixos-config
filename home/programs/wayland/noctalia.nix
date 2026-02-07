@@ -1,6 +1,8 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [ inputs.noctalia.homeModules.default ];
+
+  home.packages = [ pkgs.fastfetch ];
 
   programs.noctalia-shell = {
     enable = true;
@@ -149,7 +151,7 @@
               customIconPath = "";
               enableColorization = false;
               icon = "settings";
-              useDistroLogo = false;
+              useDistroLogo = true;
             }
           ];
         };
