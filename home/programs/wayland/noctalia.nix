@@ -26,7 +26,8 @@ in
         };
         privacy-indicator = {
           enabled = true;
-          sourceUrl = noctaliaPluginsUrl;
+          # https://github.com/noctalia-dev/noctalia-plugins/pull/237
+          sourceUrl = "https://github.com/amadejkastelic/noctalia-plugins";
         };
       };
     };
@@ -102,6 +103,7 @@ in
               hideInactive = true;
               inactiveColor = "none";
               removeMargins = true;
+              micFilterRegex = "effect_input.rnnoise";
             }
             {
               id = "MediaMini";
