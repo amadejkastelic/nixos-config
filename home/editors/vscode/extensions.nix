@@ -56,7 +56,7 @@
         eamodio.gitlens
 
         # AI
-        continue.continue
+        # continue.continue
       ]);
   };
 
