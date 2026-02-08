@@ -13,13 +13,13 @@
 # https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/op/openrgb/package.nix
 stdenv.mkDerivation (finalAttrs: {
   pname = "openrgb";
-  version = "candidate_1.0rc2";
+  version = "unstable-2026-02-07";
 
   src = fetchFromGitLab {
     owner = "CalcProgrammer1";
     repo = "OpenRGB";
-    rev = "release_${finalAttrs.version}";
-    hash = "sha256-vdIA9i1ewcrfX5U7FkcRR+ISdH5uRi9fz9YU5IkPKJQ=";
+    rev = "a2f2991192dc8479ba3e1df02afbfc32910c1de5";
+    hash = "sha256-q7isCpcwp90mz/mTGsH3+c5krW+vMKBwWyhVw9JLfQI=";
   };
 
   nativeBuildInputs = [
@@ -42,7 +42,6 @@ stdenv.mkDerivation (finalAttrs: {
   ]);
 
   patches = [
-    ./add-powercolor-6900XT.patch
     ./remove-systemd.patch
   ];
 
