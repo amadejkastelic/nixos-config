@@ -1,8 +1,8 @@
-{ pkgs, self, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./mpv.nix
-    ./noisetorch.nix
+    ./rnnoise.nix
   ];
 
   home.packages = with pkgs; [

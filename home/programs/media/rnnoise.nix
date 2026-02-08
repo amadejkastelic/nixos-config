@@ -17,15 +17,14 @@ let
                 "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
                 "label" = "noise_suppressor_stereo";
                 "control" = {
-                  "VAD Threshold (%)" = 50.0;
+                  "VAD Threshold (%)" = 90.0;
+                  "VAD Grace Period (ms)" = 200.0;
+                  "VAD Hangover (ms)" = 400.0;
                 };
               }
             ];
           };
-          "audio.position" = [
-            "FL"
-            "FR"
-          ];
+          "audio.position" = [ "FL" ];
           "capture.props" = {
             "node.name" = "effect_input.rnnoise";
             "node.passive" = true;
