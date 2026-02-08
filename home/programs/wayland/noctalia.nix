@@ -1,4 +1,7 @@
 { pkgs, inputs, ... }:
+let
+  noctaliaPluginsUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+in
 {
   imports = [ inputs.noctalia.homeModules.default ];
 
@@ -13,13 +16,17 @@
         {
           enabled = true;
           name = "Official Noctalia Plugins";
-          url = "https://github.com/noctalia-dev/noctalia-plugins";
+          url = noctaliaPluginsUrl;
         }
       ];
       states = {
         tailscale = {
           enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          sourceUrl = noctaliaPluginsUrl;
+        };
+        privacy-indicator = {
+          enabled = true;
+          sourceUrl = noctaliaPluginsUrl;
         };
       };
     };
@@ -89,6 +96,13 @@
           ];
 
           right = [
+            {
+              id = "plugin:privacy-indicator";
+              activeColor = "primary";
+              hideInactive = true;
+              inactiveColor = "none";
+              removeMargins = true;
+            }
             {
               id = "MediaMini";
               compactMode = true;
