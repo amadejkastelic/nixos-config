@@ -58,11 +58,13 @@
   fileSystems."/mnt/hdd1" = {
     device = "/dev/disk/by-label/HDD";
     fsType = "ext4";
+    options = [ "nofail" ];
   };
 
   fileSystems."/mnt/ssd1" = {
     device = "/dev/disk/by-label/SSD";
     fsType = "ext4";
+    options = [ "nofail" ];
   };
 
   swapDevices = [
