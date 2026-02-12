@@ -1,8 +1,15 @@
-{ config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
+
+    package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
 
     settings = {
       autoupdate = false;
