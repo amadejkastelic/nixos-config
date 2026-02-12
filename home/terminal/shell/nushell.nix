@@ -54,7 +54,10 @@
     '';
 
     extraEnv = ''
-      ${lib.getExe pkgs.bash-env-json} ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh | from json | load-env
+      ${lib.getExe pkgs.bash-env-json} ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh
+        | from json
+        | get env
+        | load-env
 
       let cb_path = "${config.sops.secrets.codeberg-token.path}"
       if ($cb_path | path exists) {
