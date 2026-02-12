@@ -57,7 +57,7 @@
       "match:initial_class ^(org.gnome.Nautilus)$, float true, opacity 0.80 0.70"
 
       # Communication apps
-      "match:class ^(vesktop)$, float true, opacity 0.80 0.70, workspace 8 silent, center true, size 1920 1080"
+      "match:class ^(vesktop)$, float true, workspace 8 silent, center true, size 1920 1080"
 
       # Music apps
       "match:initial_class ^(Cider)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
