@@ -25,12 +25,10 @@
     }
     // lib.optionalAttrs (config.programs.bat.enable == true) { cat = "bat"; };
 
-    # Workaround - https://github.com/nix-community/home-manager/issues/4313
-    environmentVariables = config.home.sessionVariables;
-
     settings = {
       show_banner = false;
       edit_mode = "vi";
+      buffer_editor = "nvim";
 
       history = {
         file_format = "sqlite";
@@ -56,6 +54,8 @@
     '';
 
     extraEnv = ''
+      ${lib.getExe pkgs.bash-env-json} ${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh | from json | load-env
+
       let cb_path = "${config.sops.secrets.codeberg-token.path}"
       if ($cb_path | path exists) {
         $env.CODEBERG_TOKEN = (open $cb_path | str trim)
