@@ -14,7 +14,7 @@
 
   home.packages = with pkgs; [
     mission-center
-    wineWowPackages.wayland
+    wineWow64Packages.wayland
     ledger-live-desktop
     pinentry-gnome3
     gnumake
