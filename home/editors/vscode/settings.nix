@@ -93,8 +93,8 @@ let
   nix = {
     "nix.enableLanguageServer" = true;
     "nix.formatterPath" = "nixfmt";
-    "nix.serverPath" = lib.getExe pkgs.nil;
-    "nix.serverSettings"."nil"."formatting"."command" = [ "${pkgs.nixfmt}/bin/nixfmt" ];
+    "nix.serverPath" = lib.getExe pkgs.nixd;
+    "nix.serverSettings"."nixd"."formatting"."command" = [ "${lib.getExe pkgs.nixfmt}" ];
     "[nix]" = {
       "editor.formatOnSave" = true;
       "editor.tabSize" = 2;
