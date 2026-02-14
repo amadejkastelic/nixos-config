@@ -1,4 +1,7 @@
 { lib, ... }:
+let
+  opacity = "0.93";
+in
 {
   programs.hyprland.settings = {
     layerrule =
@@ -49,18 +52,18 @@
       "match:title ^(Media viewer)$, float true"
 
       # Audio/Network controls
-      "match:class ^(pavucontrol)$, float true, opacity 0.80 0.70"
-      "match:initial_class ^(org.pulseaudio.pavucontrol)$, float true, opacity 0.80 0.70"
-      "match:class ^(nm-connection-editor)$, float true, opacity 0.80 0.70"
+      "match:class ^(pavucontrol)$, float true, opacity ${opacity}"
+      "match:initial_class ^(org.pulseaudio.pavucontrol)$, float true, opacity ${opacity}"
+      "match:class ^(nm-connection-editor)$, float true, opacity ${opacity}"
 
       # File manager
-      "match:initial_class ^(org.gnome.Nautilus)$, float true, opacity 0.80 0.70"
+      "match:initial_class ^(org.gnome.Nautilus)$, float true, opacity ${opacity}"
 
       # Communication apps
-      "match:class ^(vesktop)$, float true, workspace 8 silent, center true, size 1920 1080"
+      "match:class ^(vesktop)$, float true, workspace 8 silent, center true, size 1920 1080, opacity ${opacity}"
 
       # Music apps
-      "match:initial_class ^(Cider)$, float true, opacity 0.80 0.70, workspace 9 silent, center true, size 1920 1080"
+      "match:initial_class ^(Cider)$, float true, opacity ${opacity}, workspace 9 silent, center true, size 1920 1080"
 
       # Firefox/Zen Picture-in-Picture
       "match:title ^(Picture-in-Picture)$, float true, pin true"
