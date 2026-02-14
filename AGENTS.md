@@ -50,7 +50,7 @@ nix build .#nixosConfigurations.ryzen.config.system.build.toplevel
 
 ### Development Shell
 ```bash
-# Enter dev shell with tools (nil, nixfmt, git, repl)
+# Enter dev shell with tools (nixd, nixfmt, git, repl)
 nix develop
 ```
 

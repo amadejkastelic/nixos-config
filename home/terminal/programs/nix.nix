@@ -6,7 +6,7 @@
 # nix tooling
 {
   home.packages = with pkgs; [
-    nil
+    nixd
     nixfmt
     deadnix
     statix

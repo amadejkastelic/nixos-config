@@ -84,7 +84,7 @@ nix build .#bibata-cursors-svg
 ## Development Tools
 
 The development shell includes:
-- **nil**: Nix language server
+- **nixd**: Nix language server
 - **nixfmt**: Code formatter
 - **git**: Version control
 - **just**: Command runner
