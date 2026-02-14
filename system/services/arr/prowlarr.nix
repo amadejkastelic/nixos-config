@@ -35,6 +35,7 @@
         tags = [ "cloudflare" ];
       };
 
+      # Names (case sensitive) should match the ones in prowlarr
       indexers = [
         {
           name = "YTS";
@@ -47,6 +48,23 @@
         {
           name = "SubsPlease";
           tags = [ "anime" ];
+        }
+        {
+          name = "Infire";
+          credentialsPaths = [
+            {
+              baseName = "username";
+              path = config.sops.secrets."infire/username".path;
+            }
+            {
+              baseName = "password";
+              path = config.sops.secrets."infire/password".path;
+            }
+          ];
+          tags = [
+            "movies"
+            "tv"
+          ];
         }
       ]
       ++ lib.optionals config.services.flaresolverr.enable [
@@ -83,8 +101,14 @@
     };
   };
 
-  sops.secrets."prowlarr/api_key" = { };
-  sops.secrets."avistaz/username" = { };
-  sops.secrets."avistaz/password" = { };
-  sops.secrets."avistaz/pid" = { };
+  sops.secrets = {
+    "prowlarr/api_key" = { };
+
+    "avistaz/username" = { };
+    "avistaz/password" = { };
+    "avistaz/pid" = { };
+
+    "infire/username" = { };
+    "infire/password" = { };
+  };
 }
