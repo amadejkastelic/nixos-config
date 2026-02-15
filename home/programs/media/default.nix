@@ -14,7 +14,8 @@
     loupe
     krita
 
-    # Apple Music
+    # music
     cider-2
+    audacious
   ];
 }

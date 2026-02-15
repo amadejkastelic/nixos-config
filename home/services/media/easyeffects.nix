@@ -3,12 +3,12 @@
     enable = true;
   };
 
-  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-FiiO_K3-00.analog-stereo.json" = {
+  xdg.configFile."easyeffects/autoload/output/alsa_output.usb-FiiO_K3-00.pro-output-0.json" = {
     text = ''
       {
-        "device": "alsa_output.usb-FiiO_K3-00.analog-stereo",
+        "device": "alsa_output.usb-FiiO_K3-00.pro-output-0",
         "device-description": "K3 Analog Stereo",
-        "device-profile": "analog-output",
+        "device-profile": "pro-audio",
         "preset-name": "Blessing3"
       }
     '';
