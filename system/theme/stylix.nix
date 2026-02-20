@@ -6,7 +6,6 @@
 }:
 let
   appleFonts = inputs.apple-fonts.packages.${pkgs.stdenv.hostPlatform.system};
-  emojiPkg = inputs.apple-emoji.packages.${pkgs.stdenv.hostPlatform.system}.apple-emoji-linux;
 in
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
@@ -33,8 +32,8 @@ in
       };
 
       emoji = {
-        package = emojiPkg;
-        name = "Apple Color Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
 
       sizes = {

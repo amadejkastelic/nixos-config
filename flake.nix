@@ -87,7 +87,6 @@
     catppuccin.url = "github:catppuccin/nix";
 
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    apple-emoji.url = "github:samuelngs/apple-emoji-linux";
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -197,7 +196,8 @@
     };
 
     firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      # https://gitlab.com/rycee/nur-expressions/-/merge_requests/105
+      url = "gitlab:khaneliman/nur-expressions?dir=pkgs/firefox-addons&ref=firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
