@@ -91,7 +91,7 @@ in
         STATUS_RESPONSE=$(${pkgs.curl}/bin/curl -s "$BASE_URL/api/v1/settings/public")
         IS_INITIALIZED=$(echo "$STATUS_RESPONSE" | ${pkgs.jq}/bin/jq -r '.initialized // false')
 
-        # Authenticate with Jellyfin to get session cookie (always needed for subsequent services)
+        # Prepare credentials
         ${
           if firstAdminUser.password != null then
             ''JELLYFIN_PASSWORD=$(cat "$CREDENTIALS_DIRECTORY/jellyfin-password")''
@@ -99,7 +99,38 @@ in
             ''JELLYFIN_PASSWORD=""''
         }
 
-        AUTH_PAYLOAD=$(${pkgs.jq}/bin/jq -n \
+        if [ "$IS_INITIALIZED" = "true" ]; then
+          echo "Jellyseerr already initialized, logging in via Jellyfin..."
+          LOGIN_PAYLOAD=$(${pkgs.jq}/bin/jq -n \
+            --arg username "${firstAdminName}" \
+            --arg password "$JELLYFIN_PASSWORD" \
+            '{username: $username, password: $password}')
+
+          LOGIN_RESPONSE=$(${pkgs.curl}/bin/curl -s -X POST \
+            -c "${cookieFile}" \
+            -H "Content-Type: application/json" \
+            -d "$LOGIN_PAYLOAD" \
+            -w "\n%{http_code}" \
+            "$BASE_URL/api/v1/auth/jellyfin")
+
+          LOGIN_HTTP_CODE=$(echo "$LOGIN_RESPONSE" | tail -n1)
+
+          if [ "$LOGIN_HTTP_CODE" != "200" ] && [ "$LOGIN_HTTP_CODE" != "201" ]; then
+            echo "Failed to login (HTTP $LOGIN_HTTP_CODE)" >&2
+            echo "$LOGIN_RESPONSE" | head -n-1 >&2
+            exit 1
+          fi
+
+          chown jellyseerr:jellyseerr "${cookieFile}"
+          chmod 640 "${cookieFile}"
+          echo "Successfully logged in"
+          exit 0
+        fi
+
+        echo "Running initial setup..."
+
+        # Initial setup - connect to Jellyfin
+        SETUP_PAYLOAD=$(${pkgs.jq}/bin/jq -n \
           --arg username "${firstAdminName}" \
           --arg password "$JELLYFIN_PASSWORD" \
           --arg hostname "${cfg.jellyfin.hostname}" \
@@ -119,32 +150,26 @@ in
             serverType: ($serverType | tonumber)
           }')
 
-        echo "Authenticating with Jellyfin..."
-        AUTH_RESPONSE=$(${pkgs.curl}/bin/curl -s -X POST \
+        echo "Connecting to Jellyfin..."
+        SETUP_RESPONSE=$(${pkgs.curl}/bin/curl -s -X POST \
           -c "${cookieFile}" \
           -H "Content-Type: application/json" \
-          -d "$AUTH_PAYLOAD" \
+          -d "$SETUP_PAYLOAD" \
           -w "\n%{http_code}" \
           "$BASE_URL/api/v1/auth/jellyfin")
 
-        AUTH_HTTP_CODE=$(echo "$AUTH_RESPONSE" | tail -n1)
+        SETUP_HTTP_CODE=$(echo "$SETUP_RESPONSE" | tail -n1)
 
-        if [ "$AUTH_HTTP_CODE" != "200" ] && [ "$AUTH_HTTP_CODE" != "201" ]; then
-          echo "Failed to authenticate with Jellyfin (HTTP $AUTH_HTTP_CODE)" >&2
-          echo "$AUTH_RESPONSE" | head -n-1 >&2
-          exit 1
+        if [ "$SETUP_HTTP_CODE" != "200" ] && [ "$SETUP_HTTP_CODE" != "201" ]; then
+          echo "Failed to connect to Jellyfin (HTTP $SETUP_HTTP_CODE)" >&2
+          echo "$SETUP_RESPONSE" | head -n-1 >&2
+          echo "Jellyseerr initial setup failed. You can manually configure Jellyseerr through the web UI." >&2
+          exit 0
         fi
 
         chown jellyseerr:jellyseerr "${cookieFile}"
         chmod 640 "${cookieFile}"
-        echo "Successfully authenticated with Jellyfin"
-
-        if [ "$IS_INITIALIZED" = "true" ]; then
-          echo "Jellyseerr is already initialized"
-          exit 0
-        fi
-
-        echo "Running initial setup..."
+        echo "Successfully connected to Jellyfin"
 
         # Step 2: Fetch and enable libraries
         echo "Fetching library list from Jellyfin..."

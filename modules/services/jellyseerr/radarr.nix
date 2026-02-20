@@ -164,7 +164,10 @@ in
   config = lib.mkIf (cfg.enable && cfg.radarr != [ ]) {
     systemd.services.jellyseerr-radarr = {
       description = "Configure Jellyseerr Radarr integration";
-      after = [ "jellyseerr-setup.service" ];
+      after = [
+        "jellyseerr-setup.service"
+        "jellyseerr-sonarr.service"
+      ];
       requires = [ "jellyseerr-setup.service" ];
       wantedBy = [ "multi-user.target" ];
 
