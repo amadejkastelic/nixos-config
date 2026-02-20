@@ -196,8 +196,7 @@
     };
 
     firefox-addons = {
-      # https://gitlab.com/rycee/nur-expressions/-/merge_requests/105
-      url = "gitlab:khaneliman/nur-expressions?dir=pkgs/firefox-addons&ref=firefox-addons";
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
