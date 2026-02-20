@@ -56,7 +56,7 @@ let
     ./services/grabby.nix
     ./services/immich.nix
     ./services/jellyfin.nix
-    ./services/metrics
+    # ./services/metrics
     ./services/nginx.nix
     ./services/vaultwarden.nix
   ];
