@@ -13,6 +13,7 @@
     shadps4
     cemu
     eden
+    ryubing
     dolphin-emu
   ];
 }
