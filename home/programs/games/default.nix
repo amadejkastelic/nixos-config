@@ -12,5 +12,7 @@
     oversteer
     shadps4
     cemu
+    eden
+    dolphin-emu
   ];
 }
