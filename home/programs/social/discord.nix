@@ -32,6 +32,8 @@
         };
         webKeybinds.enable = true;
         webScreenShareFixes.enable = true;
+        silentTyping.enable = true;
+        messageLogger.enable = true;
       };
     };
   };
