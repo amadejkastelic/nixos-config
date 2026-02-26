@@ -12,7 +12,6 @@
 
     # images
     loupe
-    krita
 
     # music
     cider-2
