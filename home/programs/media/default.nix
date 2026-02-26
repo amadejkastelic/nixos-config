@@ -12,6 +12,7 @@
 
     # images
     loupe
+    gimp
 
     # music
     cider-2
