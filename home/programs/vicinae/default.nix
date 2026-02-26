@@ -2,6 +2,7 @@
   lib,
   pkgs,
   inputs,
+  config,
   ...
 }:
 {
@@ -15,7 +16,6 @@
 
       environment = {
         USE_LAYER_SHELL = 1;
-        QT_SCALE_FACTOR = 1;
       };
     };
 
@@ -27,6 +27,18 @@
           preferences = {
             launchPrefix = "uwsm app -- ";
           };
+        };
+      };
+
+      theme = {
+        dark.icon_theme = config.stylix.icons.dark;
+        light.icon_theme = config.stylix.icons.light;
+      };
+
+      font = {
+        normal = {
+          size = config.stylix.fonts.sizes.applications;
+          family = config.stylix.fonts.serif.name;
         };
       };
     };
