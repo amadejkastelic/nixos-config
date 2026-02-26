@@ -2398,26 +2398,6 @@
         "url": "https://devimages-cdn.apple.com/design/resources/download/NY.dmg"
       }
     },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1772117620,
-        "narHash": "sha256-C+nGXSPd89Ge3WZ4pm6xe+7TO4lDoWJAmgppC/haG2A=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "b4d0090e005e7355b3e8f2594c0ad8538fffe75b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "type": "github"
-      }
-    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_6",
@@ -2591,7 +2571,6 @@
         "nixpkgs": "nixpkgs_12",
         "nixpkgs-vscode": "nixpkgs-vscode",
         "noctalia": "noctalia",
-        "opencode": "opencode",
         "pre-commit-hooks": "pre-commit-hooks_4",
         "sekiro-tweaker": "sekiro-tweaker",
         "sops-nix": "sops-nix",
