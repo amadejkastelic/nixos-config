@@ -131,10 +131,12 @@ in
           on-timeout = "${lib.getExe saveWindows} && hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on && ${lib.getExe restoreWindows}";
         }
-        {
-          timeout = 600;
-          on-timeout = "systemctl suspend";
-        }
+        /*
+          {
+            timeout = 600;
+            on-timeout = "systemctl suspend";
+          }
+        */
       ];
     };
   };
