@@ -1618,11 +1618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766159166,
-        "narHash": "sha256-5hbMbQUFK7Q218FWZ9wndix5baEUHsLXWxap6uyWKSo=",
+        "lastModified": 1772123185,
+        "narHash": "sha256-kl+5rTbTKCK09hj1/JR+MMNjR9X8qE27qCsKGjITpvY=",
         "owner": "amadejkastelic",
         "repo": "hyprvibr",
-        "rev": "640fe012ee0fabcd5db55da1d1de4141a87c37b5",
+        "rev": "7f799b707c806885e3406d2286bba3902426adcb",
         "type": "github"
       },
       "original": {
