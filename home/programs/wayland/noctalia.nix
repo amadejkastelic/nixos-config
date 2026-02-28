@@ -26,8 +26,7 @@ in
         };
         privacy-indicator = {
           enabled = true;
-          # https://github.com/noctalia-dev/noctalia-plugins/pull/237
-          sourceUrl = "https://github.com/amadejkastelic/noctalia-plugins";
+          sourceUrl = noctaliaPluginsUrl;
         };
       };
     };
@@ -36,6 +35,11 @@ in
       tailscale = {
         compactMode = true;
         terminalCommand = "ghostty";
+      };
+      privacyIndicator = {
+        hideInactive = true;
+        removeMargins = true;
+        micFilterRegex = "effect_input.rnnoise";
       };
     };
 
