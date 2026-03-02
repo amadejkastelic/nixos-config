@@ -1,16 +1,63 @@
 {
+  lib,
   pkgs,
   inputs,
   config,
   ...
 }:
+let
+  defaults = {
+    launchOptions = {
+      env = { };
+      wrappers = [
+        (lib.getExe pkgs.gamemode)
+        (lib.getExe pkgs.mangohud)
+      ];
+    };
+  };
+in
 {
   imports = [
     inputs.nix-gaming.nixosModules.platformOptimizations
+    inputs.steam-config-nix.nixosModules.default
   ];
 
   programs.steam = {
     enable = true;
+
+    config = {
+      enable = true;
+      closeSteam = true;
+      defaultCompatTool = "GE-Proton";
+
+      apps =
+        lib.mapAttrs
+          (
+            _: options:
+            lib.mkMerge [
+              options
+              defaults
+            ]
+          )
+          {
+            cs2 = {
+              id = 730;
+              launchOptions = {
+                args = [
+                  "-window"
+                  "-nojoy"
+                  "-w 1920"
+                  "-h 1440"
+                  "-trusted"
+                  "-novid"
+                  "-freq 120"
+                  "+fps_max 0"
+                  "+exec autoexec"
+                ];
+              };
+            };
+          };
+    };
 
     package = pkgs.steam.override {
       buildFHSEnv =
