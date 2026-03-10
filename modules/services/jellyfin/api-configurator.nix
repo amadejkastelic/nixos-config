@@ -228,6 +228,13 @@ let
         BASE_URL="${baseUrl}"
         TOKEN_FILE="/run/jellyfin/auth-token"
 
+        for i in {1..30}; do
+          if ${pkgs.curl}/bin/curl -sf "$BASE_URL/System/Info/Public" >/dev/null 2>&1; then
+            break
+          fi
+          sleep 1
+        done
+
         ADMIN_PASSWORD=""
         ${lib.optionalString (adminPasswordPlain != null) ''ADMIN_PASSWORD="${adminPasswordPlain}"''}
 

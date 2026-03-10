@@ -401,6 +401,14 @@ let
         ++ map (
           app: "app_api_${lib.replaceStrings [ " " ] [ "-" ] (lib.toLower app.name)}:${app.apiKeyPath}"
         ) serviceConfig.applications;
+        ExecStartPre = import ./wait-for-api.nix {
+          inherit
+            lib
+            pkgs
+            serviceName
+            serviceConfig
+            ;
+        };
       };
 
       script = ''
@@ -714,6 +722,14 @@ let
         Type = "oneshot";
         RemainAfterExit = true;
         LoadCredential = [ "api_key:${serviceConfig.apiKeyPath}" ];
+        ExecStartPre = import ./wait-for-api.nix {
+          inherit
+            lib
+            pkgs
+            serviceName
+            serviceConfig
+            ;
+        };
       };
 
       script = ''

@@ -56,6 +56,7 @@ in
         "jellyfin.service"
         "jellyfin-setup-wizard.service"
         "jellyfin-users.service"
+        "systemd-tmpfiles-setup.service"
       ];
       requires = [ "jellyseerr.service" ];
       wantedBy = [ "multi-user.target" ];

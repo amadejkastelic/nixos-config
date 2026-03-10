@@ -9,7 +9,7 @@ in
     nginx.enable = true;
 
     jellyfin = {
-      hostname = config.networking.hostName;
+      hostname = "127.0.0.1";
       port = config.services.jellyfin.apiConfig.port;
       urlBase = config.services.jellyfin.apiConfig.baseUrl;
       enableAllLibraries = true;
