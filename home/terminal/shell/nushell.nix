@@ -10,10 +10,10 @@
     enable = true;
 
     plugins = with pkgs.nushellPlugins; [
-      desktop_notifications
+      # desktop_notifications
       gstat
-      highlight
-      skim
+      # highlight
+      # skim
     ];
 
     shellAliases = {
