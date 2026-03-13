@@ -13,7 +13,7 @@
       # desktop_notifications
       gstat
       # highlight
-      # skim
+      skim
     ];
 
     shellAliases = {
