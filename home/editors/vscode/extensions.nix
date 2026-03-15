@@ -16,6 +16,7 @@
         rust-lang.rust-analyzer
 
         # Python
+        astral-sh.ty
         ms-python.python
         charliermarsh.ruff
 
@@ -35,10 +36,6 @@
         sst-dev.opencode
       ])
       ++ (with pkgs.vscode-extensions; [
-        # Python
-        ms-python.debugpy
-        ms-python.vscode-pylance
-
         # Nix
         jnoortheen.nix-ide
         mkhl.direnv
