@@ -24,8 +24,6 @@
 
     database = {
       enable = true;
-      enableVectors = true;
-      enableVectorChord = true;
     };
   };
 
