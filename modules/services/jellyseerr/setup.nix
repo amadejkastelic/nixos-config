@@ -36,19 +36,6 @@ in
 
 {
   config = lib.mkIf (cfg.enable && jellyfinCfg.enable or false) {
-    systemd.tmpfiles.settings.jellyseerr-runtime = {
-      "/run/jellyseerr".d = {
-        mode = "0755";
-        user = "jellyseerr";
-        group = "jellyseerr";
-      };
-      "/run/jellyseerr/cookies.txt".f = {
-        mode = "0640";
-        user = "jellyseerr";
-        group = "jellyseerr";
-      };
-    };
-
     systemd.services.jellyseerr-setup = {
       description = "Complete Jellyseerr initial setup with Jellyfin";
       after = [
@@ -56,7 +43,6 @@ in
         "jellyfin.service"
         "jellyfin-setup-wizard.service"
         "jellyfin-users.service"
-        "systemd-tmpfiles-setup.service"
       ];
       requires = [ "jellyseerr.service" ];
       wantedBy = [ "multi-user.target" ];
@@ -64,6 +50,10 @@ in
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
+        RuntimeDirectory = "jellyseerr";
+        RuntimeDirectoryMode = "0755";
+        User = "jellyseerr";
+        Group = "jellyseerr";
       }
       // lib.optionalAttrs (firstAdminUser.password != null) {
         LoadCredential = "jellyfin-password:${
@@ -122,8 +112,6 @@ in
             exit 1
           fi
 
-          chown jellyseerr:jellyseerr "${cookieFile}"
-          chmod 640 "${cookieFile}"
           echo "Successfully logged in"
           exit 0
         fi
@@ -168,8 +156,6 @@ in
           exit 0
         fi
 
-        chown jellyseerr:jellyseerr "${cookieFile}"
-        chmod 640 "${cookieFile}"
         echo "Successfully connected to Jellyfin"
 
         # Step 2: Fetch and enable libraries
