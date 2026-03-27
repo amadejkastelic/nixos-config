@@ -1,12 +1,8 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ config, ... }:
 {
   gtk = {
     enable = true;
-
+    gtk4.theme = config.gtk.theme;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
