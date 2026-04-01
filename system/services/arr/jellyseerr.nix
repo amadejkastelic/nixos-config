@@ -3,7 +3,7 @@ let
   mediaDir = config.nas.mediaDir;
 in
 {
-  services.jellyseerr = {
+  services.seerr = {
     enable = true;
 
     nginx.enable = true;

@@ -5,7 +5,7 @@
 }:
 
 let
-  cfg = config.services.jellyseerr;
+  cfg = config.services.seerr;
   nginxCfg = cfg.nginx;
 in
 

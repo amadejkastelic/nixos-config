@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.services.jellyseerr;
+  cfg = config.services.seerr;
   baseUrl = "http://127.0.0.1:${toString cfg.port}";
   cookieFile = "/run/jellyseerr/cookies.txt";
 

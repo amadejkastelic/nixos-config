@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.services.jellyseerr;
+  cfg = config.services.seerr;
   jellyfinCfg = config.services.jellyfin;
   baseUrl = "http://127.0.0.1:${toString cfg.port}";
 

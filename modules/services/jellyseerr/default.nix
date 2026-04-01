@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.services.jellyseerr;
+  cfg = config.services.seerr;
   nginxCfg = cfg.nginx;
 in
 
@@ -18,7 +18,7 @@ in
     ./sonarr.nix
   ];
 
-  options.services.jellyseerr = {
+  options.services.seerr = {
     nginx = {
       enable = lib.mkEnableOption "nginx reverse proxy for Jellyseerr";
 
