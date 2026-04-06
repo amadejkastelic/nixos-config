@@ -9,7 +9,8 @@
     pinentry.package = pkgs.pinentry-gnome3;
   };
 
-  services.ssh-agent.enable = true;
+  # Using gpg instead
+  services.ssh-agent.enable = false;
 
   programs.gpg.enable = true;
 }
