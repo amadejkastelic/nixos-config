@@ -22,6 +22,10 @@
     settings = {
       launcher_window.opacity = lib.mkForce 0.5;
 
+      telemetry = {
+        system_info = false;
+      };
+
       providers = {
         "applications" = {
           preferences = {
