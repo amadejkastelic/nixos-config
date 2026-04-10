@@ -416,17 +416,33 @@
         "type": "github"
       }
     },
-    "flake-compat_2": {
+    "flake-compat_12": {
+      "flake": false,
       "locked": {
         "lastModified": 1767039857,
         "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
-        "owner": "edolstra",
+        "owner": "NixOS",
         "repo": "flake-compat",
         "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
         "type": "github"
       },
       "original": {
-        "owner": "edolstra",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_2": {
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
         "repo": "flake-compat",
         "type": "github"
       }
@@ -2610,9 +2626,7 @@
     },
     "pre-commit-hooks_4": {
       "inputs": {
-        "flake-compat": [
-          "flake-compat"
-        ],
+        "flake-compat": "flake-compat_10",
         "gitignore": "gitignore_6",
         "nixpkgs": [
           "nixpkgs"
@@ -2634,7 +2648,7 @@
     },
     "pre-commit-hooks_5": {
       "inputs": {
-        "flake-compat": "flake-compat_10",
+        "flake-compat": "flake-compat_11",
         "gitignore": "gitignore_7",
         "nixpkgs": [
           "sekiro-tweaker",
@@ -3221,17 +3235,17 @@
     },
     "vicinae-extensions": {
       "inputs": {
-        "flake-compat": "flake-compat_11",
+        "flake-compat": "flake-compat_12",
         "nixpkgs": "nixpkgs_15",
         "systems": "systems_11",
         "vicinae": "vicinae_2"
       },
       "locked": {
-        "lastModified": 1775835451,
-        "narHash": "sha256-z1YOOsx4rCIdombQCdcUqEGICkLJhgkJnfz7zz4Frqw=",
+        "lastModified": 1775839885,
+        "narHash": "sha256-ADJMIkSRMRGrf1lirBiagpnAFLhMMj9Eau6qn6fQDPg=",
         "owner": "vicinaehq",
         "repo": "extensions",
-        "rev": "8c5bb397df6c0a9aefe34c26aee1af39520db956",
+        "rev": "63285d22e301568be36df6c1371c8e251b8b4331",
         "type": "github"
       },
       "original": {

@@ -53,7 +53,10 @@
     # https://github.com/microsoft/vscode/issues/260391
     nixpkgs-vscode.url = "github:NixOS/nixpkgs?ref=4c7d90a136071eb8154d6b3fe63b0046de9d4712";
 
-    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat = {
+      url = "github:NixOS/flake-compat";
+      flake = false;
+    };
 
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -166,7 +169,6 @@
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-userstyles.url = "github:knoopx/nix-userstyles";

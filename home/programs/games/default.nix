@@ -11,7 +11,7 @@
     steam-run
     oversteer
     shadps4
-    cemu
+    # cemu
     eden
     ryubing
     dolphin-emu
