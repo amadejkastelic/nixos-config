@@ -9,13 +9,6 @@
   programs.nushell = {
     enable = true;
 
-    plugins = with pkgs.nushellPlugins; [
-      # desktop_notifications
-      gstat
-      # highlight
-      skim
-    ];
-
     shellAliases = {
       grep = "grep --color";
       ip = "ip --color";
