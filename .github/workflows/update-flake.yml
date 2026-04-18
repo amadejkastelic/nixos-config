@@ -74,5 +74,11 @@ jobs:
         run: |
           gh pr review --approve "${{ steps.create-pr.outputs.pull-request-url }}"
           gh pr merge --auto --merge "${{ steps.create-pr.outputs.pull-request-url }}"
+          PR_NUMBER="${{ steps.create-pr.outputs.pull-request-number }}"
+          pending=$(gh api "repos/${{ github.repository }}/actions/runs?event=pull_request&status=waiting&per_page=100" \
+            --jq ".workflow_runs[] | select(.pull_requests[].number == $PR_NUMBER) | .id")
+          for run_id in $pending; do
+            gh api "repos/${{ github.repository }}/actions/runs/$run_id/approve" -X POST
+          done
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_CI }}
