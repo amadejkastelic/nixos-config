@@ -61,7 +61,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_FOR_CI }}
           commit-message: "flake.lock: update"
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
@@ -84,17 +84,5 @@ jobs:
         run: |
           gh pr review --approve "${{ steps.create-pr.outputs.pull-request-url }}"
           gh pr merge --auto --merge "${{ steps.create-pr.outputs.pull-request-url }}"
-          PR_NUMBER="${{ steps.create-pr.outputs.pull-request-number }}"
-          for i in $(seq 1 10); do
-            pending=$(gh api "repos/${{ github.repository }}/actions/runs?event=pull_request&per_page=100" \
-              --jq ".workflow_runs[] | select(.pull_requests[].number == $PR_NUMBER and .status == \"action_required\") | .id")
-            if [ -n "$pending" ]; then
-              for run_id in $pending; do
-                gh api "repos/${{ github.repository }}/actions/runs/$run_id/approve" -X POST
-              done
-              break
-            fi
-            sleep 5
-          done
         env:
-          GH_TOKEN: ${{ secrets.PAT_FOR_CI }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
