@@ -11,10 +11,15 @@ on:
         description: "Flake attribute (defaults to host)"
         required: false
         type: string
+  schedule:
+    - cron: "0 3 * * 0"
 
 jobs:
   upgrade:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: ${{ github.event_name == 'schedule' && fromJSON('["razer", "oblak"]') || fromJSON(format('["{0}"]', inputs.host)) }}
     steps:
       - name: Check out source repository
         uses: actions/checkout@v4
@@ -49,18 +54,18 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
-          ping: ${{ inputs.host }}
+          ping: ${{ matrix.host }}
 
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -T 30 ${{ inputs.host }} >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -T 30 ${{ matrix.host }} >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Upgrade host
         run: |
           nix run nixpkgs#nixos-rebuild -- switch \
-            --flake .#${{ inputs.flake || inputs.host }} \
-            --target-host amadejk@${{ inputs.host }} \
+            --flake .#${{ inputs.flake || matrix.host }} \
+            --target-host amadejk@${{ matrix.host }} \
             --sudo
