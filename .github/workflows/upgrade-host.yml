@@ -1,0 +1,51 @@
+name: Upgrade Host
+
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "Target host (e.g. razer, oblak)"
+        required: true
+        type: string
+      flake:
+        description: "Flake attribute (defaults to host)"
+        required: false
+        type: string
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v4
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+          ping: ${{ inputs.host }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v20
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -T 30 ${{ inputs.host }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Upgrade host
+        run: |
+          nix run nixpkgs#nixos-rebuild -- switch \
+            --flake .#${{ inputs.flake || inputs.host }} \
+            --target-host amadejk@${{ inputs.host }} \
+            --sudo
