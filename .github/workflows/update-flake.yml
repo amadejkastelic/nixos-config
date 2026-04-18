@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Check out source repository
         uses: actions/checkout@v4
@@ -46,11 +47,29 @@ jobs:
         run: |
           nix flake update
 
-      - name: Commit and push
-        run: |
-          git diff --exit-code flake.lock && exit 0
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add flake.lock
-          git commit -m "flake.lock: update"
-          git push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "flake.lock: update"
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          sign-commits: true
+          branch: update-flake
+          delete-branch: true
+          title: "flake.lock: update"
+          body: |
+            Automated daily update of `flake.lock`.
+
+            **Triggered by:** ${{ github.actor }}
+            **Event type:** ${{ github.event_name }}
+          labels: |
+            flake
+            update
+            automation
+
+      - name: Enable auto-merge
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ steps.create-pull-request.outputs.pull-request-url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
