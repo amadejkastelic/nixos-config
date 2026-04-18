@@ -19,13 +19,18 @@ jobs:
       - name: Check out source repository
         uses: actions/checkout@v4
 
-      - name: Connect to Tailscale
-        uses: tailscale/github-action@v4
+      - name: Restore Nix store cache
+        uses: actions/cache@v4
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
-          ping: ${{ inputs.host }}
+          path: /nix
+          key: nix-${{ hashFiles('flake.lock') }}
+          restore-keys: nix-
+
+      - name: Read Nix cache config
+        id: caches
+        run: |
+          echo "substituters=$(jq -r '.substituters | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+          echo "trusted-public-keys=$(jq -r '."trusted-public-keys" | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
 
       - name: Install Nix
         uses: cachix/install-nix-action@v20
@@ -35,6 +40,16 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             experimental-features = nix-command flakes
+            substituters = ${{ steps.caches.outputs.substituters }}
+            trusted-public-keys = ${{ steps.caches.outputs.trusted-public-keys }}
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+          ping: ${{ inputs.host }}
 
       - name: Set up SSH
         run: |

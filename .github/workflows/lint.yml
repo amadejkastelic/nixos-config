@@ -23,7 +23,21 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v4
-      - name: Install nix action
+
+      - name: Restore Nix store cache
+        uses: actions/cache@v4
+        with:
+          path: /nix
+          key: nix-${{ hashFiles('flake.lock') }}
+          restore-keys: nix-
+
+      - name: Read Nix cache config
+        id: caches
+        run: |
+          echo "substituters=$(jq -r '.substituters | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+          echo "trusted-public-keys=$(jq -r '."trusted-public-keys" | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Nix
         uses: cachix/install-nix-action@v20
         with:
           install_url: https://nixos.org/nix/install
@@ -31,6 +45,9 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             experimental-features = nix-command flakes
+            substituters = ${{ steps.caches.outputs.substituters }}
+            trusted-public-keys = ${{ steps.caches.outputs.trusted-public-keys }}
+
       - name: Nix flake check
         run: |
           nix flake check
