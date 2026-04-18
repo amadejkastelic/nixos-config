@@ -3,6 +3,11 @@ on:
   schedule:
     - cron: "0 1 * * *"
   workflow_dispatch:
+    inputs:
+      inputs:
+        description: "Flake inputs to update (space-separated, empty = all)"
+        required: false
+        type: string
 
 jobs:
   update-flake:
@@ -10,6 +15,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: write
     steps:
       - name: Check out source repository
         uses: actions/checkout@v4
@@ -45,7 +51,11 @@ jobs:
 
       - name: Update flake.lock
         run: |
-          nix flake update
+          if [ -n "${{ inputs.inputs }}" ]; then
+            nix flake update ${{ inputs.inputs }}
+          else
+            nix flake update
+          fi
 
       - name: Create Pull Request
         id: create-pr
@@ -75,10 +85,16 @@ jobs:
           gh pr review --approve "${{ steps.create-pr.outputs.pull-request-url }}"
           gh pr merge --auto --merge "${{ steps.create-pr.outputs.pull-request-url }}"
           PR_NUMBER="${{ steps.create-pr.outputs.pull-request-number }}"
-          pending=$(gh api "repos/${{ github.repository }}/actions/runs?event=pull_request&status=waiting&per_page=100" \
-            --jq ".workflow_runs[] | select(.pull_requests[].number == $PR_NUMBER) | .id")
-          for run_id in $pending; do
-            gh api "repos/${{ github.repository }}/actions/runs/$run_id/approve" -X POST
+          for i in $(seq 1 10); do
+            pending=$(gh api "repos/${{ github.repository }}/actions/runs?event=pull_request&status=waiting&per_page=100" \
+              --jq ".workflow_runs[] | select(.pull_requests[].number == $PR_NUMBER) | .id")
+            if [ -n "$pending" ]; then
+              for run_id in $pending; do
+                gh api "repos/${{ github.repository }}/actions/runs/$run_id/approve" -X POST
+              done
+              break
+            fi
+            sleep 5
           done
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_CI }}
