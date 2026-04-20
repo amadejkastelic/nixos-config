@@ -32,7 +32,7 @@ in
       "uwsm finalize"
       "hyprctl setcursor ${cursorName} ${toString cursorSize}"
       "hyprlock"
-      "waybar"
+      "noctalia-shell"
       # "hyprlux > /tmp/hyprlux.log 2>&1"
       "wl-paste --watch cliphist store"
     ];
