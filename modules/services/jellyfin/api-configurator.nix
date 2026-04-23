@@ -26,7 +26,7 @@ let
     {
       description = description;
       after = [ "jellyfin.service" ];
-      requires = [ "jellyfin.service" ];
+      bindsTo = [ "jellyfin.service" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
@@ -69,7 +69,11 @@ let
     in
     {
       description = description;
-      after = [ "jellyfin-wait-api.service" ];
+      after = [
+        "jellyfin.service"
+        "jellyfin-wait-api.service"
+      ];
+      bindsTo = [ "jellyfin.service" ];
       requires = [ "jellyfin-wait-api.service" ];
       wantedBy = [ "multi-user.target" ];
 
@@ -212,7 +216,11 @@ let
     in
     {
       description = description;
-      after = [ "jellyfin-setup-wizard.service" ];
+      after = [
+        "jellyfin.service"
+        "jellyfin-setup-wizard.service"
+      ];
+      bindsTo = [ "jellyfin.service" ];
       requires = [ "jellyfin-setup-wizard.service" ];
       wantedBy = [ "multi-user.target" ];
 
@@ -234,6 +242,11 @@ let
           fi
           sleep 1
         done
+
+        if ! ${pkgs.curl}/bin/curl -sf "$BASE_URL/System/Info/Public" >/dev/null 2>&1; then
+          echo "ERROR: Jellyfin API not ready after 30 seconds" >&2
+          exit 1
+        fi
 
         ADMIN_PASSWORD=""
         ${lib.optionalString (adminPasswordPlain != null) ''ADMIN_PASSWORD="${adminPasswordPlain}"''}
@@ -287,7 +300,11 @@ let
     in
     {
       description = description;
-      after = [ "jellyfin-auth.service" ];
+      after = [
+        "jellyfin.service"
+        "jellyfin-auth.service"
+      ];
+      bindsTo = [ "jellyfin.service" ];
       requires = [ "jellyfin-auth.service" ];
       wantedBy = [ "multi-user.target" ];
 
@@ -392,7 +409,11 @@ let
     in
     {
       description = description;
-      after = [ "jellyfin-libraries.service" ];
+      after = [
+        "jellyfin.service"
+        "jellyfin-libraries.service"
+      ];
+      bindsTo = [ "jellyfin.service" ];
       requires = [ "jellyfin-libraries.service" ];
       wantedBy = [ "multi-user.target" ];
 
