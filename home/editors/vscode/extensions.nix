@@ -34,6 +34,7 @@
 
         # AI
         sst-dev.opencode
+        anthropic.claude-code
       ])
       ++ (with pkgs.vscode-extensions; [
         # Nix

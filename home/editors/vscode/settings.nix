@@ -131,6 +131,11 @@ let
     };
     "chat.disableAIFeatures" = true;
   };
+
+  claude-code = {
+    "claudeCode.preferredLocation" = "panel";
+    "claudeCode.useTerminal" = true;
+  };
 in
 {
   programs.vscode.profiles.default.userSettings =
@@ -152,5 +157,6 @@ in
     // zig
     // continue
     // svelte
-    // copilot;
+    // copilot
+    // claude-code;
 }
