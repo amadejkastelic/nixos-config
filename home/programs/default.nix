@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./browsers/chromium.nix
@@ -21,5 +25,6 @@
     hoppscotch
     qbittorrent-enhanced
     gnome-disk-utility
+    inputs.proxsign.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

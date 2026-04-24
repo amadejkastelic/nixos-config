@@ -224,5 +224,7 @@
       url = "github:different-name/steam-config-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    proxsign.url = "github:amadejkastelic/proxsign-nix";
   };
 }
