@@ -20,6 +20,7 @@ in
     alsa.support32Bit = true;
     jack.enable = true;
     pulse.enable = true;
+    rnnoise.enable = true;
 
     extraConfig.pipewire."92-low-latency" = {
       "context.properties" = {

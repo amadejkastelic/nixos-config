@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./mpv.nix
-    ./rnnoise.nix
-  ];
+  imports = [ ./mpv.nix ];
 
   home.packages = with pkgs; [
     # audio control

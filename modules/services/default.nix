@@ -9,6 +9,7 @@
     ./jellyfin
     ./jellyseerr
     ./llama-cpp.nix
+    ./pipewire
     ./qbittorrent.nix
     ./tailscale-funnel.nix
     ./tailscale-tls.nix
