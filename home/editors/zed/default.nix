@@ -1,8 +1,27 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
+let
+  zed-wrapped = pkgs.symlinkJoin {
+    name = "zed-wrapped";
+    paths = [ pkgs.zed-editor ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zeditor \
+        --unset WAYLAND_DISPLAY \
+        --set SHELL ${lib.getExe pkgs.zsh} \
+        --set GPUI_X11_SCALE_FACTOR 1.5
+    '';
+  };
+in
 {
   programs.zed-editor = {
     enable = true;
     installRemoteServer = true;
+
+    package = zed-wrapped;
 
     extensions = [
       "just"
@@ -57,6 +76,7 @@
     extraPackages = with pkgs; [
       nixd
       nixfmt
+      nil
     ];
   };
 
