@@ -54,21 +54,10 @@ in
       };
 
       agent_servers = {
-        OpenCode = {
-          type = "extension";
-        };
-      };
-
-      language_models = {
-        openai = {
-          api_url = "http://127.0.0.1:11434";
-          available_models = [
-            {
-              name = "qwen2.5-coder";
-              display_name = "qwen2.5-coder";
-              max_tokens = 128000;
-            }
-          ];
+        opencode = {
+          type = "custom";
+          command = "${lib.getExe pkgs.opencode}";
+          args = [ "acp" ];
         };
       };
     };
