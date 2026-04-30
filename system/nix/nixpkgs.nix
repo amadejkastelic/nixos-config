@@ -26,6 +26,9 @@
             aioboto3 = python-prev.aioboto3.overridePythonAttrs (oldAttrs: {
               doCheck = false;
             });
+            fastmcp = python-prev.fastmcp.overridePythonAttrs (oldAttrs: {
+              doCheck = false;
+            });
           })
         ];
       })
