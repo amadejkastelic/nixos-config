@@ -421,7 +421,7 @@
         "rev": "73b3bdb962a070aa088ac310e606ff760bcc0cf7",
         "revCount": 429,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.8/019f8227-b1af-7091-908e-aef95c3fd5e0/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.8/019f8227-b1af-7091-908e-aef95c3fd5e0/source.tar.gz?rev=73b3bdb962a070aa088ac310e606ff760bcc0cf7&revCount=429"
       },
       "original": {
         "type": "tarball",
@@ -504,11 +504,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1784952175,
-        "narHash": "sha256-/V+bExYV3ZsCYD5wRp2gQY3mnwfR1IisCSXXo1C92SM=",
+        "lastModified": 1784963334,
+        "narHash": "sha256-Xbj8fFapX+ufz8kx0sH33RAvF0Pauzfg5oihn38SWtE=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "804703f8b3abb808af39c41fa89354aa00b0a558",
+        "rev": "557935d63e75f4bfbd61ca3cede3a632edbed7e5",
         "type": "gitlab"
       },
       "original": {
