@@ -114,6 +114,7 @@ in
           csgofloat
           metamask
           firefox-color
+          multi-account-containers
         ];
       };
 
