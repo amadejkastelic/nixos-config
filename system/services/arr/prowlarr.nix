@@ -46,6 +46,13 @@
           tags = [ "movies" ];
         }
         {
+          name = "Internet Archive";
+          tags = [
+            "movies"
+            "tv"
+          ];
+        }
+        {
           name = "Nyaa.si";
           tags = [ "anime" ];
         }
@@ -73,7 +80,7 @@
       ]
       ++ lib.optionals config.services.flaresolverr.enable [
         {
-          name = "1337x";
+          name = "kickasstorrents.ws";
           tags = [
             "movies"
             "tv"
