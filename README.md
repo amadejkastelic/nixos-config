@@ -113,7 +113,7 @@ nix-shell -p sops --run "sops updatekeys path/to/secrets.yaml"
 ## Key Applications
 
 ### Desktop Environment
-- **Hyprland**: Wayland compositor with plugins (dynamic-cursors, hyprlux, hyprvibr)
+- **Hyprland**: Wayland compositor with plugins (hyprvibr)
 - **Noctalia**: Shell and notification daemon
 - **Vicinae**: Application launcher and AI assistant interface
 - **hypridle/hyprlock**: Idle management and screen lock

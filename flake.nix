@@ -138,11 +138,6 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
-    hyprlux = {
-      url = "github:amadejkastelic/Hyprlux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprvibr = {
       url = "github:devcexx/hyprvibr";
       inputs.hyprland.follows = "hyprland";

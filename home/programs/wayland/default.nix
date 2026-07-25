@@ -9,7 +9,6 @@
   imports = [
     ./hyprland.nix
     ./hyprlock.nix
-    ./hyprlux.nix
     ./noctalia.nix
   ];
 
