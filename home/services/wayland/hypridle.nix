@@ -96,10 +96,6 @@ let
       fi
     done
 
-    # Restart Quickshell
-    echo "Restarting Quickshell"
-    systemctl --user restart quickshell.service
-
     echo "Window restoration complete"
   '';
 in

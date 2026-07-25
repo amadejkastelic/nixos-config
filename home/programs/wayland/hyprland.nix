@@ -216,7 +216,7 @@ in
         (bind "SUPER + up" ''hl.dsp.focus({ direction = "up" })'')
         (bind "SUPER + down" ''hl.dsp.focus({ direction = "down" })'')
         (exec "SUPER + R" "vicinae toggle")
-        (exec "SUPER + Escape" "noctalia-shell ipc call sessionMenu toggle")
+        (exec "SUPER + Escape" "noctalia msg panel-toggle session")
         (exec "Print" "grimblast --freeze --notify copysave area")
         (exec "SUPER + Print" "grimblast --notify --cursor copysave output")
         (bindFlags "XF86AudioPlay" ''hl.dsp.exec_cmd("playerctl play-pause")'' { locked = true; })
@@ -252,20 +252,27 @@ in
             function()
               hl.exec_cmd("uwsm finalize")
               hl.exec_cmd("hyprctl setcursor ${cursorName} ${toString cursorSize}")
-              hl.exec_cmd("noctalia-shell")
             end
           '')
         ];
       };
 
       layer_rule = [
-        (layerRule "^(calendar|notifications|osd|system-menu|vicinae|bar|gtk-layer-shell|logout_dialog)$" {
+        (layerRule "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$" {
           blur = true;
+          blur_popups = true;
+          ignore_alpha = 0.5;
+          no_anim = true;
         })
-        (layerRule "^(bar|gtk-layer-shell)$" { xray = true; })
-        (layerRule "^(bar|gtk-layer-shell)$" { ignore_alpha = 0.2; })
-        (layerRule "^(calendar|notifications|osd|system-menu|vicinae|music)$" { ignore_alpha = 0.5; })
-        (layerRule "^(vicinae)$" { no_anim = true; })
+        (layerRule "^(vicinae|gtk-layer-shell|logout_dialog)$" { blur = true; })
+        (layerRule "^(gtk-layer-shell)$" {
+          xray = true;
+          ignore_alpha = 0.2;
+        })
+        (layerRule "^(vicinae)$" {
+          ignore_alpha = 0.5;
+          no_anim = true;
+        })
       ];
 
       window_rule = [

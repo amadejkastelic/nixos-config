@@ -199,7 +199,7 @@
     musnix.url = "github:musnix/musnix";
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia?ref=legacy-v4";
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
