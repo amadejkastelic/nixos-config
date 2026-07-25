@@ -46,7 +46,7 @@
           tags = [ "movies" ];
         }
         {
-          name = "Internet Archive";
+          name = "TorrentDownload";
           tags = [
             "movies"
             "tv"
