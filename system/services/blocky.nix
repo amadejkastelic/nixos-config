@@ -33,6 +33,7 @@ in
       };
 
       upstreams.groups.default = dnsServers;
+      bootstrapDns = dnsServers;
 
       log = {
         level = "info";
@@ -41,35 +42,24 @@ in
       };
 
       blocking = {
-        loading.strategy = "fast";
+        loading = {
+          strategy = "fast";
+          refreshPeriod = "24h";
+          downloads = {
+            timeout = "30s";
+            readTimeout = "30s";
+            attempts = 5;
+            cooldown = "5s";
+          };
+        };
         blockType = "zeroIP";
-        denylists = {
-          ads = [
-            "https://adaway.org/hosts.txt"
-            "https://v.firebog.net/hosts/AdguardDNS.txt"
-            "https://v.firebog.net/hosts/Admiral.txt"
-            "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
-            "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
-            "https://v.firebog.net/hosts/Easylist.txt"
-            "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext"
-            "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
-          ];
-          telemetry = [
-            "https://v.firebog.net/hosts/Easyprivacy.txt"
-            "https://v.firebog.net/hosts/Prigent-Ads.txt"
-            "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
-            "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
-            "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt"
-          ];
-        };
-        allowlists = {
-          ads = [ ];
-        };
+        denylists.standard = [
+          "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/pro.txt"
+          "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/wildcard/tif.medium.txt"
+        ];
+        allowlists.standard = [ ];
         clientGroupsBlock = {
-          default = [
-            "ads"
-            "telemetry"
-          ];
+          default = [ "standard" ];
         };
       };
 
