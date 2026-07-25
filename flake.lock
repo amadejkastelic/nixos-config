@@ -3124,6 +3124,7 @@
         "proxsign": "proxsign",
         "sekiro-tweaker": "sekiro-tweaker",
         "sops-nix": "sops-nix",
+        "sparkyfitness": "sparkyfitness",
         "steam-config-nix": "steam-config-nix",
         "stylix": "stylix",
         "systems": "systems_11",
@@ -3311,6 +3312,30 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "soulver-cpp",
+        "type": "github"
+      }
+    },
+    "sparkyfitness": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784987189,
+        "narHash": "sha256-aM5B0dV7955qimpZmNDaq7gcdGinW1tUfw2IqVoVuEE=",
+        "owner": "CodeWithCJ",
+        "repo": "SparkyFitness",
+        "rev": "d2f164750cafcda1d14089ab5643afefb0fdb8ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CodeWithCJ",
+        "ref": "d2f164750cafcda1d14089ab5643afefb0fdb8ef",
+        "repo": "SparkyFitness",
         "type": "github"
       }
     },

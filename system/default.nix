@@ -65,6 +65,7 @@ let
     ./services/jellyfin.nix
     ./services/metrics
     ./services/nginx.nix
+    ./services/sparkyfitness.nix
     ./services/vaultwarden.nix
   ];
 in
