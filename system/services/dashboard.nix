@@ -3,12 +3,12 @@ let
   port = 8082;
 in
 {
-  homelab.subdomains = [ "home" ];
+  homelab.subdomains = [ "dashboard" ];
   services.homepage-dashboard = {
     enable = true;
     nginx = {
       enable = true;
-      hostName = "home.${config.homelab.domain}";
+      hostName = "dashboard.${config.homelab.domain}";
     };
     listenPort = port;
 
@@ -31,6 +31,12 @@ in
     services = [
       {
         Services = [
+          {
+            "Home Assistant" = {
+              href = "https://home.${config.homelab.domain}";
+              icon = "home-assistant";
+            };
+          }
           {
             Immich = {
               href = "https://immich.${config.homelab.domain}";
