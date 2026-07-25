@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }:
 let
@@ -45,6 +46,8 @@ in
 
   programs.firefox = {
     enable = true;
+
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     policies = {
       AutofillAddressEnabled = true;
