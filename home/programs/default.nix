@@ -19,6 +19,7 @@
     [
       gnumake
       hoppscotch
+      iloader
     ]
     ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry-gnome3
