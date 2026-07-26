@@ -366,6 +366,63 @@ in
     };
 
     extraConfig = ''
+      local function setFirefoxWindowFloating(window, action)
+        hl.dispatch(
+          hl.dsp.window.float({
+            action = action,
+            window = "address:" .. window.address,
+          })
+        )
+      end
+
+      local function isPendingFirefoxTitle(title)
+        return title == ""
+          or title == "Mozilla Firefox"
+          or title == "about:blank"
+          or title:match("^about:.*Mozilla Firefox$")
+      end
+
+      hl.on("window.open", function(window)
+        if window == nil
+          or window.class ~= "firefox"
+          or window.initial_title ~= "Mozilla Firefox"
+        then
+          return
+        end
+
+        local firefoxWindows = hl.get_windows({ class = "firefox" })
+        if #firefoxWindows <= 1 then
+          return
+        end
+
+        setFirefoxWindowFloating(window, "set")
+
+        if window.title:match("^Extension:") then
+          return
+        end
+
+        if not isPendingFirefoxTitle(window.title) then
+          setFirefoxWindowFloating(window, "unset")
+          return
+        end
+
+        local titleSubscription
+        titleSubscription = hl.on("window.title", function(updatedWindow)
+          if updatedWindow == nil or updatedWindow.address ~= window.address then
+            return
+          end
+
+          if isPendingFirefoxTitle(updatedWindow.title) then
+            return
+          end
+
+          titleSubscription:remove()
+          if not updatedWindow.title:match("^Extension:") then
+            setFirefoxWindowFloating(updatedWindow, "unset")
+          end
+        end)
+      end)
+
       if hl.plugin.hyprvibr then
         hl.plugin.hyprvibr.hyprvibr_app({
           class = "cs2",
