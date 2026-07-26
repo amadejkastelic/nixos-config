@@ -20,6 +20,7 @@
       gnumake
       hoppscotch
       iloader
+      signal-desktop
     ]
     ++ lib.optionals (!pkgs.stdenv.isDarwin) [
       pinentry-gnome3
