@@ -421,7 +421,7 @@
         "rev": "73b3bdb962a070aa088ac310e606ff760bcc0cf7",
         "revCount": 429,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.8/019f8227-b1af-7091-908e-aef95c3fd5e0/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.8/019f8227-b1af-7091-908e-aef95c3fd5e0/source.tar.gz?rev=73b3bdb962a070aa088ac310e606ff760bcc0cf7&revCount=429"
       },
       "original": {
         "type": "tarball",
@@ -2271,11 +2271,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784440659,
-        "narHash": "sha256-Q5kNLlWngt7TaIIZoxDKWMHjiSaNRVqr70FqWCRRfr4=",
+        "lastModified": 1785046085,
+        "narHash": "sha256-UiK+mmZJuLWQVhJ5b2wDzogIYWAesyRm6LA3h3Ulh3Y=",
         "owner": "Mic92",
         "repo": "nix-index-database",
-        "rev": "4f8d52a3598b0dc7db7a5e7b419e3edd9d1ecfdb",
+        "rev": "11665045df8b9938ef811a3bfdc65cffb02b4b70",
         "type": "github"
       },
       "original": {
@@ -2333,11 +2333,11 @@
         "nixpkgs-nixcord": "nixpkgs-nixcord"
       },
       "locked": {
-        "lastModified": 1785039344,
-        "narHash": "sha256-RGv7KbeN6k7vhC4/UDMi255sNrog6DrG2A6Q7sLcR+Q=",
+        "lastModified": 1785060411,
+        "narHash": "sha256-42hIKd7om5rjhy2BQZYnMA7V4qZAwP5YJwMcw6/1nf8=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "c7332c0014528f5750c6a253c37984a1f46f9349",
+        "rev": "db0041843c1b03b6150e5e997ede60f9bb582018",
         "type": "github"
       },
       "original": {
@@ -2837,11 +2837,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785030834,
-        "narHash": "sha256-6RFpX+Z6uXlPtDEP3p8gNoT0jHWh6y675NAK8cAaBvk=",
+        "lastModified": 1785062220,
+        "narHash": "sha256-p3Wxo+5p0Y6E3LwA3DdwMMse/GtcaPUmqLilPVfJPe4=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "8c0deca5334affe0b9f5d4581d486c9ffc482aa3",
+        "rev": "e1a4d27f2f2494db2c6e7636b514d1770b16c776",
         "type": "github"
       },
       "original": {
@@ -2884,11 +2884,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784917177,
-        "narHash": "sha256-BunxD3nKN6oa4LXh9I3rAopolL0bloBtswKBXrm8hEE=",
+        "lastModified": 1785066665,
+        "narHash": "sha256-/wu5EOTe3kl0o2YcR4hGbq++WcN/3VAlKKkZaSdoJq4=",
         "owner": "NotAShelf",
         "repo": "nvf",
-        "rev": "07d5eb208b8f16306b10342b634da7e07e926fa5",
+        "rev": "eeb970ad0d93a2a31603f65f79ea476535539466",
         "type": "github"
       },
       "original": {
