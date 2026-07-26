@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ./exec.nix
     ./nixpkgs.nix
     ./substituters.nix
   ];

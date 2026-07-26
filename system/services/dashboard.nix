@@ -43,12 +43,6 @@ in
               icon = "immich";
             };
           }
-          {
-            SparkyFitness = {
-              href = "https://fitness.${config.homelab.domain}";
-              icon = "mdi-dumbbell";
-            };
-          }
         ];
       }
       {

@@ -191,18 +191,6 @@
 
     grabby.url = "github:amadejkastelic/grabby";
 
-    sparkyfitness = {
-      # v1.6.0 with working tests
-      url = "github:CodeWithCJ/SparkyFitness?ref=d2f164750cafcda1d14089ab5643afefb0fdb8ef";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    voxtype = {
-      url = "github:peteonrails/voxtype";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     musnix.url = "github:musnix/musnix";
 
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
@@ -217,8 +205,6 @@
     claude-code.url = "github:sadjow/claude-code-nix";
 
     bb-launcher.url = "github:amadejkastelic/bb-launcher-nix";
-
-    nix-exec.url = "github:amadejkastelic/nix-exec";
 
     nvf = {
       url = "github:NotAShelf/nvf";
