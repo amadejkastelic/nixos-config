@@ -1,6 +1,6 @@
 {
   imports = [
+    ../../../hosts/ryzen/workstation.nix
     ../linux
-    ./hyprland.nix
   ];
 }

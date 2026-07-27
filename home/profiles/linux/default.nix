@@ -1,5 +1,8 @@
+{ self, ... }:
 {
   imports = [
+    self.homeManagerModules.workstation
+
     ../../editors/neovim
     ../../editors/vscode
     ../../editors/zed

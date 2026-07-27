@@ -17,6 +17,8 @@ let
   ];
 
   desktop = common ++ [
+    self.modules.workstation
+
     ./core/boot.nix
     ./core/lanzaboote.nix
 

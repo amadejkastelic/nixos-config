@@ -10,6 +10,7 @@
     ./cpu.nix
     ./disk-config.nix
     ./hardware-configuration.nix
+    ./workstation.nix
   ];
 
   services.openssh.enable = true;

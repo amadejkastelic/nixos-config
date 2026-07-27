@@ -8,6 +8,8 @@
 let
   inherit (lib.generators) mkLuaInline;
 
+  displays = config.workstation.displays;
+  gaming = config.workstation.gaming;
   cursorName = "Bibata-Modern-Ice-Hyprcursor";
   cursorSize = 24;
   opacity = "0.93";
@@ -57,7 +59,7 @@ let
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
-    STEAM_FORCE_DESKTOPUI_SCALING = "1.25";
+    STEAM_FORCE_DESKTOPUI_SCALING = builtins.toJSON (builtins.head displays).scale;
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
@@ -86,6 +88,11 @@ in
     ];
 
     settings = {
+      monitor = map (display: {
+        inherit (display) output position scale;
+        mode = "${toString display.width}x${toString display.height}@${toString display.refreshRate}";
+      }) displays;
+
       config = {
         general = {
           gaps_in = 5;
@@ -428,9 +435,9 @@ in
           class = "cs2",
           sat = 3.3,
           monitor = {
-            w = 2560,
-            h = 1440,
-            refresh_rate = 120,
+            w = ${toString gaming.width},
+            h = ${toString gaming.height},
+            refresh_rate = ${toString gaming.refreshRate},
           },
         })
       end

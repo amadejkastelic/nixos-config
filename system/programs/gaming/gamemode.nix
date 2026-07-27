@@ -11,13 +11,24 @@ let
   powerprofilesctl = lib.getExe pkgs.power-profiles-daemon;
   notify-send = lib.getExe pkgs.libnotify;
 
+  gaming = config.workstation.gaming;
+  display = lib.findFirst (
+    candidate: candidate.output == gaming.output
+  ) null config.workstation.displays;
+  needsResolutionChange =
+    gaming.width != display.width
+    || gaming.height != display.height
+    || gaming.refreshRate != display.refreshRate
+    || gaming.scale != display.scale;
+
   resolutionScript = pkgs.writeShellScriptBin "resolution" ''
-    refresh_rate=''${3:-120}
-    ${hyprctl} eval "hl.monitor({ output = \"DP-2\", mode = \"$1x$2@''${refresh_rate}\", position = \"0x0\", scale = 1 })"
+    ${lib.optionalString (!needsResolutionChange) "exit 0"}
+    refresh_rate=''${3:-${toString gaming.refreshRate}}
+    ${hyprctl} eval "hl.monitor({ output = \"${gaming.output}\", mode = \"$1x$2@''${refresh_rate}\", position = \"${display.position}\", scale = ${builtins.toJSON gaming.scale} })"
   '';
 
   startScript = writeDash "gamemode-start" ''
-    ${lib.getExe resolutionScript} 2560 1440
+    ${lib.getExe resolutionScript} ${toString gaming.width} ${toString gaming.height} ${toString gaming.refreshRate}
     ${hyprctl} hyprsunset identity
     ${hyprctl} eval "hl.config({
       animations = { enabled = false },

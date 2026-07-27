@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./openrgb
     ./thermal-fix.nix
+    ./workstation.nix
   ];
 
   services.scx = {

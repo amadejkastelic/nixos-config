@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
+let
+  gaming = config.workstation.gaming;
+in
 {
   programs.gamescope = {
     enable = true;
@@ -6,9 +13,9 @@
     args = [
       "--backend wayland"
       "--force-grab-cursor"
-      "-W 2560"
-      "-H 1440"
-      "-r 120"
+      "-W ${toString gaming.width}"
+      "-H ${toString gaming.height}"
+      "-r ${toString gaming.refreshRate}"
       "-f"
     ];
   };
