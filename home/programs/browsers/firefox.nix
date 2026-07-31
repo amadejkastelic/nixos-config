@@ -80,8 +80,7 @@ in
 
         # Prefer dark theme
         "layout.css.prefers-color-scheme.content-override" = 0;
-        # Scaling, -1 for system
-        "layout.css.devPixelsPerPx" = 1.15;
+        "layout.css.devPixelsPerPx" = "-1";
 
         "widget.use-xdg-desktop-portal.file-picker" = true;
 
