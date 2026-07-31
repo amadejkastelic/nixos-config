@@ -1,5 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
-  services.hardware.openrgb.package =
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.openrgb-rc;
+  services.hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
 }
