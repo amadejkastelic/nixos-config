@@ -17,11 +17,6 @@
 
         sekiro-fps-unlock = pkgs.callPackage ./sekiro-fps-unlock { };
 
-        openrgb-rc = (pkgs.callPackage ./openrgb-rc { }).withPlugins [
-          pkgs.openrgb-plugin-effects
-          pkgs.openrgb-plugin-hardwaresync
-        ];
-
         z-ai-vision-mcp-server = pkgs.callPackage ./z-ai-vision-mcp-server { };
 
         magewell-usb-capture = pkgs.callPackage ./magewell-usb-capture { };
