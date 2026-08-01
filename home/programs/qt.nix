@@ -9,7 +9,10 @@
   qt = lib.mkIf (!pkgs.stdenv.isDarwin) {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
+    style.package = with pkgs; [
+      libsForQt5.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
+    ];
 
     kvantum = {
       enable = true;
