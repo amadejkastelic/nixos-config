@@ -6,6 +6,8 @@
 {
   stylix.targets.qt.enable = false;
 
+  catppuccin.qt5ct.enable = true;
+
   qt = lib.mkIf (!pkgs.stdenv.isDarwin) {
     enable = true;
     platformTheme.name = "qtct";
