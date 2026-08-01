@@ -217,7 +217,7 @@ in
         (exec "SUPER + O" "uwsm app -- wl-ocr")
         (exec "SUPER + E" "vicinae vicinae://launch/core/search-emojis")
         (exec "SUPER + V" "vicinae vicinae://launch/clipboard/history")
-        (exec "SUPER + N" "nautilus")
+        (exec "SUPER + N" "dolphin")
         (bind "SUPER + left" ''hl.dsp.focus({ direction = "left" })'')
         (bind "SUPER + right" ''hl.dsp.focus({ direction = "right" })'')
         (bind "SUPER + up" ''hl.dsp.focus({ direction = "up" })'')
@@ -257,7 +257,7 @@ in
           "hyprland.start"
           (mkLuaInline ''
             function()
-              hl.exec_cmd("uwsm finalize")
+              hl.exec_cmd("uwsm finalize XDG_CONFIG_DIRS XDG_DATA_DIRS")
               hl.exec_cmd("hyprctl setcursor ${cursorName} ${toString cursorSize}")
             end
           '')
@@ -284,19 +284,17 @@ in
 
       window_rule = [
         (windowRule { title = "^(Media viewer)$"; } { float = true; })
-        (windowRule { class = "^(pavucontrol)$"; } {
+        (windowRule { title = "^Volume Control$"; } {
           float = true;
-          inherit opacity;
-        })
-        (windowRule { initial_class = "^(org.pulseaudio.pavucontrol)$"; } {
-          float = true;
+          center = true;
+          size = "900 600";
           inherit opacity;
         })
         (windowRule { class = "^(nm-connection-editor)$"; } {
           float = true;
           inherit opacity;
         })
-        (windowRule { initial_class = "^(org.gnome.Nautilus)$"; } {
+        (windowRule { initial_class = "^(org.kde.dolphin)$"; } {
           float = true;
           inherit opacity;
         })

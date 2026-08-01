@@ -6,9 +6,9 @@
     with pkgs;
     lib.optionals (!pkgs.stdenv.isDarwin) [
       gimp
-      pavucontrol
+      lxqt.pavucontrol-qt
       pulsemixer
-      loupe
+      kdePackages.gwenview
       audacious
       cider-2
     ];

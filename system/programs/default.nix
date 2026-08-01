@@ -3,7 +3,6 @@
     ./fonts.nix
     ./home-manager.nix
     ./idescriptor.nix
-    ./nautilus.nix
     ./noisetorch.nix
     ./obs.nix
     ./xdg.nix

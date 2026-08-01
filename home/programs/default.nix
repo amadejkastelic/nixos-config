@@ -23,12 +23,15 @@
       signal-desktop
     ]
     ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+      kdePackages.dolphin
+      kdePackages.kio-extras
+      kdePackages.ark
       pinentry-gnome3
-      mission-center
+      kdePackages.plasma-systemmonitor
       wineWow64Packages.wayland
       ledger-live-desktop
       qbittorrent-enhanced
-      gnome-disk-utility
+      kdePackages.partitionmanager
       inputs.proxsign.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 }

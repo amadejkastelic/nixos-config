@@ -6,9 +6,9 @@
 }:
 let
   browser = [ "firefox" ];
-  fileManager = [ "org.gnome.Nautilus" ];
-  archiver = [ "org.gnome.Nautilus" ];
-  imageViewer = [ "org.gnome.Loupe" ];
+  fileManager = [ "org.kde.dolphin" ];
+  archiver = [ "org.kde.ark" ];
+  imageViewer = [ "org.kde.gwenview" ];
   videoPlayer = [ "mpv" ];
   audioPlayer = [ "mpv" ];
 
