@@ -387,7 +387,7 @@
         "rev": "782adcaacdc5b72dcae7093ff07e7f0be1271a76",
         "revCount": 430,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.9/019fb411-e801-74a0-8c53-b41643853e87/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/determinate/3.21.9/019fb411-e801-74a0-8c53-b41643853e87/source.tar.gz?rev=782adcaacdc5b72dcae7093ff07e7f0be1271a76&revCount=430"
       },
       "original": {
         "type": "tarball",
@@ -2188,11 +2188,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1785557149,
-        "narHash": "sha256-q3PlryEgLikvoP5NaM6yVxrMxggw3BRJlJ1Xw0qdhZc=",
+        "lastModified": 1785584400,
+        "narHash": "sha256-dsTnC16nNBxzvFnvaFii59IgZTA5RgVijZ0OttNtGYU=",
         "owner": "FlameFlag",
         "repo": "nixcord",
-        "rev": "4de2fc0c647d38b7115422d3321c77593a384191",
+        "rev": "e2ed91fda0b2ff7ea70cba587ea1865f08a48819",
         "type": "github"
       },
       "original": {
@@ -2687,11 +2687,11 @@
         "nixpkgs": "nixpkgs_17"
       },
       "locked": {
-        "lastModified": 1785554211,
-        "narHash": "sha256-TA7O3V5UV7mJRBK0m+ZIBVdQbn8/I7OCgL0UDuy1+fk=",
+        "lastModified": 1785590572,
+        "narHash": "sha256-7XMfIQ3ho3omvo74S2hMzaiDC6nPFrgZX7y9pGKKnzU=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "01bfb1bb221594e126d0a0b78fee13456182b026",
+        "rev": "fa0916e3022d9e5725c0a305cefd8e41c4974472",
         "type": "github"
       },
       "original": {
