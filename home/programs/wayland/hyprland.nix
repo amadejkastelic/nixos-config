@@ -74,7 +74,8 @@ in
     inherit sessionVariables;
   };
 
-  xdg.configFile."uwsm/env".text = config.lib.shell.exportAll sessionVariables;
+  xdg.configFile."uwsm/env".source =
+    "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
   wayland.windowManager.hyprland = {
     enable = true;
