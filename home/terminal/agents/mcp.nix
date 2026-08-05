@@ -7,7 +7,7 @@
 }:
 let
   zAiBaseUrl = "https://api.z.ai/api/mcp";
-  zAiAuthorization = "Bearer {env:Z_AI_API_KEY}";
+  zAiAuthorization = "Bearer \${Z_AI_API_KEY}";
 in
 {
   home.packages = with pkgs; [
@@ -28,7 +28,7 @@ in
           "--toolsets"
           "context,repos,issues,pull_requests,actions"
         ];
-        env.GITHUB_PERSONAL_ACCESS_TOKEN = "{env:GITHUB_TOKEN}";
+        env.GITHUB_PERSONAL_ACCESS_TOKEN = "\${GITHUB_TOKEN}";
       };
       nixos = {
         command = lib.getExe pkgs.mcp-nixos;
@@ -52,7 +52,7 @@ in
         command = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.z-ai-vision-mcp-server;
         env = {
           Z_AI_MODE = "ZAI";
-          Z_AI_API_KEY = "{env:Z_AI_API_KEY}";
+          Z_AI_API_KEY = "\${Z_AI_API_KEY}";
         };
       };
       grafana = {
