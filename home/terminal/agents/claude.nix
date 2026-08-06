@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   inputs,
   ...
 }:
@@ -14,6 +15,29 @@ in
     enable = true;
 
     package = inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+    lspServers = {
+      rust-analyzer = {
+        command = lib.getExe pkgs.rust-analyzer;
+        extensionToLanguage.".rs" = "rust";
+      };
+      gopls = {
+        command = lib.getExe pkgs.gopls;
+        extensionToLanguage.".go" = "go";
+      };
+      nixd = {
+        command = lib.getExe pkgs.nixd;
+        extensionToLanguage.".nix" = "nix";
+      };
+      starpls = {
+        command = lib.getExe pkgs.starpls;
+        extensionToLanguage = {
+          ".bzl" = "starlark";
+          ".star" = "starlark";
+          ".bazel" = "starlark";
+        };
+      };
+    };
 
     mcpServers = config.programs.mcp.servers;
 
