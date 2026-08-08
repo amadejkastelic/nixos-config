@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 {
@@ -17,6 +18,11 @@
     ];
 
     userSettings = {
+      load_direnv = "direct";
+
+      mutableUserSettings = false;
+      mutableUserKeymaps = false;
+
       vim_mode = false;
       format_on_save = "on";
 
@@ -24,11 +30,11 @@
 
       icon_theme = "Material Icon Theme";
 
-      ui_font_size = 16;
-      buffer_font_size = 16;
+      ui_font_size = 18;
+      buffer_font_size = 18;
 
       terminal = {
-        font_size = 14;
+        font_size = 16;
       };
 
       tabs.file_icons = true;
@@ -39,10 +45,9 @@
       };
 
       agent_servers = {
-        opencode = {
-          type = "custom";
-          command = "${lib.getExe pkgs.opencode}";
-          args = [ "acp" ];
+        "claude-code-acp" = {
+          command = lib.getExe pkgs.claude-agent-acp;
+          env.CLAUDE_CODE_EXECUTABLE = lib.getExe config.programs.claude-code.package;
         };
       };
     };
