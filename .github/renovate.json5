@@ -1,0 +1,29 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended"],
+  onboarding: false,
+  requireConfig: "optional",
+
+  // flake.lock is handled by update-flake.yml; pkgs/* by update-packages.yml.
+  // npm off avoids the vendored pkgs/z-ai-vision-mcp-server/package-lock.json.
+  nix: { enabled: false },
+  npm: { enabled: false },
+
+  labels: ["automation", "update"],
+
+  packageRules: [
+    {
+      description: "Group all GitHub Action updates into a single PR",
+      matchManagers: ["github-actions"],
+      groupName: "github-actions",
+      addLabels: ["github-actions"],
+    },
+    {
+      description: "Auto-merge minor/patch action bumps; majors need review",
+      matchManagers: ["github-actions"],
+      matchUpdateTypes: ["minor", "patch"],
+      automerge: true,
+      automergeStrategy: "squash",
+    },
+  ],
+}
