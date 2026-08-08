@@ -23,6 +23,7 @@
           "fxtwitter.com"
           "vxreddit.com"
           "tnktok.com"
+          "klipy.com"
         ];
       }
       # FRI VSŠ
