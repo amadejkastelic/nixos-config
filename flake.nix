@@ -51,9 +51,6 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # https://github.com/microsoft/vscode/issues/260391
-    nixpkgs-vscode.url = "github:NixOS/nixpkgs?ref=4c7d90a136071eb8154d6b3fe63b0046de9d4712";
-
     flake-compat = {
       url = "github:NixOS/flake-compat";
       flake = false;

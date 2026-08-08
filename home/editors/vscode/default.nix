@@ -1,16 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-let
-  mkNixpkgsUnfree =
-    system:
-    import inputs.nixpkgs-vscode {
-      inherit system;
-      config.allowUnfree = true;
-    };
-in
+{ pkgs, ... }:
 {
   imports = [
     ./extensions.nix
@@ -22,8 +10,7 @@ in
   programs.vscode = {
     enable = true;
 
-    # https://github.com/microsoft/vscode/issues/260391
-    package = (mkNixpkgsUnfree pkgs.stdenv.hostPlatform.system).vscode;
+    package = pkgs.vscode;
 
     profiles.default = {
       enableUpdateCheck = false;

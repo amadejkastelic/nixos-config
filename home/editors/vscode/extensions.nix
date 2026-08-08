@@ -1,17 +1,8 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }:
-let
-  mkNixpkgsUnfree =
-    system:
-    import inputs.nixpkgs-vscode {
-      inherit system;
-      config.allowUnfree = true;
-    };
-in
 {
   programs.vscode = {
     mutableExtensionsDir = false;
@@ -45,7 +36,7 @@ in
         sst-dev.opencode
         anthropic.claude-code
       ])
-      ++ (with (mkNixpkgsUnfree pkgs.stdenv.hostPlatform.system).vscode-extensions; [
+      ++ (with pkgs.vscode-extensions; [
         # Nix
         jnoortheen.nix-ide
         mkhl.direnv

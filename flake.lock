@@ -2337,22 +2337,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-vscode": {
-      "locked": {
-        "lastModified": 1764506988,
-        "narHash": "sha256-clj4TsIVqiFfvyu+mfm3s94Y7iOP+eRa62wxzLUV49M=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4c7d90a136071eb8154d6b3fe63b0046de9d4712",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "4c7d90a136071eb8154d6b3fe63b0046de9d4712",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1744536153,
@@ -2939,7 +2923,6 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_16",
-        "nixpkgs-vscode": "nixpkgs-vscode",
         "noctalia": "noctalia",
         "nvf": "nvf",
         "pre-commit-hooks": "pre-commit-hooks_4",
