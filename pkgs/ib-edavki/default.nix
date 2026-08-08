@@ -7,14 +7,14 @@
 
 python3.pkgs.buildPythonPackage (finalAttrs: {
   pname = "ib_edavki";
-  version = "unstable-2026-01-25";
+  version = "0-unstable-2026-03-29";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "jamsix";
     repo = "ib-edavki";
-    rev = "f0e9f29e19bf419852be2ae7b8a28311e3260821";
-    hash = "sha256-JVNxSgH2sCaaquZpckh3NjZq466wBpfmnXoSxseEq8Y=";
+    rev = "22220f546378b638c129ffe4bd6f2c9a3139809c";
+    hash = "sha256-W0SBIC2UWnutCHgx3l1xh/ATa+KwDWJNR8tm9PDtYDk=";
   };
 
   build-system = [ python3.pkgs.setuptools ];
