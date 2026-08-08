@@ -11,9 +11,11 @@
 
     extensions = [
       "just"
-      "nix"
       "material-icon-theme"
-      "opencode"
+      "nix"
+      "proto"
+      "starlark"
+      "toml"
       "zig"
     ];
 
