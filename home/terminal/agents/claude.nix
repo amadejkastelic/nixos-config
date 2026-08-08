@@ -44,6 +44,7 @@ in
     settings = {
       includeCoAuthoredBy = false;
       enableAllProjectMcpServers = true;
+      showClearContextOnPlanAccept = true;
       apiKeyHelper = "${zAiApiKeyHelper}";
 
       env = {
