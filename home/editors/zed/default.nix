@@ -66,6 +66,28 @@
       };
     };
 
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+          ctrl-p = "command_palette::Toggle";
+          ctrl-shift-o = "file_finder::Toggle";
+        };
+      }
+      {
+        context = "Editor && mode == full";
+        bindings = {
+          ctrl-shift-o = "file_finder::Toggle";
+        };
+      }
+      {
+        context = "Editor";
+        bindings = {
+          ctrl-d = "editor::DuplicateLineDown";
+        };
+      }
+    ];
+
     extraPackages = with pkgs; [
       nixd
       nixfmt
