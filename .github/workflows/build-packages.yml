@@ -66,7 +66,7 @@ jobs:
 
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
             # Package directories touched by this PR, intersected with real packages.
-            mapfile -t changed < <(gh pr view --json files -q '.files[].path' \
+            mapfile -t changed < <(gh pr view "${{ github.event.pull_request.number }}" --json files -q '.files[].path' \
               | grep '^pkgs/' | grep -v '^pkgs/default.nix$' | cut -d/ -f2 | sort -u)
             selected=()
             for d in "${changed[@]}"; do
