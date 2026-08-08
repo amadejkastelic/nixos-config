@@ -52,6 +52,18 @@
           env.CLAUDE_CODE_EXECUTABLE = lib.getExe config.programs.claude-code.package;
         };
       };
+
+      lsp = {
+        starpls = {
+          binary = {
+            path = lib.getExe pkgs.starpls;
+            arguments = [
+              "server"
+              "--experimental_enable_label_completions"
+            ];
+          };
+        };
+      };
     };
 
     extraPackages = with pkgs; [
