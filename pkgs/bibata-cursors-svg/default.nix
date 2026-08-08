@@ -5,6 +5,7 @@
   python3,
   python3Packages,
   hyprcursor,
+  nix-update-script,
   variant ? "modern",
   baseColor ? "#FFFFFF",
   outlineColor ? "#000000",
@@ -30,12 +31,12 @@ assert builtins.elem variant [
 ];
 stdenvNoCC.mkDerivation (final: {
   pname = "bibata-hyprcursor";
-  version = "v2.0.7";
+  version = "2.0.7";
 
   src = fetchFromGitHub {
     owner = "ful1e5";
     repo = "Bibata_Cursor";
-    rev = final.version;
+    rev = "v${final.version}";
     hash = "sha256-kIKidw1vditpuxO1gVuZeUPdWBzkiksO/q2R/+DUdEc=";
   };
 
@@ -101,4 +102,12 @@ stdenvNoCC.mkDerivation (final: {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version-regex"
+      "^v(.*)$"
+    ];
+  };
 })

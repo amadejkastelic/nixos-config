@@ -3,6 +3,7 @@
   config,
   lib,
   inputs,
+  self,
   ...
 }:
 let
@@ -15,6 +16,19 @@ in
     enable = true;
 
     package = inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+    plugins = {
+      code-review = "${
+        self.packages.${pkgs.stdenv.hostPlatform.system}.anthropic-plugins-official
+      }/plugins/code-review";
+      mattpocock-skills = self.packages.${pkgs.stdenv.hostPlatform.system}.mattpocock-skills;
+    };
+
+    skills = {
+      skill-creator = "${
+        self.packages.${pkgs.stdenv.hostPlatform.system}.anthropic-skills
+      }/skills/skill-creator";
+    };
 
     lspServers = {
       rust-analyzer = {

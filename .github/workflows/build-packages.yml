@@ -1,0 +1,102 @@
+name: Build Packages
+on:
+  pull_request:
+    paths:
+      - "pkgs/**"
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: "Packages to build (space-separated, empty = all)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v7
+
+      - name: Read Nix cache config
+        id: caches
+        run: |
+          echo "substituters=$(jq -r '.substituters | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+          echo "trusted-public-keys=$(jq -r '."trusted-public-keys" | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = ${{ steps.caches.outputs.substituters }}
+            trusted-public-keys = ${{ steps.caches.outputs.trusted-public-keys }}
+
+      - name: Restore and save Nix store
+        uses: nix-community/cache-nix-action@v7
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 1G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: P1DT12H
+          purge-primary-key: never
+
+      - name: Build changed packages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+
+          # Packages that exist in the flake.
+          mapfile -t avail < <(nix eval --json .#packages.x86_64-linux \
+            --apply 'p: builtins.attrNames p' | jq -r '.[]')
+          if [ "${#avail[@]}" -eq 0 ]; then
+            echo "::error::Could not enumerate packages (flake eval failed?)"
+            exit 1
+          fi
+
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            # Package directories touched by this PR, intersected with real packages.
+            mapfile -t changed < <(gh pr view --json files -q '.files[].path' \
+              | grep '^pkgs/' | grep -v '^pkgs/default.nix$' | cut -d/ -f2 | sort -u)
+            selected=()
+            for d in "${changed[@]}"; do
+              for a in "${avail[@]}"; do [ "$d" = "$a" ] && selected+=("$d"); done
+            done
+          else
+            # workflow_dispatch: requested packages, or all.
+            read -ra requested <<< "${{ inputs.packages }}"
+            if [ "${#requested[@]}" -gt 0 ]; then
+              selected=("${requested[@]}")
+            else
+              selected=("${avail[@]}")
+            fi
+          fi
+
+          if [ "${#selected[@]}" -eq 0 ]; then
+            echo "No packages to build."
+            exit 0
+          fi
+
+          echo "Building: ${selected[*]}"
+          fail=0
+          for p in "${selected[@]}"; do
+            echo "::group::nix build .#$p"
+            if nix build .#"$p" --no-link --print-out-paths; then
+              :
+            else
+              echo "::error::$p failed to build"
+              fail=1
+            fi
+            echo "::endgroup::"
+          done
+          exit "$fail"

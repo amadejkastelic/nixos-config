@@ -2,9 +2,10 @@
   lib,
   fetchFromGitHub,
   python3,
+  nix-update-script,
 }:
 
-python3.pkgs.buildPythonPackage {
+python3.pkgs.buildPythonPackage (finalAttrs: {
   pname = "ib_edavki";
   version = "unstable-2026-01-25";
   pyproject = true;
@@ -25,10 +26,17 @@ python3.pkgs.buildPythonPackage {
 
   pythonImportsCheck = [ "ib_edavki" ];
 
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
+
   meta = {
     description = "Convert InteractiveBrokers XML reports to Slovenian tax forms (Doh-KDVP, D-IFI, D-Div, Doh-Obr)";
     homepage = "https://github.com/jamsix/ib-edavki";
     mainProgram = "ib_edavki";
     license = lib.licenses.mit;
   };
-}
+})

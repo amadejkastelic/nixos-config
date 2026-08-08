@@ -1,0 +1,117 @@
+name: Update Local Packages
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: "Packages to update (space-separated, empty = all)"
+        required: false
+        type: string
+
+jobs:
+  update-packages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v7
+
+      - name: Read Nix cache config
+        id: caches
+        run: |
+          echo "substituters=$(jq -r '.substituters | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+          echo "trusted-public-keys=$(jq -r '."trusted-public-keys" | join(" ")' system/nix/cache.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = ${{ steps.caches.outputs.substituters }}
+            trusted-public-keys = ${{ steps.caches.outputs.trusted-public-keys }}
+
+      - name: Restore and save Nix store
+        uses: nix-community/cache-nix-action@v7
+        with:
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 1G
+          purge: true
+          purge-prefixes: nix-${{ runner.os }}-
+          purge-created: 0
+          purge-last-accessed: P1DT12H
+          purge-primary-key: never
+
+      - name: Update local packages
+        id: update
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B update-packages
+
+          # nix-update drives every package via its passthru.updateScript; the
+          # committed update.sh scripts pull any extra tools (curl/jq) from nix.
+          # Each updated package becomes its own commit.
+          PKGS="${{ inputs.packages }}"
+          : "${PKGS:=sekiro-fps-unlock hyprvoice ib-edavki bibata-cursors-svg anthropic-skills anthropic-plugins-official mattpocock-skills z-ai-vision-mcp-server jellyfin-plugin-file-transformation jellyfin-plugin-intro-skipper}"
+          changed=0
+          for p in $PKGS; do
+            echo "::group::Updating $p"
+            if nix run nixpkgs#nix-update -- --flake --use-update-script "$p"; then
+              if [ -n "$(git status --porcelain -- "pkgs/$p")" ]; then
+                git add "pkgs/$p"
+                git commit -m "pkgs/$p: update"
+                changed=1
+              fi
+            else
+              echo "::warning::$p failed to update"
+            fi
+            echo "::endgroup::"
+          done
+
+          if [ "$changed" = "1" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open or update pull request
+        id: pr
+        if: steps.update.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_CI }}
+        run: |
+          set -euo pipefail
+          # Push with the PAT so the PR branch triggers CI workflows.
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin update-packages
+
+          url="$(gh pr list --head update-packages --state open --json url -q '.[0].url' 2>/dev/null || true)"
+          if [ -z "$url" ]; then
+            url="$(gh pr create \
+              --head update-packages \
+              --title "pkgs: nix-update" \
+              --body "Automated update of local packages via nix-update --use-update-script (one commit per package). Triggered by ${{ github.actor }} (${{ github.event_name }})." \
+              --label update --label automation)"
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Approve pull request
+        if: steps.update.outputs.has_changes == 'true'
+        run: gh pr review --approve "${{ steps.pr.outputs.url }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge
+        if: steps.update.outputs.has_changes == 'true'
+        run: gh pr merge --auto --rebase "${{ steps.pr.outputs.url }}"
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_CI }}

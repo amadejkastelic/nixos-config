@@ -4,15 +4,16 @@
   fetchFromGitHub,
   meson,
   ninja,
+  nix-update-script,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "sekirofpsunlock";
   version = "0.2.3";
 
   src = fetchFromGitHub {
     owner = "Lahvuun";
     repo = "sekirofpsunlock";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-tdKm7VNlOQST2uIXTajD7BCbhLktNRysOuDSYd9ONEU=";
   };
 
@@ -27,6 +28,14 @@ stdenv.mkDerivation rec {
     runHook postInstall
   '';
 
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version-regex"
+      "^v(.*)$"
+    ];
+  };
+
   meta = {
     description = "Linux patcher for Sekiro that removes FPS and resolution limitations";
     homepage = "https://github.com/Lahvuun/sekirofpsunlock";
@@ -34,4 +43,4 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     mainProgram = "sekirofpsunlock";
   };
-}
+})

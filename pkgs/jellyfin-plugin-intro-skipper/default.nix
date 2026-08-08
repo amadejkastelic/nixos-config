@@ -56,4 +56,6 @@ buildDotnetModule (finalAttrs: {
     mkdir -p $out/share/jellyfin/plugins/IntroSkipper
     cp $out/lib/${finalAttrs.pname}/IntroSkipper.dll $out/share/jellyfin/plugins/IntroSkipper/
   '';
+
+  passthru.updateScript = [ ./update.sh ];
 })

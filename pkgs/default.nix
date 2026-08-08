@@ -27,6 +27,11 @@
         jellyfin-plugin-file-transformation = pkgs.callPackage ./jellyfin-plugin-file-transformation { };
 
         hyprvoice = pkgs.callPackage ./hyprvoice { };
+
+        mattpocock-skills = pkgs.callPackage ./mattpocock-skills { };
+
+        anthropic-plugins-official = pkgs.callPackage ./anthropic-plugins-official { };
+        anthropic-skills = pkgs.callPackage ./anthropic-skills { };
       };
     };
 }

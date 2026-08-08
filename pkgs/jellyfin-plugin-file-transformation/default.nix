@@ -28,4 +28,6 @@ buildDotnetModule (finalAttrs: {
     mkdir -p $out/share/jellyfin/plugins/FileTransformation
     cp $out/lib/${finalAttrs.pname}/Jellyfin.Plugin.FileTransformation.dll $out/share/jellyfin/plugins/FileTransformation/
   '';
+
+  passthru.updateScript = [ ./update.sh ];
 })

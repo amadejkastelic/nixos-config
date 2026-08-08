@@ -32,6 +32,8 @@ buildNpmPackage rec {
     runHook postInstall
   '';
 
+  passthru.updateScript = [ ./update.sh ];
+
   meta = {
     mainProgram = pname;
     description = "MCP Server for Z.AI - Model Context Protocol server providing AI capabilities";

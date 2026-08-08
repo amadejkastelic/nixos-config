@@ -9,6 +9,7 @@
   ydotool,
   libnotify,
   whisper-cpp-vulkan,
+  nix-update-script,
 }:
 buildGoModule (finalAttrs: {
   pname = "hyprvoice";
@@ -49,6 +50,14 @@ buildGoModule (finalAttrs: {
     # Tests require a running wayland compositor and pipewire
     "-skip=TestInjector|TestRecorder"
   ];
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version-regex"
+      "^v(.*)$"
+    ];
+  };
 
   meta = {
     description = "Voice-powered typing for Hyprland/Wayland";
