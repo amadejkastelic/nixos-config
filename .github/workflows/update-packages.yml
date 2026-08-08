@@ -68,10 +68,17 @@ jobs:
           changed=0
           for p in $PKGS; do
             echo "::group::Updating $p"
+            old="$(nix eval --raw .#packages.x86_64-linux."$p".version 2>/dev/null || true)"
             if nix run nixpkgs#nix-update -- --flake --use-update-script "$p"; then
               if [ -n "$(git status --porcelain -- "pkgs/$p")" ]; then
+                new="$(nix eval --raw .#packages.x86_64-linux."$p".version 2>/dev/null || true)"
+                if [ -n "$old" ] && [ -n "$new" ]; then
+                  msg="pkgs/$p: $old -> $new"
+                else
+                  msg="pkgs/$p: update"
+                fi
                 git add "pkgs/$p"
-                git commit -m "pkgs/$p: update"
+                git commit -m "$msg"
                 changed=1
               fi
             else
