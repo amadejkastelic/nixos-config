@@ -13,13 +13,13 @@
 }:
 buildGoModule (finalAttrs: {
   pname = "hyprvoice";
-  version = "1.0.0";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "LeonardoTrapani";
     repo = "hyprvoice";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-geIjm5vChQwO44eSw8E9Tp8d4QkL3IGIdI7Xvpz9Eu8=";
+    hash = "sha256-ng17y53L9cyxSjupSGKyZkBXOGneJrjprjvODYch6EE=";
   };
 
   vendorHash = "sha256-b1IsFlhj+xTQT/4PzL97YjVjjS7TQtcIsbeK3dLOxR4=";
