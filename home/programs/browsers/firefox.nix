@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   config,
+  self,
   ...
 }:
 let
@@ -102,23 +103,25 @@ in
 
       extensions = {
         force = true;
-        packages = with pkgs.firefox-addons; [
-          auto-tab-discard
-          darkreader
-          ublock-origin
-          sponsorblock
-          bitwarden
-          istilldontcareaboutcookies
-          return-youtube-dislikes
-          old-reddit-redirect
-          ctrl-number-to-switch-tabs
-          violentmonkey
-          betterttv
-          csgofloat
-          metamask
-          firefox-color
-          multi-account-containers
-        ];
+        packages =
+          (with pkgs.firefox-addons; [
+            auto-tab-discard
+            darkreader
+            ublock-origin
+            sponsorblock
+            bitwarden
+            istilldontcareaboutcookies
+            return-youtube-dislikes
+            old-reddit-redirect
+            ctrl-number-to-switch-tabs
+            violentmonkey
+            betterttv
+            csgofloat
+            metamask
+            firefox-color
+            multi-account-containers
+          ])
+          ++ [ self.packages.${pkgs.stdenv.hostPlatform.system}.nordvpn-proxy ];
       };
 
       search = {

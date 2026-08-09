@@ -1,9 +1,14 @@
 {
+  inputs,
+  ...
+}:
+{
   systems = [ "x86_64-linux" ];
 
   perSystem =
     {
       pkgs,
+      system,
       ...
     }:
     {
@@ -32,6 +37,10 @@
 
         anthropic-plugins-official = pkgs.callPackage ./anthropic-plugins-official { };
         anthropic-skills = pkgs.callPackage ./anthropic-skills { };
+
+        nordvpn-proxy = pkgs.callPackage ./nordvpn-proxy {
+          buildFirefoxXpiAddon = inputs.firefox-addons.lib.${system}.buildFirefoxXpiAddon;
+        };
       };
     };
 }
