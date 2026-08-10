@@ -62,12 +62,15 @@ let
     ./services/databases
     ./services/forgejo.nix
     ./services/grabby.nix
+    ./services/headplane.nix
+    ./services/headscale.nix
     ./services/home-assistant.nix
     ./services/immich
     ./services/jellyfin.nix
     ./services/metrics
     ./services/nginx.nix
     ./services/vaultwarden.nix
+    ./services/zitadel.nix
   ];
 in
 {

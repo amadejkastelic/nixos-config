@@ -6,6 +6,8 @@
     ./firefox-syncserver.nix
     ./forgejo.nix
     ./grafana.nix
+    ./headplane.nix
+    ./headscale.nix
     ./immich.nix
     ./jellyfin
     ./jellyseerr
@@ -18,5 +20,6 @@
     ./tailscale-funnel.nix
     ./tailscale-tls.nix
     ./vaultwarden.nix
+    ./zitadel.nix
   ];
 }
