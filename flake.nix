@@ -158,7 +158,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-userstyles.url = "github:knoopx/nix-userstyles";
+    nix-userstyles = {
+      url = "github:amadejkastelic/nix-userstyles";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
