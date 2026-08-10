@@ -7,13 +7,11 @@
 }:
 let
   defaults = {
-    launchOptions = {
-      env = { };
-      wrappers = [
-        (lib.getExe pkgs.gamemode)
-        (lib.getExe pkgs.mangohud)
-      ];
-    };
+    env = { };
+    wrappers = [
+      (lib.getExe pkgs.gamemode)
+      (lib.getExe pkgs.mangohud)
+    ];
   };
 in
 {
@@ -42,21 +40,19 @@ in
           {
             cs2 = {
               id = 730;
-              files.install."game/csgo/cfg/autoexec.cfg".source = ./cs2/autoexec.cfg;
-              launchOptions = {
-                env.SDL_VIDEO_DRIVER = "wayland";
-                args = [
-                  "-window"
-                  "-nojoy"
-                  "-w 1920"
-                  "-h 1440"
-                  "-trusted"
-                  "-novid"
-                  "-freq 120"
-                  "+fps_max 0"
-                  "+exec autoexec"
-                ];
-              };
+              files.game.place."game/csgo/cfg/autoexec.cfg".source = ./cs2/autoexec.cfg;
+              env.SDL_VIDEO_DRIVER = "wayland";
+              args = [
+                "-window"
+                "-nojoy"
+                "-w 1920"
+                "-h 1440"
+                "-trusted"
+                "-novid"
+                "-freq 120"
+                "+fps_max 0"
+                "+exec autoexec"
+              ];
             };
           };
     };
