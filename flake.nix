@@ -95,15 +95,18 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=91f29f23bb691462f8aa6171b964069aebc37910";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hypridle = {
       url = "github:hyprwm/hypridle";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
     };
 
     hyprlock = {
@@ -124,9 +127,15 @@
 
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
+      inputs = {
+        aquamarine.follows = "hyprland/aquamarine";
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        hyprwire.follows = "hyprland/hyprwire";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
     };
 
     hyprsunset = {
