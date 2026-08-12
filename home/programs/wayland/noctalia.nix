@@ -178,12 +178,15 @@
           custom_image_colorize = false;
           scale = 1.25;
           tooltip = "Vicinae";
-          command = "vicinae toggle";
+          actions.left = "exec vicinae toggle";
         };
 
         workspaces = {
-          enable_scroll = false;
-          display = "id";
+          actions = {
+            scroll_up = "none";
+            scroll_down = "none";
+          };
+          label_source = "id";
           labels_only_when_occupied = true;
           max_label_chars = 2;
           style = "focus_hint";
@@ -209,14 +212,13 @@
           art_size = 16;
           title_scroll = "on_hover";
           hide_when_no_media = false;
-          enable_scroll = true;
         };
 
         cpu = {
           type = "sysmon";
           stat = "cpu_usage";
-          display = "gauge";
-          show_label = false;
+          visualization = "gauge";
+          show_value = false;
         };
 
         network.show_label = false;
