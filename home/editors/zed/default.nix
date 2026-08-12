@@ -92,6 +92,7 @@
       nixd
       nixfmt
       nil
+      package-version-server
     ];
   };
 
