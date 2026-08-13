@@ -209,7 +209,6 @@ in
         (bind "SUPER + SHIFT + P" "hl.dsp.group.prev()")
         (bind "SUPER + W" ''hl.dsp.window.float({ action = "toggle" })'')
         (bind "SUPER + P" "hl.dsp.window.pseudo()")
-        (bind "SUPER + ALT" "hl.dsp.window.resize()")
         (exec "SUPER + M" "enabled=$(hyprctl getoption dwindle:no_gaps_when_only -j | jaq -r '.int'); if [ \"$enabled\" = 0 ]; then enabled=true; else enabled=false; fi; hyprctl eval \"hl.config({ dwindle = { no_gaps_when_only = $enabled } })\"")
         (bind "SUPER + G" ''hl.dsp.focus({ workspace = "name:Gaming" })'')
         (bind "SUPER + SHIFT + G" ''hl.dsp.window.move({ workspace = "name:Gaming" })'')
