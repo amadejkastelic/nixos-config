@@ -1015,11 +1015,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1786841169,
-        "narHash": "sha256-OAPjQVuzZC1qJSMBKXbcSuCtuFj9RrTC/99hft5VIaI=",
+        "lastModified": 1786878259,
+        "narHash": "sha256-MgGbvhvUUq7bCicDtqEVFUzGVbxkdW0WU16vwPNFGsw=",
         "owner": "amadejkastelic",
         "repo": "grabby",
-        "rev": "e4812d13b73032c1119d7c434b00cc695f1ebc24",
+        "rev": "08b446d6a26366eaf582222c26312765d2fc2911",
         "type": "github"
       },
       "original": {
