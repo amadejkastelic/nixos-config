@@ -35,6 +35,7 @@
           "555027099350728714" # tech-general
           "370223615452512256" # kek-or-cringe
           "905861714908676146" # slovenski-kek-or-cringe
+          "393167713415200769" # gym-goblins
           "386301540417142784" # frinances
           "435071209240264704" # politics
         ];
