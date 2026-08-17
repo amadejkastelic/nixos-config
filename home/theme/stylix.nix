@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 {
@@ -10,7 +9,7 @@
 
     autoEnable = true;
 
-    icons = lib.mkIf (!pkgs.stdenv.isDarwin) {
+    icons = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
       enable = true;
       package = pkgs.papirus-icon-theme;
       dark = "Papirus-Dark";

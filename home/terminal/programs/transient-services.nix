@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (builtins) concatStringsSep mapAttrs toString;
+  inherit (builtins) concatStringsSep mapAttrs;
 
   path = lib.optionalString (config.home.sessionPath != [ ]) ''
     export PATH=${concatStringsSep ":" config.home.sessionPath}:$PATH
@@ -37,7 +37,7 @@ let
   '';
 in
 {
-  config = lib.mkIf (!pkgs.stdenv.isDarwin) {
+  config = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
     home.packages = [ run-as-service ];
   };
 }

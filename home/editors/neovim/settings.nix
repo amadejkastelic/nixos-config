@@ -39,7 +39,7 @@
     clipboard = {
       enable = true;
       registers = "unnamedplus";
-      providers.wl-copy = lib.mkIf (!pkgs.stdenv.isDarwin) {
+      providers.wl-copy = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
         enable = true;
       };
     };

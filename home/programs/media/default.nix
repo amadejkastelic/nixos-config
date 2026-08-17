@@ -4,7 +4,7 @@
 
   home.packages =
     with pkgs;
-    lib.optionals (!pkgs.stdenv.isDarwin) [
+    lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
       gimp
       lxqt.pavucontrol-qt
       pulsemixer

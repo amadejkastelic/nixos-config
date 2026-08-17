@@ -22,7 +22,7 @@
       iloader
       signal-desktop
     ]
-    ++ lib.optionals (!pkgs.stdenv.isDarwin) [
+    ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
       kdePackages.ark
       pinentry-gnome3
       wineWow64Packages.wayland

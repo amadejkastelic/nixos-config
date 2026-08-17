@@ -15,7 +15,7 @@
 
   home = {
     username = "amadejk";
-    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/amadejk" else "/home/amadejk";
+    homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then "/Users/amadejk" else "/home/amadejk";
     stateVersion = "23.11";
     extraOutputsToInstall = [
       "doc"
@@ -23,7 +23,7 @@
     ];
   };
 
-  targets.darwin = lib.mkIf pkgs.stdenv.isDarwin {
+  targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     linkApps.enable = false;
     copyApps.enable = true;
   };

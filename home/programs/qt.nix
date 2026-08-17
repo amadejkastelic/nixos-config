@@ -8,7 +8,7 @@
 
   catppuccin.qt5ct.enable = true;
 
-  qt = lib.mkIf (!pkgs.stdenv.isDarwin) {
+  qt = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
     enable = true;
     platformTheme.name = "qtct";
     style.package = with pkgs; [

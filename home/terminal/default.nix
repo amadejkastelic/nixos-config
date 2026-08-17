@@ -25,7 +25,7 @@ in
 
     NIX_AUTO_RUN = "1";
   }
-  // lib.optionalAttrs (!pkgs.stdenv.isDarwin) {
+  // lib.optionalAttrs (!pkgs.stdenv.hostPlatform.isDarwin) {
     WINEPREFIX = "${data}/wine";
     XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
   };

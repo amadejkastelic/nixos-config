@@ -85,7 +85,7 @@ in
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
 
-    mimeApps = lib.mkIf (!pkgs.stdenv.isDarwin) {
+    mimeApps = lib.mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
       enable = true;
       defaultApplications = associations;
     };

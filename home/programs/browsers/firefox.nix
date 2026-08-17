@@ -49,7 +49,7 @@ in
   programs.firefox = {
     enable = true;
 
-    configPath = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/mozilla/firefox";
+    configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/mozilla/firefox";
 
     policies = {
       AutofillAddressEnabled = true;
