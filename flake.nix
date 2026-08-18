@@ -144,7 +144,8 @@
     };
 
     hyprvibr = {
-      url = "github:amadejkastelic/hyprvibr";
+      # https://github.com/devcexx/hyprvibr/pull/8
+      url = "github:amadejkastelic/hyprvibr?ref=chase-hyprland";
       inputs.hyprland.follows = "hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };

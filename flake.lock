@@ -1666,15 +1666,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1785943369,
-        "narHash": "sha256-xHYfElOFulJFMLbYvRY7F712oOeohqRmOkzaikbZ/Gs=",
+        "lastModified": 1787037600,
+        "narHash": "sha256-dK0SzQJQ+R++39SzsAcWUvYffaK+msdtyVO3uURIl94=",
         "owner": "amadejkastelic",
         "repo": "hyprvibr",
-        "rev": "edede17df7bc2f1524112995d82c4f54693aa64b",
+        "rev": "b2f9fa79b8b7f5f76ca4d0eea8e4fde93c59aeb0",
         "type": "github"
       },
       "original": {
         "owner": "amadejkastelic",
+        "ref": "chase-hyprland",
         "repo": "hyprvibr",
         "type": "github"
       }
