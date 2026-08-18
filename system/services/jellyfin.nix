@@ -24,6 +24,11 @@
     apiConfig = {
       enable = true;
 
+      apiKeys = [
+        "Bazarr"
+        "Bazarr KDrama"
+      ];
+
       users = {
         admin = {
           password = {

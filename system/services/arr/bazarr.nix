@@ -14,60 +14,42 @@
       enable = true;
       apiKeyPath = config.sops.secrets."bazarr/api_key".path;
 
-      instances = [
+      sonarr = {
+        port = 8989;
+        apiKeyPath = config.sops.secrets."sonarr/api_key".path;
+      };
+
+      radarr = {
+        port = 7878;
+        apiKeyPath = config.sops.secrets."radarr/api_key".path;
+      };
+
+      jellyfin = {
+        movieLibrary = [ "Movies" ];
+        seriesLibrary = [ "TV Shows" ];
+      };
+
+      providers = [
         {
-          name = "Radarr";
-          implementation = "Radarr";
-          hostname = "127.0.0.1";
-          port = 7878;
-          apiKeyPath = config.sops.secrets."radarr/api_key".path;
-          baseUrl = "";
-          is_default = true;
+          name = "opensubtitlescom";
+          usernamePath = config.sops.secrets."bazarr/opensubtitles/username".path;
+          passwordPath = config.sops.secrets."bazarr/opensubtitles/password".path;
         }
-        {
-          name = "Sonarr TV";
-          implementation = "Sonarr";
-          hostname = "127.0.0.1";
-          port = 8989;
-          apiKeyPath = config.sops.secrets."sonarr/api_key".path;
-          baseUrl = "";
-        }
-        {
-          name = "Sonarr Anime";
-          implementation = "Sonarr";
-          hostname = "127.0.0.1";
-          port = 8990;
-          apiKeyPath = config.sops.secrets."sonarr-anime/api_key".path;
-          baseUrl = "";
-        }
-        {
-          name = "Sonarr KDrama";
-          implementation = "Sonarr";
-          hostname = "127.0.0.1";
-          port = 8991;
-          apiKeyPath = config.sops.secrets."sonarr-kdrama/api_key".path;
-          baseUrl = "";
-        }
+        { name = "gestdown"; }
       ];
 
-      languages = {
-        enabled = [ "en" ];
-        series = {
-          languages = [ "en" ];
-          hearingImpaired = false;
-          forced = false;
-        };
-        movies = {
-          languages = [ "en" ];
-          hearingImpaired = false;
-          forced = false;
-        };
-      };
+      languages = { };
     };
   };
 
   sops.secrets."bazarr/api_key" = {
     owner = "bazarr";
     group = "bazarr";
+  };
+
+  sops.secrets = {
+    "bazarr/opensubtitles/username" = { };
+    "bazarr/opensubtitles/password" = { };
+    "avistaz/cookies" = { };
   };
 }

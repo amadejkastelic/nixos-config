@@ -473,6 +473,67 @@ let
         )}
       '';
     };
+  mkApiKeysService =
+    {
+      description ? "Create Jellyfin API keys",
+    }:
+    let
+      apiKeys = cfg.apiConfig.apiKeys;
+      slug = name: lib.toLower (lib.replaceStrings [ " " ] [ "-" ] name);
+    in
+    {
+      description = description;
+      after = [
+        "jellyfin.service"
+        "jellyfin-auth.service"
+      ];
+      bindsTo = [ "jellyfin.service" ];
+      requires = [ "jellyfin-auth.service" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+
+      script = ''
+        set -eu
+
+        BASE_URL="${baseUrl}"
+
+        ACCESS_TOKEN=$(cat /run/jellyfin/auth-token)
+        export AUTH_HEADER='Authorization: MediaBrowser Client="jellyfin-nixos", Device="NixOS", DeviceId="jellyfin-nixos", Version="1.0.0", Token="'"$ACCESS_TOKEN"'"'
+
+        mkdir -p /run/jellyfin/api-keys
+
+        KEYS_JSON=$(${pkgs.curl}/bin/curl -sf -H "$AUTH_HEADER" "$BASE_URL/Auth/Keys")
+
+        ${lib.concatMapStringsSep "\n" (name: ''
+          KEY_NAME="${name}"
+          KEY_SLUG="${slug name}"
+          KEY_FILE="/run/jellyfin/api-keys/$KEY_SLUG.txt"
+
+          TOKEN=$(echo "$KEYS_JSON" | ${pkgs.jq}/bin/jq -r --arg n "$KEY_NAME" '(.Items // .)[] | select(.AppName == $n) | .AccessToken' || echo "")
+
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+            echo "API key '$KEY_NAME' not found, creating"
+            ${pkgs.curl}/bin/curl -sSf -X POST -H "$AUTH_HEADER" \
+              "$BASE_URL/Auth/Keys?app=$(${pkgs.jq}/bin/jq -rn --arg n "$KEY_NAME" '$n|@uri')"
+
+            KEYS_JSON=$(${pkgs.curl}/bin/curl -sf -H "$AUTH_HEADER" "$BASE_URL/Auth/Keys")
+            TOKEN=$(echo "$KEYS_JSON" | ${pkgs.jq}/bin/jq -r --arg n "$KEY_NAME" '(.Items // .)[] | select(.AppName == $n) | .AccessToken' || echo "")
+
+            if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+              echo "ERROR: Failed to create API key '$KEY_NAME'" >&2
+              exit 1
+            fi
+          fi
+
+          echo -n "$TOKEN" > "$KEY_FILE"
+          chmod 600 "$KEY_FILE"
+        '') apiKeys}
+      '';
+    };
 in
 {
   inherit
@@ -481,5 +542,6 @@ in
     mkAuthService
     mkLibrariesService
     mkUserService
+    mkApiKeysService
     ;
 }

@@ -1,6 +1,7 @@
 {
   imports = [
     ./bazarr.nix
+    ./bazarr-kdrama.nix
     ./flaresolverr.nix
     ./jellyseerr.nix
     ./prowlarr.nix

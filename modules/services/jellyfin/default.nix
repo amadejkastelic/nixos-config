@@ -14,6 +14,7 @@ let
   mkAuthService = apiConfigurator.mkAuthService;
   mkLibrariesService = apiConfigurator.mkLibrariesService;
   mkUserService = apiConfigurator.mkUserService;
+  mkApiKeysService = apiConfigurator.mkApiKeysService;
 
   userPolicyOpts = {
     isAdministrator = lib.mkOption {
@@ -269,6 +270,16 @@ in
       description = "Port for Jellyfin API";
     };
 
+    apiKeys = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "API key names to create idempotently; tokens are written to /run/jellyfin/api-keys/<name>.txt";
+      example = [
+        "Bazarr"
+        "Bazarr KDrama"
+      ];
+    };
+
     users = lib.mkOption {
       type = lib.types.attrsOf userOpts;
       default = { };
@@ -337,6 +348,8 @@ in
       jellyfin-libraries = mkLibrariesService { };
 
       jellyfin-users = mkUserService { };
+
+      jellyfin-api-keys = lib.mkIf (cfg.apiConfig.apiKeys != [ ]) (mkApiKeysService { });
 
       jellyfin-plugins = lib.mkIf (cfg.plugins != [ ]) {
         description = "Install Jellyfin plugins";

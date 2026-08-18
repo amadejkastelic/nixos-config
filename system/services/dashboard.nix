@@ -116,6 +116,12 @@ in
             };
           }
           {
+            "Bazarr KDrama" = {
+              icon = "bazarr";
+              href = "https://bazarr-kdrama.${config.homelab.domain}";
+            };
+          }
+          {
             Prowlarr = {
               icon = "prowlarr";
               href = "https://prowlarr.${config.homelab.domain}";
