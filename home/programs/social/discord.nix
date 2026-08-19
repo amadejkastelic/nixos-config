@@ -4,11 +4,8 @@
 
   programs.nixcord = {
     enable = true;
-
-    discord = {
-      enable = true;
-      vencord.enable = true;
-    };
+    discord.enable = false;
+    vesktop.enable = true;
 
     config = {
       useQuickCss = true;
@@ -31,40 +28,5 @@
         messageLogger.enable = true;
       };
     };
-
-    # Remove titlebar
-    quickCss = ''
-      .bar_c38106 {
-        display: none !important;
-        height: 0 !important;
-        min-height: 0 !important;
-        max-height: 0 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        border: none !important;
-        overflow: hidden !important;
-      }
-
-      [class^="app-"] > [class^="sidebar_"] > [class^="container_"] > div:first-child {
-        display: none !important;
-        height: 0 !important;
-      }
-
-      [class^="base_"] {
-        top: 0 !important;
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-      }
-
-      [class^="content_"] {
-        margin-top: 0 !important;
-      }
-
-      .platform-win .layer__960e4 {
-        top: -53px;
-      }
-    '';
   };
 }
