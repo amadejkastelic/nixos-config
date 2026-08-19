@@ -1666,16 +1666,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1787037600,
+        "lastModified": 1787094043,
         "narHash": "sha256-dK0SzQJQ+R++39SzsAcWUvYffaK+msdtyVO3uURIl94=",
-        "owner": "amadejkastelic",
+        "owner": "devcexx",
         "repo": "hyprvibr",
-        "rev": "b2f9fa79b8b7f5f76ca4d0eea8e4fde93c59aeb0",
+        "rev": "38b61993f991e33ea300d92bb808d2497c8d415c",
         "type": "github"
       },
       "original": {
-        "owner": "amadejkastelic",
-        "ref": "chase-hyprland",
+        "owner": "devcexx",
         "repo": "hyprvibr",
         "type": "github"
       }
