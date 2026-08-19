@@ -6,13 +6,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "anthropic-skills";
-  version = "0-unstable-2026-08-17";
+  version = "0-unstable-2026-08-18";
 
   src = fetchFromGitHub {
     owner = "anthropics";
     repo = "skills";
-    rev = "f379e5ad66e2febc1616cf8d6284666fecbe514e";
-    hash = "sha256-BDLEsQ4rJLspINlHpu0rkvaC4BHdwQ4QUTko/v+xbAE=";
+    rev = "0a64e398ec6bb34a494f0c347e8ccae53a862f8e";
+    hash = "sha256-0ZtHTJVHeW8jIprKgCo/yU2ZI2cZxUqD3Riet3UWdt8=";
   };
 
   dontConfigure = true;
