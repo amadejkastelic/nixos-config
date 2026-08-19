@@ -342,6 +342,13 @@ in
           fullscreen = true;
           render_unfocused = true;
         })
+        (windowRule { initial_class = "^(steam_app_2964959715)$"; } {
+          fullscreen = false;
+          suppress_event = "maximize fullscreen activatefocus";
+          float = true;
+          center = true;
+          size = "1920 1080";
+        })
         (windowRule { initial_title = "Hearthstone"; } {
           float = true;
           size = "1920 1080";
