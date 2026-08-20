@@ -298,14 +298,7 @@ in
           float = true;
           inherit opacity;
         })
-        (windowRule { class = "^(vesktop)$"; } {
-          float = true;
-          workspace = "8 silent";
-          center = true;
-          size = "1920 1080";
-          inherit opacity;
-        })
-        (windowRule { class = "^(discord)$"; } {
+        (windowRule { class = "^(discord|vesktop)$"; } {
           float = true;
           workspace = "8 silent";
           center = true;
@@ -349,6 +342,18 @@ in
           center = true;
           size = "1920 1080";
         })
+        (windowRule
+          {
+            initial_class = "^(steam_app_2964959715)$";
+            title = "^$";
+          }
+          {
+            opacity = "0";
+            no_blur = true;
+            no_focus = true;
+            decorate = false;
+          }
+        )
         (windowRule { initial_title = "Hearthstone"; } {
           float = true;
           size = "1920 1080";
