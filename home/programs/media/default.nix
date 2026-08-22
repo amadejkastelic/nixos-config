@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   imports = [ ./mpv.nix ];
 
@@ -11,5 +16,6 @@
       kdePackages.gwenview
       audacious
       cider-2
+      inputs.sidra.packages.${pkgs.stdenv.hostPlatform.system}.sidra
     ];
 }
