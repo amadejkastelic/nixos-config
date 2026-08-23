@@ -38,8 +38,8 @@ in
             ]
           )
           {
-            cs2 = {
-              id = 730;
+            "730" = {
+              name = "cs2";
               files.game.place."game/csgo/cfg/autoexec.cfg".source = ./cs2/autoexec.cfg;
               env.SDL_VIDEO_DRIVER = "wayland";
               args = [
