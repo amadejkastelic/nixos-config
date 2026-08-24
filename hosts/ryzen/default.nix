@@ -13,7 +13,7 @@
   services.scx = {
     enable = true;
     package = pkgs.scx.full;
-    scheduler = "scx_lavd";
+    scheduler = "scx_bpfland";
   };
 
   environment.systemPackages = with pkgs; [
