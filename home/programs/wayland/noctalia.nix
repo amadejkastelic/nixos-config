@@ -5,6 +5,11 @@
   ...
 }:
 {
+  # Disable HM module
+  disabledModules = [
+    "programs/noctalia.nix"
+  ];
+
   imports = [ inputs.noctalia.homeModules.default ];
 
   home.packages = [ pkgs.fastfetch ];
