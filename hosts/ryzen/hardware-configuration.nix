@@ -60,11 +60,14 @@
     options = [ "nofail" ];
   };
 
-  fileSystems."/mnt/ssd1" = {
+  /*
+    dead :(
+    fileSystems."/mnt/ssd1" = {
     device = "/dev/disk/by-label/SSD";
     fsType = "ext4";
     options = [ "nofail" ];
-  };
+    };
+  */
 
   swapDevices = [
     {
