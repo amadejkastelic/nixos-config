@@ -4,7 +4,7 @@
 
   programs.bb-launcher = {
     enable = true;
-    gameInstallPath = "/mnt/hdd1/PS4/CUSA03173/";
+    gameInstallPath = "/mnt/hdd1/PS4/CUSA03173";
     wrapperCommand = "gamemoderun mangohud";
   };
 }
