@@ -41,6 +41,8 @@
         nordvpn-proxy = pkgs.callPackage ./nordvpn-proxy {
           buildFirefoxXpiAddon = inputs.firefox-addons.lib.${system}.buildFirefoxXpiAddon;
         };
+
+        leshade = pkgs.callPackage ./leshade { };
       };
     };
 }
