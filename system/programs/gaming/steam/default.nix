@@ -54,6 +54,16 @@ in
                 "+exec autoexec"
               ];
             };
+            "1245620" = {
+              name = "Elden Ring";
+              env = {
+                SDLVIDEO_DRIVER = "";
+                PROTON_ENABLE_WAYLAND = 1;
+                PROTON_LOWLATENCY = 1;
+                WINEDLLOVERRIDES = "d3d8=n,b;";
+              };
+              args = [ "/HID/UseISteamInput:False" ];
+            };
           };
     };
 
