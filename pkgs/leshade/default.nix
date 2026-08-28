@@ -63,11 +63,7 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
   '';
 
   passthru.updateScript = nix-update-script {
-    extraArgs = [
-      "--flake"
-      "--version-regex"
-      "^v(.*)$"
-    ];
+    extraArgs = [ "--flake" ];
   };
 
   meta = {

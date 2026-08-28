@@ -190,6 +190,7 @@ nix build .#hyprvoice
 1. Create `pkgs/<name>/` with a `default.nix` (standard nixpkgs `callPackage` shape)
 2. Register it in `pkgs/default.nix` under `perSystem.packages`
 3. Build with `nix build .#<name>`
+4. Packages with `passthru.updateScript` are picked up automatically by the Update Local Packages workflow — no list to maintain.
 
 ## Important Notes
 

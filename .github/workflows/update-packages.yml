@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: "Packages to update (space-separated, empty = all)"
+        description: "Packages to update (space-separated, empty = all updatable)"
         required: false
         type: string
 
@@ -64,7 +64,10 @@ jobs:
           # committed update.sh scripts pull any extra tools (curl/jq) from nix.
           # Each updated package becomes its own commit.
           PKGS="${{ inputs.packages }}"
-          : "${PKGS:=sekiro-fps-unlock hyprvoice ib-edavki bibata-cursors-svg anthropic-skills anthropic-plugins-official mattpocock-skills z-ai-vision-mcp-server jellyfin-plugin-file-transformation jellyfin-plugin-intro-skipper}"
+          if [ -z "$PKGS" ]; then
+            PKGS="$(nix eval --raw .#packages.x86_64-linux \
+              --apply 'p: builtins.concatStringsSep " " (builtins.filter (n: p.${n} ? updateScript) (builtins.attrNames p))')"
+          fi
           changed=0
           for p in $PKGS; do
             echo "::group::Updating $p"
