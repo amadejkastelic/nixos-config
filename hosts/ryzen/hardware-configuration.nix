@@ -55,19 +55,16 @@
   };
 
   fileSystems."/mnt/hdd1" = {
-    device = "/dev/disk/by-label/HDD";
+    device = "/dev/disk/by-uuid/7b841cb3-f6b4-4a86-b4e6-3bd8fca0ed1d";
     fsType = "ext4";
     options = [ "nofail" ];
   };
 
-  /*
-    dead :(
-    fileSystems."/mnt/ssd1" = {
-    device = "/dev/disk/by-label/SSD";
+  fileSystems."/mnt/ssd1" = {
+    device = "/dev/disk/by-uuid/eb731630-b615-4433-a813-49b41f36db03";
     fsType = "ext4";
     options = [ "nofail" ];
-    };
-  */
+  };
 
   swapDevices = [
     {
