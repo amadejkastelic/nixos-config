@@ -181,8 +181,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    clipboard-sync.url = "github:dnut/clipboard-sync";
-
     sekiro-tweaker.url = "github:amadejkastelic/sekiro-tweaker";
 
     vicinae.url = "github:vicinaehq/vicinae";

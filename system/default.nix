@@ -30,7 +30,6 @@ let
     ./programs
 
     ./services
-    ./services/clipboard-sync.nix
     ./services/greetd.nix
     #./services/llama-cpp.nix
     ./services/openrgb.nix
