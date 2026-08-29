@@ -5,28 +5,29 @@
 }:
 
 let
-  cfg = config.services.homepage-dashboard.nginx;
+  cfg = config.services.glance.nginx;
+  locationPath = if cfg.location == "" then "/" else "/${cfg.location}/";
 in
 {
-  options.services.homepage-dashboard.nginx = {
-    enable = lib.mkEnableOption "Enable nginx reverse proxy for homepage-dashboard";
+  options.services.glance.nginx = {
+    enable = lib.mkEnableOption "Enable nginx reverse proxy for glance";
 
     hostName = lib.mkOption {
       type = lib.types.str;
       default = config.networking.hostName;
-      description = "Host name to expose homepage-dashboard webui through nginx";
+      description = "Host name to expose glance webui through nginx";
     };
 
     port = lib.mkOption {
       type = lib.types.int;
-      default = config.services.homepage-dashboard.listenPort;
-      description = "Port to expose homepage-dashboard webui through nginx";
+      default = config.services.glance.settings.server.port;
+      description = "Port to expose glance webui through nginx";
     };
 
     location = lib.mkOption {
       type = lib.types.str;
-      default = "/";
-      description = "Location path to expose homepage-dashboard webui through nginx";
+      default = "";
+      description = "Location path to expose glance webui through nginx";
     };
   };
 
@@ -35,8 +36,8 @@ in
       enable = true;
 
       virtualHosts."${cfg.hostName}" = {
-        locations."${cfg.location}" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}/";
+        locations."${locationPath}" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}${locationPath}";
           proxyWebsockets = true;
           recommendedProxySettings = true;
         };
