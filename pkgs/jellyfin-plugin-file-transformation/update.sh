@@ -3,4 +3,4 @@
 set -euo pipefail
 attr="${1:-${UPDATE_NIX_ATTR_PATH:-jellyfin-plugin-file-transformation}}"
 nix-update --flake "$attr"
-nix run ".#$attr.fetch-deps"
+git diff --quiet -- "pkgs/$attr" || "$(nix build --no-link --print-out-paths ".#$attr.fetch-deps")" "pkgs/$attr/deps.json"
