@@ -8,6 +8,8 @@ let
     ./config.nix
     ./core
 
+    ./services/podman.nix
+
     ./theme/catppuccin.nix
 
     ./network/avahi.nix
@@ -31,7 +33,6 @@ let
 
     ./services
     ./services/greetd.nix
-    #./services/llama-cpp.nix
     ./services/openrgb.nix
     ./services/pipewire.nix
     ./services/gpg.nix
@@ -49,8 +50,6 @@ let
   ];
 
   server = common ++ [
-    ./hardware/docker.nix
-
     ./programs/msmtp.nix
 
     ./services/acme.nix

@@ -1,6 +1,5 @@
 {
   imports = [
-    ./docker.nix
     ./../../lib/vfio.nix
     ./../../lib/virtualisation.nix
   ];

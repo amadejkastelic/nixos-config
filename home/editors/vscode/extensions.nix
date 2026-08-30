@@ -23,9 +23,6 @@
         # TOML
         tamasfe.even-better-toml
 
-        # Docker
-        ms-azuretools.vscode-docker
-
         # Svelte
         svelte.svelte-vscode
 
