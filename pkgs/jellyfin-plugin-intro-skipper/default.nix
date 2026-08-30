@@ -1,26 +1,28 @@
 {
+  lib,
   buildDotnetModule,
   fetchFromGitHub,
   fetchPnpmDeps,
   dotnetCorePackages,
+  jellyfin,
   nodejs,
   pnpm,
   pnpmConfigHook,
   ...
 }:
 let
-  branch = "10.11";
+  branch = lib.versions.majorMinor jellyfin.version;
 in
 buildDotnetModule (finalAttrs: {
   pname = "jellyfin-plugin-intro-skipper";
 
-  version = "1.10.11.21";
+  version = "1.10.11.23";
 
   src = fetchFromGitHub {
     owner = "intro-skipper";
     repo = "intro-skipper";
     tag = "${branch}/v${finalAttrs.version}";
-    hash = "sha256-/Gxvcm8pbFe8py/9gvqrW7S2+Zzlrz9sSFwHBrgE1AU=";
+    hash = "sha256-1uFbzMnRSFQb5pICix8eM1hEmgYQXye1QLNpZM1ERNk=";
   };
 
   dotnet-sdk = dotnetCorePackages.sdk_9_0;
