@@ -101,6 +101,7 @@ in
     };
 
     extraCompatPackages = with pkgs; [
+      dwproton-bin
       proton-ge-bin
     ];
 
