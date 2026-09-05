@@ -50,6 +50,8 @@ in
       }
     '';
 
-    services.journald.extraConfig = lib.mkDefault "Storage=persistent";
+    services.journald.settings.Journal = {
+      Storage = lib.mkDefault "persistent";
+    };
   };
 }
