@@ -1,9 +1,6 @@
-{ inputs, pkgs, ... }:
 {
   services.hyprsunset = {
     enable = true;
-
-    package = inputs.hyprsunset.packages.${pkgs.stdenv.hostPlatform.system}.hyprsunset;
 
     settings = {
       max-gamma = 150;

@@ -1,14 +1,11 @@
 {
   lib,
   config,
-  inputs,
   pkgs,
   ...
 }:
 let
-  hyprctl =
-    lib.getExe' inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-      "hyprctl";
+  hyprctl = lib.getExe' pkgs.hyprland "hyprctl";
   jq = lib.getExe pkgs.jq;
 
   saveWindows = pkgs.writeShellScriptBin "hyprland-save-windows" ''
@@ -107,8 +104,6 @@ in
 
   services.hypridle = {
     enable = true;
-
-    package = inputs.hypridle.packages.${pkgs.stdenv.hostPlatform.system}.hypridle;
 
     settings = {
       general = {

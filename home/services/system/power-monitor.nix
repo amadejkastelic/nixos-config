@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 let
@@ -48,7 +47,7 @@ let
 
   dependencies = with pkgs; [
     coreutils
-    config.wayland.windowManager.hyprland.package
+    hyprland
     power-profiles-daemon
     inotify-tools
     jaq

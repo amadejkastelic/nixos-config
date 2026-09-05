@@ -68,7 +68,7 @@ in
 {
   home = {
     packages = [
-      inputs.hyprland-contrib.packages.${pkgs.stdenv.hostPlatform.system}.grimblast
+      pkgs.grimblast
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.bibata-cursors-svg
     ];
     inherit sessionVariables;
