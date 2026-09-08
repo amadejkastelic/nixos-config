@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
 {
@@ -16,6 +15,5 @@
       kdePackages.gwenview
       audacious
       cider-2
-      inputs.sidra.packages.${pkgs.stdenv.hostPlatform.system}.sidra
     ];
 }

@@ -2399,7 +2399,6 @@
         "pre-commit-hooks": "pre-commit-hooks_4",
         "proxsign": "proxsign",
         "sekiro-tweaker": "sekiro-tweaker",
-        "sidra": "sidra",
         "sops-nix": "sops-nix",
         "steam-config-nix": "steam-config-nix",
         "stylix": "stylix",
@@ -2548,26 +2547,6 @@
       "original": {
         "type": "file",
         "url": "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg"
-      }
-    },
-    "sidra": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788820536,
-        "narHash": "sha256-JYYaWT1L14Zs648e6ipqHVwQvFkAxY80fjnzRI0pd+k=",
-        "owner": "wimpysworld",
-        "repo": "sidra",
-        "rev": "20c20a5f86fe96ae6109e41fcb78b4ef3c39be9f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wimpysworld",
-        "repo": "sidra",
-        "type": "github"
       }
     },
     "sops-nix": {
